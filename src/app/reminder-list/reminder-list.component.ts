@@ -105,6 +105,7 @@ export class ReminderListComponent implements OnInit {
   updateReminder(){
   }
 
+  
 
   // Rob's method
   public getSource(url: string): Observable<MessageEvent> {
