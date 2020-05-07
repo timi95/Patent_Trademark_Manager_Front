@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1, 
+  "version": 1,
   "newProjectRoot": "projects",
   "projects": {
     "Patent-Trademark-Manager-Front": {
@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "Patent-Trademark-Manager-Front"
+    }
+  },
+  "defaultProject": "Patent-Trademark-Manager-Front",
+  "cli": {
+    "analytics": "3afbf3e1-584a-455b-896f-5592c35b371c"
+  }
 }
