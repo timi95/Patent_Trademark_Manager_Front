@@ -6,8 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./side-nav.component.css']
 })
 export class SideNavComponent implements OnInit {
+  itemList:string[];
 
-  constructor() { }
+
+  constructor() {
+    this.itemList = ['item 1','item 2', 'item 3'];
+  }
 
   ngOnInit(): void {
   }

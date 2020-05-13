@@ -1,0 +1,21 @@
+nav {
+    border: 1px solid black;
+    background-color: lavender;
+    height: 100%;
+}
+
+.list-item-divider {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 100%;
+}
+
+.list-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* text-align: center; */
+    list-style: none;
+    border-bottom: 1px solid black;
+}
