@@ -2,8 +2,6 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'header-content',
-  // templateUrl: './app.component.html',
-  // styleUrls: ['./app.component.css'],
   template:
   `
     <nav class="header-nav">
@@ -26,6 +24,8 @@ import { Component } from '@angular/core';
     `
     ]
 })
+
+
 export class HeaderContentComponent {
   title = 'Patent Trademark Manager';
 }
