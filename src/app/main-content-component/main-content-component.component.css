@@ -1,0 +1,24 @@
+.square-positioning {
+    left: 65%;
+    position: relative;
+    top: 90%;
+}
+
+.square_btn{
+    position: relative;
+    top: 90%;
+    left: 80%;
+    display: inline-block;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    background: #d86666;/*Button Color*/
+    color: #FFF;
+    border-radius: 16px;
+    box-shadow: 0 6px 32px 0 rgba(0,18,46,0.24);
+}
+.square_btn:active {/*on Click*/
+    -ms-transform: translateY(4px);
+    -webkit-transform: translateY(4px);
+    transform: translateY(4px);/*Move down*/
+    border-bottom: none;/*disappears*/
+}
