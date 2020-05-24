@@ -1,12 +1,12 @@
 <div class="scrollable-grid ">
-    <ul class="card-grid">
-        <li class="card-body">
-            <h1> Item Title </h1>
-            <p> Item description...</p>
+    <ul class="card-grid" >
+        <li class="card-body" *ngFor="let documentItem of documentList">
+            <h1> {{ documentItem.title }} </h1>
+            <p> {{documentItem.body}}</p>
             <br>
-            <h4>Item Footer</h4>
+            <h4>{{documentItem.footer}}</h4>
         </li>
     </ul>
 </div>
-<a href="#" class="square_btn">&#43;</a>
+<a href="#" class="square_btn" (click)="createDocument()">&#43;</a>
 

@@ -7,7 +7,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainContentComponentComponent implements OnInit {
 
-  constructor() { }
+  documentList:Document[];
+
+  constructor() { 
+    this.documentList = [
+      {
+        title:"Item Title",
+        body: "Item Description...",
+        footer: "Item footer"
+      },
+      {
+        title:"Item2 Title",
+        body: "Item2 Description...",
+        footer: "Item2 footer"
+      }
+    ]
+  }
 
   ngOnInit(): void {
   }
@@ -17,7 +32,19 @@ export class MainContentComponentComponent implements OnInit {
   }
 
   createDocument() {
-
+    this.documentList.push(
+      {
+        title:`Item${this.documentList.length+1} Title`,
+        body: `Item${this.documentList.length+1} Description...`,
+        footer: `Item${this.documentList.length+1} footer`
+      }
+    )
   }
 
+}
+interface Document {
+  title:string;
+  body:string;
+  attachment?:any;
+  footer?:string;
 }

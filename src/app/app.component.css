@@ -8,6 +8,9 @@
   border: 1px solid black;
 
 }
+.HolyGrail-content {
+  background-color: #707174;
+}
 .HolyGrail-nav {
   order: -1;
   border: 1px solid black;
@@ -24,8 +27,8 @@
   }
   .HolyGrail-content {
     border: 1px solid black;
-  
     flex: 1;
+    background-color: #707174;
   }
   .HolyGrail-nav, .HolyGrail-ads {
     border: 1px solid black;
