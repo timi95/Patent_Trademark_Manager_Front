@@ -2,8 +2,6 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'footer-content',
-  // templateUrl: './app.component.html',
-  // styleUrls: ['./app.component.css'],
   template:
   `
     <nav class="header-nav">

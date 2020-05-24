@@ -12,4 +12,12 @@ export class MainContentComponentComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  fetchDocuments() {
+    
+  }
+
+  createDocument() {
+
+  }
+
 }
