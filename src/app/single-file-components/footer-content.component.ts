@@ -14,6 +14,8 @@ import { Component } from '@angular/core';
           display:flex;
           justify-content: center ;
           border: 1px solid black;
+          background-color: #26262b;
+          color: #fff;
         }
         .header-nav> h1 {
           word-wrap: break-word;
