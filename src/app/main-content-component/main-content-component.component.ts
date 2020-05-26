@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from 'src/services/api.service';
 
 @Component({
   selector: 'main-content-component',
@@ -9,7 +10,7 @@ export class MainContentComponentComponent implements OnInit {
 
   documentList:Document[];
 
-  constructor() { 
+  constructor(apiService:ApiService) { 
     this.documentList = [
       {
         title:"Item Title",
@@ -22,6 +23,18 @@ export class MainContentComponentComponent implements OnInit {
         footer: "Item2 footer"
       }
     ]
+
+    apiService.getAmmendmentAction().subscribe((response) => {
+      console.log(response);
+      // alert('Fetching Successful !');
+    }, err => {
+        console.log(err);
+        // this.messages.add(err);
+      }
+    );
+
+
+
   }
 
   ngOnInit(): void {

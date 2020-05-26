@@ -37,24 +37,20 @@ public errors: any = [];
 
 
 // ******************** // C R U D // ******************** //
- getAccounts() {
-    return  this.httpServer.get(`${this.API_URL}/accounts`);
+ getAmmendmentAction() {
+  return this.httpServer.get(`${this.API_URL}/Patent_manager/ammendement-action/`);
 }
 
- getAccountDetails(ID) {
-  return this.httpServer.get(`${this.API_URL}/accounts/${ID}/details`);
+ createAmmendmentAction(ammendement_action) {
+  return this.httpServer.post(`${this.API_URL}/Patent_manager/ammendement-action/`, ammendement_action);
 }
 
- createAccount(account) {
-  return  this.httpServer.post(`${this.API_URL}/accounts/`, account);
+ updateAmmendmentAction(ammendement_action) {
+  return this.httpServer.put(`${this.API_URL}/Patent_manager/ammendement-action/${ammendement_action.id}/update`, ammendement_action);
 }
 
- updateAccount(account) {
-  return this.httpServer.put(`${this.API_URL}/accounts/${account.id}/update`, account);
-}
-
- deleteAccount(account) {
-  return this.httpServer.delete(`${this.API_URL}/accounts/${account.id}/delete`, account);
+ deleteAmmendmentAction(ammendement_action) {
+  return this.httpServer.delete(`${this.API_URL}/Patent_manager/ammendement-action/${ammendement_action.id}/delete`, ammendement_action);
 }
 
 }

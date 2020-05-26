@@ -7,6 +7,7 @@ import { MainContentComponentComponent } from './main-content-component/main-con
 import { HeaderContentComponent } from "./single-file-components/header-content.component";
 import { FoterContentComponent } from "./single-file-components/footer-content.component";
 import { SideNavComponent } from './side-nav/side-nav.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { SideNavComponent } from './side-nav/side-nav.component';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule
   ],
   providers: [],
