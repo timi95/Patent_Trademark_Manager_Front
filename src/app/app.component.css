@@ -1,15 +1,17 @@
 .HolyGrail{
-    height: 100vh;
+  height: 100vh;
 }
 .HolyGrail,
 .HolyGrail-body {
   display: flex;
   flex-direction: column;
   border: 1px solid black;
+  /* height: 100vh; */
 
 }
 .HolyGrail-content {
   background-color: #707174;
+  height: 75vh;
 }
 .HolyGrail-nav {
   order: -1;
@@ -29,6 +31,7 @@
     border: 1px solid black;
     flex: 1;
     background-color: #707174;
+    height: 100%;
   }
   .HolyGrail-nav, .HolyGrail-ads {
     border: 1px solid black;

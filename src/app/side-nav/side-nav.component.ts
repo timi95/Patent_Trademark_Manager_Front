@@ -7,18 +7,24 @@ import { Component, OnInit, Input, HostListener } from '@angular/core';
 })
 export class SideNavComponent implements OnInit {
   itemList:string[];
-  @Input() opened = true;
-  @Input() isMobile = false;
+  opened : boolean;
+  isMobile : boolean;
 
   screenHeight:number;
   screenWidth:number;
 
   constructor() {
     this.itemList = ['item 1','item 2', 'item 3'];
+    this.opened = window.innerWidth < 769? true : false;
+    this.isMobile = window.innerWidth < 769? true : false;
+
   }
   
 
   ngOnInit(): void {
+
+
+
   }
 
 
