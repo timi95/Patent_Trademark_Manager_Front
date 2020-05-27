@@ -8,6 +8,7 @@ import { HeaderContentComponent } from "./single-file-components/header-content.
 import { FoterContentComponent } from "./single-file-components/footer-content.component";
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ErrorMessageComponent } from './error-message/error-message.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { HttpClientModule } from '@angular/common/http';
     MainContentComponentComponent,
     FoterContentComponent,
     HeaderContentComponent,
-    SideNavComponent
+    SideNavComponent,
+    ErrorMessageComponent
   ],
   imports: [
     BrowserModule,

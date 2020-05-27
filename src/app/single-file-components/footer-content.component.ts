@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
   selector: 'footer-content',
   template:
   `
+
     <nav class="header-nav">
         <h1> {{title}}</h1>
     </nav>

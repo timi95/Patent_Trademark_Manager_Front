@@ -1,0 +1,8 @@
+<div class="message-body" *ngIf="messageService.error_messages.length">
+
+    <div class="error-bubble">
+        <div *ngFor='let message of messageService.error_messages'> {{message}} </div>
+        <a class="clear" (click)="messageService.clear()">x</a>
+    </div>
+  
+</div>

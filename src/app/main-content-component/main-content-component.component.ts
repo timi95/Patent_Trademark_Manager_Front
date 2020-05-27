@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/services/api.service';
+import { MessageService } from 'src/services/message.service';
 
 @Component({
   selector: 'main-content-component',
@@ -10,7 +11,7 @@ export class MainContentComponentComponent implements OnInit {
 
   documentList:Document[];
 
-  constructor(apiService:ApiService) { 
+  constructor(apiService:ApiService, messageService: MessageService) { 
     this.documentList = [
       {
         title:"Item Title",
@@ -29,6 +30,7 @@ export class MainContentComponentComponent implements OnInit {
       // alert('Fetching Successful !');
     }, err => {
         console.log(err);
+        messageService.pushError(err);
         // this.messages.add(err);
       }
     );

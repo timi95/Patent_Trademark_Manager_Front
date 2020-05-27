@@ -1,0 +1,23 @@
+h2,h3 {
+    color: red;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: lighter;
+}
+
+.message-body {
+  position: relative;
+  top: 84%;
+}
+
+.error-bubble {
+  color: crimson;
+  background-color: pink;
+  border: 2px crimson solid;
+  border-radius: 15px;
+  padding: 5px;
+
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  text-align: center;
+}
