@@ -26,6 +26,7 @@ export class MainContentComponentComponent implements OnInit {
     ]
 
     apiService.getAmmendmentAction().subscribe((response) => {
+      messageService.pushSuccess('Successfully fetched ammendment actions!');
       console.log(response);
       // alert('Fetching Successful !');
     }, err => {

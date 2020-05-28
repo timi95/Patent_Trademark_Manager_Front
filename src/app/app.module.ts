@@ -9,6 +9,7 @@ import { FoterContentComponent } from "./single-file-components/footer-content.c
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ErrorMessageComponent } from './error-message/error-message.component';
+import { SuccessMessageComponent } from './success-message/success-message.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ErrorMessageComponent } from './error-message/error-message.component';
     FoterContentComponent,
     HeaderContentComponent,
     SideNavComponent,
-    ErrorMessageComponent
+    ErrorMessageComponent,
+    SuccessMessageComponent
   ],
   imports: [
     BrowserModule,
