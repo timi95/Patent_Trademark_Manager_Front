@@ -1,3 +1,30 @@
+label {
+  display: block;
+  width: 6em;
+  margin: 0.5em 0;
+  color: #607d8b;
+  font-weight: bold;
+}
+
+button {
+  font-family: Arial;
+  background-color: #eee;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #cfd8dc;
+}
+
+button:disabled {
+  background-color: #eee;
+  color: #ccc;
+  cursor: auto;
+}
+
 /* The Modal (background) */
 .overlay {
   /* Hidden by default */
@@ -22,11 +49,27 @@
   position: fixed;
   bottom: 300px;
   background-color: #fefefe;
-  width: 100%;
+  width: 60%;
+  margin: 0 20%;
+  border-radius: 15px;
+  padding: 5px;
+  border: 2px solid wheat;
   -webkit-animation-name: slideIn;
   -webkit-animation-duration: 0.4s;
   animation-name: slideIn;
   animation-duration: 0.4s;
+}
+
+/* Form List */
+.form-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  list-style: none;
+  /* align-items: center; */
+}
+.form-list > li {
+  padding: 5px 0;
 }
 
 /* Animation */

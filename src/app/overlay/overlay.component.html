@@ -1,8 +1,28 @@
-<div class="overlay">
-  <form action="" class="modal-content">
-    <label>
-      Name:
-      <input type="text" [formControl]="name" />
-    </label>
+<div *ngIf="active" class="overlay">
+  <form action="" class="modal-content" [formGroup]="myForm">
+    <ul class="form-list">
+      <li>
+        <label>
+          Email:
+          <input type="text" formControlName="email" />
+        </label>
+      </li>
+      <li>
+        <label for="message">
+          Message:
+          <input type="text" formControlName="message" />
+        </label>
+      </li>
+      <li>
+        <label for="career">
+          Career:
+          <input type="text" formControlName="career" />
+        </label>
+      </li>
+    </ul>
+
+    myFormState: {{ myForm.value | json }}
+
+    <button (click)="onSubmit()">Submit</button>
   </form>
 </div>

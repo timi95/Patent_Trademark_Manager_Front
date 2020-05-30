@@ -1,5 +1,7 @@
-import { Component, OnInit } from "@angular/core";
-import { FormControl } from "@angular/forms";
+import { Component, OnInit, Input } from "@angular/core";
+import { FormControl, FormBuilder, FormGroup } from "@angular/forms";
+import { ApiService } from "src/services/api.service";
+import { MessageService } from "src/services/message.service";
 
 @Component({
   selector: "overlay",
@@ -7,9 +9,38 @@ import { FormControl } from "@angular/forms";
   styleUrls: ["./overlay.component.css"],
 })
 export class OverlayComponent implements OnInit {
+  @Input("active") active: boolean;
+
+  myForm: FormGroup;
   name = new FormControl("");
 
-  constructor() {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private apiService: ApiService,
+    private messageService: MessageService
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.myForm = this.formBuilder.group({
+      email: [""],
+      message: [""],
+      career: [""],
+    });
+    this.myForm.valueChanges.subscribe(console.log);
+  }
+
+  onSubmit(): void {
+    this.apiService.createAmmendmentAction(this.myForm).subscribe(
+      (response) => {
+        this.messageService.pushSuccess("Successfully submitted!");
+        console.log(response);
+        // alert('Fetching Successful !');
+      },
+      (err) => {
+        console.log(err);
+        this.messageService.pushError(err);
+        // this.messages.add(err);
+      }
+    );
+  }
 }
