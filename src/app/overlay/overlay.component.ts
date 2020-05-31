@@ -29,7 +29,7 @@ export class OverlayComponent implements OnInit {
       amending_clerk: [""],
       date_amending_clerk_instructed: [""],
       status_of_amendment: [""],
-      date_amendment_received: [""],
+      date_amendment_received: [""]
     });
     this.myForm.valueChanges.subscribe(console.log);
   }
@@ -43,7 +43,7 @@ export class OverlayComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.apiService.createAmmendmentAction(this.myForm).subscribe(
+    this.apiService.createAmmendmentAction(JSON.stringify(this.myForm.getRawValue())).subscribe(
       (response) => {
         this.messageService.pushSuccess("Successfully submitted!");
         console.log(response);

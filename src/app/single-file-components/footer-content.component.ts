@@ -26,6 +26,6 @@ import { Component } from '@angular/core';
     `
     ]
 })
-export class FoterContentComponent {
+export class FooterContentComponent {
   title = 'This is the Footer Content';
 }

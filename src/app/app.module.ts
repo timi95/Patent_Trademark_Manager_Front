@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainContentComponentComponent } from './main-content-component/main-content-component.component';
 import { HeaderContentComponent } from "./single-file-components/header-content.component";
-import { FoterContentComponent } from "./single-file-components/footer-content.component";
+import { FooterContentComponent } from "./single-file-components/footer-content.component";
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ErrorMessageComponent } from './error-message/error-message.component';
@@ -17,7 +17,7 @@ import { OverlayComponent } from './overlay/overlay.component';
   declarations: [
     AppComponent,
     MainContentComponentComponent,
-    FoterContentComponent,
+    FooterContentComponent,
     HeaderContentComponent,
     SideNavComponent,
     ErrorMessageComponent,
