@@ -1,7 +1,6 @@
 label {
-  display: block;
-  width: 6em;
-  margin: 0.5em 0;
+  display: flex;
+  margin: 2px 0;
   color: #607d8b;
   font-weight: bold;
 }
@@ -47,7 +46,7 @@ button:disabled {
 /* Modal Content */
 .modal-content {
   position: fixed;
-  bottom: 300px;
+  bottom: 20%;
   background-color: #fefefe;
   width: 60%;
   margin: 0 20%;
@@ -72,6 +71,19 @@ button:disabled {
   padding: 5px 0;
 }
 
+/* Cancel button */
+a.cancel {
+  font-family: Arial;
+  color: crimson;
+  border: none;
+  cursor: pointer;
+}
+div > a.cancel {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
 /* Animation */
 @-webkit-keyframes slideIn {
   from {
@@ -79,7 +91,7 @@ button:disabled {
     opacity: 0;
   }
   to {
-    bottom: 300px;
+    bottom: 20%;
     opacity: 1;
   }
 }
@@ -90,7 +102,7 @@ button:disabled {
     opacity: 0;
   }
   to {
-    bottom: 300px;
+    bottom: 20%;
     opacity: 1;
   }
 }

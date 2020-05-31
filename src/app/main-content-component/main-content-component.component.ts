@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/services/api.service';
 import { MessageService } from 'src/services/message.service';
+import { OverlayComponent } from "../overlay/overlay.component";
+import { UtilityService } from 'src/services/utility.service';
 
 @Component({
   selector: 'main-content-component',
@@ -10,9 +12,17 @@ import { MessageService } from 'src/services/message.service';
 export class MainContentComponentComponent implements OnInit {
 
   documentList:Document[];
+  modalIsActive:boolean;
 
-  constructor(apiService:ApiService, messageService: MessageService) { 
-    this.documentList = [
+  constructor(
+    private utilityService:UtilityService,
+    private apiService:ApiService, 
+    private messageService: MessageService) { 
+      this.utilityService.setModalFormInactive();
+      this.utilityService.modalFormActive.subscribe( bool => {
+        this.modalIsActive = bool;
+      })
+      this.documentList = [
       {
         title:"Item Title",
         body: "Item Description...",
@@ -43,18 +53,26 @@ export class MainContentComponentComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  ngOnDestroy(){
+    this.utilityService.modalFormActive.unsubscribe();
+  }
   fetchDocuments() {
 
   }
 
   createDocument() {
-    this.documentList.push(
-      {
-        title:`Item${this.documentList.length+1} Title`,
-        body: `Item${this.documentList.length+1} Description...`,
-        footer: `Item${this.documentList.length+1} footer`
-      }
-    )
+    this.utilityService.setModalFormActive();
+    this.utilityService.modalFormActive.subscribe( bool => {
+
+      this.modalIsActive = bool;
+    })
+    // this.documentList.push(
+    //   {
+    //     title:`Item${this.documentList.length+1} Title`,
+    //     body: `Item${this.documentList.length+1} Description...`,
+    //     footer: `Item${this.documentList.length+1} footer`
+    //   }
+    // )
   }
 
 }

@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from "@angular/core";
 import { FormControl, FormBuilder, FormGroup } from "@angular/forms";
 import { ApiService } from "src/services/api.service";
 import { MessageService } from "src/services/message.service";
+import { UtilityService } from 'src/services/utility.service';
 
 @Component({
   selector: "overlay",
@@ -17,16 +18,28 @@ export class OverlayComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private apiService: ApiService,
+    private utilityService: UtilityService,
     private messageService: MessageService
   ) {}
 
   ngOnInit(): void {
     this.myForm = this.formBuilder.group({
-      email: [""],
-      message: [""],
-      career: [""],
+      date_ammendment_instruction_received: [""],
+      nature_of_amendment: [""],
+      amending_clerk: [""],
+      date_amending_clerk_instructed: [""],
+      status_of_amendment: [""],
+      date_amendment_received: [""],
     });
     this.myForm.valueChanges.subscribe(console.log);
+  }
+
+  setInactive(): void {
+    this.utilityService.setModalFormInactive();
+    this.utilityService.modalFormActive.subscribe( bool => {
+      
+      this.active  = bool;
+    })
   }
 
   onSubmit(): void {
@@ -43,4 +56,13 @@ export class OverlayComponent implements OnInit {
       }
     );
   }
+}
+
+export interface AmmendmentAction {
+  date_ammendment_instruction_received: string;
+  nature_of_amendment: string;
+  amending_clerk: string;
+  date_amending_clerk_instructed: string;
+  status_of_amendment: string;
+  date_amendment_received: string;
 }

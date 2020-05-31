@@ -1,23 +1,34 @@
 <div *ngIf="active" class="overlay">
   <form action="" class="modal-content" [formGroup]="myForm">
+    <div>
+      <a class="cancel" (click)="setInactive()">Close</a>
+    </div>
     <ul class="form-list">
       <li>
-        <label>
-          Email:
-          <input type="text" formControlName="email" />
+        <label for="date_amendment_received">
+          Date Amendment Instruction recieved
         </label>
+        <input type="text" formControlName="date_amendment_received" />
       </li>
       <li>
-        <label for="message">
-          Message:
-          <input type="text" formControlName="message" />
-        </label>
+        <label for="nature_of_amendment"> Nature of Amendment</label>
+        <input type="text" formControlName="nature_of_amendment" />
       </li>
       <li>
-        <label for="career">
-          Career:
-          <input type="text" formControlName="career" />
-        </label>
+        <label for="amending_clerk"> Amending Clerk</label>
+        <input type="text" formControlName="amending_clerk" />
+      </li>
+      <li>
+        <label for="date_amending_clerk_instructed">Date Clerk Instructed</label>
+        <input type="text" formControlName="date_amending_clerk_instructed" />
+      </li>
+      <li>
+        <label for="status_of_amendment">Status of Amendment</label>
+        <input type="text" formControlName="status_of_amendment" />
+      </li>
+      <li>
+        <label for="date_amendment_received">Date Amendment received</label>
+        <input type="text" formControlName="date_amendment_received" />
       </li>
     </ul>
 
