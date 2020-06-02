@@ -24,7 +24,7 @@ export class OverlayComponent implements OnInit {
 
   ngOnInit(): void {
     this.myForm = this.formBuilder.group({
-      date_ammendment_instruction_received: [""],
+      date_amendment_instruction_received: [""],
       nature_of_amendment: [""],
       amending_clerk: [""],
       date_amending_clerk_instructed: [""],
@@ -43,7 +43,7 @@ export class OverlayComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.apiService.createAmmendmentAction(JSON.stringify(this.myForm.getRawValue())).subscribe(
+    this.apiService.createAmendmentAction(JSON.stringify(this.myForm.getRawValue())).subscribe(
       (response) => {
         this.messageService.pushSuccess("Successfully submitted!");
         console.log(response);
@@ -58,11 +58,4 @@ export class OverlayComponent implements OnInit {
   }
 }
 
-export interface AmmendmentAction {
-  date_ammendment_instruction_received: string;
-  nature_of_amendment: string;
-  amending_clerk: string;
-  date_amending_clerk_instructed: string;
-  status_of_amendment: string;
-  date_amendment_received: string;
-}
+

@@ -3,6 +3,7 @@ import { ApiService } from 'src/services/api.service';
 import { MessageService } from 'src/services/message.service';
 import { OverlayComponent } from "../overlay/overlay.component";
 import { UtilityService } from 'src/services/utility.service';
+import { AmendmentAction } from 'src/interfaces/AmendmentAction';
 
 @Component({
   selector: 'main-content-component',
@@ -13,6 +14,7 @@ export class MainContentComponentComponent implements OnInit {
 
   documentList:Document[];
   modalIsActive:boolean;
+  amendmentActionList: AmendmentAction[] = [];
 
   constructor(
     private utilityService:UtilityService,
@@ -35,22 +37,27 @@ export class MainContentComponentComponent implements OnInit {
       }
     ]
 
-    apiService.getAmmendmentAction().subscribe((response) => {
-      messageService.pushSuccess('Successfully fetched ammendment actions!');
-      console.log(response);
-      // alert('Fetching Successful !');
-    }, err => {
-        console.log(err);
-        messageService.pushError(err);
-        // this.messages.add(err);
-      }
-    );
-
 
 
   }
 
   ngOnInit(): void {
+    this.apiService.getAmendmentAction().subscribe((response:any) => {
+      this.messageService.pushSuccess('Successfully fetched amendment actions!');
+
+      // assign results to our list
+      this.amendmentActionList = response.results;
+
+
+      console.log("  AmendmentActionList:", this.amendmentActionList," and Response data: ", response);
+      // alert('Fetching Successful !');
+    }, err => {
+        console.log(err);
+        this.messageService.pushError(err);
+        // this.messages.add(err);
+    });
+
+
   }
 
   ngOnDestroy(){

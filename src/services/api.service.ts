@@ -37,19 +37,19 @@ public errors: any = [];
 
 
 // ******************** // C R U D // ******************** //
- getAmmendmentAction() {
+ getAmendmentAction() {
   return this.httpServer.get(`${this.API_URL}/Patent_manager/ammendement-action/`);
 }
 
- createAmmendmentAction(ammendement_action) {
+ createAmendmentAction(ammendement_action) {
   return this.httpServer.post(`${this.API_URL}/Patent_manager/ammendement-action/`, ammendement_action,this.httpOptions);
 }
 
- updateAmmendmentAction(ammendement_action) {
+ updateAmendmentAction(ammendement_action) {
   return this.httpServer.put(`${this.API_URL}/Patent_manager/ammendement-action/${ammendement_action.id}/update`, ammendement_action);
 }
 
- deleteAmmendmentAction(ammendement_action) {
+ deleteAmendmentAction(ammendement_action) {
   return this.httpServer.delete(`${this.API_URL}/Patent_manager/ammendement-action/${ammendement_action.id}/delete`, ammendement_action);
 }
 
