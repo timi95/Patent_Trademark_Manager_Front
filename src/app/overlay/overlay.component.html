@@ -1,8 +1,9 @@
 <div *ngIf="active" class="overlay">
   <form action="" class="modal-content" [formGroup]="myForm" (ngSubmit)="onSubmit()">
-    <div>
+    <header>
+      <h3>Create an Amendment Action</h3>
       <a class="cancel" (click)="setInactive()">Close</a>
-    </div>
+    </header>
     <div class="main-content-row">
       <ul class="form-list">
         <li>
@@ -32,9 +33,9 @@
           <input type="date" formControlName="date_amendment_received" />
         </li>
       </ul>
-      <span style="width: 40%;">
+      <!-- <span style="width: 40%;">
         myFormState: {{ myForm.value | json }}
-      </span>
+      </span> -->
     </div>
 
 

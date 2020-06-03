@@ -1,3 +1,14 @@
+header {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+input {
+  resize: both;
+  width: auto;
+}
+
 label {
   display: flex;
   margin: 2px 0;
@@ -44,8 +55,8 @@ button:disabled {
 }
 /* Main Content Row */
 .main-content-row{
-  display: flex;
-  justify-content: space-around;
+    display: flex;
+    flex-flow: row wrap;
 }
 /* Modal Content */
 .modal-content {
@@ -69,6 +80,7 @@ button:disabled {
   flex-direction: column;
   justify-content: space-around;
   list-style: none;
+  padding: 0;
   /* align-items: center; */
 }
 .form-list > li {
@@ -82,11 +94,7 @@ a.cancel {
   border: none;
   cursor: pointer;
 }
-div > a.cancel {
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-}
+
 
 /* Animation */
 @-webkit-keyframes slideIn {

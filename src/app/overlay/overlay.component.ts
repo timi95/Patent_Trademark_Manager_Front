@@ -46,6 +46,7 @@ export class OverlayComponent implements OnInit {
     this.apiService.createAmendmentAction(JSON.stringify(this.myForm.getRawValue())).subscribe(
       (response) => {
         this.messageService.pushSuccess("Successfully submitted!");
+        this.setInactive();
         console.log(response);
         // alert('Fetching Successful !');
       },

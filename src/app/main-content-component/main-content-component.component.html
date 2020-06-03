@@ -1,7 +1,10 @@
 <div class="scrollable-grid">
   <ul class="card-grid">
     <li class="card-body" *ngFor="let amendmentItem of amendmentActionList">
-      <h1> ID: {{ amendmentItem.id }}</h1>
+      <header class="card-header">
+        <span> ID: {{ amendmentItem.id }}</span>
+        <a class="manage-button">actions</a>
+      </header>
       <p> Amendment Nature: {{ amendmentItem.nature_of_amendment }}</p>
       <br />
       <h6> Date Received: {{ amendmentItem.date_amendment_received }}</h6>

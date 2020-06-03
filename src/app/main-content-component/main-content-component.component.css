@@ -52,3 +52,19 @@
     border-radius: 15px;
 
 }
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    width: 90%; 
+}
+.card-header > span {
+    font-size: larger;
+    font-weight: 600;
+}
+.card-header > a.manage-button {
+    color: crimson;
+    padding: .5em;
+    border: 1px grey solid;
+    border-radius: 50%;
+}
