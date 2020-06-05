@@ -4,19 +4,21 @@ import { MessageService } from 'src/services/message.service';
 import { OverlayComponent } from "../overlay/overlay.component";
 import { UtilityService } from 'src/services/utility.service';
 import { AmendmentAction } from 'src/interfaces/AmendmentAction';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'main-content-component',
-  templateUrl: './main-content-component.component.html',
-  styleUrls: ['./main-content-component.component.css']
+  selector: 'main-content',
+  templateUrl: './main-content.component.html',
+  styleUrls: ['./main-content.component.css']
 })
-export class MainContentComponentComponent implements OnInit {
+export class MainContentComponent implements OnInit {
 
   documentList:Document[];
   modalIsActive:boolean;
   amendmentActionList: AmendmentAction[] = [];
 
   constructor(
+    private router: Router,
     private utilityService:UtilityService,
     private apiService:ApiService, 
     private messageService: MessageService) { 
@@ -42,20 +44,7 @@ export class MainContentComponentComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.apiService.getAmendmentAction().subscribe((response:any) => {
-      this.messageService.pushSuccess('Successfully fetched amendment actions!');
-
-      // assign results to our list
-      this.amendmentActionList = response.results;
-
-
-      console.log("  AmendmentActionList:", this.amendmentActionList," and Response data: ", response);
-      // alert('Fetching Successful !');
-    }, err => {
-        console.log(err);
-        this.messageService.pushError(err);
-        // this.messages.add(err);
-    });
+    this.fetchDocuments();
 
 
   }
@@ -64,7 +53,20 @@ export class MainContentComponentComponent implements OnInit {
     this.utilityService.modalFormActive.unsubscribe();
   }
   fetchDocuments() {
+    this.apiService.getAmendmentAction().subscribe((response:any) => {
+      this.messageService.pushSuccess('Successfully fetched amendment actions!');
 
+      // assign results to our list
+      this.amendmentActionList = response.results;
+
+
+      // console.log("  AmendmentActionList:", this.amendmentActionList," and Response data: ", response);
+      // alert('Fetching Successful !');
+    }, err => {
+        console.log(err);
+        this.messageService.pushError(err);
+        // this.messages.add(err);
+    });
   }
 
   createDocument() {
@@ -80,6 +82,14 @@ export class MainContentComponentComponent implements OnInit {
     //     footer: `Item${this.documentList.length+1} footer`
     //   }
     // )
+  }
+
+
+  viewDetails(item:AmendmentAction){
+    console.log(`Navigating to Amendment Details id ${item.id}`);
+    this.utilityService.loadDetails(item);
+    this.utilityService.detailSubject.subscribe(data=>console.log);
+    this.router.navigate([`detail/${item.id}`]);
   }
 
 }
