@@ -4,7 +4,7 @@ import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MainContentComponentComponent } from './main-content-component/main-content-component.component';
+import { MainContentComponent } from './main-content/main-content.component';
 import { HeaderContentComponent } from "./single-file-components/header-content.component";
 import { FooterContentComponent } from "./single-file-components/footer-content.component";
 import { SideNavComponent } from './side-nav/side-nav.component';
@@ -12,17 +12,19 @@ import { HttpClientModule } from '@angular/common/http';
 import { ErrorMessageComponent } from './error-message/error-message.component';
 import { SuccessMessageComponent } from './success-message/success-message.component';
 import { OverlayComponent } from './overlay/overlay.component';
+import { DetailComponent } from './detail/detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainContentComponentComponent,
+    MainContentComponent,
     FooterContentComponent,
     HeaderContentComponent,
     SideNavComponent,
     ErrorMessageComponent,
     SuccessMessageComponent,
-    OverlayComponent
+    OverlayComponent,
+    DetailComponent
   ],
   imports: [
     BrowserModule,
