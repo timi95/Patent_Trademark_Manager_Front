@@ -11,7 +11,7 @@ import { ApiService } from 'src/services/api.service';
 })
 export class DetailComponent implements OnInit, OnDestroy, AfterViewInit {
 
-  details:AmendmentAction;  
+  details:any;  
   ID: string;
 
 
@@ -44,7 +44,7 @@ export class DetailComponent implements OnInit, OnDestroy, AfterViewInit {
     // fetch the date given the routing info
     console.log("Details",this.details);
     this.apiService.getAmendmentAction(this.ID).subscribe( data => {
-      // this.details = data;
+      this.details = data;
       console.log('data',data);
     });
   }

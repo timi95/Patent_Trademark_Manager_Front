@@ -1,11 +1,11 @@
 <p>detail works!</p>
 <a href="#" (click)="navigateHome()" >Back</a>
-<ul>
+<ul *ngIf="details">
     <li>
-        <div>{{details}}</div>
+        <h3> ID: {{details.id}}</h3>
     </li>
     <li>
-        <!-- <div>{{details.id}}</div> -->
+        <div> Nature of amendment: {{details.nature_of_amendment}}</div>
     </li>
     <li>
 
