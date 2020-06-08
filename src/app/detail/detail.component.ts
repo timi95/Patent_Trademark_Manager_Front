@@ -13,29 +13,32 @@ export class DetailComponent implements OnInit, OnDestroy, AfterViewInit {
 
   details:any;  
   ID: string;
+  detailEditIsActive:boolean;
+
 
 
   constructor(
     private router:Router,
     private activedRoute:ActivatedRoute,
     private apiService: ApiService,
-    private utilityService:UtilityService) { 
-      // this.utilityService.detailSubject.subscribe( data => {
-      //   this.details = data;
-      // } );
-
-  }
+    public utilityService:UtilityService) {
+      this.utilityService.setDetailEditFormInactive();
+      this.utilityService.modalFormActive.subscribe( bool => {
+        this.detailEditIsActive = bool;
+      })
+      
+    }
 
   ngAfterViewInit(){
 
-    
+
   }
 
   ngOnInit(): void {
-    // this.utilityService.detailSubject.subscribe( data => {
-    //   this.details = data;
-    //   console.log("data",data)
-    // } );
+    this.utilityService.detailSubject.subscribe( data => {
+      this.details = data;
+      console.log("data",data)
+    } );
 
     // get the route info
     this.activedRoute.paramMap.subscribe(param=>{
@@ -51,11 +54,21 @@ export class DetailComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnDestroy(){
     // this.utilityService.detailSubject.unsubscribe();
+    // this.utilityService.detailEditFormActive.unsubscribe();
   }
 
 
   navigateHome(){
     this.router.navigate(['']);
+  }
+
+  editDocument(){
+    console.log(`detailEditIsActive state: ${this.detailEditIsActive}`);
+    
+    this.utilityService.setDetailEditFormActive();
+    this.utilityService.detailEditFormActive.subscribe( bool => {
+      this.detailEditIsActive = bool;
+    });
   }
 
 }

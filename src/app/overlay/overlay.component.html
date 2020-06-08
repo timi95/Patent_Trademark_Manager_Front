@@ -1,5 +1,10 @@
-<div *ngIf="active" class="overlay">
-  <form action="" class="modal-content" [formGroup]="myForm" (ngSubmit)="onSubmit()">
+<div *ngIf="active" class="overlay" >
+  <form 
+      action="" 
+      class="modal-content" 
+      *ngIf="formType == formTypes[0]"
+      [formGroup]="myForm" 
+      (ngSubmit)="onSubmit()">
     <header>
       <h3>Create an Amendment Action</h3>
       <a class="cancel" (click)="setInactive()">Close</a>

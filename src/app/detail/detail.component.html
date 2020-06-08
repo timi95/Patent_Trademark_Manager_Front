@@ -1,25 +1,31 @@
-<p>detail works!</p>
-<a href="#" (click)="navigateHome()" >Back</a>
-<ul *ngIf="details">
+<a class="font-weight" href="#" (click)="navigateHome()" >Back</a>
+<ul class="font-colour info-view" *ngIf="details">
     <li>
-        <h3> ID: {{details.id}}</h3>
+         ID:<div> {{details.id}}</div>
     </li>
     <li>
-        <div> Nature of amendment: {{details.nature_of_amendment}}</div>
+       Status of amendment:  <div class="font-weight"> {{details.status_of_amendment}}</div>
     </li>
     <li>
-
+        Nature of amendment: <div class="font-weight"> {{details.nature_of_amendment}}</div>
     </li>
     <li>
-
+        Amending clerk: <div class="font-weight">{{details.amending_clerk}}</div>
+        
     </li>
     <li>
-
+        Date amendment instruction received: <div class="font-weight">{{details.date_amendment_instruction_received}}</div>
     </li>
     <li>
-
+        Date amendment received: <div class="font-weight">{{details.date_amendment_received}}</div>
     </li>
     <li>
-
+       Date amending clerk instructed: <div class="font-weight">{{details.date_amending_clerk_instructed}}</div>
     </li>
 </ul>
+
+
+
+<a class="square_btn" (click)="editDocument()">&#43;</a>
+
+<overlay [active]="this.detailEditIsActive"></overlay>

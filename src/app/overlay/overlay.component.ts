@@ -11,6 +11,8 @@ import { UtilityService } from 'src/services/utility.service';
 })
 export class OverlayComponent implements OnInit {
   @Input("active") active: boolean;
+  @Input("formType") formType?: string;
+  formTypes:string[] = ['create','update','delete'];
 
   myForm: FormGroup;
   name = new FormControl("");
