@@ -28,4 +28,6 @@
 
 <a class="square_btn" (click)="editDocument()">Edit</a>
 
-<overlay [active]="this.detailEditIsActive"></overlay>
+<overlay 
+[active]="this.detailEditIsActive"
+[formType]="'update'"></overlay>

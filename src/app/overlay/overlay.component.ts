@@ -37,11 +37,24 @@ export class OverlayComponent implements OnInit {
   }
 
   setInactive(): void {
-    this.utilityService.setModalFormInactive();
-    this.utilityService.modalFormActive.subscribe( bool => {
+    switch (this.formType) {
+      case this.formTypes[0]:
+        this.utilityService.setModalFormInactive();
+        this.utilityService.modalFormActive.subscribe( bool => {
+          
+          this.active  = bool;
+        });
+        break;
       
-      this.active  = bool;
-    })
+      case this.formTypes[1]:
+        this.utilityService.setDetailEditFormInactive();
+        this.utilityService.detailEditFormActive.subscribe( bool => {
+          this.active = bool;
+        });
+    
+      default:
+        break;
+    }
   }
 
   onSubmit(): void {

@@ -50,4 +50,15 @@
 </button> -->
     <button type="submit">Submit</button>
   </form>
+
+  <form 
+  class="modal-content" 
+  *ngIf="formType == formTypes[1]"
+  (ngSubmit)="onSubmit()" >
+  <header>
+    <h3>Edit an Amendment Action</h3>
+    <a class="cancel" (click)="setInactive()">Close</a>
+  </header>
+
+  </form>
 </div>
