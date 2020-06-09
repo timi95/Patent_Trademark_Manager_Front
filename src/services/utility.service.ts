@@ -21,10 +21,10 @@ export class UtilityService {
   
   
   setDetailEditFormActive(){
-    return this.modalFormActive.next(true);
+    return this.detailEditFormActive.next(true);
   }
   setDetailEditFormInactive(){
-    return this.modalFormActive.next(false);
+    return this.detailEditFormActive.next(false);
   }
   setModalFormActive(){
     return this.modalFormActive.next(true);

@@ -22,19 +22,25 @@ export class DetailComponent implements OnInit, OnDestroy, AfterViewInit {
     private activedRoute:ActivatedRoute,
     private apiService: ApiService,
     public utilityService:UtilityService) {
-      this.utilityService.setDetailEditFormInactive();
-      this.utilityService.modalFormActive.subscribe( bool => {
-        this.detailEditIsActive = bool;
-      })
+
       
     }
 
   ngAfterViewInit(){
+    
 
 
   }
 
   ngOnInit(): void {
+
+
+    this.utilityService.setDetailEditFormInactive();
+    this.utilityService.detailEditFormActive.subscribe( bool => {
+      this.detailEditIsActive = bool;
+    });
+
+
     this.utilityService.detailSubject.subscribe( data => {
       this.details = data;
       console.log("data",data)
@@ -63,12 +69,12 @@ export class DetailComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   editDocument(){
-    console.log(`detailEditIsActive state: ${this.detailEditIsActive}`);
     
     this.utilityService.setDetailEditFormActive();
     this.utilityService.detailEditFormActive.subscribe( bool => {
       this.detailEditIsActive = bool;
     });
+    console.log(`detailEditIsActive state: ${this.detailEditIsActive}`);
   }
 
 }
