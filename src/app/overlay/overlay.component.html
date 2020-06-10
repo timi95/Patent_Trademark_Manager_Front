@@ -60,5 +60,14 @@
     <a class="cancel" (click)="setInactive()">Close</a>
   </header>
 
+  <div *ngIf="editeableObject">
+    Details: {{ editeableObject }}
+    <ul>
+      <li *ngFor="let attribute of editeableObject">
+        {{ attribute }} : <input type="text" name="" id="">
+      </li>
+    </ul>
+  </div>
+
   </form>
 </div>

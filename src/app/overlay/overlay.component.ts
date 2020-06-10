@@ -12,6 +12,7 @@ import { UtilityService } from 'src/services/utility.service';
 export class OverlayComponent implements OnInit {
   @Input("active") active: boolean;
   @Input("formType") formType?: string;
+  @Input("editeableObject") editeableObject?: any;
   formTypes:string[] = ['create','update','delete'];
 
   myForm: FormGroup;
@@ -21,8 +22,8 @@ export class OverlayComponent implements OnInit {
     private formBuilder: FormBuilder,
     private apiService: ApiService,
     private utilityService: UtilityService,
-    private messageService: MessageService
-  ) {}
+    private messageService: MessageService ) {
+  }
 
   ngOnInit(): void {
     this.myForm = this.formBuilder.group({
@@ -33,7 +34,7 @@ export class OverlayComponent implements OnInit {
       status_of_amendment: [""],
       date_amendment_received: [""]
     });
-    this.myForm.valueChanges.subscribe(console.log);
+    // this.myForm.valueChanges.subscribe(console.log);
   }
 
   setInactive(): void {
@@ -49,7 +50,7 @@ export class OverlayComponent implements OnInit {
       case this.formTypes[1]:
         this.utilityService.setDetailEditFormInactive();
         this.utilityService.detailEditFormActive.subscribe( bool => {
-          this.active = bool;
+          this.active = bool;          
         });
     
       default:
@@ -69,9 +70,15 @@ export class OverlayComponent implements OnInit {
         console.log(err);
         this.messageService.pushError(err);
         // this.messages.add(err);
-      }
-    );
+      } );
   }
+
+  toList(){
+
+    console.log("Printing toList conversion result", Object.entries(this.editeableObject));
+    
+  }
+
 }
 
 
