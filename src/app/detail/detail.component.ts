@@ -11,7 +11,8 @@ import { ApiService } from 'src/services/api.service';
 })
 export class DetailComponent implements OnInit, OnDestroy, AfterViewInit {
 
-  details:any;  
+  details:any;
+  detailsAsList:any=[];
   ID: string;
   detailEditIsActive:boolean;
 
@@ -21,9 +22,7 @@ export class DetailComponent implements OnInit, OnDestroy, AfterViewInit {
     private router:Router,
     private activedRoute:ActivatedRoute,
     private apiService: ApiService,
-    public utilityService:UtilityService) {
-
-      
+    public utilityService:UtilityService) {      
     }
 
   ngAfterViewInit(){
@@ -54,8 +53,11 @@ export class DetailComponent implements OnInit, OnDestroy, AfterViewInit {
     console.log("Details",this.details);
     this.apiService.getAmendmentAction(this.ID).subscribe( data => {
       this.details = data;
+      this.detailsAsList = Object.entries(this.details);
       console.log('data',data);
     });
+
+
   }
 
   ngOnDestroy(){

@@ -5,8 +5,10 @@ header {
 }
 
 input {
-  resize: both;
-  width: auto;
+  /* resize: both; */
+  /* width: auto; */
+  width: 100%;
+  max-width: 200px;
 }
 
 label {

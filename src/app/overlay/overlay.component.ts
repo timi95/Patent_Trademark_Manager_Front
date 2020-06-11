@@ -12,7 +12,7 @@ import { UtilityService } from 'src/services/utility.service';
 export class OverlayComponent implements OnInit {
   @Input("active") active: boolean;
   @Input("formType") formType?: string;
-  @Input("editeableObject") editeableObject?: any;
+  @Input("updateValue") editeableObject?: any;
   formTypes:string[] = ['create','update','delete'];
 
   myForm: FormGroup;
