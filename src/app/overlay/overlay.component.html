@@ -61,8 +61,7 @@
   </header>
 
   <div *ngIf="editeableObject">
-    Details: {{ editeableObject }}
-    <ul>
+    <ul class="form-list">
       <li *ngFor="let attribute of editeableObject">
         {{ attribute[0] }} : <input type="text" name="" id="">
       </li>
