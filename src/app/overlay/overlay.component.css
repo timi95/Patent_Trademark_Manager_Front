@@ -55,11 +55,7 @@ button:disabled {
   animation-name: fadeIn;
   animation-duration: 0.4s;
 }
-/* Main Content Row */
-.main-content-row{
-    display: flex;
-    flex-flow: row wrap;
-}
+
 /* Modal Content */
 .modal-content {
   position: fixed;
