@@ -38,9 +38,11 @@ public errors: any = [];
 
 // ******************** // C R U D // ******************** //
  getAmendmentAction(id?:string) {
-  if (id) 
-  { return this.httpServer.get(`${this.API_URL}/Patent_manager/ammendement-action/${id}`); }
-  else { return this.httpServer.get(`${this.API_URL}/Patent_manager/ammendement-action/`); }
+  if (id) {
+    return this.httpServer.get(`${this.API_URL}/Patent_manager/ammendement-action/${id}`); 
+  } else { 
+    return this.httpServer.get(`${this.API_URL}/Patent_manager/ammendement-action/`);
+  }
 }
 
  createAmendmentAction(ammendement_action) {

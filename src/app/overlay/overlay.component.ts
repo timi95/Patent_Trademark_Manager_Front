@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, AfterViewInit } from "@angular/core";
 import { FormControl, FormBuilder, FormGroup } from "@angular/forms";
 import { ApiService } from "src/services/api.service";
 import { MessageService } from "src/services/message.service";
@@ -9,10 +9,11 @@ import { UtilityService } from 'src/services/utility.service';
   templateUrl: "./overlay.component.html",
   styleUrls: ["./overlay.component.css"],
 })
-export class OverlayComponent implements OnInit {
+export class OverlayComponent implements OnInit, AfterViewInit {
   @Input("active") active: boolean;
   @Input("formType") formType?: string;
   @Input("updateValue") editeableObject?: any;
+  editeableAsList:any[] = [];
   formTypes:string[] = ['create','update','delete'];
 
   myForm: FormGroup;
@@ -23,6 +24,15 @@ export class OverlayComponent implements OnInit {
     private apiService: ApiService,
     private utilityService: UtilityService,
     private messageService: MessageService ) {
+    // this.editeableAsList = this.editeableObject ? Object.entries(this.editeableObject) : [["initial","structure"]];    
+  }
+
+  ngAfterViewInit(){
+    // this.utilityService.loadDetails();
+    this.utilityService.detailSubject.subscribe( details => {
+      console.log("Details from detail service",details);
+      this.editeableAsList = Object.entries(details);
+    });
   }
 
   ngOnInit(): void {
@@ -58,19 +68,47 @@ export class OverlayComponent implements OnInit {
     }
   }
 
-  onSubmit(): void {
-    this.apiService.createAmendmentAction(JSON.stringify(this.myForm.getRawValue())).subscribe(
-      (response) => {
-        this.messageService.pushSuccess("Successfully submitted!");
-        this.setInactive();
-        console.log(response);
-        // alert('Fetching Successful !');
-      },
-      (err) => {
-        console.log(err);
-        this.messageService.pushError(err);
-        // this.messages.add(err);
-      } );
+  onSubmit(actionType:string): void {
+    switch (actionType) {
+      case this.formTypes[0]:
+
+        this.apiService
+        .createAmendmentAction(JSON.stringify(this.myForm.getRawValue()))
+        .subscribe(
+          (response) => {
+            this.messageService.pushSuccess("Successfully submitted!");
+            this.setInactive();
+            console.log(response);
+            // alert('Fetching Successful !');
+          },
+          (err) => {
+            console.log(err);
+            this.messageService.pushError(err);
+            // this.messages.add(err);
+          } );
+        
+        break;
+    
+
+      case this.formTypes[1]:
+          this.apiService
+          .updateAmendmentAction(JSON.stringify(this.editeableObject))
+          .subscribe( resp => {
+            this.messageService.pushSuccess("Successfully Updated! ");
+            this.setInactive();
+            console.log(resp);
+            
+          }, (err) => {
+            this.messageService.pushError(err);
+          } );
+      break;
+
+      case this.formTypes[2]:
+
+      break;
+      default:
+        break;
+    }
   }
 
   toList(){

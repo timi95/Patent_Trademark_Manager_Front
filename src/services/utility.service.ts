@@ -32,7 +32,7 @@ export class UtilityService {
   setModalFormInactive(){
     return this.modalFormActive.next(false);
   }
-  loadDetails(item:AmendmentAction) {
-    this.detailSubject.next(item);
+  loadDetails(item?:AmendmentAction) {
+    return this.detailSubject.next(item);
   }
 }

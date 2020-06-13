@@ -4,7 +4,7 @@
       class="modal-content" 
       *ngIf="formType == formTypes[0]"
       [formGroup]="myForm" 
-      (ngSubmit)="onSubmit()">
+      (ngSubmit)="onSubmit('create')">
     <header>
       <h3>Create an Amendment Action</h3>
       <a class="cancel" (click)="setInactive()">Close</a>
@@ -54,7 +54,7 @@
   <form 
   class="modal-content" 
   *ngIf="formType == formTypes[1]"
-  (ngSubmit)="onSubmit()" >
+  (ngSubmit)="onSubmit('update')" >
   <header>
     <h3>Edit an Amendment Action</h3>
     <a class="cancel" (click)="setInactive()">Close</a>
@@ -62,11 +62,12 @@
 
   <div *ngIf="editeableObject">
     <ul class="form-list">
-      <li *ngFor="let attribute of editeableObject">
+      <li *ngFor="let attribute of editeableAsList">
         {{ attribute[0] }} : <input type="text" name="" id="">
       </li>
     </ul>
   </div>
 
+    <button type="submit">Submit</button>
   </form>
 </div>
