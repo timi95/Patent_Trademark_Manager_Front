@@ -24,7 +24,6 @@ export class OverlayComponent implements OnInit, AfterViewInit {
     private apiService: ApiService,
     private utilityService: UtilityService,
     private messageService: MessageService ) {
-    // this.editeableAsList = this.editeableObject ? Object.entries(this.editeableObject) : [["initial","structure"]];    
   }
 
   ngAfterViewInit(){
