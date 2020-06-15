@@ -27,7 +27,6 @@ export class OverlayComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(){
-    // this.utilityService.loadDetails();
     this.utilityService.detailSubject.subscribe( details => {
       console.log("Details from detail service",details);
       this.editeableAsList = Object.entries(details);
