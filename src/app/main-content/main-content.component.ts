@@ -89,7 +89,9 @@ export class MainContentComponent implements OnInit {
     console.log(`Navigating to Amendment Details id ${item.id}`);
     this.utilityService.loadDetails(item);
     this.utilityService.detailSubject.subscribe(data=>console.log);
-    this.router.navigate([`detail/${item.id}`]);
+    this.router.navigate([`detail/${item.id}`], 
+    // state:{}
+    );
   }
 
 }
