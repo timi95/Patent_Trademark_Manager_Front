@@ -32,30 +32,32 @@ export class DetailComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnInit(): void {
-
+    this.details = window.history.state.data ;
+    // console.log("window history state", window.history.state.data);
+    
 
     this.utilityService.setDetailEditFormInactive();
     this.utilityService.detailEditFormActive.subscribe( bool => {
       this.detailEditIsActive = bool;
     });
 
-
-    this.utilityService.detailSubject.subscribe( data => {
-      this.details = data;
-      console.log("data",data)
-    } );
-
     // get the route info
     this.activedRoute.paramMap.subscribe(param=>{
       this.ID = param.get('id');
     });
+
+    // this.utilityService.detailSubject.subscribe( data => {
+    //   // this.details = data;
+    //   console.log("data",data)
+    // } );
+
     // fetch the date given the routing info
-    console.log("Details",this.details);
-    this.apiService.getAmendmentAction(this.ID).subscribe( data => {
-      this.details = data;
-      this.detailsAsList = Object.entries(this.details);
-      console.log('data',data);
-    });
+    // console.log("Details",this.details);
+    // this.apiService.getAmendmentAction(this.ID).subscribe( data => {
+    //   // this.details = data;
+    //   // this.detailsAsList = Object.entries(this.details);
+    //   console.log('data',data);
+    // });
 
 
   }
