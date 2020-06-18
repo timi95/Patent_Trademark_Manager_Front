@@ -11,12 +11,12 @@ export class UtilityService {
   // for the update form in details component
   detailEditFormActive:BehaviorSubject<boolean>;
   // passing value from the main component to detail component
-  detailSubject: Subject<AmendmentAction>;
+  detailSubject: BehaviorSubject<any>;
   
   constructor() { 
     this.modalFormActive = new BehaviorSubject<boolean>(false);
     this.detailEditFormActive = new BehaviorSubject<boolean>(false);
-    this.detailSubject = new Subject<AmendmentAction>();
+    this.detailSubject = new BehaviorSubject<any>({});
   }
   
   
@@ -32,7 +32,10 @@ export class UtilityService {
   setModalFormInactive(){
     return this.modalFormActive.next(false);
   }
+
   loadDetails(item?:AmendmentAction) {
-    return this.detailSubject.next(item);
+    console.log('Utility service loadDetails() called!');
+    
+    this.detailSubject.next(item);
   }
 }
