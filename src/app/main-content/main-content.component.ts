@@ -55,13 +55,8 @@ export class MainContentComponent implements OnInit {
   fetchDocuments() {
     this.apiService.getAmendmentAction().subscribe((response:any) => {
       this.messageService.pushSuccess('Successfully fetched amendment actions!');
-
       // assign results to our list
       this.amendmentActionList = response.results;
-
-
-      // console.log("  AmendmentActionList:", this.amendmentActionList," and Response data: ", response);
-      // alert('Fetching Successful !');
     }, err => {
         console.log(err);
         this.messageService.pushError(err);
@@ -89,9 +84,11 @@ export class MainContentComponent implements OnInit {
     console.log(`Navigating to Amendment Details id ${item.id}`);
     this.utilityService.loadDetails(item);
     this.utilityService.detailSubject.subscribe(data=>console.log);
-    this.router.navigate([`detail/${item.id}`], {
-      state:{ data: item }
-    });
+    this.router.navigate([`detail/${item.id}`], 
+      // {
+      //   state:{ data: item }
+      // }
+    );
   }
 
 }
