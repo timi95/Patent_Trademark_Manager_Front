@@ -32,7 +32,9 @@ export class DetailComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.details = window.history.state.data ;
+    console.log('Detail component initialised!');
+    
+    // this.details = window.history.state.data ;
     // console.log("window history state", window.history.state.data);
     
 
@@ -46,10 +48,10 @@ export class DetailComponent implements OnInit, OnDestroy, AfterViewInit {
       this.ID = param.get('id');
     });
 
-    // this.utilityService.detailSubject.subscribe( data => {
-    //   // this.details = data;
-    //   console.log("data",data)
-    // } );
+    this.utilityService.detailSubject.subscribe( data => {
+      this.details = data;
+      console.log("data",data)
+    } );
 
     // fetch the date given the routing info
     // console.log("Details",this.details);
