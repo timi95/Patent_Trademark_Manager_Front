@@ -7,18 +7,11 @@ import { AmendmentAction } from 'src/interfaces/AmendmentAction';
 })
 export class UtilityService {
   // for the create form in main content
-  modalFormActive:BehaviorSubject<boolean>;
+  modalFormActive:BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   // for the update form in details component
-  detailEditFormActive:BehaviorSubject<boolean>;
+  detailEditFormActive:BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   // passing value from the main component to detail component
-  detailSubject: BehaviorSubject<any>;
-  
-  constructor() { 
-    this.modalFormActive = new BehaviorSubject<boolean>(false);
-    this.detailEditFormActive = new BehaviorSubject<boolean>(false);
-    this.detailSubject = new BehaviorSubject<any>({});
-  }
-  
+  detailSubject: BehaviorSubject<any> = new BehaviorSubject<any>({});
   
   setDetailEditFormActive(){
     return this.detailEditFormActive.next(true);
