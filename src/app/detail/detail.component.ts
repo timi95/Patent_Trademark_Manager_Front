@@ -48,7 +48,12 @@ export class DetailComponent implements OnInit, OnDestroy, AfterViewInit {
       this.ID = param.get('id');
     });
 
+    // get the details from the detailSubject
     this.utilityService.detailSubject.subscribe( data => {
+      // check if the subject is empty, if it is then navigate back home
+      if (Object.keys(data).length == 0) {
+        this.router.navigate(['']);
+      }
       this.details = data;
       console.log("data",data)
     } );
