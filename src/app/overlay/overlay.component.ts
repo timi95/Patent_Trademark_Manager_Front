@@ -9,7 +9,7 @@ import { UtilityService } from 'src/services/utility.service';
   templateUrl: "./overlay.component.html",
   styleUrls: ["./overlay.component.css"],
 })
-export class OverlayComponent implements OnInit, AfterViewInit {
+export class OverlayComponent implements OnInit {
   @Input("active") active: boolean;
   @Input("formType") formType?: string;
   @Input("updateValue") editeableObject?: any;
@@ -24,14 +24,8 @@ export class OverlayComponent implements OnInit, AfterViewInit {
     private apiService: ApiService,
     private utilityService: UtilityService,
     private messageService: MessageService ) {
-  }
-
-  ngAfterViewInit() {
-    this.utilityService.detailSubject.subscribe( details => {
-      // console.log("Details from detail service",details);
-      this.editeableAsList = Object.entries(details);
-    });
-  }
+    }
+    
 
   ngOnInit(): void {
     this.myForm = this.formBuilder.group({
@@ -42,7 +36,12 @@ export class OverlayComponent implements OnInit, AfterViewInit {
       status_of_amendment: [""],
       date_amendment_received: [""]
     });
+
     // this.myForm.valueChanges.subscribe(console.log);
+    this.utilityService.detailSubject.subscribe( details => {
+      // console.log("Details from detail service",details);
+      this.editeableAsList = Object.entries(details);
+    });
   }
 
   setInactive(): void {
@@ -109,11 +108,6 @@ export class OverlayComponent implements OnInit, AfterViewInit {
     }
   }
 
-  toList(){
-
-    console.log("Printing toList conversion result", Object.entries(this.editeableObject));
-    
-  }
 
 }
 
