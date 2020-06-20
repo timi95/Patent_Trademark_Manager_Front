@@ -50,11 +50,11 @@ public errors: any = [];
 }
 
  updateAmendmentAction(ammendement_action) {
-  return this.httpServer.put(`${this.API_URL}/Patent_manager/ammendement-action/${ammendement_action.id}/update`, ammendement_action);
+  return this.httpServer.put(`${this.API_URL}/Patent_manager/ammendement-action/${ammendement_action.id}`, ammendement_action);
 }
 
  deleteAmendmentAction(ammendement_action) {
-  return this.httpServer.delete(`${this.API_URL}/Patent_manager/ammendement-action/${ammendement_action.id}/delete`, ammendement_action);
+  return this.httpServer.delete(`${this.API_URL}/Patent_manager/ammendement-action/${ammendement_action.id}`, ammendement_action);
 }
 
 
