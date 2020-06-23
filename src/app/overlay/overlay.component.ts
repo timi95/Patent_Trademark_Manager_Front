@@ -67,7 +67,7 @@ export class OverlayComponent implements OnInit {
 
   onSubmit(actionType:string, extraData?:any): void {
     console.log("Template reference variable data supplied: ", extraData);
-    
+    // ...
     switch (actionType) {
       case this.formTypes[0]:
 
