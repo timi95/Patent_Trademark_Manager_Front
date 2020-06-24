@@ -44,6 +44,15 @@ export class OverlayComponent implements OnInit {
     });
   }
 
+  // 
+  dynamicFormGroupGenerator(): FormGroup {
+    return this.formBuilder.group(this.editeableObject);
+  }
+
+  formGroupLog(){
+    console.log("The generated form group",this.dynamicFormGroupGenerator());
+  }
+
   setInactive(): void {
     switch (this.formType) {
       case this.formTypes[0]:
@@ -67,7 +76,6 @@ export class OverlayComponent implements OnInit {
 
   onSubmit(actionType:string, extraData?:any): void {
     console.log("Template reference variable data supplied: ", extraData);
-    // ...
     switch (actionType) {
       case this.formTypes[0]:
 
