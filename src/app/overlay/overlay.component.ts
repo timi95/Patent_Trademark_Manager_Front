@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, AfterViewInit } from "@angular/core";
-import { FormControl, FormBuilder, FormGroup } from "@angular/forms";
+import { FormControl, FormBuilder, FormGroup, NgForm } from "@angular/forms";
 import { ApiService } from "src/services/api.service";
 import { MessageService } from "src/services/message.service";
 import { UtilityService } from 'src/services/utility.service';
@@ -51,6 +51,10 @@ export class OverlayComponent implements OnInit {
 
   formGroupLog(){
     console.log(this.dynamicFormGroupGenerator());
+  }
+
+  attributeLog(attribute: NgForm){
+    console.log('This is the logged attribute',attribute.value);
   }
 
   setInactive(): void {

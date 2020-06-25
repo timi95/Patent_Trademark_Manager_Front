@@ -51,7 +51,7 @@
     <button type="submit">Submit</button>
   </form>
 
-  <form #attributeVar
+  <form #attributeVar="ngForm"
   class="modal-content" 
   *ngIf="formType == formTypes[1]"
   (ngSubmit)="onSubmit('update', attributeVar)" >
@@ -68,6 +68,6 @@
     </ul>
   </div>
 
-    <button (click)="formGroupLog()" type="submit">Submit</button>
+    <button (click)="attributeLog(attributeVar)" type="submit">Submit</button>
   </form>
 </div>
