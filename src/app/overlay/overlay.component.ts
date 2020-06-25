@@ -50,7 +50,7 @@ export class OverlayComponent implements OnInit {
   }
 
   formGroupLog(){
-    console.log("The generated form group",this.dynamicFormGroupGenerator());
+    console.log(this.dynamicFormGroupGenerator());
   }
 
   setInactive(): void {
