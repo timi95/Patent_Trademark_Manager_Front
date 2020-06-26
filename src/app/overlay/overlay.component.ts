@@ -49,13 +49,6 @@ export class OverlayComponent implements OnInit {
     return this.formBuilder.group(this.editeableObject);
   }
 
-  formGroupLog(){
-    console.log(this.dynamicFormGroupGenerator());
-  }
-
-  attributeLog(attribute: NgForm){
-    console.log('This is the logged attribute',attribute.value);
-  }
 
   setInactive(): void {
     switch (this.formType) {
@@ -78,8 +71,7 @@ export class OverlayComponent implements OnInit {
     }
   }
 
-  onSubmit(actionType:string, extraData?:any): void {
-    console.log("Template reference variable data supplied: ", extraData);
+  onSubmit(actionType:string): void {
     switch (actionType) {
       case this.formTypes[0]:
 
@@ -103,8 +95,10 @@ export class OverlayComponent implements OnInit {
 
       case this.formTypes[1]:
         // TODO: work on this next!
+        console.log('form value object from switch-case: ',this.dynamicFormGroupGenerator().value);
+        
           this.apiService
-          .updateAmendmentAction(JSON.stringify(this.editeableObject))
+          .updateAmendmentAction(this.dynamicFormGroupGenerator().value)
           .subscribe( resp => {
             this.messageService.pushSuccess("Successfully Updated! ");
             this.setInactive();
