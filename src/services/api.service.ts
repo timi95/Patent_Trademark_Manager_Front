@@ -50,6 +50,8 @@ public errors: any = [];
 }
 
  updateAmendmentAction(ammendement_action) {
+   console.log('id from api: ',ammendement_action.id, ammendement_action);
+   
   return this.httpServer.put(`${this.API_URL}/Patent_manager/ammendement-action/${ammendement_action.id}`, ammendement_action);
 }
 
