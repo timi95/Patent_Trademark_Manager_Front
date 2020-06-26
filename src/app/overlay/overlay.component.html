@@ -51,10 +51,10 @@
     <button type="submit">Submit</button>
   </form>
 
-  <form #attributeVar="ngForm"
+  <form
   class="modal-content" 
   *ngIf="formType == formTypes[1]"
-  (ngSubmit)="onSubmit('update', attributeVar)" >
+  (ngSubmit)="onSubmit('update')" >
   <header>
     <h3>Edit an Amendment Action</h3>
     <a class="cancel" (click)="setInactive()">Close</a>
@@ -68,6 +68,6 @@
     </ul>
   </div>
 
-    <button (click)="attributeLog(attributeVar)" type="submit">Submit</button>
+    <button type="submit">Submit</button>
   </form>
 </div>
