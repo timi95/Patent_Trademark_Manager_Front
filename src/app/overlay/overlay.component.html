@@ -63,7 +63,7 @@
   <div *ngIf="editeableObject">
     <ul class="form-list">
       <li *ngFor="let attribute of editeableAsList">
-        <!-- improper binding on input, value changes not reflected on submit -->
+        <!-- improper binding on input, value changes not reflected on submit-->
         {{ attribute[0] }} : 
         <input 
         *ngIf="attribute[0] != 'id'"
