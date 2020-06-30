@@ -3,7 +3,7 @@
       action="" 
       class="modal-content" 
       *ngIf="formType == formTypes[0]"
-      [formGroup]="myForm" 
+      [formGroup]="createForm" 
       (ngSubmit)="onSubmit('create')">
     <header>
       <h3>Create an Amendment Action</h3>
@@ -39,7 +39,7 @@
         </li>
       </ul>
       <!-- <span style="width: 40%;">
-        myFormState: {{ myForm.value | json }}
+        myFormState: {{ createForm.value | json }}
       </span> -->
     </div>
 
@@ -54,6 +54,7 @@
   <form
   class="modal-content" 
   *ngIf="formType == formTypes[1]"
+  [formGroup]="editForm"
   (ngSubmit)="onSubmit('update')" >
   <header>
     <h3>Edit an Amendment Action</h3>
