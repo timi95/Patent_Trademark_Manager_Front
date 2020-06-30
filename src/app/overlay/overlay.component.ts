@@ -39,22 +39,23 @@ export class OverlayComponent implements OnInit {
       date_amendment_received: [""]
     });
 
-    // Initialised editForm
-    this.editForm = this.formBuilder.group(this.editeableObject);
 
     // this.createForm.valueChanges.subscribe(console.log);
     this.utilityService.detailSubject.subscribe( details => {
-      // console.log("Details from detail service",details);
       this.editeableAsList = Object.entries(details);
+      console.log("Editeable as list: ", this.editeableAsList );
     });
 
+    // this.editeableAsList.reduce()
+  
+    
 
   }
 
   // 
   dynamicFormGroupGenerator(): FormGroup {
-    this.editForm = this.formBuilder.group(this.editeableObject);
-    console.log('Result of form generator: ', this.editForm.getRawValue() );
+    // this.editForm = this.formBuilder.group(this.editeableObject);
+    // console.log('Result of form generator: ', this.editForm.getRawValue() );
     
     return this.editForm;
   }
@@ -82,6 +83,7 @@ export class OverlayComponent implements OnInit {
   }
 
   onSubmit(actionType:string): void {
+
     switch (actionType) {
       case this.formTypes[0]:
 
@@ -105,10 +107,10 @@ export class OverlayComponent implements OnInit {
 
       case this.formTypes[1]:
         // TODO: work on this next! 
-        console.log('form value object from switch-case: ',this.dynamicFormGroupGenerator());
+        console.log('form value object from switch-case: ', this.editForm);
         
           this.apiService
-          .updateAmendmentAction( JSON.stringify( this.dynamicFormGroupGenerator() ) )
+          .updateAmendmentAction( this.dynamicFormGroupGenerator() )
           .subscribe( resp => {
             this.messageService.pushSuccess("Successfully Updated! ");
             this.setInactive();
