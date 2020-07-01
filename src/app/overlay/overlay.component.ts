@@ -48,7 +48,6 @@ export class OverlayComponent implements OnInit {
 
     // this.editeableAsList.reduce()
   
-    
 
   }
 
