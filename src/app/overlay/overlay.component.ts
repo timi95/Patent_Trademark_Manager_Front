@@ -39,22 +39,31 @@ export class OverlayComponent implements OnInit {
       date_amendment_received: [""]
     });
 
-
-    // this.createForm.valueChanges.subscribe(console.log);
+    
     this.utilityService.detailSubject.subscribe( details => {
-      this.editeableAsList = Object.entries(details);
+      this.editeableAsList = this.toList(details);
+      this.editeableObject = this.listToObject(this.editeableAsList);
       console.log("Editeable as list: ", this.editeableAsList );
     });
-
-    // this.editeableAsList.reduce()
-  
+    this.dynamicFormGroupGenerator();
 
   }
 
+  toList(target:object): any[] {
+    let result: any[] = Object.entries(target);
+    return result;
+  }
+  listToObject(target:any[]): object {
+    let result = Object.fromEntries(target);
+    console.log("result from list",result);
+    return result;
+  }
+
+
   // 
   dynamicFormGroupGenerator(): FormGroup {
-    // this.editForm = this.formBuilder.group(this.editeableObject);
-    // console.log('Result of form generator: ', this.editForm.getRawValue() );
+    this.editForm = this.formBuilder.group(this.listToObject(this.editeableAsList));
+    console.log('Result of form generator: ', this.editForm.getRawValue() );
     
     return this.editForm;
   }
