@@ -45,6 +45,7 @@ export class OverlayComponent implements OnInit {
       this.editeableObject = this.listToObject(this.editeableAsList);
       console.log("Editeable as list: ", this.editeableAsList );
     });
+    
     this.dynamicFormGroupGenerator();
 
   }
@@ -59,7 +60,6 @@ export class OverlayComponent implements OnInit {
   }
 
 
-  // 
   dynamicFormGroupGenerator(): FormGroup {
     this.editForm = this.formBuilder.group(this.listToObject(this.editeableAsList));
     // console.log('Result of form generator: ', this.editForm.getRawValue() );
@@ -122,6 +122,7 @@ export class OverlayComponent implements OnInit {
             this.messageService.pushSuccess("Successfully Updated! ");
             this.setInactive();
             console.log(resp);
+            this.editeableObject = this.editForm.value;
             
           }, (err) => {
             this.messageService.pushError(err);
