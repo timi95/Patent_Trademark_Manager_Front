@@ -55,7 +55,6 @@ export class OverlayComponent implements OnInit {
   }
   listToObject(target:any[]): object {
     let result = Object.fromEntries(target);
-    console.log("result from list",result);
     return result;
   }
 
@@ -63,7 +62,7 @@ export class OverlayComponent implements OnInit {
   // 
   dynamicFormGroupGenerator(): FormGroup {
     this.editForm = this.formBuilder.group(this.listToObject(this.editeableAsList));
-    console.log('Result of form generator: ', this.editForm.getRawValue() );
+    // console.log('Result of form generator: ', this.editForm.getRawValue() );
     
     return this.editForm;
   }
@@ -118,7 +117,7 @@ export class OverlayComponent implements OnInit {
         console.log('form value object from switch-case: ', this.editForm);
         
           this.apiService
-          .updateAmendmentAction( this.dynamicFormGroupGenerator() )
+          .updateAmendmentAction( this.editForm.value )
           .subscribe( resp => {
             this.messageService.pushSuccess("Successfully Updated! ");
             this.setInactive();
