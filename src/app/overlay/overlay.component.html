@@ -64,13 +64,21 @@
   <div *ngIf="editeableObject">
     <ul class="form-list">
       <li *ngFor="let attribute of editeableAsList">
-        <!-- improper binding on input, value changes not reflected on submit-->
         {{ attribute[0] }} : 
         
+        <!-- show this input based on the functions evaluation as 'text' -->
         <input 
-        *ngIf="attribute[0] != 'id'"
+        *ngIf=" evaluateKey(attribute[0]) == 'text' "
         [formControlName]="attribute[0]"
-         type="text" [name]="attribute[0]" id=""> <span *ngIf="attribute[0] == 'id'">{{attribute[1]}}</span>
+         type="text" [name]="attribute[0]" id=""> 
+        <!-- show this id based on the functions evaluation as 'id' -->
+         <span *ngIf=" evaluateKey(attribute[0]) == 'id'">{{attribute[1]}}</span>
+        <!-- show this input based on the function's evalutation as 'date' -->
+         <input 
+         *ngIf=" evaluateKey(attribute[0]) == 'date'"
+         [formControlName]="attribute[0]"
+          type="date" [name]="attribute[0]" id=""> 
+
       </li>
     </ul>
   </div>

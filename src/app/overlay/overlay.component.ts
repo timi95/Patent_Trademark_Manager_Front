@@ -58,13 +58,21 @@ export class OverlayComponent implements OnInit {
     let result = Object.fromEntries(target);
     return result;
   }
-
+  // Plans to check all keys and create structural directives based on their conditions
+  evaluateKey(key:string):string {
+    if( new RegExp('date').test(key) ) {
+      return 'date';
+    } else if( key == 'id') {
+      return 'id';
+    } else {
+      return 'text';
+    }
+  }
 
   dynamicFormGroupGenerator(): FormGroup {
     this.editForm = this.formBuilder.group(this.listToObject(this.editeableAsList));
     // console.log('Result of form generator: ', this.editForm.getRawValue() );
 
-    // Plans to check all keys and create structural directives based on their conditions
     
     return this.editForm;
   }
