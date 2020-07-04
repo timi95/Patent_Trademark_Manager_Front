@@ -51,11 +51,11 @@
     <button type="submit">Submit</button>
   </form>
 
-  <form
-  class="modal-content" 
+  <form class="modal-content" 
   *ngIf="formType == formTypes[1]"
   [formGroup]="editForm"
-  (ngSubmit)="onSubmit('update')" >
+  (ngSubmit)="onSubmit('update')">
+
   <header>
     <h3>Edit an Amendment Action</h3>
     <a class="cancel" (click)="setInactive()">Close</a>
@@ -66,6 +66,7 @@
       <li *ngFor="let attribute of editeableAsList">
         <!-- improper binding on input, value changes not reflected on submit-->
         {{ attribute[0] }} : 
+        
         <input 
         *ngIf="attribute[0] != 'id'"
         [formControlName]="attribute[0]"
@@ -74,6 +75,6 @@
     </ul>
   </div>
   <button type="submit">Submit</button>
-  
   </form>
+
 </div>

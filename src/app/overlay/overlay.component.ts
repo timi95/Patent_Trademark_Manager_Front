@@ -63,6 +63,8 @@ export class OverlayComponent implements OnInit {
   dynamicFormGroupGenerator(): FormGroup {
     this.editForm = this.formBuilder.group(this.listToObject(this.editeableAsList));
     // console.log('Result of form generator: ', this.editForm.getRawValue() );
+
+    // Plans to check all keys and create structural directives based on their conditions
     
     return this.editForm;
   }
