@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy,AfterViewInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { UtilityService } from 'src/services/utility.service';
 import { AmendmentAction } from 'src/interfaces/AmendmentAction';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -9,13 +9,15 @@ import { ApiService } from 'src/services/api.service';
   templateUrl: './detail.component.html',
   styleUrls: ['./detail.component.css']
 })
-export class DetailComponent implements OnInit, OnDestroy, AfterViewInit {
+export class DetailComponent implements OnInit, OnDestroy {
 
   details:any;
   detailsAsList:any=[];
   ID: string;
   detailEditIsActive:boolean;
+  detailDeleteIsActive:boolean;
 
+  overlayFormType: string;
 
 
   constructor(
@@ -25,11 +27,6 @@ export class DetailComponent implements OnInit, OnDestroy, AfterViewInit {
     public utilityService:UtilityService) {      
     }
 
-  ngAfterViewInit(){
-    
-
-
-  }
 
   ngOnInit(): void {
     console.log('Detail component initialised!');
@@ -40,6 +37,11 @@ export class DetailComponent implements OnInit, OnDestroy, AfterViewInit {
 
     this.utilityService.setDetailEditFormInactive();
     this.utilityService.detailEditFormActive.subscribe( bool => {
+      this.detailEditIsActive = bool;
+    });
+
+    this.utilityService.setDetailDeleteFormInactive();
+    this.utilityService.detailDeleteFormActive.subscribe( bool => {
       this.detailEditIsActive = bool;
     });
 
@@ -58,15 +60,6 @@ export class DetailComponent implements OnInit, OnDestroy, AfterViewInit {
       console.log("data",data)
     } );
 
-    // fetch the date given the routing info
-    // console.log("Details",this.details);
-    // this.apiService.getAmendmentAction(this.ID).subscribe( data => {
-    //   // this.details = data;
-    //   // this.detailsAsList = Object.entries(this.details);
-    //   console.log('data',data);
-    // });
-
-
   }
 
   ngOnDestroy(){
@@ -80,7 +73,7 @@ export class DetailComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   editDocument(){
-    
+    this.overlayFormType = 'update';
     this.utilityService.setDetailEditFormActive();
     this.utilityService.detailEditFormActive.subscribe( bool => {
       this.detailEditIsActive = bool;
@@ -88,4 +81,13 @@ export class DetailComponent implements OnInit, OnDestroy, AfterViewInit {
     console.log(`detailEditIsActive state: ${this.detailEditIsActive}`);
   }
 
+  deleteDocument(){
+    this.overlayFormType = 'delete';
+    this.utilityService.setDetailDeleteFormActive();
+    this.utilityService.detailDeleteFormActive.subscribe( bool => {
+      this.detailDeleteIsActive = bool;
+    });
+    console.log(`detailDeleteIsActive state: ${this.detailDeleteIsActive}`);
+    
+  }
 }
