@@ -57,7 +57,7 @@
   (ngSubmit)="onSubmit('update')">
 
   <header>
-    <h3>Edit an Amendment Action</h3>
+    <h3>Edit this Document </h3>
     <a class="cancel" (click)="setInactive()">Close</a>
   </header>
 
@@ -85,4 +85,16 @@
   <button type="submit">Submit</button>
   </form>
 
+
+  <form class="modal-content" 
+  *ngIf="formType == formTypes[2]"
+  [formGroup]="deleteForm"
+  (ngSubmit)="onSubmit('delete')">
+
+    <header>
+      <h3>Delete this Document </h3>
+      <a class="cancel" (click)="setInactive()">Close</a>
+    </header>
+
+  </form>
 </div>
