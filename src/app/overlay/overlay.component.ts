@@ -18,6 +18,7 @@ export class OverlayComponent implements OnInit {
 
   createForm: FormGroup;
   editForm: FormGroup;
+  deleteForm: FormGroup;
   name = new FormControl("");
 
   constructor(
@@ -60,6 +61,7 @@ export class OverlayComponent implements OnInit {
   }
   // This functions result is used to evaluate what Input tag gets shown
   evaluateKey(key:string):string {
+    // return the date string, if the key includes the word 'date' in it
     if( new RegExp('date').test(key) ) {
       return 'date';
     } else if( key == 'id') {
@@ -71,6 +73,7 @@ export class OverlayComponent implements OnInit {
 
   dynamicFormGroupGenerator(): FormGroup {
     this.editForm = this.formBuilder.group(this.listToObject(this.editeableAsList));
+    this.deleteForm = this.formBuilder.group(this.editeableObject);
     // console.log('Result of form generator: ', this.editForm.getRawValue() );
 
     
@@ -80,11 +83,11 @@ export class OverlayComponent implements OnInit {
 
   setInactive(): void {
     switch (this.formType) {
+      
       case this.formTypes[0]:
         this.utilityService.setModalFormInactive();
         this.utilityService.modalFormActive.subscribe( bool => {
-          
-          this.active  = bool;
+          this.active = bool;
         });
         break;
       
@@ -93,6 +96,14 @@ export class OverlayComponent implements OnInit {
         this.utilityService.detailEditFormActive.subscribe( bool => {
           this.active = bool;          
         });
+        break;
+
+      case this.formTypes[2]:
+        this.utilityService.setDetailDeleteFormInactive();
+        this.utilityService.detailDeleteFormActive.subscribe( bool => {
+          this.active = bool;          
+        });
+        break;
     
       default:
         break;
