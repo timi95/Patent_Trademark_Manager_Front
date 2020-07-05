@@ -1,7 +1,7 @@
 <a class="font-weight" href="#" (click)="navigateHome()" >Back</a>
 <ul class="font-colour info-view" *ngIf="details">
     <li>
-         ID:<div> {{details.id}}</div>
+         ID: <div style="padding-left: 5px;"> {{details.id}}</div>
     </li>
     <li>
        Status of amendment:  <div class="font-weight"> {{details.status_of_amendment}}</div>
@@ -22,13 +22,17 @@
     <li>
        Date amending clerk instructed: <div class="font-weight">{{details.date_amending_clerk_instructed}}</div>
     </li>
+    <button (click)="deleteDocument()">Delete</button>
 </ul>
 
 
 
 <a class="square_btn" (click)="editDocument()">Edit</a>
 
-<overlay 
-[active]="this.detailEditIsActive"
-[formType]="'update'"
-[updateValue]="details"></overlay>
+<div *ngIf="detailEditIsActive">
+    <overlay
+    [active]="detailEditIsActive"
+    [formType]="overlayFormType"
+    [updateValue]="details"></overlay>
+</div>
+
