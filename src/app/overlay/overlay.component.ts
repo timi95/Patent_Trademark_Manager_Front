@@ -58,7 +58,7 @@ export class OverlayComponent implements OnInit {
     let result = Object.fromEntries(target);
     return result;
   }
-  // Plans to check all keys and create structural directives based on their conditions
+  // This functions result is used to evaluate what Input tag gets shown
   evaluateKey(key:string):string {
     if( new RegExp('date').test(key) ) {
       return 'date';
