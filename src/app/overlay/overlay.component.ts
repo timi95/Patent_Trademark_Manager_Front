@@ -83,7 +83,7 @@ export class OverlayComponent implements OnInit {
 
   setInactive(): void {
     switch (this.formType) {
-      
+
       case this.formTypes[0]:
         this.utilityService.setModalFormInactive();
         this.utilityService.modalFormActive.subscribe( bool => {
@@ -122,6 +122,7 @@ export class OverlayComponent implements OnInit {
             this.messageService.pushSuccess("Successfully submitted!");
             this.setInactive();
             console.log(response);
+            window.location.reload();
             // alert('Fetching Successful !');
           },
           (err) => {
@@ -135,23 +136,32 @@ export class OverlayComponent implements OnInit {
 
       case this.formTypes[1]:
         // TODO: work on this next! 
-        console.log('form value object from switch-case: ', this.editForm);
+        // console.log('form value object from switch-case: ', this.editForm);
         
           this.apiService
           .updateAmendmentAction( this.editForm.value )
           .subscribe( resp => {
             this.messageService.pushSuccess("Successfully Updated! ");
             this.setInactive();
-            console.log(resp);
+            // console.log(resp);
             this.editeableObject = this.editForm.value;
+            window.location.reload();
             
           }, (err) => {
-            this.messageService.pushError(err);
+            this.messageService.pushError(`Could not update: ${err}`);
           } );
       break;
 
       case this.formTypes[2]:
-
+          this.apiService
+          .deleteAmendmentAction( this.deleteForm.value)
+          .subscribe( resp => {
+            this.messageService.pushSuccess(`Successfully deleted ${this.editeableObject.id}!`);
+            this.setInactive();
+            window.location.reload();
+          }, (err) =>{
+            this.messageService.pushError(`Could not delete: ${err}`)
+          });
       break;
       default:
         break;
