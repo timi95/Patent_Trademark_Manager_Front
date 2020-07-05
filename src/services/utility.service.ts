@@ -10,6 +10,8 @@ export class UtilityService {
   modalFormActive:BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   // for the update form in details component
   detailEditFormActive:BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  // for the delete form in details component
+  detailDeleteFormActive:BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   // passing value from the main component to detail component
   detailSubject: BehaviorSubject<any> = new BehaviorSubject<any>({});
   
@@ -19,6 +21,14 @@ export class UtilityService {
   setDetailEditFormInactive(){
     return this.detailEditFormActive.next(false);
   }
+
+  setDetailDeleteFormActive(){
+    return this.detailDeleteFormActive.next(true);
+  }
+  setDetailDeleteFormInactive(){
+    return this.detailDeleteFormActive.next(false);
+  }
+  
   setModalFormActive(){
     return this.modalFormActive.next(true);
   }
