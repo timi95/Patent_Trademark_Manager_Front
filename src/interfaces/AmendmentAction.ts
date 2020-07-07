@@ -1,5 +1,5 @@
 export interface AmendmentAction {
-    id?:number;
+    id:number;
     date_amendment_instruction_received: string;
     nature_of_amendment: string;
     amending_clerk: string;
