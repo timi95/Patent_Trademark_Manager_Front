@@ -3,6 +3,8 @@ import { FormControl, FormBuilder, FormGroup, NgForm } from "@angular/forms";
 import { ApiService } from "src/services/api.service";
 import { MessageService } from "src/services/message.service";
 import { UtilityService } from 'src/services/utility.service';
+import { AmendmentAction } from 'src/interfaces/AmendmentAction';
+import { Action } from '../classes/Action';
 
 @Component({
   selector: "overlay",
@@ -13,8 +15,10 @@ export class OverlayComponent implements OnInit {
   @Input("active") active: boolean;
   @Input("formType") formType?: string;
   @Input("updateValue") editeableObject?: any;
+
   editeableAsList:any[] = [];
   formTypes:string[] = ['create','update','delete'];
+  ammendmentAction: AmendmentAction = new Action();
 
   createForm: FormGroup;
   editForm: FormGroup;
@@ -31,14 +35,17 @@ export class OverlayComponent implements OnInit {
 
   ngOnInit(): void {
     // Initialised createForm
-    this.createForm = this.formBuilder.group({
-      date_amendment_instruction_received: [""],
-      nature_of_amendment: [""],
-      amending_clerk: [""],
-      date_amending_clerk_instructed: [""],
-      status_of_amendment: [""],
-      date_amendment_received: [""]
-    });
+    this.createForm = this.formBuilder.group(this.ammendmentAction);
+    console.log("createForm: ", this.toList(this.ammendmentAction));
+    
+    // {
+    //   date_amendment_instruction_received: [""],
+    //   nature_of_amendment: [""],
+    //   amending_clerk: [""],
+    //   date_amending_clerk_instructed: [""],
+    //   status_of_amendment: [""],
+    //   date_amendment_received: [""]
+    // } 
 
     
     this.utilityService.detailSubject.subscribe( details => {
@@ -136,7 +143,7 @@ export class OverlayComponent implements OnInit {
 
       case this.formTypes[1]:
         // TODO: work on this next! 
-        // console.log('form value object from switch-case: ', this.editForm); 
+        // console.log('form value object from switch-case: ', this.editForm);
         
           this.apiService
           .updateAmendmentAction( this.editForm.value )
