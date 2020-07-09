@@ -47,7 +47,7 @@ export class SideNavComponent implements OnInit {
         this.opened = true;
         this.isMobile = false;
       }
-      console.log(`screen height: ${this.screenHeight} screen width: ${this.screenWidth}`);
+      // console.log(`screen height: ${this.screenHeight} screen width: ${this.screenWidth}`);
   }
 
 
