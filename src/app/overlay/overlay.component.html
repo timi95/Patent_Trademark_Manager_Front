@@ -10,8 +10,23 @@
       <a class="cancel" (click)="setInactive()">Close</a>
     </header>
     <div class="">
+      
       <ul class="form-list">
-        <li *ngFor="let item of toList(this.ammendmentAction)"></li>
+        <li *ngFor="let item of toList(this.ammendmentAction)">
+          
+        <!-- show this input based on the functions evaluation as 'text' -->
+        <input 
+        *ngIf=" evaluateKey(item) == 'text' "
+        [formControlName]="item"
+         type="text" [name]="item" id=""> 
+        <!-- show this id based on the functions evaluation as 'id' -->
+         <span *ngIf=" evaluateKey(item) == 'id'">{{item}}</span>
+        <!-- show this input based on the function's evalutation as 'date' -->
+          <input 
+         *ngIf=" evaluateKey(item) == 'date'"
+         [formControlName]="item"
+          type="date" [name]="item" id=""> 
+        </li>
         <!-- <li>
           <label for="date_amendment_instruction_received">
             Date Amendment Instruction recieved

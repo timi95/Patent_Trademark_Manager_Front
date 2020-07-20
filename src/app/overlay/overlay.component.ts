@@ -18,7 +18,15 @@ export class OverlayComponent implements OnInit {
 
   editeableAsList:any[] = [];
   formTypes:string[] = ['create','update','delete'];
-  ammendmentAction: AmendmentAction = new Action();
+  ammendmentAction: any = 
+    {
+      date_amendment_instruction_received: "",
+      nature_of_amendment: "",
+      amending_clerk: "",
+      date_amending_clerk_instructed: "",
+      status_of_amendment: "",
+      date_amendment_received: ""
+    } 
 
   createForm: FormGroup;
   editForm: FormGroup;
