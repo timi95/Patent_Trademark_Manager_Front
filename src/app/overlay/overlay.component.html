@@ -12,47 +12,20 @@
     <div class="">
       
       <ul class="form-list">
-        <li *ngFor="let item of toList(this.ammendmentAction)">
-          
+        <li *ngFor="let item of toList(this.ammendmentAction)"> 
+
         <!-- show this input based on the functions evaluation as 'text' -->
-        <input 
+        {{item[0]}}: <input 
         *ngIf=" evaluateKey(item) == 'text' "
-        [formControlName]="item"
-         type="text" [name]="item" id=""> 
-        <!-- show this id based on the functions evaluation as 'id' -->
-         <span *ngIf=" evaluateKey(item) == 'id'">{{item}}</span>
+        [formControlName]="item[0]"
+         type="text" [name]="item[0]" id=""> 
         <!-- show this input based on the function's evalutation as 'date' -->
-          <input 
+        <input 
          *ngIf=" evaluateKey(item) == 'date'"
-         [formControlName]="item"
-          type="date" [name]="item" id=""> 
+         [formControlName]="item[0]"
+          type="date" [name]="item[0]" id=""> 
         </li>
-        <!-- <li>
-          <label for="date_amendment_instruction_received">
-            Date Amendment Instruction recieved
-          </label>
-          <input type="date" formControlName="date_amendment_instruction_received" />
-        </li>
-        <li>
-          <label for="nature_of_amendment"> Nature of Amendment</label>
-          <input type="text" formControlName="nature_of_amendment" />
-        </li>
-        <li>
-          <label for="amending_clerk"> Amending Clerk</label>
-          <input type="text" formControlName="amending_clerk" />
-        </li>
-        <li>
-          <label for="date_amending_clerk_instructed">Date Clerk Instructed</label>
-          <input type="date" formControlName="date_amending_clerk_instructed" />
-        </li>
-        <li>
-          <label for="status_of_amendment">Status of Amendment</label>
-          <input type="text" formControlName="status_of_amendment" />
-        </li>
-        <li>
-          <label for="date_amendment_received">Date Amendment received</label>
-          <input type="date" formControlName="date_amendment_received" />
-        </li> -->
+
       </ul>
       <!-- <span style="width: 40%;">
         myFormState: {{ createForm.value | json }}
