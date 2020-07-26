@@ -1,6 +1,5 @@
 <div *ngIf="active" class="overlay" >
   <form 
-      action="" 
       class="modal-content" 
       *ngIf="formType == formTypes[0]"
       [formGroup]="createForm" 
@@ -10,24 +9,16 @@
       <a class="cancel" (click)="setInactive()">Close</a>
     </header>
     <div class="">
-      
       <ul class="form-list">
         <li *ngFor="let item of toList(this.ammendmentAction)"> 
+          <!-- show this input based on the functions evaluation as 'text' or 'date' -->
+          {{item[0]}}: <input 
+          [formControlName]="item[0]"
+          [type]="evaluateKey(item)" [name]="item[0]" > 
 
-        <!-- show this input based on the functions evaluation as 'text' -->
-        {{item[0]}}: <input 
-        *ngIf=" evaluateKey(item) == 'text' "
-        [formControlName]="item[0]"
-         type="text" [name]="item[0]" id=""> 
-        <!-- show this input based on the function's evalutation as 'date' -->
-        <input 
-         *ngIf=" evaluateKey(item) == 'date'"
-         [formControlName]="item[0]"
-          type="date" [name]="item[0]" id=""> 
         </li>
 
       </ul>
-
     </div>
 
 
@@ -52,7 +43,7 @@
         
         <!-- show this input based on the functions evaluation as 'text' -->
         <input 
-        *ngIf=" evaluateKey(attribute[0]) == 'text' "
+        *ngIf="evaluateKey(attribute[0]) == 'text'"
         [formControlName]="attribute[0]"
          type="text" [name]="attribute[0]" id=""> 
         <!-- show this id based on the functions evaluation as 'id' -->
