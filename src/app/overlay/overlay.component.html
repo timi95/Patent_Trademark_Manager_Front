@@ -4,23 +4,22 @@
       *ngIf="formType == formTypes[0]"
       [formGroup]="createForm" 
       (ngSubmit)="onSubmit('create')">
+
     <header>
       <h3>Create an Amendment Action</h3>
       <a class="cancel" (click)="setInactive()">Close</a>
     </header>
-    <div class="">
+
+    <div>
       <ul class="form-list">
-        <li *ngFor="let item of toList(this.ammendmentAction)"> 
+        <li *ngFor="let item of toList|pureCall:ammendmentAction"> 
           <!-- show this input based on the functions evaluation as 'text' or 'date' -->
           {{item[0]}}: <input 
           [formControlName]="item[0]"
-          [type]="evaluateKey(item)" [name]="item[0]" > 
-
+          [type]="evaluateKey|pureCall:item" [name]="item[0]" > 
         </li>
-
       </ul>
     </div>
-
 
     <button type="submit">Submit</button>
   </form>
@@ -40,7 +39,6 @@
     <ul class="form-list">
       <li *ngFor="let attribute of editeableAsList">
         {{ attribute[0] }} : 
-        
         <!-- show this input based on the functions evaluation as 'text' -->
         <input 
         *ngIf="evaluateKey(attribute[0]) == 'text'"
@@ -53,11 +51,11 @@
          *ngIf=" evaluateKey(attribute[0]) == 'date'"
          [formControlName]="attribute[0]"
           type="date" [name]="attribute[0]" id=""> 
-
       </li>
     </ul>
   </div>
-  <button type="submit">Submit</button>
+
+    <button type="submit">Submit</button>
   </form>
   <!-- edit form: END -->
 

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, AfterViewInit } from "@angular/core";
-import { FormControl, FormBuilder, FormGroup, NgForm } from "@angular/forms";
+import { FormControl, FormBuilder, FormGroup, NgForm, Validators } from "@angular/forms";
 import { ApiService } from "src/services/api.service";
 import { MessageService } from "src/services/message.service";
 import { UtilityService } from 'src/services/utility.service';
@@ -21,17 +21,17 @@ export class OverlayComponent implements OnInit {
   ammendmentAction: any = 
     {
       date_amendment_instruction_received: "",
-      nature_of_amendment: "",
-      amending_clerk: "",
+      nature_of_amendment: new FormControl('', [Validators.required]),
+      amending_clerk: new FormControl('', [Validators.required]),
       date_amending_clerk_instructed: "",
-      status_of_amendment: "",
+      status_of_amendment: new FormControl('', [Validators.required]),
       date_amendment_received: ""
     } 
 
   createForm: FormGroup;
   editForm: FormGroup;
   deleteForm: FormGroup;
-  name = new FormControl("");
+  // name = new FormControl("");
 
   constructor(
     private formBuilder: FormBuilder,
@@ -45,16 +45,6 @@ export class OverlayComponent implements OnInit {
     // Initialised createForm
     this.createForm = this.formBuilder.group(this.ammendmentAction);
     console.log("createForm: ", this.toList(this.ammendmentAction));
-    
-    // {
-    //   date_amendment_instruction_received: [""],
-    //   nature_of_amendment: [""],
-    //   amending_clerk: [""],
-    //   date_amending_clerk_instructed: [""],
-    //   status_of_amendment: [""],
-    //   date_amendment_received: [""]
-    // } 
-
     
     this.utilityService.detailSubject.subscribe( details => {
       this.editeableAsList = this.toList(details);
@@ -182,7 +172,6 @@ export class OverlayComponent implements OnInit {
         break;
     }
   }
-
 
 }
 
