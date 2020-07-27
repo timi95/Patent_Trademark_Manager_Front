@@ -13,6 +13,7 @@ import { ErrorMessageComponent } from './error-message/error-message.component';
 import { SuccessMessageComponent } from './success-message/success-message.component';
 import { OverlayComponent } from './overlay/overlay.component';
 import { DetailComponent } from './detail/detail.component';
+import { PureCallPipe } from './pipes/pure-call.pipe';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { DetailComponent } from './detail/detail.component';
     ErrorMessageComponent,
     SuccessMessageComponent,
     OverlayComponent,
-    DetailComponent
+    DetailComponent,
+    PureCallPipe
   ],
   imports: [
     BrowserModule,
