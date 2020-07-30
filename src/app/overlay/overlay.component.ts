@@ -64,6 +64,7 @@ export class OverlayComponent implements OnInit {
     let result = Object.fromEntries(target);
     return result;
   }
+  
   // This functions result is used to evaluate what Input tag gets shown
   evaluateKey(key:string):string {
     // return the date string, if the key includes the word 'date' in it
@@ -79,12 +80,8 @@ export class OverlayComponent implements OnInit {
   dynamicFormGroupGenerator(): FormGroup {
     this.editForm = this.formBuilder.group(this.listToObject(this.editeableAsList));
     this.deleteForm = this.formBuilder.group(this.editeableObject);
-    // console.log('Result of form generator: ', this.editForm.getRawValue() );
-
-    
     return this.editForm;
   }
-
 
   setInactive(): void {
     switch (this.formType) {
