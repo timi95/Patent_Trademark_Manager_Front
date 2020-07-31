@@ -1,10 +1,16 @@
 import { AmendmentAction } from 'src/interfaces/AmendmentAction';
 
-export class Action implements AmendmentAction {
-    constructor() {
-    }
+export class Action implements AmendmentAction, SearchAction {
     // Id
     id: number;
+    constructor() {
+    }
+    // Search Action properties
+    search_status: string;
+    reported_to_client: string;
+    date_reported_to_client: string;
+    clerk_searching: string;
+
 
     // Ammendment Action Properties
     date_amendment_instruction_received: string;
