@@ -19,7 +19,7 @@ export class MainContentComponent implements OnInit {
   
   // a generic list that stocks all possible resource type from the end point
   resourceList: any[];
-  
+
 
   constructor(
     private router: Router,
