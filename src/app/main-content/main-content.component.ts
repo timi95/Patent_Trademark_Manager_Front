@@ -18,8 +18,7 @@ export class MainContentComponent implements OnInit {
   amendmentActionList: AmendmentAction[] = [];
   
   // a generic list that stocks all possible resource type from the end point
-  resourceList: any[];
-
+  resourceList: any[];s
 
   constructor(
     private router: Router,
