@@ -17,8 +17,29 @@ export class MainContentComponent implements OnInit {
   modalIsActive:boolean;
   amendmentActionList: AmendmentAction[] = [];
   
-  // a generic list that stocks all possible resource type from the end point
-  resourceList: any[];s
+  // strategy for fetching resources from end-point
+  // list of Action-types, Particulars, and Profile
+  patent_ActionTypes:string[] = [
+    'SearchAction',
+    'RenewalAction',
+    'RegistrationAction',
+    'ProcurementOfCertificateAction',
+    'CTCAction',
+    'ChangeOfNameAction',
+    'ChangeOfAddressAction',
+    'AssignmentMergerAction',
+    'AmendmentAction'
+  ];patent_particulars:string[] = ['PatentParticlars'];
+  trademark_ActionType:string[] = [
+    'SearchAction',
+    'RenewalAction',
+    'RegistrationAction',
+    'ReclassificationAction',
+    'ChangeName_AddressAction',
+    'CertificateProcurementAction',
+    'AssignmentMergerAction',
+    'AmendementAction'
+  ];trademark_profile:string[] = ['TrademarkProfile'];
 
   constructor(
     private router: Router,
@@ -48,8 +69,6 @@ export class MainContentComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchDocuments();
-
-
   }
 
   ngOnDestroy(){
@@ -70,16 +89,9 @@ export class MainContentComponent implements OnInit {
   createDocument() {
     this.utilityService.setModalFormActive();
     this.utilityService.modalFormActive.subscribe( bool => {
-
       this.modalIsActive = bool;
-    })
-    // this.documentList.push(
-    //   {
-    //     title:`Item${this.documentList.length+1} Title`,
-    //     body: `Item${this.documentList.length+1} Description...`,
-    //     footer: `Item${this.documentList.length+1} footer`
-    //   }
-    // )
+    });
+
   }
 
 
