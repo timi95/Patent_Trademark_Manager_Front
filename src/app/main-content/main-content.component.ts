@@ -77,23 +77,33 @@ export class MainContentComponent implements OnInit {
   fetchDocuments(event?) {
     let documentType = event.target.value;
     switch (documentType) {
-      case this.patent_ActionTypes[0]:
+      case this.patent_ActionTypes[8]:
+        this.apiService.getAmendmentAction().subscribe((response:any) => {
+          this.messageService.pushSuccess('Successfully fetched amendment actions!');
+          // assign results to our list
+          this.amendmentActionList = response.results;
+        }, err => {
+            console.log(err);
+            this.messageService.pushError(err);
+            // this.messages.add(err);
+        });
         
         break;
     
       default:
+        this.apiService.getAmendmentAction().subscribe((response:any) => {
+          this.messageService.pushSuccess('Successfully fetched amendment actions!');
+          // assign results to our list
+          this.amendmentActionList = response.results;
+        }, err => {
+            console.log(err);
+            this.messageService.pushError(err);
+            // this.messages.add(err);
+        });
         break;
     }
 
-    this.apiService.getAmendmentAction().subscribe((response:any) => {
-      this.messageService.pushSuccess('Successfully fetched amendment actions!');
-      // assign results to our list
-      this.amendmentActionList = response.results;
-    }, err => {
-        console.log(err);
-        this.messageService.pushError(err);
-        // this.messages.add(err);
-    });
+
   }
 
   createDocument() {
