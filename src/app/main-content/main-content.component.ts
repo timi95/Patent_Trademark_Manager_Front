@@ -74,7 +74,17 @@ export class MainContentComponent implements OnInit {
   ngOnDestroy(){
     this.utilityService.modalFormActive.unsubscribe();
   }
-  fetchDocuments() {
+  fetchDocuments(event?) {
+    let documentType = event.target.value;
+    switch (documentType) {
+      case this.patent_ActionTypes[0]:
+        
+        break;
+    
+      default:
+        break;
+    }
+
     this.apiService.getAmendmentAction().subscribe((response:any) => {
       this.messageService.pushSuccess('Successfully fetched amendment actions!');
       // assign results to our list
