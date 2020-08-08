@@ -37,6 +37,30 @@ public errors: any = [];
 
 
 // ******************** // C R U D // ******************** //
+
+  // Generally applicaple request function for all patent resources
+  patentDocumentRequest(documentType:string,requestType:string,id?:string){
+    switch (requestType) {
+      case "post":
+        
+        break;
+      case "put":
+      
+        break;
+      case "patch":
+      
+        break;  
+      case "get":
+        if (id) {
+          return this.httpServer.get(`${this.API_URL}/Patent_manager/${documentType}/${id}`); 
+        } else { 
+          return this.httpServer.get(`${this.API_URL}/Patent_manager/${documentType}/`);
+        }
+      default:
+        break;
+    }
+  }
+
  getAmendmentAction(id?:string) {
   if (id) {
     return this.httpServer.get(`${this.API_URL}/Patent_manager/ammendement-action/${id}`); 
