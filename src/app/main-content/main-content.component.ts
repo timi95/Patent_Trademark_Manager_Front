@@ -68,40 +68,58 @@ export class MainContentComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.fetchDocuments();
+    this.apiService.patentDocumentRequest(
+    "ammendement-action",
+    "get").subscribe((response:any) => {
+      this.messageService.pushSuccess('Successfully fetched amendment actions!');
+      // assign results to our list
+      this.amendmentActionList = response.results;
+    }, err => {
+        console.log(err);
+        this.messageService.pushError(err);
+        // this.messages.add(err);
+    });
   }
 
   ngOnDestroy(){
     this.utilityService.modalFormActive.unsubscribe();
   }
   fetchDocuments(event?) {
-    let documentType = event.target.value;
-    switch (documentType) {
-      case this.patent_ActionTypes[8]:
-        this.apiService.getAmendmentAction().subscribe((response:any) => {
-          this.messageService.pushSuccess('Successfully fetched amendment actions!');
-          // assign results to our list
-          this.amendmentActionList = response.results;
-        }, err => {
-            console.log(err);
-            this.messageService.pushError(err);
-            // this.messages.add(err);
-        });
-        
-        break;
-    
-      default:
-        this.apiService.getAmendmentAction().subscribe((response:any) => {
-          this.messageService.pushSuccess('Successfully fetched amendment actions!');
-          // assign results to our list
-          this.amendmentActionList = response.results;
-        }, err => {
-            console.log(err);
-            this.messageService.pushError(err);
-            // this.messages.add(err);
-        });
-        break;
+    if(event){
+      console.log(event);
+      let documentType = event.target.value;
+
+
+      switch (documentType) {
+        case this.patent_ActionTypes[8]:
+          this.apiService.getAmendmentAction().subscribe((response:any) => {
+            this.messageService.pushSuccess('Successfully fetched amendment actions!');
+            // assign results to our list
+            this.amendmentActionList = response.results;
+          }, err => {
+              console.log(err);
+              this.messageService.pushError(err);
+              // this.messages.add(err);
+          });
+          
+          break;
+      
+        default:
+          this.apiService.getAmendmentAction().subscribe((response:any) => {
+            this.messageService.pushSuccess('Successfully fetched amendment actions!');
+            // assign results to our list
+            this.amendmentActionList = response.results;
+          }, err => {
+              console.log(err);
+              this.messageService.pushError(err);
+              // this.messages.add(err);
+          });
+          break;
+      }
+
+
     }
+    
 
 
   }
