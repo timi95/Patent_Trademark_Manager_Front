@@ -39,25 +39,50 @@ public errors: any = [];
 // ******************** // C R U D // ******************** //
 
   // Generally applicaple request function for all patent resources
-  patentDocumentRequest(documentType:string,requestType:string,id?:string){
-    switch (requestType) {
+  patentDocumentRequest(
+    documentType:string, 
+    requestType:string,
+    id?:string,
+    requestBody?:any) {
+    switch (requestType.toLowerCase()) {
+    //POST request case
       case "post":
-        
-        break;
+        if (id|| requestBody) {
+          return this.httpServer.post(`${this.API_URL}/Patent_manager/${documentType}/${id}`, requestBody); 
+        } else { 
+          return this.httpServer.post(`${this.API_URL}/Patent_manager/${documentType}/`, requestBody);
+        }
+
+      //PUT request case
       case "put":
-      
-        break;
+        if (id|| requestBody) {
+          return this.httpServer.put(`${this.API_URL}/Patent_manager/${documentType}/${id}`, requestBody); 
+        } else { 
+          return this.httpServer.put(`${this.API_URL}/Patent_manager/${documentType}/`, requestBody);
+        }
+    
+      //PATCH request case
       case "patch":
+        if (id|| requestBody) {
+          return this.httpServer.patch(`${this.API_URL}/Patent_manager/${documentType}/${id}`, requestBody); 
+        } else { 
+          return this.httpServer.patch(`${this.API_URL}/Patent_manager/${documentType}/`, requestBody);
+        }
       
-        break;  
+      //GET request case
       case "get":
         if (id) {
           return this.httpServer.get(`${this.API_URL}/Patent_manager/${documentType}/${id}`); 
         } else { 
           return this.httpServer.get(`${this.API_URL}/Patent_manager/${documentType}/`);
         }
+      // default case
       default:
-        break;
+        if (id) {
+          return this.httpServer.get(`${this.API_URL}/Patent_manager/${documentType}/${id}`); 
+        } else { 
+          return this.httpServer.get(`${this.API_URL}/Patent_manager/${documentType}/`);
+        }
     }
   }
 
