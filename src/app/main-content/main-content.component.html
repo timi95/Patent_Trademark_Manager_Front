@@ -1,4 +1,10 @@
 <div class="scrollable-grid">
+  <select class="custom-select" (change)="fetchDocuments($event)" >
+    <option disabled>Choose DocumentType </option>
+    <option 
+    *ngFor="let type of patent_ActionTypes" 
+    [ngValue]="type">{{type}}</option>
+  </select>
   <ul class="card-grid">
     <li class="card-body" *ngFor="let amendmentItem of amendmentActionList" >
       <header class="card-header" >
