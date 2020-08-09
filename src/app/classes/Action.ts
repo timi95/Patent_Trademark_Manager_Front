@@ -1,4 +1,7 @@
+// import { AmendmentAction, SearchAction } from '../../interfaces';
+import { from } from 'rxjs';
 import { AmendmentAction } from 'src/interfaces/AmendmentAction';
+import { SearchAction } from 'src/interfaces/SearchAction';
 
 export class Action implements AmendmentAction, SearchAction {
     // Id
