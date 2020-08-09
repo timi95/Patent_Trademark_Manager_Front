@@ -48,25 +48,25 @@ public errors: any = [];
     //POST request case
       case "post":
         if (id|| requestBody) {
-          return this.httpServer.post(`${this.API_URL}/Patent_manager/${documentType}/${id}`, requestBody); 
+          return this.httpServer.post(`${this.API_URL}/Patent_manager/${documentType}/${id}`, requestBody,this.httpOptions); 
         } else { 
-          return this.httpServer.post(`${this.API_URL}/Patent_manager/${documentType}/`, requestBody);
+          return this.httpServer.post(`${this.API_URL}/Patent_manager/${documentType}/`, requestBody,this.httpOptions);
         }
 
       //PUT request case
       case "put":
         if (id|| requestBody) {
-          return this.httpServer.put(`${this.API_URL}/Patent_manager/${documentType}/${id}`, requestBody); 
+          return this.httpServer.put(`${this.API_URL}/Patent_manager/${documentType}/${id}`, requestBody,this.httpOptions); 
         } else { 
-          return this.httpServer.put(`${this.API_URL}/Patent_manager/${documentType}/`, requestBody);
+          return this.httpServer.put(`${this.API_URL}/Patent_manager/${documentType}/`, requestBody,this.httpOptions);
         }
     
       //PATCH request case
       case "patch":
         if (id|| requestBody) {
-          return this.httpServer.patch(`${this.API_URL}/Patent_manager/${documentType}/${id}`, requestBody); 
+          return this.httpServer.patch(`${this.API_URL}/Patent_manager/${documentType}/${id}`, requestBody,this.httpOptions); 
         } else { 
-          return this.httpServer.patch(`${this.API_URL}/Patent_manager/${documentType}/`, requestBody);
+          return this.httpServer.patch(`${this.API_URL}/Patent_manager/${documentType}/`, requestBody,this.httpOptions);
         }
       
       //GET request case
