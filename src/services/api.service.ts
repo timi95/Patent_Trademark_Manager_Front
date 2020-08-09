@@ -39,11 +39,10 @@ public errors: any = [];
 // ******************** // C R U D // ******************** //
 
   // Generally applicaple request function for all patent resources
-  patentDocumentRequest(
-    documentType:string, 
-    requestType:string,
-    id?:string,
-    requestBody?:any) {
+  patentDocumentRequest(documentType:string, 
+                        requestType:string,
+                        id?:string,
+                        requestBody?:any) {
     switch (requestType.toLowerCase()) {
     //POST request case
       case "post":
