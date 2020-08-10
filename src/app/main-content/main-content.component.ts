@@ -40,6 +40,19 @@ export class MainContentComponent implements OnInit {
     'AssignmentMergerAction',
     'AmendementAction'
   ];trademark_profile:string[] = ['TrademarkProfile'];
+  // dictionaries
+  patentActionUrlDict = {
+    'SearchAction':'search-action',
+    'RenewalAction':'renewal-action',
+    'RegistrationAction':'registration',
+    'PatentParticulars':'patent-particulars',
+    'ProcurementOfCertificateAction':'procurement',
+    'CTCAction':'ctc',
+    'ChangeOfNameAction':'change-name',
+    'ChangeOfAddressAction':'change-address',
+    'AssignmentMergerAction':'assignment-merger-action',
+    'AmendmentAction':"ammendement-action"
+  }
 
   constructor(
     private router: Router,
