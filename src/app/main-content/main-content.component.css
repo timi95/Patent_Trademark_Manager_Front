@@ -75,3 +75,13 @@
     border: 1px grey solid;
     border-radius: 50%;
 }
+
+.attributes-container{
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* line-height: 10px; */
+    
+    font-size: larger;
+    font-weight: 600;
+}

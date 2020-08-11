@@ -87,6 +87,7 @@ export class MainContentComponent implements OnInit {
       this.messageService.pushSuccess('Successfully fetched amendment actions!');
       // assign results to our list
       this.amendmentActionList = response.results;
+      // this.documentList = response.results;
     }, err => {
         console.log(err);
         this.messageService.pushError(err);
@@ -99,37 +100,21 @@ export class MainContentComponent implements OnInit {
   }
   fetchDocuments(event?) {
     if(event){
-      console.log(event);
       let documentType = event.target.value;
-
-
-      switch (documentType) {
-        case this.patent_ActionTypes[8]:
-          this.apiService.getAmendmentAction().subscribe((response:any) => {
-            this.messageService.pushSuccess('Successfully fetched amendment actions!');
-            // assign results to our list
-            this.amendmentActionList = response.results;
-          }, err => {
-              console.log(err);
-              this.messageService.pushError(err);
-              // this.messages.add(err);
-          });
-          
-          break;
+      console.log(this.patentActionUrlDict[documentType]);
       
-        default:
-          this.apiService.getAmendmentAction().subscribe((response:any) => {
-            this.messageService.pushSuccess('Successfully fetched amendment actions!');
-            // assign results to our list
-            this.amendmentActionList = response.results;
-          }, err => {
-              console.log(err);
-              this.messageService.pushError(err);
-              // this.messages.add(err);
-          });
-          break;
-      }
-
+      this.apiService.patentDocumentRequest(
+        this.patentActionUrlDict[documentType],
+        "get").subscribe((response:any) => {
+          this.messageService.pushSuccess('Successfully fetched amendment actions!');
+          // assign results to our list
+          this.amendmentActionList = response.results;
+          this.documentList = response.results;
+        }, err => {
+            console.log(err);
+            this.messageService.pushError(err);
+            // this.messages.add(err);
+        });
 
     }
     
@@ -155,6 +140,16 @@ export class MainContentComponent implements OnInit {
       //   state:{ data: item }
       // }
     );
+  }
+
+
+  toList(target:object): any[] {
+    let result: any[] = Object.entries(target);
+    return result;
+  }
+  listToObject(target:any[]): object {
+    let result = Object.fromEntries(target);
+    return result;
   }
 
 }

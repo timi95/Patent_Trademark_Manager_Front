@@ -6,15 +6,19 @@
     [ngValue]="type">{{type}}</option>
   </select>
   <ul class="card-grid">
-    <li class="card-body" *ngFor="let amendmentItem of amendmentActionList" >
+    <li class="card-body" *ngFor="let document of documentList" >
       <header class="card-header" >
-        <span> ID: {{ amendmentItem.id }}</span>
-        <a class="manage-button">actions</a>
+        <span> ID: {{ document.id }}</span>
+        <a class="manage-button">Actions</a>
       </header>
-      <p> Amendment Nature: {{ amendmentItem.nature_of_amendment }}</p>
+      <div class="attributes-container" *ngFor="let attribute of toList(document)">
+        <span *ngIf="attribute[0] != 'id'"> {{attribute[0]}}:  {{attribute[1]}} </span>
+      </div>
+      <!-- <p> Amendment Nature: {{ document.nature_of_amendment }}</p> -->
+      <!-- <h6> Date Received: {{ document.date_amendment_received }}</h6> -->
       <button 
-        (click)="viewDetails(amendmentItem)" >Further details</button>
-      <h6> Date Received: {{ amendmentItem.date_amendment_received }}</h6>
+        (click)="viewDetails(document)">
+      Further details</button>
     </li>
   </ul>
 </div>
