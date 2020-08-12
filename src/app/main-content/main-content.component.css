@@ -80,7 +80,7 @@
     width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
-    /* line-height: 10px; */
+    line-height: 30px;
     
     font-size: larger;
     font-weight: 600;
