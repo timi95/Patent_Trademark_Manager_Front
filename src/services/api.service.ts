@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/environments/environment'
 
 
 @Injectable({
@@ -23,7 +24,7 @@ public username: string;
 public errors: any = [];
 
 
-  API_URL  =  'http://localhost:8000';
+  API_URL  =  environment.apiUrl;
   httpServer: HttpClient;
 
   constructor(private  httpClient:  HttpClient) {
