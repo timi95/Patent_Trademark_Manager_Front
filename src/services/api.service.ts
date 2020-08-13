@@ -75,6 +75,14 @@ public errors: any = [];
         } else { 
           return this.httpServer.get(`${this.API_URL}/Patent_manager/${documentType}/`);
         }
+
+      //DELETE request case
+      case "delete":
+        if (id) {
+          return this.httpServer.delete(`${this.API_URL}/Patent_manager/${documentType}/${id}`); 
+        } else if(requestBody) { 
+          return this.httpServer.delete(`${this.API_URL}/Patent_manager/${documentType}/`,requestBody);
+        }
       // default case
       default:
         if (id) {

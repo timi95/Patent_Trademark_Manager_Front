@@ -13,13 +13,24 @@ import { Action } from '../classes/Action';
 })
 export class OverlayComponent implements OnInit {
   @Input("active") active: boolean;
+  @Input("documentType") documentType: string;
   @Input("formType") formType?: string;
   @Input("updateValue") editeableObject?: any;
 
   editeableAsList:any[] = [];
   formTypes:string[] = ['create','update','delete'];
-  ammendmentAction: any = 
-    {
+
+  documentTypeFormDictionary = {
+    'search-action':{},
+    'renewal-action':{},
+    'registration':{},
+    'patent-particulars':{},
+    'procurement':{},
+    'ctc':{},
+    'change-name':{},
+    'change-address':{},
+    'assignment-merger-action':{},
+    "amendement-action": {
       date_amendment_instruction_received: "",
       nature_of_amendment: new FormControl('', [Validators.required]),
       amending_clerk: new FormControl('', [Validators.required]),
@@ -27,6 +38,7 @@ export class OverlayComponent implements OnInit {
       status_of_amendment: new FormControl('', [Validators.required]),
       date_amendment_received: ""
     } 
+  }
 
   createForm: FormGroup;
   editForm: FormGroup;
@@ -43,13 +55,13 @@ export class OverlayComponent implements OnInit {
 
   ngOnInit(): void {
     // Initialised createForm
-    this.createForm = this.formBuilder.group(this.ammendmentAction);
-    console.log("createForm: ", this.toList(this.ammendmentAction));
+    this.createForm = this.formBuilder.group(this.documentTypeFormDictionary[this.documentType]);
+    // console.log("createForm: ", this.toList(this.documentTypeFormDictionary[this.documentType]));
     
     this.utilityService.detailSubject.subscribe( details => {
       this.editeableAsList = this.toList(details);
       this.editeableObject = this.listToObject(this.editeableAsList);
-      console.log("Editeable as list: ", this.editeableAsList );
+      // console.log("Editeable as list: ", this.editeableAsList );
     });
     
     this.dynamicFormGroupGenerator();
@@ -116,33 +128,33 @@ export class OverlayComponent implements OnInit {
 
     switch (actionType) {
       case this.formTypes[0]:
-
         this.apiService
-        .createAmendmentAction(JSON.stringify(this.createForm.getRawValue()))
+        .patentDocumentRequest(
+          this.documentType,
+          "post",
+          JSON.stringify(this.createForm.getRawValue()))
         .subscribe(
           (response) => {
+            this.messageService.clear();
             this.messageService.pushSuccess("Successfully submitted!");
             this.setInactive();
             console.log(response);
             window.location.reload();
-            // alert('Fetching Successful !');
           },
           (err) => {
             console.log(err);
             this.messageService.pushError(err);
-            // this.messages.add(err);
-          } );
+        });
         
         break;
     
 
       case this.formTypes[1]:
         // TODO: work on this next! 
-        // console.log('form value object from switch-case: ', this.editForm);
-        
           this.apiService
-          .updateAmendmentAction( this.editForm.value )
+          .patentDocumentRequest(this.documentType,"put",this.editForm.value )
           .subscribe( resp => {
+            this.messageService.clear();
             this.messageService.pushSuccess("Successfully Updated! ");
             this.setInactive();
             // console.log(resp);
@@ -156,8 +168,9 @@ export class OverlayComponent implements OnInit {
 
       case this.formTypes[2]:
           this.apiService
-          .deleteAmendmentAction( this.deleteForm.value)
+          .patentDocumentRequest(this.documentType,"delete" ,this.deleteForm.value)
           .subscribe( resp => {
+            this.messageService.clear();
             this.messageService.pushSuccess(`Successfully deleted ${this.editeableObject.id}!`);
             this.setInactive();
             window.location.reload();

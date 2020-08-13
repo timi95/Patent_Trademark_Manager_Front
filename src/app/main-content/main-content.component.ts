@@ -51,8 +51,9 @@ export class MainContentComponent implements OnInit {
     'ChangeOfNameAction':'change-name',
     'ChangeOfAddressAction':'change-address',
     'AssignmentMergerAction':'assignment-merger-action',
-    'AmendmentAction':"ammendement-action"
+    'AmendmentAction':"amendement-action"
   }
+  documentType: any  = 'AmendmentAction';
 
   constructor(
     private router: Router,
@@ -63,31 +64,17 @@ export class MainContentComponent implements OnInit {
       this.utilityService.modalFormActive.subscribe( bool => {
         this.modalIsActive = bool;
       })
-      this.documentList = [
-      {
-        title:"Item Title",
-        body: "Item Description...",
-        footer: "Item footer"
-      },
-      {
-        title:"Item2 Title",
-        body: "Item2 Description...",
-        footer: "Item2 footer"
-      }
-    ]
-
-
 
   }
 
   ngOnInit(): void {
     this.apiService.patentDocumentRequest(
-    "ammendement-action",
+    this.patentActionUrlDict['AmendmentAction'],
     "get").subscribe((response:any) => {
+      this.messageService.clear();
       this.messageService.pushSuccess('Successfully fetched amendment actions!');
       // assign results to our list
-      this.amendmentActionList = response.results;
-      // this.documentList = response.results;
+      this.documentList = response.results;
     }, err => {
         console.log(err);
         this.messageService.pushError(err);
@@ -100,12 +87,12 @@ export class MainContentComponent implements OnInit {
   }
   fetchDocuments(event?) {
     if(event){
-      let documentType = event.target.value;
-      console.log(this.patentActionUrlDict[documentType]);
+      this.documentType = event.target.value;
       
       this.apiService.patentDocumentRequest(
-        this.patentActionUrlDict[documentType],
+        this.patentActionUrlDict[this.documentType],
         "get").subscribe((response:any) => {
+          this.messageService.clear();
           this.messageService.pushSuccess('Successfully fetched amendment actions!');
           // assign results to our list
           this.amendmentActionList = response.results;

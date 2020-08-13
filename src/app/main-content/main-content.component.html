@@ -1,7 +1,7 @@
 <div class="scrollable-grid">
   <select class="custom-select" (change)="fetchDocuments($event)" >
     <option disabled>Choose DocumentType </option>
-    <option 
+    <option
     *ngFor="let type of patent_ActionTypes" 
     [ngValue]="type">{{type}}</option>
   </select>
@@ -26,6 +26,8 @@
   </ul>
 </div>
 <a href="#" class="square_btn" (click)="createDocument()">&#43;</a>
-<overlay 
+<overlay
 [active]="this.modalIsActive"
-[formType]="'create'"></overlay>
+[documentType]="patentActionUrlDict[documentType]"
+[formType]="'create'"
+></overlay>

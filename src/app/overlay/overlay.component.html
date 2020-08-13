@@ -12,7 +12,7 @@
 
     <div>
       <ul class="form-list">
-        <li *ngFor="let item of toList|pureCall:ammendmentAction"> 
+        <li *ngFor="let item of toList|pureCall:this.documentTypeFormDictionary[this.documentType]"> 
           <!-- show this input based on the functions evaluation as 'text' or 'date' -->
           {{item[0]}}: <input 
           [formControlName]="item[0]"
