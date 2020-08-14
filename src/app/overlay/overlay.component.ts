@@ -29,7 +29,18 @@ export class OverlayComponent implements OnInit {
     'ctc':{},
     'change-name':{},
     'change-address':{},
-    'assignment-merger-action':{},
+    'assignment-merger-action':{
+      assignment_instruction_date: new FormControl('', [Validators.required]),
+      assignment_instruction_month: new FormControl('', [Validators.required]),
+      date_abuja_instructed_assignment: "",
+      clerk_assignment: new FormControl('', [Validators.required]),
+      status_assignment_registrations: new FormControl('', [Validators.required]),
+      assignor: new FormControl('', [Validators.required]),
+      assignor_address: new FormControl('', [Validators.required]),
+      assignee: new FormControl('', [Validators.required]),
+      assignee_address: new FormControl('', [Validators.required]),
+      date_assignment_certificate_received: ""
+    },
     "amendement-action": {
       date_amendment_instruction_received: "",
       nature_of_amendment: new FormControl('', [Validators.required]),
