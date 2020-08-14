@@ -86,6 +86,8 @@ export class MainContentComponent implements OnInit {
     this.utilityService.modalFormActive.unsubscribe();
   }
   fetchDocuments(event?) {
+    console.log("fetch documents called");
+    
     if(event){
       this.documentType = event.target.value;
       
@@ -94,13 +96,12 @@ export class MainContentComponent implements OnInit {
         "get").subscribe((response:any) => {
           this.messageService.clear();
           this.messageService.pushSuccess('Successfully fetched amendment actions!');
-          // assign results to our list
           this.amendmentActionList = response.results;
           this.documentList = response.results;
         }, err => {
             console.log(err);
             this.messageService.pushError(err);
-            // this.messages.add(err);
+            
         });
 
     }

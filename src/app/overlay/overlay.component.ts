@@ -76,7 +76,10 @@ export class OverlayComponent implements OnInit {
     });
     
     this.dynamicFormGroupGenerator();
-
+  }
+  ngOnChanges(): void {
+    this.ngOnInit();
+    // console.log("This documentType changed to this ==>",this.documentType, this.createForm);
   }
 
   toList(target:object): any[] {
