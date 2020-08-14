@@ -1,26 +1,7 @@
 <a class="font-weight" href="#" (click)="navigateHome()" >Back</a>
 <ul class="font-colour info-view" *ngIf="details">
-    <li>
-         ID: <div style="padding-left: 5px;"> {{details.id}}</div>
-    </li>
-    <li>
-       Status of amendment:  <div class="font-weight"> {{details.status_of_amendment}}</div>
-    </li>
-    <li>
-        Nature of amendment: <div class="font-weight"> {{details.nature_of_amendment}}</div>
-    </li>
-    <li>
-        Amending clerk: <div class="font-weight">{{details.amending_clerk}}</div>
-        
-    </li>
-    <li>
-        Date amendment instruction received: <div class="font-weight">{{details.date_amendment_instruction_received}}</div>
-    </li>
-    <li>
-        Date amendment received: <div class="font-weight">{{details.date_amendment_received}}</div>
-    </li>
-    <li>
-       Date amending clerk instructed: <div class="font-weight">{{details.date_amending_clerk_instructed}}</div>
+    <li *ngFor="let item of utilityService.toList|pureCall:details"> 
+        {{item[0]}}: {{item[1]}}
     </li>
     <button (click)="deleteDocument()">Delete</button>
 </ul>

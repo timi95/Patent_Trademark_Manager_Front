@@ -59,7 +59,7 @@ export class OverlayComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private apiService: ApiService,
-    private utilityService: UtilityService,
+    public utilityService: UtilityService,
     private messageService: MessageService ) {
     }
     
@@ -70,8 +70,8 @@ export class OverlayComponent implements OnInit {
     // console.log("createForm: ", this.toList(this.documentTypeFormDictionary[this.documentType]));
     
     this.utilityService.detailSubject.subscribe( details => {
-      this.editeableAsList = this.toList(details);
-      this.editeableObject = this.listToObject(this.editeableAsList);
+      this.editeableAsList = this.utilityService.toList(details);
+      this.editeableObject = this.utilityService.listToObject(this.editeableAsList);
       // console.log("Editeable as list: ", this.editeableAsList );
     });
     
@@ -82,14 +82,7 @@ export class OverlayComponent implements OnInit {
     // console.log("This documentType changed to this ==>",this.documentType, this.createForm);
   }
 
-  toList(target:object): any[] {
-    let result: any[] = Object.entries(target);
-    return result;
-  }
-  listToObject(target:any[]): object {
-    let result = Object.fromEntries(target);
-    return result;
-  }
+
   
   // This functions result is used to evaluate what Input tag gets shown
   evaluateKey(key:string):string {
@@ -104,7 +97,7 @@ export class OverlayComponent implements OnInit {
   }
 
   dynamicFormGroupGenerator(): FormGroup {
-    this.editForm = this.formBuilder.group(this.listToObject(this.editeableAsList));
+    this.editForm = this.formBuilder.group(this.utilityService.listToObject(this.editeableAsList));
     this.deleteForm = this.formBuilder.group(this.editeableObject);
     return this.editForm;
   }
@@ -146,6 +139,7 @@ export class OverlayComponent implements OnInit {
         .patentDocumentRequest(
           this.documentType,
           "post",
+           0,
           JSON.stringify(this.createForm.getRawValue()))
         .subscribe(
           (response) => {

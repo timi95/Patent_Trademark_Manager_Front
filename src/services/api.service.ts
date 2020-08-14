@@ -42,14 +42,14 @@ public errors: any = [];
   // Generally applicaple request function for all patent resources
   patentDocumentRequest(documentType:string, 
                         requestType:string,
-                        id?:string,
+                        id?:number,
                         requestBody?:any) {
     switch (requestType.toLowerCase()) {
     //POST request case
       case "post":
-        if (id|| requestBody) {
+        if ((id > 0) && requestBody) {
           return this.httpServer.post(`${this.API_URL}/Patent_manager/${documentType}/${id}`, requestBody,this.httpOptions); 
-        } else { 
+        } else if( (id <= 0) && requestBody ){ 
           return this.httpServer.post(`${this.API_URL}/Patent_manager/${documentType}/`, requestBody,this.httpOptions);
         }
 

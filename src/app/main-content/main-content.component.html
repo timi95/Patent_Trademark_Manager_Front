@@ -11,7 +11,7 @@
         <span> ID: {{ document.id }}</span>
         <a class="manage-button">Actions</a>
       </header>
-      <div class="attributes-container" *ngFor="let attribute of toList(document); let i = index">
+      <div class="attributes-container" *ngFor="let attribute of utilityService.toList(document); let i = index">
         <div *ngIf="attribute[0] != 'id' && i < 4"> 
           
           <span style="color: #667bd8; ">{{attribute[0]}}:  </span>{{attribute[1]}} 

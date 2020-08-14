@@ -41,4 +41,13 @@ export class UtilityService {
     
     this.detailSubject.next(item);
   }
+
+  toList(target:object): any[] {
+    let result: any[] = Object.entries(target);
+    return result;
+  }
+  listToObject(target:any[]): object {
+    let result = Object.fromEntries(target);
+    return result;
+  }
 }

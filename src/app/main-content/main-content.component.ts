@@ -57,7 +57,7 @@ export class MainContentComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private utilityService:UtilityService,
+    public utilityService:UtilityService,
     private apiService:ApiService, 
     private messageService: MessageService) { 
       this.utilityService.setModalFormInactive();
@@ -131,14 +131,7 @@ export class MainContentComponent implements OnInit {
   }
 
 
-  toList(target:object): any[] {
-    let result: any[] = Object.entries(target);
-    return result;
-  }
-  listToObject(target:any[]): object {
-    let result = Object.fromEntries(target);
-    return result;
-  }
+
 
 }
 interface Document {
