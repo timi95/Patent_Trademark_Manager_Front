@@ -72,7 +72,7 @@ export class OverlayComponent implements OnInit {
     this.utilityService.detailSubject.subscribe( details => {
       this.editeableAsList = this.utilityService.toList(details);
       this.editeableObject = this.utilityService.listToObject(this.editeableAsList);
-      // console.log("Editeable as list: ", this.editeableAsList );
+      console.log("Editeable as list: ", this.editeableAsList );
     });
     
     this.dynamicFormGroupGenerator();

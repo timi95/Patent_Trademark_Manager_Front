@@ -12,7 +12,10 @@
 
     <div>
       <ul class="form-list">
-        <li *ngFor="let item of utilityService.toList|pureCall:this.documentTypeFormDictionary[this.documentType]"> 
+        <li 
+        *ngFor="
+        let item of utilityService
+        .toList|pureCall:this.documentTypeFormDictionary[this.documentType]"> 
           <!-- show this input based on the functions evaluation as 'text' or 'date' -->
           {{item[0]}}: <input 
           [formControlName]="item[0]"
@@ -37,7 +40,9 @@
 
   <div *ngIf="editeableObject">
     <ul class="form-list">
-      <li *ngFor="let attribute of editeableAsList">
+      <li *ngFor="
+      let attribute of utilityService
+      .toList|pureCall:editeableAsList">
         {{ attribute[0] }} : 
         <!-- show this input based on the functions evaluation as 'text' -->
         <input 
