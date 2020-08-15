@@ -15,7 +15,7 @@
         <li 
         *ngFor="
         let item of utilityService
-        .toList|pureCall:this.documentTypeFormDictionary[this.documentType]"> 
+        .toList|pureCall:documentTypeFormDictionary[documentType]"> 
           <!-- show this input based on the functions evaluation as 'text' or 'date' -->
           {{item[0]}}: <input 
           [formControlName]="item[0]"
