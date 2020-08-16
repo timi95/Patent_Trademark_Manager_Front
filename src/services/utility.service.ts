@@ -36,7 +36,7 @@ export class UtilityService {
     return this.modalFormActive.next(false);
   }
 
-  loadDetails(item?:AmendmentAction) {
+  loadDetails(item?:Document) {
     console.log('Utility service loadDetails() called!');
     
     this.detailSubject.next(item);
@@ -50,4 +50,12 @@ export class UtilityService {
     let result = Object.fromEntries(target);
     return result;
   }
+}
+
+interface Document {
+  id:any;
+  title:string;
+  body:string;
+  attachment?:any;
+  footer?:string;
 }
