@@ -3,26 +3,46 @@ import { from } from 'rxjs';
 import { AmendmentAction } from 'src/interfaces/AmendmentAction';
 import { SearchAction } from 'src/interfaces/SearchAction';
 
-export class Action implements AmendmentAction, SearchAction {
-    // Id
-    id: number;
+export class Action {
+
+      // list of Action-types, Particulars, and Profile
+  public patent_ActionTypes:string[] = [
+    'SearchAction',
+    'RenewalAction',
+    'RegistrationAction',
+    'ProcurementOfCertificateAction',
+    'CTCAction',
+    'ChangeOfNameAction',
+    'ChangeOfAddressAction',
+    'AssignmentMergerAction',
+    'AmendmentAction'
+  ];
+  public patent_particulars:string[] = ['PatentParticlars'];
+  public trademark_ActionType:string[] = [
+    'SearchAction',
+    'RenewalAction',
+    'RegistrationAction',
+    'ReclassificationAction',
+    'ChangeName_AddressAction',
+    'CertificateProcurementAction',
+    'AssignmentMergerAction',
+    'AmendementAction'
+  ];
+  public trademark_profile:string[] = ['TrademarkProfile'];
+  // dictionaries
+  public patentActionUrlDict = {
+    'SearchAction':'search-action',
+    'RenewalAction':'renewal-action',
+    'RegistrationAction':'registration',
+    'PatentParticulars':'patent-particulars',
+    'ProcurementOfCertificateAction':'procurement',
+    'CTCAction':'ctc',
+    'ChangeOfNameAction':'change-name',
+    'ChangeOfAddressAction':'change-address',
+    'AssignmentMergerAction':'assignment-merger-action',
+    'AmendmentAction':"amendement-action"
+  }
     constructor() {
     }
-    // Search Action properties
-    search_status: string;
-    reported_to_client: string;
-    date_reported_to_client: string;
-    clerk_searching: string;
-
-
-    // Ammendment Action Properties
-    date_amendment_instruction_received: string;
-    nature_of_amendment: string;
-    amending_clerk: string;
-    date_amending_clerk_instructed: string;
-    status_of_amendment: string;
-    date_amendment_received: string;
-
-
     // 
 }
