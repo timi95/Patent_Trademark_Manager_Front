@@ -3,8 +3,7 @@ import { FormControl, FormBuilder, FormGroup, NgForm, Validators } from "@angula
 import { ApiService } from "src/services/api.service";
 import { MessageService } from "src/services/message.service";
 import { UtilityService } from 'src/services/utility.service';
-import { AmendmentAction } from 'src/interfaces/AmendmentAction';
-import { Action } from '../classes/Action';
+
 
 @Component({
   selector: "overlay",
@@ -66,16 +65,15 @@ export class OverlayComponent implements OnInit {
 
   ngOnInit(): void {
     // Initialised createForm
-    this.createForm = this.formBuilder.group(this.documentTypeFormDictionary[this.documentType]);
     // console.log("createForm: ", this.toList(this.documentTypeFormDictionary[this.documentType]));
-    
-    this.utilityService.detailSubject.subscribe( details => {
-      this.editeableAsList = this.utilityService.toList(details);
-      this.editeableObject = this.utilityService.listToObject(this.editeableAsList);
-      console.log("Editeable as list: ", this.editeableAsList );
-    });
-    
     this.dynamicFormGroupGenerator();
+    
+    // this.utilityService.detailSubject.subscribe( details => {
+    //   this.editeableAsList = this.utilityService.toList(details);
+    //   this.editeableObject = this.utilityService.listToObject(details);
+    //   console.log("Editeable as list: ", this.editeableAsList );
+    // });
+    
   }
   ngOnChanges(): void {
     this.ngOnInit();
@@ -96,10 +94,11 @@ export class OverlayComponent implements OnInit {
     }
   }
 
-  dynamicFormGroupGenerator(): FormGroup {
-    this.editForm = this.formBuilder.group(this.utilityService.listToObject(this.editeableAsList));
-    this.deleteForm = this.formBuilder.group(this.editeableObject);
-    return this.editForm;
+  dynamicFormGroupGenerator() {
+    this.createForm = this.formBuilder.group(this.documentTypeFormDictionary[this.documentType]);
+    this.editForm = this.formBuilder.group(this.documentTypeFormDictionary[this.documentType]);
+    this.deleteForm = this.formBuilder.group(this.documentTypeFormDictionary[this.documentType]);
+    // return this.editForm;
   }
 
   setInactive(): void {
