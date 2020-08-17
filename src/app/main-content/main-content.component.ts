@@ -3,8 +3,11 @@ import { ApiService } from 'src/services/api.service';
 import { MessageService } from 'src/services/message.service';
 import { OverlayComponent } from "../overlay/overlay.component";
 import { UtilityService } from 'src/services/utility.service';
+import { Action } from 'src/app/classes/Action'
 import { AmendmentAction } from 'src/interfaces/AmendmentAction';
 import { Router } from '@angular/router';
+import { from } from 'rxjs';
+
 
 @Component({
   selector: 'main-content',
@@ -15,44 +18,9 @@ export class MainContentComponent implements OnInit {
 
   documentList:Document[];
   modalIsActive:boolean;
-  amendmentActionList: AmendmentAction[] = [];
-  
+  patent_ActionTypes = new Action().patent_ActionTypes;
+  patentActionUrlDict: any = new Action().patentActionUrlDict;
   // strategy for fetching resources from end-point
-  // list of Action-types, Particulars, and Profile
-  patent_ActionTypes:string[] = [
-    'SearchAction',
-    'RenewalAction',
-    'RegistrationAction',
-    'ProcurementOfCertificateAction',
-    'CTCAction',
-    'ChangeOfNameAction',
-    'ChangeOfAddressAction',
-    'AssignmentMergerAction',
-    'AmendmentAction'
-  ];patent_particulars:string[] = ['PatentParticlars'];
-  trademark_ActionType:string[] = [
-    'SearchAction',
-    'RenewalAction',
-    'RegistrationAction',
-    'ReclassificationAction',
-    'ChangeName_AddressAction',
-    'CertificateProcurementAction',
-    'AssignmentMergerAction',
-    'AmendementAction'
-  ];trademark_profile:string[] = ['TrademarkProfile'];
-  // dictionaries
-  patentActionUrlDict = {
-    'SearchAction':'search-action',
-    'RenewalAction':'renewal-action',
-    'RegistrationAction':'registration',
-    'PatentParticulars':'patent-particulars',
-    'ProcurementOfCertificateAction':'procurement',
-    'CTCAction':'ctc',
-    'ChangeOfNameAction':'change-name',
-    'ChangeOfAddressAction':'change-address',
-    'AssignmentMergerAction':'assignment-merger-action',
-    'AmendmentAction':"amendement-action"
-  }
   documentType: any  = 'AmendmentAction';
 
   constructor(
@@ -96,7 +64,6 @@ export class MainContentComponent implements OnInit {
         "get").subscribe((response:any) => {
           this.messageService.clear();
           this.messageService.pushSuccess('Successfully fetched amendment actions!');
-          this.amendmentActionList = response.results;
           this.documentList = response.results;
         }, err => {
             console.log(err);
@@ -119,15 +86,11 @@ export class MainContentComponent implements OnInit {
   }
 
 
-  viewDetails(item:AmendmentAction){
+  viewDetails(item:Document){
     console.log(`Navigating to Amendment Details id ${item.id}`);
     this.utilityService.loadDetails(item);
-    this.utilityService.detailSubject.subscribe(data=>console.log);
-    this.router.navigate([`detail/${item.id}`], 
-      // {
-      //   state:{ data: item }
-      // }
-    );
+    localStorage.setItem('documentType', this.documentType);
+    this.router.navigate([`detail/${item.id}`]);
   }
 
 
@@ -135,6 +98,7 @@ export class MainContentComponent implements OnInit {
 
 }
 interface Document {
+  id:any;
   title:string;
   body:string;
   attachment?:any;
