@@ -55,17 +55,17 @@ public errors: any = [];
 
       //PUT request case
       case "put":
-        if (id|| requestBody) {
+        if ((id > 0) && requestBody) {
           return this.httpServer.put(`${this.API_URL}/Patent_manager/${documentType}/${id}`, requestBody,this.httpOptions); 
-        } else { 
+        } else if( (id <= 0) && requestBody ){ 
           return this.httpServer.put(`${this.API_URL}/Patent_manager/${documentType}/`, requestBody,this.httpOptions);
         }
     
       //PATCH request case
       case "patch":
-        if (id|| requestBody) {
+        if ((id > 0) && requestBody) {
           return this.httpServer.patch(`${this.API_URL}/Patent_manager/${documentType}/${id}`, requestBody,this.httpOptions); 
-        } else { 
+        } else if( (id <= 0) && requestBody ){ 
           return this.httpServer.patch(`${this.API_URL}/Patent_manager/${documentType}/`, requestBody,this.httpOptions);
         }
       
