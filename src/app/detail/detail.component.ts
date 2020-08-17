@@ -3,6 +3,7 @@ import { UtilityService } from 'src/services/utility.service';
 import { AmendmentAction } from 'src/interfaces/AmendmentAction';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/services/api.service';
+import { Action } from '../classes/Action';
 
 @Component({
   selector: 'app-detail',
@@ -18,6 +19,8 @@ export class DetailComponent implements OnInit, OnDestroy {
   detailDeleteIsActive:boolean;
 
   overlayFormType: string;
+  patentActionUrlDict: any = new Action().patentActionUrlDict;
+  documentType: string = localStorage.getItem('documentType');
 
 
   constructor(
@@ -50,16 +53,8 @@ export class DetailComponent implements OnInit, OnDestroy {
       this.ID = param.get('id');
     });
 
-    // get the details from the detailSubject
-    this.utilityService.detailSubject.subscribe( data => {
-      // check if the subject is empty, if it is then navigate back home
-      if (Object.keys(data).length == 0) {
-        this.navigateHome();
-      }
-      this.details = data;
-      console.log("data",data)
-    } );
-
+    // get the details from localStorage
+    this.details = JSON.parse(localStorage.getItem('detailsObject'));
   }
 
   ngOnDestroy(){

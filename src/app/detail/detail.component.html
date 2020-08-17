@@ -13,7 +13,7 @@
 <div *ngIf="detailEditIsActive">
     <overlay
     [active]="detailEditIsActive"
-    [formType]="overlayFormType"
-    [updateValue]="details"></overlay>
+    [documentType]="patentActionUrlDict[documentType]"
+    [formType]="overlayFormType"></overlay>
 </div>
 
