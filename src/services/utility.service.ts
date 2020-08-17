@@ -38,8 +38,9 @@ export class UtilityService {
 
   loadDetails(item?:Document) {
     console.log('Utility service loadDetails() called!');
-    
-    this.detailSubject.next(item);
+    localStorage.setItem('detailsObject', JSON.stringify(item));
+    let storeItem = JSON.parse(localStorage.getItem('detailsObject'));
+    this.detailSubject.next(storeItem);
   }
 
   toList(target:object): any[] {
