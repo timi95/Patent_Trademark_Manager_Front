@@ -13,6 +13,7 @@ import { Action } from '../classes/Action';
 export class DetailComponent implements OnInit, OnDestroy {
 
   details:any;
+  documentType: string;
   detailsAsList:any=[];
   ID: string;
   detailEditIsActive:boolean;
@@ -20,7 +21,6 @@ export class DetailComponent implements OnInit, OnDestroy {
 
   overlayFormType: string;
   patentActionUrlDict: any = new Action().patentActionUrlDict;
-  documentType: string = localStorage.getItem('documentType');
 
 
   constructor(
@@ -33,7 +33,6 @@ export class DetailComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     console.log('Detail component initialised!');
-    
     // this.details = window.history.state.data ;
     // console.log("window history state", window.history.state.data);
     
@@ -55,6 +54,7 @@ export class DetailComponent implements OnInit, OnDestroy {
 
     // get the details from localStorage
     this.details = JSON.parse(localStorage.getItem('detailsObject'));
+    this.documentType = localStorage.getItem('documentType');
   }
 
   ngOnDestroy(){
