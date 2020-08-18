@@ -6,11 +6,11 @@
       (ngSubmit)="onSubmit('create')">
 
     <header>
-      <h3>Create an Amendment Action</h3>
+      <h3>Create a(n) {{ documentType|uppercase }}</h3>
       <a class="cancel" (click)="setInactive()">Close</a>
     </header>
 
-    <div>
+    <div *ngIf="createForm">
       <ul class="form-list">
         <li 
         *ngFor="
@@ -34,32 +34,21 @@
   (ngSubmit)="onSubmit('update')">
 
   <header>
-    <h3>Edit this Document </h3>
+    <h3>Edit a(n) {{ documentType|uppercase }} </h3>
     <a class="cancel" (click)="setInactive()">Close</a>
   </header>
 
-  <div *ngIf="editeableObject">
-    <ul class="form-list">
-      <li *ngFor="
-      let attribute of utilityService
-      .toList|pureCall:editeableAsList">
-        {{ attribute[0] }} : 
-        <!-- show this input based on the functions evaluation as 'text' -->
-        <input 
-        *ngIf="evaluateKey(attribute[0]) == 'text'"
-        [formControlName]="attribute[0]"
-         type="text" [name]="attribute[0]" id=""> 
-        <!-- show this id based on the functions evaluation as 'id' -->
-         <span *ngIf=" evaluateKey(attribute[0]) == 'id'">{{attribute[1]}}</span>
-        <!-- show this input based on the function's evalutation as 'date' -->
-         <input 
-         *ngIf=" evaluateKey(attribute[0]) == 'date'"
-         [formControlName]="attribute[0]"
-          type="date" [name]="attribute[0]" id=""> 
-      </li>
-    </ul>
-  </div>
-
+  <ul class="form-list" *ngIf="editForm" id="editFormId">
+    <li
+    *ngFor="let attribute of utilityService
+    .toList|pureCall:documentTypeFormDictionary[documentType]">
+      {{ attribute[0] }} : <input #edit
+      (keyup)="updateEditForm(attribute[0],edit.value)"
+      [formControlName]="attribute[0]"
+      [type]="evaluateKey|pureCall:attribute" [name]="attribute[0]" id=""> 
+    </li>
+  </ul>
+  {{ editForm.value |json}}
     <button type="submit">Submit</button>
   </form>
   <!-- edit form: END -->
@@ -76,11 +65,12 @@
     </header>
 
 
-    <div *ngIf="editeableObject">
+    <div *ngIf="deleteForm">
       <h4> Are you sure you want to delete this Document ?</h4>
       <p> This Deleting this document is irreversible</p>
       <ul class="form-list">
-        <li *ngFor="let attribute of editeableAsList">
+        <li *ngFor="let attribute of utilityService
+        .toList|pureCall:documentTypeFormDictionary[documentType]">
           <span> {{ attribute[0]}}: </span> {{ attribute[1]}}
         </li>
       </ul>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, AfterViewInit } from "@angular/core";
+import { Component, OnInit, Input, AfterViewInit, ViewChild, ElementRef } from "@angular/core";
 import { FormControl, FormBuilder, FormGroup, NgForm, Validators } from "@angular/forms";
 import { ApiService } from "src/services/api.service";
 import { MessageService } from "src/services/message.service";
@@ -16,7 +16,9 @@ export class OverlayComponent implements OnInit {
   @Input("formType") formType?: string;
   @Input("updateValue") editeableObject?: any;
 
-  editeableAsList:any[] = [];
+  @ViewChild('edit', { static: true }) input: ElementRef;
+
+  detailsObject: any = localStorage.getItem('detailsObject');
   formTypes:string[] = ['create','update','delete'];
 
   documentTypeFormDictionary = {
@@ -65,19 +67,13 @@ export class OverlayComponent implements OnInit {
 
   ngOnInit(): void {
     // Initialised createForm
-    // console.log("createForm: ", this.toList(this.documentTypeFormDictionary[this.documentType]));
-    this.dynamicFormGroupGenerator();
-    
-    // this.utilityService.detailSubject.subscribe( details => {
-    //   this.editeableAsList = this.utilityService.toList(details);
-    //   this.editeableObject = this.utilityService.listToObject(details);
-    //   console.log("Editeable as list: ", this.editeableAsList );
-    // });
-    
+    this.dynamicFormGroupGenerator();   
   }
   ngOnChanges(): void {
     this.ngOnInit();
     // console.log("This documentType changed to this ==>",this.documentType, this.createForm);
+    // console.log("formType has changed ==>",this.formType, this.editForm);
+    
   }
 
 
@@ -100,7 +96,15 @@ export class OverlayComponent implements OnInit {
     this.deleteForm = this.formBuilder.group(this.documentTypeFormDictionary[this.documentType]);
     // return this.editForm;
   }
-
+  print(value?:any):void{
+    console.log(value);
+  }
+  updateEditForm(attributeName, inputValue): void{
+    // this.editForm.value[this.input.nativeElement.name] = inputValue;
+    this.editForm.value[attributeName] = inputValue;
+    console.log("inputValue ==>",inputValue," attributeValue ==>",this.editForm.value['amending_clerk']);
+    
+  }
   setInactive(): void {
     switch (this.formType) {
 
@@ -131,7 +135,10 @@ export class OverlayComponent implements OnInit {
   }
 
   onSubmit(actionType:string): void {
+    console.log("createForm value ==>",this.createForm.value);
 
+    console.log("editForm value ==>",this.editForm.value);
+    
     switch (actionType) {
       case this.formTypes[0]:
         this.apiService
@@ -158,13 +165,19 @@ export class OverlayComponent implements OnInit {
 
       case this.formTypes[1]:
         // TODO: work on this next! 
+       
+        
           this.apiService
-          .patentDocumentRequest(this.documentType,"put",this.editForm.value )
+          .patentDocumentRequest(
+            this.documentType,
+            "patch", 
+            JSON.parse(this.detailsObject).id, 
+            this.editForm.value )
           .subscribe( resp => {
             this.messageService.clear();
             this.messageService.pushSuccess("Successfully Updated! ");
             this.setInactive();
-            // console.log(resp);
+            console.log("response =>",resp);
             this.editeableObject = this.editForm.value;
             window.location.reload();
             
