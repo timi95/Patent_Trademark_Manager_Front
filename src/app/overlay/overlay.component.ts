@@ -101,8 +101,8 @@ export class OverlayComponent implements OnInit {
   }
   updateEditForm(attributeName, inputValue): void{
     // this.editForm.value[this.input.nativeElement.name] = inputValue;
+    let reForm:object = {};
     this.editForm.value[attributeName] = inputValue;
-    console.log("inputValue ==>",inputValue," attributeValue ==>",this.editForm.value['amending_clerk']);
     
   }
   setInactive(): void {
