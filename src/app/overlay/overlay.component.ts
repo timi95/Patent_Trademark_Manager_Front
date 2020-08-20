@@ -18,7 +18,7 @@ export class OverlayComponent implements OnInit {
 
   @ViewChild('edit', { static: true }) input: ElementRef;
 
-  detailsObject: any = localStorage.getItem('detailsObject');
+  detailsObject: any = JSON.parse(localStorage.getItem('detailsObject'));
   formTypes:string[] = ['create','update','delete'];
 
   documentTypeFormDictionary = {
@@ -67,7 +67,13 @@ export class OverlayComponent implements OnInit {
 
   ngOnInit(): void {
     // Initialised createForm
-    this.dynamicFormGroupGenerator();   
+    this.dynamicFormGroupGenerator();
+
+    // assigning values
+    for( const key in this.editForm.value){
+      this.editForm.value[key] = this.detailsObject[key];
+    }
+    console.log("after form generation editform ==>",this.editForm.value);
   }
   ngOnChanges(): void {
     this.ngOnInit();
@@ -93,16 +99,15 @@ export class OverlayComponent implements OnInit {
   dynamicFormGroupGenerator() {
     this.createForm = this.formBuilder.group(this.documentTypeFormDictionary[this.documentType]);
     this.editForm = this.formBuilder.group(this.documentTypeFormDictionary[this.documentType]);
-    this.deleteForm = this.formBuilder.group(this.documentTypeFormDictionary[this.documentType]);
-    // return this.editForm;
-  }
+    this.deleteForm = this.formBuilder.group(this.documentTypeFormDictionary[this.documentType]);   
+ }
   print(value?:any):void{
     console.log(value);
   }
   updateEditForm(attributeName, inputValue): void{
     // this.editForm.value[this.input.nativeElement.name] = inputValue;
-    let reForm:object = {};
-    this.editForm.value[attributeName] = inputValue;
+    // let reForm:object = {};
+    // this.editForm.value[attributeName] = inputValue;
     
   }
   setInactive(): void {
@@ -171,7 +176,7 @@ export class OverlayComponent implements OnInit {
           .patentDocumentRequest(
             this.documentType,
             "patch", 
-            JSON.parse(this.detailsObject).id, 
+            this.detailsObject.id, 
             this.editForm.value )
           .subscribe( resp => {
             this.messageService.clear();
