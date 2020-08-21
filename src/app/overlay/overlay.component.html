@@ -41,9 +41,9 @@
   <ul class="form-list" *ngIf="editForm" id="editFormId">
     <li
     *ngFor="let attribute of utilityService
-    .toList|pureCall:documentTypeFormDictionary[documentType]">
+    .toList|pureCall:documentTypeFormDictionary[documentType]" >
       {{ attribute[0] }} : <input #edit
-      (keyup)="updateEditForm(attribute[0],edit.value)"
+      (change)="updateEditForm(attribute[0],edit.value)"
       [formControlName]="attribute[0]"
       [type]="evaluateKey|pureCall:attribute" [name]="attribute[0]" id=""> 
     </li>

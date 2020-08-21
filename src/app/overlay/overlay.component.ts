@@ -3,6 +3,7 @@ import { FormControl, FormBuilder, FormGroup, NgForm, Validators } from "@angula
 import { ApiService } from "src/services/api.service";
 import { MessageService } from "src/services/message.service";
 import { UtilityService } from 'src/services/utility.service';
+import { JsonPipe } from '@angular/common';
 
 
 @Component({
@@ -68,12 +69,6 @@ export class OverlayComponent implements OnInit {
   ngOnInit(): void {
     // Initialised createForm
     this.dynamicFormGroupGenerator();
-
-    // assigning values
-    for( const key in this.editForm.value){
-      this.editForm.value[key] = this.detailsObject[key];
-    }
-    console.log("after form generation editform ==>",this.editForm.value);
   }
   ngOnChanges(): void {
     this.ngOnInit();
@@ -105,10 +100,12 @@ export class OverlayComponent implements OnInit {
     console.log(value);
   }
   updateEditForm(attributeName, inputValue): void{
-    // this.editForm.value[this.input.nativeElement.name] = inputValue;
-    // let reForm:object = {};
-    // this.editForm.value[attributeName] = inputValue;
-    
+    this.editForm.value[attributeName] = inputValue;
+    for(const key in this.detailsObject){
+      if(this.editForm.value[key] === ""||this.editForm.value[key] == "mm/dd/yyyy")
+      this.editForm.value[key] = this.detailsObject[key];
+    }
+
   }
   setInactive(): void {
     switch (this.formType) {
@@ -140,9 +137,6 @@ export class OverlayComponent implements OnInit {
   }
 
   onSubmit(actionType:string): void {
-    console.log("createForm value ==>",this.createForm.value);
-
-    console.log("editForm value ==>",this.editForm.value);
     
     switch (actionType) {
       case this.formTypes[0]:
