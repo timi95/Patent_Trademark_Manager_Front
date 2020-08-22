@@ -104,7 +104,7 @@ export class OverlayComponent implements OnInit {
     for(const key in this.detailsObject){
       if(this.editForm.value[key] === ""||this.editForm.value[key] == "mm/dd/yyyy")
       this.editForm.value[key] = this.detailsObject[key];
-    }
+  }
 
   }
   setInactive(): void {
@@ -163,9 +163,6 @@ export class OverlayComponent implements OnInit {
     
 
       case this.formTypes[1]:
-        // TODO: work on this next! 
-       
-        
           this.apiService
           .patentDocumentRequest(
             this.documentType,
@@ -178,6 +175,7 @@ export class OverlayComponent implements OnInit {
             this.setInactive();
             console.log("response =>",resp);
             this.editeableObject = this.editForm.value;
+            this.apiService.reFetchDetailsObject(this.documentType);
             window.location.reload();
             
           }, (err) => {

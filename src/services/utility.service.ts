@@ -36,6 +36,7 @@ export class UtilityService {
     return this.modalFormActive.next(false);
   }
 
+
   loadDetails(item?:Document) {
     console.log('Utility service loadDetails() called!');
     localStorage.setItem('detailsObject', JSON.stringify(item));
