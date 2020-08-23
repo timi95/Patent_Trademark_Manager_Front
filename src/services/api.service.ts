@@ -100,9 +100,7 @@ public errors: any = [];
       documentType,
       "get").subscribe((response:any) => {
        localStorage.setItem('detailsObject', response);
-      }, err => {
-          console.log(err);         
-      });
+      }, err => { console.log(err) });
   }
 
  getAmendmentAction(id?:string) {
