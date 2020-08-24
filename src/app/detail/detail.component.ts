@@ -31,11 +31,7 @@ export class DetailComponent implements OnInit, OnDestroy {
     }
 
 
-  ngOnInit(): void {
-    console.log('Detail component initialised!');
-    // this.details = window.history.state.data ;
-    // console.log("window history state", window.history.state.data);
-    
+  ngOnInit(): void {   
 
     this.utilityService.setDetailEditFormInactive();
     this.utilityService.detailEditFormActive.subscribe( bool => {
