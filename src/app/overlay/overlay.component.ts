@@ -117,7 +117,8 @@ export class OverlayComponent implements OnInit {
   //  refresh the detailsObject once overlay is closed
   this.apiService
   .patentDocumentRequest(this.documentType,'get',this.detailsObject.id)
-  .subscribe(resp => { localStorage.setItem('detailsObject',JSON.stringify(resp)); });
+  .subscribe(resp => { 
+  localStorage.setItem('detailsObject',JSON.stringify(resp)); 
 
     switch (this.formType) {
 
@@ -145,6 +146,11 @@ export class OverlayComponent implements OnInit {
       default:
         break;
     }
+  // reload page once work is done
+  window.location.reload();
+});
+
+
   }
 
   onSubmit(actionType:string): void {
@@ -184,9 +190,9 @@ export class OverlayComponent implements OnInit {
             this.messageService.clear();
             this.messageService.pushSuccess("Successfully Updated! ");
             this.setInactive();
-            console.log("response =>",resp);
+            // console.log("response =>",resp);
             this.editeableObject = this.editForm.value;
-            window.location.reload();
+            // window.location.reload();
             
           }, (err) => {
             this.messageService.pushError(`Could not update: ${err}`);
