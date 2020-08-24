@@ -108,6 +108,17 @@ export class OverlayComponent implements OnInit {
 
   }
   setInactive(): void {
+  /*
+    this is buggy because 
+    the data is not always fetched 
+    in time for the window reload to 
+    reflect the relevant change in data 
+  */
+  //  refresh the detailsObject once overlay is closed
+  this.apiService
+  .patentDocumentRequest(this.documentType,'get',this.detailsObject.id)
+  .subscribe(resp => { localStorage.setItem('detailsObject',JSON.stringify(resp)); });
+
     switch (this.formType) {
 
       case this.formTypes[0]:
@@ -163,7 +174,7 @@ export class OverlayComponent implements OnInit {
     
 
       case this.formTypes[1]:
-          this.apiService
+           this.apiService
           .patentDocumentRequest(
             this.documentType,
             "patch", 

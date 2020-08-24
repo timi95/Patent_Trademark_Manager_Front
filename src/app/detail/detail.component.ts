@@ -73,6 +73,7 @@ export class DetailComponent implements OnInit, OnDestroy {
     this.utilityService.detailEditFormActive.subscribe( bool => {
       this.detailEditIsActive = bool;
     });
+
     console.log(`detailEditIsActive state: ${this.detailEditIsActive}`);
   }
 
