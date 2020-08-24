@@ -95,14 +95,6 @@ public errors: any = [];
   }
 
 
-  reFetchDetailsObject(documentType:string) {
-    return this.patentDocumentRequest(
-      documentType,
-      "get").subscribe((response:any) => {
-       localStorage.setItem('detailsObject', response);
-      }, err => { console.log(err) });
-  }
-
  getAmendmentAction(id?:string) {
   if (id) {
     return this.httpServer.get(`${this.API_URL}/Patent_manager/ammendement-action/${id}`); 

@@ -175,7 +175,6 @@ export class OverlayComponent implements OnInit {
             this.setInactive();
             console.log("response =>",resp);
             this.editeableObject = this.editForm.value;
-            this.apiService.reFetchDetailsObject(this.documentType);
             window.location.reload();
             
           }, (err) => {
