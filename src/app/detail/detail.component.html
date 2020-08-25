@@ -1,7 +1,10 @@
 <a class="font-weight" href="#" (click)="navigateHome()" >Back</a>
 <ul class="font-colour info-view" *ngIf="details">
     <li *ngFor="let item of utilityService.toList|pureCall:details"> 
-        {{item[0]}}: {{item[1]}}
+        <span style="color: #667bd8;
+        font-weight: 900;
+        font-size: 19px;
+        text-shadow: 1px 1px #252424;">{{item[0]}}:</span> {{item[1]}}
     </li>
     <button (click)="deleteDocument()">Delete</button>
 </ul>
