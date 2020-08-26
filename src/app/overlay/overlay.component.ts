@@ -108,17 +108,12 @@ export class OverlayComponent implements OnInit {
 
   }
   setInactive(): void {
-  /*
-    this is buggy because 
-    the data is not always fetched 
-    in time for the window reload to 
-    reflect the relevant change in data 
-  */
-  //  refresh the detailsObject once overlay is closed
-  this.apiService
-  .patentDocumentRequest(this.documentType,'get',this.detailsObject.id)
-  .subscribe(resp => { 
-  localStorage.setItem('detailsObject',JSON.stringify(resp)); 
+    /*
+      this is buggy because 
+      the data is not always fetched 
+      in time for the window reload to 
+      reflect the relevant change in data 
+    */
 
     switch (this.formType) {
 
@@ -142,13 +137,18 @@ export class OverlayComponent implements OnInit {
           this.active = bool;          
         });
         break;
-    
+
       default:
         break;
     }
-  // reload page once work is done
-  window.location.reload();
-});
+    //  refresh the detailsObject once overlay is closed
+    this.apiService
+    .patentDocumentRequest(this.documentType,'get',this.detailsObject.id)
+    .subscribe(resp => { 
+    localStorage.setItem('detailsObject',JSON.stringify(resp)); 
+    // reload page once work is done
+    window.location.reload();
+    });
 
 
   }
@@ -201,7 +201,11 @@ export class OverlayComponent implements OnInit {
 
       case this.formTypes[2]:
           this.apiService
-          .patentDocumentRequest(this.documentType,"delete" ,this.deleteForm.value)
+          .patentDocumentRequest(
+            this.documentType,
+            "delete" ,
+            this.detailsObject.id,
+            this.deleteForm.value)
           .subscribe( resp => {
             this.messageService.clear();
             this.messageService.pushSuccess(`Successfully deleted ${this.editeableObject.id}!`);
