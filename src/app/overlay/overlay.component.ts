@@ -104,7 +104,7 @@ export class OverlayComponent implements OnInit {
     for(const key in this.detailsObject){
       if(this.editForm.value[key] === ""||this.editForm.value[key] == "mm/dd/yyyy")
       this.editForm.value[key] = this.detailsObject[key];
-  }
+    }
 
   }
   setInactive(): void {
