@@ -39,7 +39,7 @@ export class MainContentComponent implements OnInit {
     this.apiService.patentDocumentRequest(
     this.patentActionUrlDict['AmendmentAction'],
     "get").subscribe((response:any) => {
-      this.messageService.clear();
+      
       this.messageService.pushSuccess(`Successfully fetched ${this.documentType}s!`);
       // assign results to our list
       this.documentList = response.results;
@@ -62,7 +62,7 @@ export class MainContentComponent implements OnInit {
       this.apiService.patentDocumentRequest(
         this.patentActionUrlDict[this.documentType],
         "get").subscribe((response:any) => {
-          this.messageService.clear();
+          
           this.messageService.pushSuccess(`Successfully fetched ${this.documentType}s!`);
           this.documentList = response.results;
         }, err => {
