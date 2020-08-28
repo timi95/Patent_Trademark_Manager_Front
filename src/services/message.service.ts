@@ -10,10 +10,12 @@ export class MessageService {
   constructor() { }
 
   pushError( message: string ){
+    this.clear();
     this.error_messages.push(message);
   }
 
   pushSuccess( message: string ) {
+    this.clear();
     this.success_messages.push(message);
   }
 
