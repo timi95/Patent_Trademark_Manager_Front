@@ -118,6 +118,7 @@ export class OverlayComponent implements OnInit {
     switch (this.formType) {
 
       case this.formTypes[0]:
+        this.refreshObject();
         this.utilityService.setModalFormInactive();
         this.utilityService.modalFormActive.subscribe( bool => {
           this.active = bool;
@@ -125,6 +126,7 @@ export class OverlayComponent implements OnInit {
         break;
       
       case this.formTypes[1]:
+        this.refreshObject();
         this.utilityService.setDetailEditFormInactive();
         this.utilityService.detailEditFormActive.subscribe( bool => {
           this.active = bool;          
@@ -141,6 +143,9 @@ export class OverlayComponent implements OnInit {
       default:
         break;
     }
+  }
+
+  refreshObject(){
     //  refresh the detailsObject once overlay is closed
     this.apiService
     .patentDocumentRequest(this.documentType,'get',this.detailsObject.id)
@@ -149,8 +154,6 @@ export class OverlayComponent implements OnInit {
     // reload page once work is done
     window.location.reload();
     });
-
-
   }
 
   onSubmit(actionType:string): void {
@@ -210,6 +213,7 @@ export class OverlayComponent implements OnInit {
             this.messageService.clear();
             this.messageService.pushSuccess(`Successfully deleted ${this.editeableObject.id}!`);
             this.setInactive();
+            localStorage.setItem('detailsObject',JSON.stringify({})); 
             window.location.reload();
           }, (err) =>{
             this.messageService.pushError(`Could not delete: ${err}`)

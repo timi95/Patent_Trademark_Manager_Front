@@ -70,7 +70,7 @@
       <p> This Deleting this document is irreversible</p>
       <ul class="form-list">
         <li *ngFor="let attribute of utilityService
-        .toList|pureCall:documentTypeFormDictionary[documentType]">
+        .toList|pureCall:detailsObject">
           <span> {{ attribute[0]}}: </span> {{ attribute[1]}}
         </li>
       </ul>
