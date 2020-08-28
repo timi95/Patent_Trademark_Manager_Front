@@ -211,9 +211,9 @@ export class OverlayComponent implements OnInit {
             this.deleteForm.value)
           .subscribe( resp => {
             this.messageService.clear();
-            this.messageService.pushSuccess(`Successfully deleted ${this.editeableObject.id}!`);
-            this.setInactive();
+            this.messageService.pushSuccess(`Successfully deleted ${this.detailsObject.id}!`);
             localStorage.setItem('detailsObject',JSON.stringify({})); 
+            this.setInactive();
             window.location.reload();
           }, (err) =>{
             this.messageService.pushError(`Could not delete: ${err}`)
