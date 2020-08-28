@@ -79,9 +79,9 @@ public errors: any = [];
 
       //DELETE request case
       case "delete":
-        if (id) {
+        if ((id > 0) && requestBody) {
           return this.httpServer.delete(`${this.API_URL}/Patent_manager/${documentType}/${id}`); 
-        } else if(requestBody) { 
+        } else if( (id <= 0) && requestBody ){  
           return this.httpServer.delete(`${this.API_URL}/Patent_manager/${documentType}/`,requestBody);
         }
       // default case
