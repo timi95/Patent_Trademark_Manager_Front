@@ -172,7 +172,7 @@ export class OverlayComponent implements OnInit {
             this.messageService.pushSuccess("Successfully submitted!");
             this.setInactive();
             console.log(response);
-            window.location.reload();
+            // window.location.reload();
           },
           (err) => {
             console.log(err);
