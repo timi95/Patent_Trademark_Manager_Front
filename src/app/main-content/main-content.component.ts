@@ -94,8 +94,6 @@ export class MainContentComponent implements OnInit {
   }
 
 
-
-
 }
 interface Document {
   id:any;
