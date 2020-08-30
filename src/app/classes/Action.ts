@@ -18,7 +18,7 @@ export class Action {
     'AmendmentAction'
   ];
   public patent_particulars:string[] = ['PatentParticlars'];
-  public trademark_ActionType:string[] = [
+  public trademark_ActionTypes:string[] = [
     'SearchAction',
     'RenewalAction',
     'RegistrationAction',
