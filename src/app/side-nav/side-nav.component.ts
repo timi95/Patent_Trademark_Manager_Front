@@ -9,7 +9,7 @@ import { MessageService } from 'src/services/message.service';
   styleUrls: ['./side-nav.component.css']
 })
 export class SideNavComponent implements OnInit {
-  itemList:string[];
+  @Input('itemList') itemList:string[];
   opened : boolean;
   isMobile : boolean;
 
@@ -17,7 +17,6 @@ export class SideNavComponent implements OnInit {
   screenWidth:number;
 
   // Moving responsibility of document fetching to side nav
-  patent_ActionTypes = new Action().patent_ActionTypes;
   patentActionUrlDict: any = new Action().patentActionUrlDict;
   documentType: any  = 'AmendmentAction';
 
@@ -25,7 +24,7 @@ export class SideNavComponent implements OnInit {
   constructor(
     private apiService: ApiService,
     private messageService: MessageService) {
-    this.itemList = ['item 1','item 2', 'item 3'];
+    // this.itemList = ['item 1','item 2', 'item 3'];
     this.opened = window.innerWidth < 769? true : false;
     this.isMobile = window.innerWidth < 769? true : false;
 
