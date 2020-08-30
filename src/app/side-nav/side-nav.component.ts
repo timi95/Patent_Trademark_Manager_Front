@@ -1,4 +1,7 @@
 import { Component, OnInit, Input, HostListener } from '@angular/core';
+import { Action } from '../classes/Action';
+import { ApiService } from 'src/services/api.service';
+import { MessageService } from 'src/services/message.service';
 
 @Component({
   selector: 'side-nav',
@@ -13,7 +16,15 @@ export class SideNavComponent implements OnInit {
   screenHeight:number;
   screenWidth:number;
 
-  constructor() {
+  // Moving responsibility of document fetching to side nav
+  patent_ActionTypes = new Action().patent_ActionTypes;
+  patentActionUrlDict: any = new Action().patentActionUrlDict;
+  documentType: any  = 'AmendmentAction';
+
+
+  constructor(
+    private apiService: ApiService,
+    private messageService: MessageService) {
     this.itemList = ['item 1','item 2', 'item 3'];
     this.opened = window.innerWidth < 769? true : false;
     this.isMobile = window.innerWidth < 769? true : false;
@@ -23,7 +34,18 @@ export class SideNavComponent implements OnInit {
 
   ngOnInit(): void {
 
-
+    this.apiService.patentDocumentRequest(
+      this.patentActionUrlDict['AmendmentAction'],
+      "get").subscribe((response:any) => {
+        
+        this.messageService.pushSuccess(`Successfully fetched ${this.documentType}s!`);
+        // assign results to our list in storage
+        localStorage.setItem('documentList',JSON.stringify(response.results)); 
+      }, err => {
+          console.log(err);
+          this.messageService.pushError(err);
+          // this.messages.add(err);
+      });
 
   }
 

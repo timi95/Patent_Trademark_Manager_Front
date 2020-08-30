@@ -4,6 +4,7 @@ import { ApiService } from "src/services/api.service";
 import { MessageService } from "src/services/message.service";
 import { UtilityService } from 'src/services/utility.service';
 import { JsonPipe } from '@angular/common';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -59,6 +60,7 @@ export class OverlayComponent implements OnInit {
   // name = new FormControl("");
 
   constructor(
+    private router: Router,
     private formBuilder: FormBuilder,
     private apiService: ApiService,
     public utilityService: UtilityService,
@@ -152,7 +154,7 @@ export class OverlayComponent implements OnInit {
     .subscribe(resp => { 
     localStorage.setItem('detailsObject',JSON.stringify(resp)); 
     // reload page once work is done
-    window.location.reload();
+    this.router.navigate([`detail/${this.detailsObject.id}`]);
     });
   }
 
@@ -173,6 +175,7 @@ export class OverlayComponent implements OnInit {
             this.setInactive();
             console.log(response);
             // window.location.reload();
+            this.router.navigate([`detail/${this.detailsObject.id}`]);
           },
           (err) => {
             console.log(err);
@@ -196,6 +199,7 @@ export class OverlayComponent implements OnInit {
             // console.log("response =>",resp);
             this.editeableObject = this.editForm.value;
             // window.location.reload();
+            this.router.navigate([`detail/${this.detailsObject.id}`]);
             
           }, (err) => {
             this.messageService.pushError(`Could not update: ${err}`);
@@ -214,7 +218,8 @@ export class OverlayComponent implements OnInit {
             this.messageService.pushSuccess(`Successfully deleted ${this.detailsObject.id}!`);
             localStorage.setItem('detailsObject',JSON.stringify({})); 
             this.setInactive();
-            window.location.reload();
+            // window.location.reload();
+            this.router.navigate([`detail/${this.detailsObject.id}`]);
           }, (err) =>{
             this.messageService.pushError(`Could not delete: ${err}`)
           });

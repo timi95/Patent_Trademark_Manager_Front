@@ -42,7 +42,7 @@ export class MainContentComponent implements OnInit {
       
       this.messageService.pushSuccess(`Successfully fetched ${this.documentType}s!`);
       // assign results to our list
-      this.documentList = response.results;
+      this.documentList = JSON.parse(localStorage.getItem('documentList'));
     }, err => {
         console.log(err);
         this.messageService.pushError(err);
