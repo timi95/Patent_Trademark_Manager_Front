@@ -14,7 +14,7 @@ export class UtilityService {
   detailDeleteFormActive:BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   // passing value from the main component to detail component
   detailSubject: BehaviorSubject<any> = new BehaviorSubject<any>({});
-  
+    
   setDetailEditFormActive(){
     return this.detailEditFormActive.next(true);
   }
