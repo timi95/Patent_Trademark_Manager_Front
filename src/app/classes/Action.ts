@@ -42,6 +42,10 @@ export class Action {
     'AssignmentMergerAction':'assignment-merger-action',
     'AmendmentAction':"amendement-action"
   }
+  public trademarkActionUrlDict = {
+    '':''
+  }
+
     constructor() {
     }
     // 
