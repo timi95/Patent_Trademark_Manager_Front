@@ -18,6 +18,7 @@ export class SideNavComponent implements OnInit {
 
   // Moving responsibility of document fetching to side nav
   patentActionUrlDict: any = new Action().patentActionUrlDict;
+  trademarkActionUrlDict: any = new Action().trademarkActionUrlDict;
   documentType: any  = 'AmendmentAction';
 
 
@@ -32,7 +33,6 @@ export class SideNavComponent implements OnInit {
   
 
   ngOnInit(): void {
-
     this.apiService.patentDocumentRequest(
       this.patentActionUrlDict['AmendmentAction'],
       "get").subscribe((response:any) => {
@@ -48,13 +48,27 @@ export class SideNavComponent implements OnInit {
 
   }
 
+  fetchDocuments(value:string){
+    this.documentType = value;
+    this.apiService.patentDocumentRequest(
+      this.patentActionUrlDict[value],
+      "get").subscribe((response:any) => {        
+        this.messageService.pushSuccess(`Successfully fetched ${this.documentType}s!`);
+        // assign results to our list in storage
+        localStorage.setItem('documentList',JSON.stringify(response.results)); 
+      }, err => {
+          console.log(err);
+          this.messageService.pushError(err);
+          // this.messages.add(err);
+      });
+  }
+  
+
 
   toggleList(){
     this.opened = !this.opened;
-    console.log(`toggle state: ${this.opened}`);
-    
+    // console.log(`toggle state: ${this.opened}`); 
   }
-
   @HostListener("window:resize", [])
   private onResize() {
       console.log("This window has been resized")
