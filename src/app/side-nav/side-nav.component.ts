@@ -2,6 +2,7 @@ import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { Action } from '../classes/Action';
 import { ApiService } from 'src/services/api.service';
 import { MessageService } from 'src/services/message.service';
+import { UtilityService } from 'src/services/utility.service';
 
 @Component({
   selector: 'side-nav',
@@ -24,6 +25,7 @@ export class SideNavComponent implements OnInit {
 
   constructor(
     private apiService: ApiService,
+    private utilityService: UtilityService,
     private messageService: MessageService) {
     // this.itemList = ['item 1','item 2', 'item 3'];
     this.opened = window.innerWidth < 769? true : false;
@@ -54,6 +56,7 @@ export class SideNavComponent implements OnInit {
       this.patentActionUrlDict[value],
       "get").subscribe((response:any) => {        
         this.messageService.pushSuccess(`Successfully fetched ${this.documentType}s!`);
+        this.utilityService.emitDocumentList();
         // assign results to our list in storage
         localStorage.setItem('documentList',JSON.stringify(response.results)); 
       }, err => {

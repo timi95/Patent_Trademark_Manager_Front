@@ -31,27 +31,33 @@ export class MainContentComponent implements OnInit {
       this.utilityService.setModalFormInactive();
       this.utilityService.modalFormActive.subscribe( bool => {
         this.modalIsActive = bool;
-      })
-
+      });
+      
   }
 
   ngOnInit(): void {
-    this.apiService.patentDocumentRequest(
-    this.patentActionUrlDict['AmendmentAction'],
-    "get").subscribe((response:any) => {
+    this.utilityService.emitDocumentList().subscribe(resp=>{this.documentList=resp});
+    // this.documentList = JSON.parse(localStorage.getItem('documentList'));
+    // this.apiService.documentList.subscribe(resp => {this.documentList = resp});
+
+    // this.apiService.patentDocumentRequest(
+    // this.patentActionUrlDict['AmendmentAction'],
+    // "get").subscribe((response:any) => {
       
-      this.messageService.pushSuccess(`Successfully fetched ${this.documentType}s!`);
-      // assign results to our list
-      this.documentList = JSON.parse(localStorage.getItem('documentList'));
-    }, err => {
-        console.log(err);
-        this.messageService.pushError(err);
-        // this.messages.add(err);
-    });
+    //   // this.messageService.pushSuccess(`Successfully fetched ${this.documentType}s!`);
+    //   // assign results to our list
+    //   // this.documentList = response.results;
+    //   this.documentList = JSON.parse(localStorage.getItem('documentList'));
+    // }, err => {
+    //     console.log(err);
+    //     this.messageService.pushError(err);
+    //     // this.messages.add(err);
+    // });
   }
 
   ngOnDestroy(){
     this.utilityService.modalFormActive.unsubscribe();
+    this.utilityService.documentListSubject.unsubscribe();
   }
   fetchDocuments(event?) {
     console.log("fetch documents called");
@@ -72,10 +78,12 @@ export class MainContentComponent implements OnInit {
         });
 
     }
-    
-
-
   }
+  fetchDocumentsFromStorage():void{
+    this.documentList = JSON.parse(localStorage.getItem('documentList'));
+  }
+
+
 
   createDocument() {
     this.utilityService.setModalFormActive();

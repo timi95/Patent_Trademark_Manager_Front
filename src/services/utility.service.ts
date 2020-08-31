@@ -14,6 +14,9 @@ export class UtilityService {
   detailDeleteFormActive:BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   // passing value from the main component to detail component
   detailSubject: BehaviorSubject<any> = new BehaviorSubject<any>({});
+
+  // documentList Subject
+  documentListSubject: Subject<Document[]> = new Subject<Document[]>();
     
   setDetailEditFormActive(){
     return this.detailEditFormActive.next(true);
@@ -50,6 +53,11 @@ export class UtilityService {
   listToObject(target:any[]): object {
     let result = Object.fromEntries(target);
     return result;
+  }
+
+  emitDocumentList(){
+    this.documentListSubject.next(JSON.parse(localStorage.getItem('documentList')));
+    return this.documentListSubject;
   }
 }
 
