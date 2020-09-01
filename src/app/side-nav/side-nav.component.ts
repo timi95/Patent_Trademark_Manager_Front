@@ -27,7 +27,6 @@ export class SideNavComponent implements OnInit {
     private apiService: ApiService,
     private utilityService: UtilityService,
     private messageService: MessageService) {
-    // this.itemList = ['item 1','item 2', 'item 3'];
     this.opened = window.innerWidth < 769? true : false;
     this.isMobile = window.innerWidth < 769? true : false;
 
