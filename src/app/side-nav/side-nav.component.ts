@@ -55,13 +55,13 @@ export class SideNavComponent implements OnInit {
       this.patentActionUrlDict[value],
       "get").subscribe((response:any) => {        
         this.messageService.pushSuccess(`Successfully fetched ${this.documentType}s!`);
-        this.utilityService.emitDocumentList();
         // assign results to our list in storage
-        localStorage.setItem('documentList',JSON.stringify(response.results)); 
+        localStorage.setItem('documentList',JSON.stringify(response.results));
+        // get result list from storage and add it to BehaviourSubject
+        this.utilityService.emitDocumentList();
       }, err => {
           console.log(err);
           this.messageService.pushError(err);
-          // this.messages.add(err);
       });
   }
   
@@ -73,7 +73,7 @@ export class SideNavComponent implements OnInit {
   }
   @HostListener("window:resize", [])
   private onResize() {
-      console.log("This window has been resized")
+      // console.log("This window has been resized")
       this.screenHeight = window.innerHeight;
       this.screenWidth = window.innerWidth;
       
