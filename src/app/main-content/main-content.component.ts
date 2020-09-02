@@ -36,23 +36,7 @@ export class MainContentComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.utilityService.emitDocumentList().subscribe(resp=>{this.documentList=resp});
-    // this.documentList = JSON.parse(localStorage.getItem('documentList'));
-    // this.apiService.documentList.subscribe(resp => {this.documentList = resp});
-
-    // this.apiService.patentDocumentRequest(
-    // this.patentActionUrlDict['AmendmentAction'],
-    // "get").subscribe((response:any) => {
-      
-    //   // this.messageService.pushSuccess(`Successfully fetched ${this.documentType}s!`);
-    //   // assign results to our list
-    //   // this.documentList = response.results;
-    //   this.documentList = JSON.parse(localStorage.getItem('documentList'));
-    // }, err => {
-    //     console.log(err);
-    //     this.messageService.pushError(err);
-    //     // this.messages.add(err);
-    // });
+    this.utilityService.documentListSubject.subscribe(resp=>{this.documentList=resp});
   }
 
   ngOnDestroy(){
