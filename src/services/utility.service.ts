@@ -16,7 +16,7 @@ export class UtilityService {
   detailSubject: BehaviorSubject<any> = new BehaviorSubject<any>({});
 
   // documentList Subject
-  documentListSubject: Subject<Document[]> = new Subject<Document[]>();
+  documentListSubject: BehaviorSubject<Document[]> = new BehaviorSubject<Document[]>([]);
     
   setDetailEditFormActive(){
     return this.detailEditFormActive.next(true);
@@ -57,7 +57,6 @@ export class UtilityService {
 
   emitDocumentList(){
     this.documentListSubject.next(JSON.parse(localStorage.getItem('documentList')));
-    return this.documentListSubject;
   }
 }
 
