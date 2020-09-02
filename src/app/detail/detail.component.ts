@@ -60,6 +60,8 @@ export class DetailComponent implements OnInit, OnDestroy {
 
 
   navigateHome(){
+    // TODO
+    // find a way to restore documentlist before navigating
     this.router.navigate(['']);
   }
 
