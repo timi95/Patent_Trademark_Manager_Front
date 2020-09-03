@@ -61,7 +61,7 @@ export class UtilityService {
     this.documentListSubject.next(JSON.parse(localStorage.getItem('documentList')));
   }
   updateDocumentType(){
-    this.documentTypeSubject.next(JSON.parse(localStorage.getItem('documentType')));
+    this.documentTypeSubject.next(localStorage.getItem('documentType'));
   }
 }
 
