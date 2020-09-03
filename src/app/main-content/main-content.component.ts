@@ -68,7 +68,6 @@ export class MainContentComponent implements OnInit {
   }
 
 
-
   createDocument() {
     this.utilityService.setModalFormActive();
     this.utilityService.modalFormActive.subscribe( bool => {
