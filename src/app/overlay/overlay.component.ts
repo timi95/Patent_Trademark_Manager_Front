@@ -110,17 +110,11 @@ export class OverlayComponent implements OnInit {
 
   }
   setInactive(): void {
-    /*
-      this is buggy because 
-      the data is not always fetched 
-      in time for the window reload to 
-      reflect the relevant change in data 
-    */
+
 
     switch (this.formType) {
 
       case this.formTypes[0]:
-        this.refreshObject();
         this.utilityService.setModalFormInactive();
         this.utilityService.modalFormActive.subscribe( bool => {
           this.active = bool;
