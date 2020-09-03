@@ -21,7 +21,7 @@ export class MainContentComponent implements OnInit {
   patent_ActionTypes = new Action().patent_ActionTypes;
   patentActionUrlDict: any = new Action().patentActionUrlDict;
   // strategy for fetching resources from end-point
-  documentType: any  = 'AmendmentAction';
+  documentType: any  = localStorage.getItem('documentType');
 
   constructor(
     private router: Router,
@@ -37,36 +37,13 @@ export class MainContentComponent implements OnInit {
 
   ngOnInit(): void {
     this.utilityService.documentListSubject.subscribe(resp=>{this.documentList=resp});
+    this.utilityService.documentTypeSubject.subscribe(resp=>{this.documentType=resp});
   }
 
   ngOnDestroy(){
     this.utilityService.modalFormActive.unsubscribe();
     this.utilityService.documentListSubject.unsubscribe();
   }
-  fetchDocuments(event?) {
-    console.log("fetch documents called");
-    
-    if(event){
-      this.documentType = event.target.value;
-      
-      this.apiService.patentDocumentRequest(
-        this.patentActionUrlDict[this.documentType],
-        "get").subscribe((response:any) => {
-          
-          this.messageService.pushSuccess(`Successfully fetched ${this.documentType}s!`);
-          this.documentList = response.results;
-        }, err => {
-            console.log(err);
-            this.messageService.pushError(err);
-            
-        });
-
-    }
-  }
-  fetchDocumentsFromStorage():void{
-    this.documentList = JSON.parse(localStorage.getItem('documentList'));
-  }
-
 
   createDocument() {
     this.utilityService.setModalFormActive();
