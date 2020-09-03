@@ -1,10 +1,13 @@
 <div class="scrollable-grid">
-  <!-- <select class="custom-select" (change)="fetchDocuments($event)" >
-    <option disabled>Choose DocumentType </option>
-    <option
-    *ngFor="let type of patent_ActionTypes" 
-    [ngValue]="type">{{type}}</option>
-  </select> -->
+  <span style="
+  padding:0 20px;
+  color: #ffffff;">
+  Now viewing : 
+    <span style="
+    padding:0 20px;
+    font-size: 25px;
+    font-weight: 700;">{{documentType}}</span>
+  </span>
   <ul class="card-grid" *ngIf="documentList">
     <li class="card-body" *ngFor="let document of documentList" >
       <header class="card-header" >
