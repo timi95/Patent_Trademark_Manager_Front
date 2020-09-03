@@ -37,10 +37,14 @@ export class SideNavComponent implements OnInit {
     this.apiService.patentDocumentRequest(
       this.patentActionUrlDict['AmendmentAction'],
       "get").subscribe((response:any) => {
-        
         this.messageService.pushSuccess(`Successfully fetched ${this.documentType}s!`);
         // assign results to our list in storage
-        localStorage.setItem('documentList',JSON.stringify(response.results)); 
+        localStorage.setItem('documentList',JSON.stringify(response.results));
+        localStorage.setItem('documentType',this.documentType);
+
+        // get result list from storage and add it to BehaviourSubject
+        this.utilityService.updateDocumentList();
+        this.utilityService.updateDocumentType();
       }, err => {
           console.log(err);
           this.messageService.pushError(err);
@@ -57,8 +61,12 @@ export class SideNavComponent implements OnInit {
         this.messageService.pushSuccess(`Successfully fetched ${this.documentType}s!`);
         // assign results to our list in storage
         localStorage.setItem('documentList',JSON.stringify(response.results));
+        localStorage.setItem('documentType',this.documentType);
+
         // get result list from storage and add it to BehaviourSubject
-        this.utilityService.emitDocumentList();
+        this.utilityService.updateDocumentList();
+        this.utilityService.updateDocumentType();
+
       }, err => {
           console.log(err);
           this.messageService.pushError(err);
