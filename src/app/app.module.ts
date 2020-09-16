@@ -26,7 +26,7 @@ import { PureCallPipe } from './pipes/pure-call.pipe';
     SuccessMessageComponent,
     OverlayComponent,
     DetailComponent,
-    PureCallPipe
+    PureCallPipe,
   ],
   imports: [
     BrowserModule,
