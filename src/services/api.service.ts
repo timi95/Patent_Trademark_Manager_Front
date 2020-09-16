@@ -39,7 +39,7 @@ public errors: any = [];
 
 // ******************** // C R U D // ******************** //
 
-  // Generally applicaple request function for all patent resources
+  // Generally applicable CRUD request function for all patent resources
   patentDocumentRequest(documentType:string, 
                         requestType:string,
                         id?:number,
@@ -93,6 +93,20 @@ public errors: any = [];
         }
     }
   }
+
+  orderPatentDocumentsByField(documentType:string,
+                      orderByField:string){
+    return this.httpServer
+    .get(`${this.API_URL}/Patent_manager/${documentType}?ordering=${orderByField}`);
+  }
+  
+  searchPatentDocumentsByDate(documentType:string,
+                     date_from:string,
+                     date_to:string){
+    return this.httpServer
+    .get(`${this.API_URL}/Patent_manager/${documentType}?date_from=${date_from}&date_to=${date_to}`);
+  }
+
 
 
  getAmendmentAction(id?:string) {
