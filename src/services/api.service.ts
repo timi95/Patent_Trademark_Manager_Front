@@ -6,7 +6,8 @@ import { environment } from 'src/environments/environment'
 @Injectable({
   providedIn: 'root'
 })
-export class ApiService { // JWT authentication
+export class ApiService { 
+// JWT authentication
 
 // http options used for making API calls
 private httpOptions: any;
@@ -106,6 +107,7 @@ public errors: any = [];
     return this.httpServer
     .get(`${this.API_URL}/Patent_manager/${documentType}?date_from=${date_from}&date_to=${date_to}`);
   }
+
 
 
 
