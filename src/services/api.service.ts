@@ -12,7 +12,7 @@ export class ApiService {
 // http options used for making API calls
 private httpOptions: any;
 
-// the actual JWT token
+// the actual JWT token 
 public token: string;
 
 // the token expiration date
