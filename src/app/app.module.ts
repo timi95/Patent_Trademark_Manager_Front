@@ -14,6 +14,7 @@ import { SuccessMessageComponent } from './success-message/success-message.compo
 import { OverlayComponent } from './overlay/overlay.component';
 import { DetailComponent } from './detail/detail.component';
 import { PureCallPipe } from './pipes/pure-call.pipe';
+import { FilterByWidgetComponent } from './filter-by-widget/filter-by-widget.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { PureCallPipe } from './pipes/pure-call.pipe';
     OverlayComponent,
     DetailComponent,
     PureCallPipe,
+    FilterByWidgetComponent,
   ],
   imports: [
     BrowserModule,
