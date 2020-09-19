@@ -15,6 +15,7 @@ import { OverlayComponent } from './overlay/overlay.component';
 import { DetailComponent } from './detail/detail.component';
 import { PureCallPipe } from './pipes/pure-call.pipe';
 import { FilterByWidgetComponent } from './filter-by-widget/filter-by-widget.component';
+import { DateRangeSearchWidgetComponent } from './date-range-search-widget/date-range-search-widget.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { FilterByWidgetComponent } from './filter-by-widget/filter-by-widget.com
     DetailComponent,
     PureCallPipe,
     FilterByWidgetComponent,
+    DateRangeSearchWidgetComponent,
   ],
   imports: [
     BrowserModule,
