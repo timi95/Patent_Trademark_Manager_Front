@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-date-range-search-widget',
+  selector: 'date-search',
   templateUrl: './date-range-search-widget.component.html',
   styleUrls: ['./date-range-search-widget.component.css']
 })

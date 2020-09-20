@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-filter-by-widget',
+  selector: 'filter-by',
   templateUrl: './filter-by-widget.component.html',
   styleUrls: ['./filter-by-widget.component.css']
 })
