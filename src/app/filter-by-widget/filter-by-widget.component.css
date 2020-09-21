@@ -1,9 +1,14 @@
 .container{
-    width: 12em;
+    width: 15em;
     height: 50px;
     /* margin: 5px; */
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     z-index: 10;
+}
+select{
+    height: 60%;
+    width: 70%;
+    border-radius: 15px;
 }
