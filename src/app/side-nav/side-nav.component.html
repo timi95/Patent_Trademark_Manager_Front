@@ -1,6 +1,6 @@
 <nav>
     <div class="nav-cap">
-        <a class="nav-icon">Logo</a>
+        <a class="nav-icon">{{ title }}</a>
         <button *ngIf="isMobile" (click)="toggleList()">|||</button>
     </div>
     <div class="list-item-divider" *ngIf="!isMobile || (opened && isMobile)">

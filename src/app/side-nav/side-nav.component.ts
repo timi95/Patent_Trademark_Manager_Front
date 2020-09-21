@@ -10,6 +10,7 @@ import { UtilityService } from 'src/services/utility.service';
   styleUrls: ['./side-nav.component.css']
 })
 export class SideNavComponent implements OnInit {
+  @Input('title') title:string;
   @Input('itemList') itemList:string[];
   opened : boolean;
   isMobile : boolean;
