@@ -1,6 +1,10 @@
 li {
     display: flex;
-    /* justify-content: space-evenly; */
+    flex-flow: row wrap;
+}
+.column-flex{
+    display: flex;
+    flex-direction: column;
 }
 .font-colour{
     color: #fff;
@@ -24,7 +28,7 @@ li {
     display: inline-block;
     padding: 0.5em 1em;
     text-decoration: none;
-    background: #667bd8;/*Button Color*/
+    background: #8694d4;/*Button Color*/
     color: #FFF;
     border-radius: 16px;
     box-shadow: 0 6px 32px 0 rgba(0, 18, 46, 0.84);
@@ -34,4 +38,11 @@ li {
     -webkit-transform: translateY(4px);
     transform: translateY(4px);/*Move down*/
     border-bottom: none;/*disappears*/
+}
+
+.detail-subtitle{
+    color: #fff;
+    font-weight: 900;
+    font-size: 19px;
+    text-shadow: 2px 1px #252424;
 }
