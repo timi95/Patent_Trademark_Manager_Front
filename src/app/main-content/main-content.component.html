@@ -1,3 +1,4 @@
+
 <div class="scrollable-grid">
   <span style="
   padding:0 20px;
@@ -26,7 +27,11 @@
     </li>
   </ul>
 </div>
-<a href="#" class="square_btn" (click)="createDocument()">&#43;</a>
+<div class="widgets">
+  <filter-by></filter-by>
+  <date-search></date-search>
+  <a href="#" class="square_btn" (click)="createDocument()">&#43;</a>
+</div>
 <overlay
 [active]="this.modalIsActive"
 [documentType]="patentActionUrlDict[documentType]"

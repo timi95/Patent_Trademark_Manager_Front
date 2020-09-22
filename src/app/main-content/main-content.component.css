@@ -6,15 +6,17 @@
 
 .square_btn{
     position: relative;
-    top: 90%;
-    left: 80%;
+    /* top: 90%; */
+    /* left: 35%; */
+    height: 20px;
     display: inline-block;
     padding: 0.5em 1em;
     text-decoration: none;
     background: #667bd8;/*Button Color*/
     color: #FFF;
     border-radius: 16px;
-    box-shadow: 0 6px 32px 0 rgba(0, 18, 46, 0.84);
+    box-shadow: 0 6px 15px 0 rgba(0, 18, 46, 0.84);
+    z-index: 10;
 }
 .square_btn:active {/*on Click*/
     -ms-transform: translateY(4px);
@@ -23,10 +25,9 @@
     border-bottom: none;/*disappears*/
 }
 
-
 .scrollable-grid {
     margin: 0;
-    height: 90%;
+    height: 86%;
     overflow: auto;
 }
 .card-grid {
@@ -84,4 +85,15 @@
     
     font-size: larger;
     font-weight: 600;
+}
+
+.widgets{
+    width: 99%;
+    display: flex;
+    /* padding-left: 2%; */
+    /* z-index: 1; */
+    justify-content: space-between;
+    align-items: center;
+    /* width: 90%; */
+    /* overflow-x: scroll; */
 }
