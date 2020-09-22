@@ -12,8 +12,8 @@ export class FilterByWidgetComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  filter(){
-    console.log("filter by component call");
+  sort(){
+    console.log("sort by component call");
     
   }
 }

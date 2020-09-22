@@ -1,14 +1,19 @@
 .container{
-    width: 15em;
-    height: 50px;
-    /* margin: 5px; */
+    height: 30px;
+    width: 80%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    z-index: 10;
+    
+    padding:0 5px;
+    border: 1px solid #667bd8;
+    border-radius: 12px;
+    background-color: #fff;
+
 }
 select{
-    height: 60%;
-    width: 70%;
-    border-radius: 15px;
+    margin:0 5px;
+}
+button{
+    width: 5em;
 }
