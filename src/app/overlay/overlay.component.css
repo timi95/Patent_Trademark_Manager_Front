@@ -58,8 +58,8 @@ button:disabled {
 
 /* Modal Content */
 .modal-content {
-  position: fixed;
-  bottom: 20%;
+  position: relative;
+  bottom: -15vh;
   background-color: #fefefe;
   width: 60%;
   margin: 0 20%;
@@ -101,7 +101,7 @@ a.cancel {
     opacity: 0;
   }
   to {
-    bottom: 20%;
+    bottom: -10vh;
     opacity: 1;
   }
 }
@@ -112,7 +112,7 @@ a.cancel {
     opacity: 0;
   }
   to {
-    bottom: 20%;
+    bottom: -10vh;
     opacity: 1;
   }
 }
