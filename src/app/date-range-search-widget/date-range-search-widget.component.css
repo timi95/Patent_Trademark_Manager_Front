@@ -1,0 +1,29 @@
+.container{
+    /* width: 80%; */
+    /* height: 50px; */
+    /* display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+
+
+    padding:0 5px;
+    border: 1px solid #667bd8;
+    border-radius: 12px;
+    background-color: #fff; */
+}
+
+.date-inputs{
+    width: 50%;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    color: #fff;
+
+}
+input{
+    border-radius: 15px;
+}
+button{
+    width: 5em;
+}

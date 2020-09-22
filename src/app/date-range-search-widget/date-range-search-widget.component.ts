@@ -12,4 +12,9 @@ export class DateRangeSearchWidgetComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  searchDateRange(from?,till?){
+    console.log('date range search called');
+    
+  }
+
 }
