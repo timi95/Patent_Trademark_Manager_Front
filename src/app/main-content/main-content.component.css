@@ -5,7 +5,7 @@
 }
 
 .square_btn{
-    grid-column-start: 4;
+    grid-column-start: 3;
     justify-self: center;
     position: relative;
     height: 20px;
@@ -89,7 +89,7 @@
 
 .widgets{
     display: grid;
-    grid-template-columns: 20% 40% 20% 20%;
+    grid-template-columns: 40% 40% 20%;
     height: 20%;
     padding-left: 2%;
 
