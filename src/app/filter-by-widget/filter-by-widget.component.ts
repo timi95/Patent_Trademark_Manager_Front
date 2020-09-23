@@ -24,9 +24,11 @@ export class FilterByWidgetComponent implements OnInit {
     private apiService: ApiService) { }
 
   ngOnInit(): void {
-    this.documents = JSON.parse( localStorage.getItem('documentList') );
-    this.orderTypeList = Object.keys(JSON.parse( localStorage.getItem('documentList'))[0]);
-    this.documentTypeUrl = this.patentActionUrlDict[localStorage.getItem('documentType')];
+    this.utilityService.updateDocumentList();
+    this.utilityService.documentListSubject.subscribe(resp=>{this.orderTypeList=Object.keys(resp[0])});
+
+    this.utilityService.updateDocumentType();
+    this.utilityService.documentTypeSubject.subscribe(resp=>{this.documentTypeUrl=this.patentActionUrlDict[resp]});
   }
 
   sort($event){
