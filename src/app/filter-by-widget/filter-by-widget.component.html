@@ -1,6 +1,7 @@
 <div class="container">
-    <select name="" id="">
-        <option value="">Select filter-type</option>
+    <select name="" id="" (change)="sort($event)">
+        <option value="" disabled>Select filter-type</option>
+        <option *ngFor="let type of orderTypeList" [ngValue]="type">{{type}}</option>
     </select>
-    <button (click)="sort()"> Sort</button>
+    <!-- <button (click)="sort()"> Sort</button> -->
 </div>
