@@ -1,6 +1,6 @@
 <div *ngIf="active" class="overlay" >
-  <form 
-      class="modal-content" 
+   <!-- creation form: START -->
+  <form class="modal-content" 
       *ngIf="formType == formTypes[0]"
       [formGroup]="createForm" 
       (ngSubmit)="onSubmit('create')">
@@ -26,8 +26,8 @@
 
     <button type="submit">Submit</button>
   </form>
-
-  <!-- edit form: START -->
+   <!-- creation form: END -->
+ 
   <form class="modal-content" 
   *ngIf="formType == formTypes[1]"
   [formGroup]="editForm"
