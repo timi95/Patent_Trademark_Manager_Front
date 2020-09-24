@@ -19,9 +19,7 @@ export class FilterByWidgetComponent implements OnInit {
   documentTypeUrl: string;
   // chosenOrderType:string = '';
 
-  constructor( private router: Router,
-    private utilityService: UtilityService,
-    private apiService: ApiService) { }
+  constructor(private utilityService: UtilityService, private apiService: ApiService) { }
 
   ngOnInit(): void {
     this.utilityService.updateDocumentList();

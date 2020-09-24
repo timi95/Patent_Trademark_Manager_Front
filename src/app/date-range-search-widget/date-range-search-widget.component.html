@@ -1,7 +1,7 @@
 <div class="container">
    <div class="date-inputs">
-       <input type="date"> 
-       <input type="date">
+       <input type="date" [(ngModel)]="from"> 
+       <input type="date" [(ngModel)]="till">
        <button (click)="searchDateRange()">Range</button>
     </div>
 </div>

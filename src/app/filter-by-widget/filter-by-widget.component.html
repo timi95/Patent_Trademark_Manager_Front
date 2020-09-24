@@ -1,5 +1,6 @@
 <div class="container">
-    <select name="" id="" (change)="sort($event)">
+    <label for="filter-by" style="color:#fff; font-weight: 600;">Filter By:</label>
+    <select name="filter-by" id="" (change)="sort($event)">
         <option value="" disabled>Select filter-type</option>
         <option *ngFor="let type of orderTypeList" [ngValue]="type">{{type}}</option>
     </select>
