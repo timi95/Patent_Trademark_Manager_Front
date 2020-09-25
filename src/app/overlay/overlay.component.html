@@ -1,5 +1,4 @@
-<div *ngIf="active" class="overlay" >
-   <!-- creation form: START -->
+<div *ngIf="active" class="overlay" (click)="shunOverlay($event)">
   <form class="modal-content" 
       *ngIf="formType == formTypes[0]"
       [formGroup]="createForm" 
@@ -17,7 +16,7 @@
         let item of utilityService
         .toList|pureCall:documentTypeFormDictionary[documentType]"> 
           <!-- show this input based on the functions evaluation as 'text' or 'date' -->
-          {{item[0]}}: <input 
+          {{item[0]}}: <input
           [formControlName]="item[0]"
           [type]="evaluateKey|pureCall:item" [name]="item[0]" > 
         </li>
@@ -26,8 +25,8 @@
 
     <button type="submit">Submit</button>
   </form>
-   <!-- creation form: END -->
- 
+
+  <!-- edit form: START -->
   <form class="modal-content" 
   *ngIf="formType == formTypes[1]"
   [formGroup]="editForm"

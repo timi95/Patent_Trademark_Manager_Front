@@ -54,6 +54,8 @@ button:disabled {
   -webkit-animation-duration: 0.4s;
   animation-name: fadeIn;
   animation-duration: 0.4s;
+
+  pointer-events: fill;
 }
 
 /* Modal Content */
@@ -70,6 +72,8 @@ button:disabled {
   -webkit-animation-duration: 0.4s;
   animation-name: slideIn;
   animation-duration: 0.4s;
+
+  pointer-events: fill;
 }
 
 /* Form List */

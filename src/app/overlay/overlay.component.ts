@@ -19,6 +19,7 @@ export class OverlayComponent implements OnInit {
   @Input("updateValue") editeableObject?: any;
 
   @ViewChild('edit', { static: true }) input: ElementRef;
+  // @ViewChild('create', { static: true }) createInput: ElementRef;
 
   detailsObject: any = JSON.parse(localStorage.getItem('detailsObject'));
   formTypes:string[] = ['create','update','delete'];
@@ -74,9 +75,6 @@ export class OverlayComponent implements OnInit {
   }
   ngOnChanges(): void {
     this.ngOnInit();
-    // console.log("This documentType changed to this ==>",this.documentType, this.createForm);
-    // console.log("formType has changed ==>",this.formType, this.editForm);
-    
   }
 
 
@@ -109,8 +107,13 @@ export class OverlayComponent implements OnInit {
     }
 
   }
+  shunOverlay($event){
+    if($event.target.classList.contains("overlay")){
+      this.setInactive();
+    }
+  }
   setInactive(): void {
-
+    // event.stopPropagation();
 
     switch (this.formType) {
 
