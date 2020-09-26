@@ -44,53 +44,55 @@ public errors: any = [];
   patentDocumentRequest(documentType:string, 
                         requestType:string,
                         id?:number,
-                        requestBody?:any) {
+                        requestBody?:any,
+                        managerType?:string) {
+    managerType = managerType? managerType:'Patent_manager';
     switch (requestType.toLowerCase()) {
     //POST request case
       case "post":
         if ((id > 0) && requestBody) {
-          return this.httpServer.post(`${this.API_URL}/Patent_manager/${documentType}/${id}`, requestBody,this.httpOptions); 
+          return this.httpServer.post(`${this.API_URL}/${managerType}/${documentType}/${id}`, requestBody,this.httpOptions); 
         } else if( (id <= 0) && requestBody ){ 
-          return this.httpServer.post(`${this.API_URL}/Patent_manager/${documentType}/`, requestBody,this.httpOptions);
+          return this.httpServer.post(`${this.API_URL}/${managerType}/${documentType}/`, requestBody,this.httpOptions);
         }
 
       //PUT request case
       case "put":
         if ((id > 0) && requestBody) {
-          return this.httpServer.put(`${this.API_URL}/Patent_manager/${documentType}/${id}`, requestBody,this.httpOptions); 
+          return this.httpServer.put(`${this.API_URL}/${managerType}/${documentType}/${id}`, requestBody,this.httpOptions); 
         } else if( (id <= 0) && requestBody ){ 
-          return this.httpServer.put(`${this.API_URL}/Patent_manager/${documentType}/`, requestBody,this.httpOptions);
+          return this.httpServer.put(`${this.API_URL}/${managerType}/${documentType}/`, requestBody,this.httpOptions);
         }
     
       //PATCH request case
       case "patch":
         if ((id > 0) && requestBody) {
-          return this.httpServer.patch(`${this.API_URL}/Patent_manager/${documentType}/${id}`, requestBody,this.httpOptions); 
+          return this.httpServer.patch(`${this.API_URL}/${managerType}/${documentType}/${id}`, requestBody,this.httpOptions); 
         } else if( (id <= 0) && requestBody ){ 
-          return this.httpServer.patch(`${this.API_URL}/Patent_manager/${documentType}/`, requestBody,this.httpOptions);
+          return this.httpServer.patch(`${this.API_URL}/${managerType}/${documentType}/`, requestBody,this.httpOptions);
         }
       
       //GET request case
       case "get":
         if (id) {
-          return this.httpServer.get(`${this.API_URL}/Patent_manager/${documentType}/${id}`); 
+          return this.httpServer.get(`${this.API_URL}/${managerType}/${documentType}/${id}`); 
         } else { 
-          return this.httpServer.get(`${this.API_URL}/Patent_manager/${documentType}/`);
+          return this.httpServer.get(`${this.API_URL}/${managerType}/${documentType}/`);
         }
 
       //DELETE request case
       case "delete":
         if ((id > 0) && requestBody) {
-          return this.httpServer.delete(`${this.API_URL}/Patent_manager/${documentType}/${id}`); 
+          return this.httpServer.delete(`${this.API_URL}/${managerType}/${documentType}/${id}`); 
         } else if( (id <= 0) && requestBody ){  
-          return this.httpServer.delete(`${this.API_URL}/Patent_manager/${documentType}/`,requestBody);
+          return this.httpServer.delete(`${this.API_URL}/${managerType}/${documentType}/`,requestBody);
         }
       // default case
       default:
         if (id) {
-          return this.httpServer.get(`${this.API_URL}/Patent_manager/${documentType}/${id}`); 
+          return this.httpServer.get(`${this.API_URL}/${managerType}/${documentType}/${id}`); 
         } else { 
-          return this.httpServer.get(`${this.API_URL}/Patent_manager/${documentType}/`);
+          return this.httpServer.get(`${this.API_URL}/${managerType}/${documentType}/`);
         }
     }
   }
