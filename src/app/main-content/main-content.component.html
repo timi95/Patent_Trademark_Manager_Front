@@ -34,6 +34,7 @@
   <a href="#" class="square_btn" (click)="createDocument()">&#43;</a>
 </div>
 <overlay
-[active]="this.modalIsActive"
-[documentType]="patentActionUrlDict[documentType]"
+[active]="modalIsActive"
+[managerType]="managerType"
+[documentType]="documentTypeUrlDict[documentType]"
 [formType]="'create'"></overlay>

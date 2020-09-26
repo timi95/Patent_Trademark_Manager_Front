@@ -16,7 +16,7 @@
     color: #FFF;
     border-radius: 16px;
     box-shadow: 0 6px 15px 0 rgba(0, 18, 46, 0.84);
-    z-index: 10;
+    /* z-index: 10; */
 }
 .square_btn:active {/*on Click*/
     -ms-transform: translateY(4px);

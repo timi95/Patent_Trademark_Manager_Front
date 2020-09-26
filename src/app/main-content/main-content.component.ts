@@ -18,10 +18,13 @@ export class MainContentComponent implements OnInit {
 
   documentList:Document[];
   modalIsActive:boolean;
-  patent_ActionTypes = new Action().patent_ActionTypes;
-  patentActionUrlDict: any = new Action().patentActionUrlDict;
+
+  // patentActionUrlDict: any = new Action().patentActionUrlDict;
+  // trademarkActionUrlDict: any = new Action().trademarkActionUrlDict
+  documentTypeUrlDict: any ;
   // strategy for fetching resources from end-point
   documentType: any  = localStorage.getItem('documentType');
+  managerType:string = localStorage.getItem('managerType');
 
   constructor(
     private router: Router,
@@ -36,6 +39,9 @@ export class MainContentComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.documentTypeUrlDict = localStorage.getItem('managerType')=='Patent_manager'?
+    new Action().patentActionUrlDict:
+    new Action().trademarkActionUrlDict;
     this.utilityService.documentListSubject.subscribe(resp=>{this.documentList=resp});
     this.utilityService.documentTypeSubject.subscribe(resp=>{this.documentType=resp});
   }
