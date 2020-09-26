@@ -12,6 +12,8 @@ import { UtilityService } from 'src/services/utility.service';
 export class SideNavComponent implements OnInit {
   @Input('title') title:string;
   @Input('itemList') itemList:string[];
+  @Input('managerType') managerType:string;
+
   opened : boolean;
   isMobile : boolean;
 
@@ -35,6 +37,9 @@ export class SideNavComponent implements OnInit {
   
 
   ngOnInit(): void {
+    localStorage.setItem('managerType','Patent_manager');
+    this.utilityService.updateManagerType();
+
     this.apiService.patentDocumentRequest(
       this.patentActionUrlDict['AmendmentAction'],
       "get").subscribe((response:any) => {
@@ -55,10 +60,23 @@ export class SideNavComponent implements OnInit {
   }
 
   fetchDocuments(value:string){
+    // setting the managerType to dynamically generate content for the overlays and widgets
+    if (this.managerType == "Patent_manager") {
+      localStorage.setItem('managerType',this.managerType);
+      this.utilityService.updateManagerType();
+      // console.log('managerType from storage',localStorage.getItem('managerType'));
+    } else {
+      localStorage.setItem('managerType',this.managerType);
+      this.utilityService.updateManagerType();
+      // console.log('managerType from storage',localStorage.getItem('managerType'));
+    }
     this.documentType = value;
-    this.apiService.patentDocumentRequest(
-      this.patentActionUrlDict[value],
-      "get").subscribe((response:any) => {        
+    let url_suffix = this.managerType == "Patent_manager"?
+                      this.patentActionUrlDict[value]:
+                      this.trademarkActionUrlDict[value];
+    this.apiService
+    .patentDocumentRequest(url_suffix,"get",null,null,this.managerType)
+    .subscribe((response:any) => {        
         this.messageService.pushSuccess(`Successfully fetched ${this.documentType}s!`);
         // assign results to our list in storage
         localStorage.setItem('documentList',JSON.stringify(response.results));
