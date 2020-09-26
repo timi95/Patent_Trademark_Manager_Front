@@ -5,7 +5,7 @@ import { SearchAction } from 'src/interfaces/SearchAction';
 
 export class Action {
 
-      // list of Action-types, Particulars, and Profile
+  // list of Action-types, Particulars, and Profile
   public patent_ActionTypes:string[] = [
     'AmendmentAction',
     'AssignmentMergerAction',
@@ -43,7 +43,15 @@ export class Action {
     'SearchAction':'search-action',
   }
   public trademarkActionUrlDict = {
-    '':''
+    'AmendementAction':'amendement-action',
+    'AssignmentMergerAction':'assignment-merger-action',
+    'CertificateProcurementAction':'certificate-procurement-action',
+    'ChangeName_AddressAction':'change-name-address-action',
+    'TrademarkProfile':'profile',
+    'ReclassificationAction':'reclassification-action',
+    'RegistrationAction':'registration-action',
+    'RenewalAction':'renewal-action',
+    'SearchAction':'search-action',
   }
 
     constructor() {
