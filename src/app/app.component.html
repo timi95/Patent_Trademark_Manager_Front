@@ -9,10 +9,14 @@
       <router-outlet></router-outlet>
     </main>
     <nav class="HolyGrail-nav">
-      <side-nav [title]="'Patent Type List'" [itemList]="patent_ActionTypes"></side-nav>
+      <side-nav 
+      [managerType]="'Patent_manager'"
+      [title]="'Patent Type List'" [itemList]="patent_ActionTypes"></side-nav>
     </nav>
     <aside class="HolyGrail-ads">
-      <side-nav [title]="'Trademark Type List'" [itemList]="trademark_ActionTypes"></side-nav>
+      <side-nav 
+      [managerType]="'Trademark_manager'"
+      [title]="'Trademark Type List'" [itemList]="trademark_ActionTypes"></side-nav>
     </aside>
   </div>
   <footer>
