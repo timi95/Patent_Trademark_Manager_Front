@@ -17,8 +17,10 @@ export class UtilityService {
 
   // documentList Subject
   documentListSubject: BehaviorSubject<Document[]> = new BehaviorSubject<Document[]>([]);
-  // documentList Subject
+  // documentType Subject
   documentTypeSubject: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  // managerType Subject
+  managerTypeSubject: BehaviorSubject<string> = new BehaviorSubject<string>('');
     
   setDetailEditFormActive(){
     return this.detailEditFormActive.next(true);
@@ -62,6 +64,9 @@ export class UtilityService {
   }
   updateDocumentType(){
     this.documentTypeSubject.next(localStorage.getItem('documentType'));
+  }
+  updateManagerType(){
+    this.managerTypeSubject.next(localStorage.getItem('managerType'));
   }
 }
 
