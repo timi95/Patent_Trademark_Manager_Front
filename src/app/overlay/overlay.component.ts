@@ -17,6 +17,7 @@ export class OverlayComponent implements OnInit {
   @Input("documentType") documentType: string;
   @Input("formType") formType?: string;
   @Input("updateValue") editeableObject?: any;
+  @Input("managerType") managerType:string;
 
   @ViewChild('edit', { static: true }) input: ElementRef;
   // @ViewChild('create', { static: true }) createInput: ElementRef;
@@ -24,36 +25,8 @@ export class OverlayComponent implements OnInit {
   detailsObject: any = JSON.parse(localStorage.getItem('detailsObject'));
   formTypes:string[] = ['create','update','delete'];
 
-  documentTypeFormDictionary = {
-    'search-action':{},
-    'renewal-action':{},
-    'registration':{},
-    'patent-particulars':{},
-    'procurement':{},
-    'ctc':{},
-    'change-name':{},
-    'change-address':{},
-    'assignment-merger-action':{
-      assignment_instruction_date: new FormControl('', [Validators.required]),
-      assignment_instruction_month: new FormControl('', [Validators.required]),
-      date_abuja_instructed_assignment: "",
-      clerk_assignment: new FormControl('', [Validators.required]),
-      status_assignment_registrations: new FormControl('', [Validators.required]),
-      assignor: new FormControl('', [Validators.required]),
-      assignor_address: new FormControl('', [Validators.required]),
-      assignee: new FormControl('', [Validators.required]),
-      assignee_address: new FormControl('', [Validators.required]),
-      date_assignment_certificate_received: ""
-    },
-    "amendement-action": {
-      date_amendment_instruction_received: "",
-      nature_of_amendment: new FormControl('', [Validators.required]),
-      amending_clerk: new FormControl('', [Validators.required]),
-      date_amending_clerk_instructed: "",
-      status_of_amendment: new FormControl('', [Validators.required]),
-      date_amendment_received: ""
-    } 
-  }
+  
+  documentTypeFormDictionary:any = {};
 
   createForm: FormGroup;
   editForm: FormGroup;
@@ -71,7 +44,70 @@ export class OverlayComponent implements OnInit {
 
   ngOnInit(): void {
     // Initialised createForm
-    this.dynamicFormGroupGenerator();
+    this.utilityService.managerTypeSubject.subscribe(resp=>{
+
+      if(resp =="Patent_manager"){
+        this.documentTypeFormDictionary = {
+          'search-action':{},
+          'renewal-action':{},
+          'registration':{},
+          'patent-particulars':{},
+          'procurement':{},
+          'ctc':{},
+          'change-name':{},
+          'change-address':{},
+          'assignment-merger-action':{
+            assignment_instruction_date: new FormControl('', [Validators.required]),
+            assignment_instruction_month: new FormControl('', [Validators.required]),
+            date_abuja_instructed_assignment: "",
+            clerk_assignment: new FormControl('', [Validators.required]),
+            status_assignment_registrations: new FormControl('', [Validators.required]),
+            assignor: new FormControl('', [Validators.required]),
+            assignor_address: new FormControl('', [Validators.required]),
+            assignee: new FormControl('', [Validators.required]),
+            assignee_address: new FormControl('', [Validators.required]),
+            date_assignment_certificate_received: ""
+          },
+          "amendement-action": {
+            date_amendment_instruction_received: "",
+            nature_of_amendment: new FormControl('', [Validators.required]),
+            amending_clerk: new FormControl('', [Validators.required]),
+            date_amending_clerk_instructed: "",
+            status_of_amendment: new FormControl('', [Validators.required]),
+            date_amendment_received: ""
+          } 
+        }
+      }
+      if(resp == "Trademark_manager"){
+        this.documentTypeFormDictionary = {
+          'assignment-merger-action':{
+            assignment_instruction_date: new FormControl('', [Validators.required]),
+            assignment_instruction_month: new FormControl('', [Validators.required]),
+            assignee: new FormControl('', [Validators.required]),
+            assignee_address: new FormControl('', [Validators.required]),
+            assignor: new FormControl('', [Validators.required]),
+            assignor_address: new FormControl('', [Validators.required]),
+            clerk_assigning: new FormControl('', [Validators.required]),
+            date_abuja_instructed_assignment: "",
+            date_assignment_certificate_received: "",
+            date_facillitation_assignment_cert_sent: "",
+            date_facillitation_assignment_cert_sent_sent: "",
+            official_fee_assignment: new FormControl('', [Validators.required]),
+            status_assignment_registrations: new FormControl('', [Validators.required]),
+          },
+          "amendement-action": {
+            ammendement_instruction_date: "",
+            date_ammendement_instruction_received: "",
+            nature_of_amendement: new FormControl('', [Validators.required]),
+            date_amending_clerk_instructed: "",
+            status_of_amendement: new FormControl('', [Validators.required]),
+            date_amendement_received: ""
+          },
+        };
+      }
+      console.log('resp',resp,'dictionary state: ',this.documentTypeFormDictionary,'document type: ',this.documentType);
+      this.dynamicFormGroupGenerator();
+    });
   }
   ngOnChanges(): void {
     this.ngOnInit();
