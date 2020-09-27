@@ -23,6 +23,7 @@ export class Action {
     'AssignmentMergerAction',
     'CertificateProcurementAction',
     'ChangeName_AddressAction',
+    'TrademarkProfile',
     'ReclassificationAction',
     'RegistrationAction',
     'RenewalAction',

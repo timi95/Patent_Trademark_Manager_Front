@@ -7,8 +7,8 @@ import { Action } from './classes/Action';
   styleUrls: ["./app.component.css"],
 })
 export class AppComponent {
-  patent_ActionTypes = new Action().patent_ActionTypes;
-  trademark_ActionTypes = new Action().trademark_ActionTypes;
+  patent_ActionTypes = Object.keys(new Action().patentActionUrlDict);
+  trademark_ActionTypes = Object.keys(new Action().trademarkActionUrlDict);
 
   title = "Patent-Trademark-Manager-Front";
 }

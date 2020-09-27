@@ -5,6 +5,7 @@ import { MessageService } from "src/services/message.service";
 import { UtilityService } from 'src/services/utility.service';
 import { JsonPipe } from '@angular/common';
 import { Router } from '@angular/router';
+import { Form } from '../classes/Form';
 
 
 @Component({
@@ -31,7 +32,7 @@ export class OverlayComponent implements OnInit {
   createForm: FormGroup;
   editForm: FormGroup;
   deleteForm: FormGroup;
-  // name = new FormControl("");
+  Forms = new Form();
 
   constructor(
     private router: Router,
@@ -56,53 +57,21 @@ export class OverlayComponent implements OnInit {
           'ctc':{},
           'change-name':{},
           'change-address':{},
-          'assignment-merger-action':{
-            assignment_instruction_date: new FormControl('', [Validators.required]),
-            assignment_instruction_month: new FormControl('', [Validators.required]),
-            date_abuja_instructed_assignment: "",
-            clerk_assignment: new FormControl('', [Validators.required]),
-            status_assignment_registrations: new FormControl('', [Validators.required]),
-            assignor: new FormControl('', [Validators.required]),
-            assignor_address: new FormControl('', [Validators.required]),
-            assignee: new FormControl('', [Validators.required]),
-            assignee_address: new FormControl('', [Validators.required]),
-            date_assignment_certificate_received: ""
-          },
-          "amendment-action": {
-            date_amendment_instruction_received: "",
-            nature_of_amendment: new FormControl('', [Validators.required]),
-            amending_clerk: new FormControl('', [Validators.required]),
-            date_amending_clerk_instructed: "",
-            status_of_amendment: new FormControl('', [Validators.required]),
-            date_amendment_received: ""
-          } 
+          'assignment-merger-action':this.Forms.P_assignment_merger_action,
+          "amendment-action": this.Forms.P_amendment_action,
         }
       }
       if(resp == "Trademark_manager"){
         this.documentTypeFormDictionary = {
-          'assignment-merger-action':{
-            assignment_instruction_date: new FormControl('', [Validators.required]),
-            assignment_instruction_month: new FormControl('', [Validators.required]),
-            assignee: new FormControl('', [Validators.required]),
-            assignee_address: new FormControl('', [Validators.required]),
-            assignor: new FormControl('', [Validators.required]),
-            assignor_address: new FormControl('', [Validators.required]),
-            clerk_assigning: new FormControl('', [Validators.required]),
-            date_abuja_instructed_assignment: "",
-            date_assignment_certificate_received: "",
-            date_facillitation_assignment_cert_sent: "",
-            date_facillitation_assignment_cert_sent_sent: "",
-            official_fee_assignment: new FormControl('', [Validators.required]),
-            status_assignment_registrations: new FormControl('', [Validators.required]),
-          },
-          "amendeent-action": {
-            ammendement_instruction_date: "",
-            date_ammendement_instruction_received: "",
-            nature_of_amendment: new FormControl('', [Validators.required]),
-            date_amending_clerk_instructed: "",
-            status_of_amendment: new FormControl('', [Validators.required]),
-            date_amendment_received: ""
-          },
+          "amendment-action": this.Forms.T_amendment_action,
+          'assignment-merger-action':this.Forms.T_assignment_merger_action,
+          'certificate-procurement-action':this.Forms.T_certificate_procurement_action,
+          'change-name-address-action':this.Forms.T_change_name_address_action,
+          'profile':this.Forms.T_profile,
+          'reclassification-action':this.Forms.T_reclassification_action,
+          'registration-action':this.Forms.T_registration_action,
+          'renewal-action':this.Forms.T_renewal_action,
+          'search-action':this.Forms.T_search_action,
         };
       }
 
@@ -128,6 +97,8 @@ export class OverlayComponent implements OnInit {
   }
 
   dynamicFormGroupGenerator() {
+    console.log('documentType state: ',this.documentType);
+    
     this.createForm = this.formBuilder.group(this.documentTypeFormDictionary[this.documentType]);
     this.editForm = this.formBuilder.group(this.documentTypeFormDictionary[this.documentType]);
     this.deleteForm = this.formBuilder.group(this.documentTypeFormDictionary[this.documentType]);   
