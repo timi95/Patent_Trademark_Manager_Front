@@ -21,10 +21,140 @@ export class Form {
         assignee_address: new FormControl('', [Validators.required]),
         date_assignment_certificate_received: ""
     };
+    P_change_address: any = {
+        change_of_address_instruction_date: new FormControl('', [Validators.required]),
+        change_of_address_instruction_month: new FormControl('', [Validators.required]),
+        new_address_of_patentee: new FormControl('', [Validators.required]),
+        clerk_of_change_of_address: new FormControl('', [Validators.required]),
+        status_change_of_address: new FormControl('', [Validators.required]),
+        date_received_change_of_address_certificate: ''
+    };
+    P_change_name: any = {
+        change_of_name_instruction_date: '',
+        change_of_name_instruction_month: new FormControl('', [Validators.required]),
+        new_name_of_patentee: new FormControl('', [Validators.required]),
+        clerk_for_change_of_name: new FormControl('', [Validators.required]),
+        status_of_change_of_name: new FormControl('', [Validators.required]),
+        date_received_change_of_name_certificate: ''
+    };
+    P_ctc: any = {
+        application_no: new FormControl('', [Validators.required]),
+        patent_registration_no: new FormControl('', [Validators.required]),
+        ctc_required: new FormControl('', [Validators.required]),
+        date_applied_for_ctc: '',
+        ctc_procurement_status: new FormControl('', [Validators.required]),
+        clerk_responsible: new FormControl('', [Validators.required])
+    };
+    P_patent_particulars: any = {
+        our_reference_number: new FormControl('', [Validators.required]),
+        client_id: new FormControl('', [Validators.required]),
+        clients_reference_number: new FormControl('', [Validators.required]),
+        curent_instruction: new FormControl('', [Validators.required]),
+        date_of_instruction: '',
+        name_of_client: new FormControl('', [Validators.required]),
+        clients_address: new FormControl('', [Validators.required]),
+        clients_contact_person: new FormControl('', [Validators.required]),
+        name_of_patentee: new FormControl('', [Validators.required]),
+        patentees_address: new FormControl('', [Validators.required]),
+        date_instruction_received: '',
+        lawyer_responsible: new FormControl('', [Validators.required]),
+        invention_description: new FormControl('', [Validators.required]),
+        patent_registration_number: new FormControl('', [Validators.required]),
+        convention_country: new FormControl('', [Validators.required]),
+        current_status: new FormControl('', [Validators.required]),
+        date_certificate_procurement_due: '',
+        month_certificate_procurement_due: new FormControl('', [Validators.required]),
+        date_outgoing_abuja_schedule: '',
+        date_incoming_abuja_schedule: '',
+        date_completed_job_received: '',
+        official_fee: 0,
+        facilitation: 0,
+        incentive_due_clerk: new FormControl('', [Validators.required]),
+        clerk_responsible: new FormControl('', [Validators.required]),
+        month_incoming_abuja_schedule: new FormControl('', [Validators.required]),
+        month_outgoing_abuja_schedule: new FormControl('', [Validators.required]),
+        filing_receipt_status: new FormControl('', [Validators.required]),
+        applicable_service_charge: 0,
+        quickteller_fee: 0
+    };
+    P_procurement: any = {
+        date_procurement_instructed: '',
+        application_no: new FormControl('', [Validators.required]),
+        invention_description: new FormControl('', [Validators.required]),
+        clerk_procuring: new FormControl('', [Validators.required]),
+        month_clerk_instructed: new FormControl('', [Validators.required]),
+        procurement_status: new FormControl('', [Validators.required]),
+        date_cert_procured: '',
+        patent_regtn_no: new FormControl('', [Validators.required]),
+        date_cert_procurement_due: '',
+        month_cert_procurement_due: new FormControl('', [Validators.required])
+    };
+    P_registration: any = {
+        date_registration_instruction_received: '',
+        month_registration_instruction_received: new FormControl('', [Validators.required]),
+        clerk_registration: new FormControl('', [Validators.required]),
+        date_abuja_instructed_for_registration: '',
+        convention_priority_ref_1: new FormControl('', [Validators.required]),
+        convention_priority_date_1: '',
+        convention_priority_ref_2: new FormControl('', [Validators.required]),
+        convention_priority_date_2: '',
+        convention_priority_ref_3: new FormControl('', [Validators.required]),
+        convention_priority_date_3: '',
+        PCT_ref_no: new FormControl('', [Validators.required]),
+        PCT_filling_date: '',
+        filling_deadline: new FormControl('', [Validators.required]),
+        application_no: new FormControl('', [Validators.required]),
+        patent_registration_filling_date: '',
+        registration_filling_month: new FormControl('', [Validators.required]),
+        registration_status: new FormControl('', [Validators.required]),
+        acknowledgement_status: new FormControl('', [Validators.required]),
+        acceptance_date: '',
+        cert_procurement_date: '',
+        cert_procurment_month: new FormControl('', [Validators.required]),
+        patent_registration_no: new FormControl('', [Validators.required]),
+        correspondence_date: '',
+        date_of_instruction: '',
+        clients_contact_person: new FormControl('', [Validators.required]),
+        official_fee_registration: new FormControl('', [Validators.required])
+    };
+    P_renewal_action: any  = {
+        date_registration_instruction_received: '',
+        month_registration_instruction_received: new FormControl('', [Validators.required]),
+        clerk_registration: new FormControl('', [Validators.required]),
+        date_abuja_instructed_for_registration: '',
+        convention_priority_ref_1: new FormControl('', [Validators.required]),
+        convention_priority_date_1: '',
+        convention_priority_ref_2: new FormControl('', [Validators.required]),
+        convention_priority_date_2: '',
+        convention_priority_ref_3: new FormControl('', [Validators.required]),
+        convention_priority_date_3: '',
+        PCT_ref_no: new FormControl('', [Validators.required]),
+        PCT_filling_date: '',
+        filling_deadline: new FormControl('', [Validators.required]),
+        application_no: new FormControl('', [Validators.required]),
+        patent_registration_filling_date: '',
+        registration_filling_month: new FormControl('', [Validators.required]),
+        registration_status: new FormControl('', [Validators.required]),
+        acknowledgement_status: new FormControl('', [Validators.required]),
+        acceptance_date: '',
+        cert_procurement_date: '',
+        cert_procurment_month: new FormControl('', [Validators.required]),
+        patent_registration_no: new FormControl('', [Validators.required]),
+        correspondence_date: '',
+        date_of_instruction: '',
+        clients_contact_person: new FormControl('', [Validators.required]),
+        official_fee_registration: new FormControl('', [Validators.required])
+    };
+    P_search_action: any = {
+        search_status: new FormControl('', [Validators.required]),
+        reported_to_client: new FormControl('', [Validators.required]),
+        date_reported_to_client: '',
+        clerk_searching: new FormControl('', [Validators.required])
+    };
 
 
 
-
+    
     T_amendment_action:any = {
         ammendement_instruction_date: "",
         date_ammendement_instruction_received: "",
@@ -48,7 +178,7 @@ export class Form {
         official_fee_assignment: new FormControl('', [Validators.required]),
         status_assignment_registrations: new FormControl('', [Validators.required]),
     }
-    T_certificate_procurement_action:any ={
+    T_certificate_procurement_action:any = {
         date_procurement_instructed: "",
         application_no: new FormControl('', [Validators.required]),
         trademark_description: new FormControl('', [Validators.required]),
