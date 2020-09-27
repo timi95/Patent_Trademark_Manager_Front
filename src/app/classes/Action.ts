@@ -19,7 +19,7 @@ export class Action {
   ];
   public patent_particulars:string[] = ['PatentParticlars'];
   public trademark_ActionTypes:string[] = [
-    'AmendementAction',
+    'AmendmentAction',
     'AssignmentMergerAction',
     'CertificateProcurementAction',
     'ChangeName_AddressAction',
@@ -31,7 +31,7 @@ export class Action {
   public trademark_profile:string[] = ['TrademarkProfile'];
   // dictionaries
   public patentActionUrlDict = {
-    'AmendmentAction':"amendement-action",
+    'AmendmentAction':"amendment-action",
     'AssignmentMergerAction':'assignment-merger-action',
     'ChangeOfAddressAction':'change-address',
     'ChangeOfNameAction':'change-name',
@@ -43,7 +43,7 @@ export class Action {
     'SearchAction':'search-action',
   }
   public trademarkActionUrlDict = {
-    'AmendementAction':'amendement-action',
+    'AmendmentAction':'amendment-action',
     'AssignmentMergerAction':'assignment-merger-action',
     'CertificateProcurementAction':'certificate-procurement-action',
     'ChangeName_AddressAction':'change-name-address-action',
