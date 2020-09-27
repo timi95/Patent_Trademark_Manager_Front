@@ -60,24 +60,14 @@ export class SideNavComponent implements OnInit {
   }
 
   fetchDocuments(value:string){
-    console.log("fetchDocuments value: ",value);
-    
     // setting the managerType to dynamically generate content for the overlays and widgets
-    if (this.managerType == "Patent_manager") {
       localStorage.setItem('managerType',this.managerType);
       this.utilityService.updateManagerType();
-      // console.log('managerType from storage',localStorage.getItem('managerType'));
-    } else {
-      localStorage.setItem('managerType',this.managerType);
-      this.utilityService.updateManagerType();
-      // console.log('managerType from storage',localStorage.getItem('managerType'));
-    }
+
     this.documentType = value;
     let url_suffix = this.managerType == "Patent_manager"?
                       this.patentActionUrlDict[value]:
-                      this.trademarkActionUrlDict[value];
-                      console.log('url_suffix in side-nav:',url_suffix);
-                      
+                      this.trademarkActionUrlDict[value];                      
     this.apiService
     .patentDocumentRequest(url_suffix,"get",null,null,this.managerType)
     .subscribe((response:any) => {        

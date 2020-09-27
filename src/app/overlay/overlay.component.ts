@@ -96,16 +96,11 @@ export class OverlayComponent implements OnInit {
     }
   }
 
-  dynamicFormGroupGenerator() {
-    console.log('documentType state: ',this.documentType);
-    
+  dynamicFormGroupGenerator() {   
     this.createForm = this.formBuilder.group(this.documentTypeFormDictionary[this.documentType]);
     this.editForm = this.formBuilder.group(this.documentTypeFormDictionary[this.documentType]);
     this.deleteForm = this.formBuilder.group(this.documentTypeFormDictionary[this.documentType]);   
  }
-  print(value?:any):void{
-    console.log(value);
-  }
   updateEditForm(attributeName, inputValue): void{
     this.editForm.value[attributeName] = inputValue;
     for(const key in this.detailsObject){
