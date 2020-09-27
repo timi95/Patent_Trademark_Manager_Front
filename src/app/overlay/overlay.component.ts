@@ -49,14 +49,14 @@ export class OverlayComponent implements OnInit {
 
       if(resp =="Patent_manager"){
         this.documentTypeFormDictionary = {
-          'search-action':{},
-          'renewal-action':{},
-          'registration':{},
-          'patent-particulars':{},
-          'procurement':{},
-          'ctc':{},
-          'change-name':{},
-          'change-address':{},
+          'search-action':this.Forms.P_search_action,
+          'renewal-action':this.Forms.P_renewal_action,
+          'registration':this.Forms.P_registration,
+          'patent-particulars':this.Forms.P_patent_particulars,
+          'procurement':this.Forms.P_procurement,
+          'ctc':this.Forms.P_ctc,
+          'change-name':this.Forms.P_change_name,
+          'change-address': this.Forms.P_change_address,
           'assignment-merger-action':this.Forms.P_assignment_merger_action,
           "amendment-action": this.Forms.P_amendment_action,
         }
