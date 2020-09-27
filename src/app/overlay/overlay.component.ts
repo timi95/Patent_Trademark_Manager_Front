@@ -68,7 +68,7 @@ export class OverlayComponent implements OnInit {
             assignee_address: new FormControl('', [Validators.required]),
             date_assignment_certificate_received: ""
           },
-          "amendement-action": {
+          "amendment-action": {
             date_amendment_instruction_received: "",
             nature_of_amendment: new FormControl('', [Validators.required]),
             amending_clerk: new FormControl('', [Validators.required]),
@@ -95,22 +95,22 @@ export class OverlayComponent implements OnInit {
             official_fee_assignment: new FormControl('', [Validators.required]),
             status_assignment_registrations: new FormControl('', [Validators.required]),
           },
-          "amendement-action": {
+          "amendeent-action": {
             ammendement_instruction_date: "",
             date_ammendement_instruction_received: "",
-            nature_of_amendement: new FormControl('', [Validators.required]),
+            nature_of_amendment: new FormControl('', [Validators.required]),
             date_amending_clerk_instructed: "",
-            status_of_amendement: new FormControl('', [Validators.required]),
-            date_amendement_received: ""
+            status_of_amendment: new FormControl('', [Validators.required]),
+            date_amendment_received: ""
           },
         };
       }
-      console.log('resp',resp,'dictionary state: ',this.documentTypeFormDictionary,'document type: ',this.documentType);
+
       this.dynamicFormGroupGenerator();
     });
   }
   ngOnChanges(): void {
-    this.ngOnInit();
+    this.dynamicFormGroupGenerator();
   }
 
 
