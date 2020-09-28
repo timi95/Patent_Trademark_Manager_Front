@@ -82,7 +82,6 @@ export class OverlayComponent implements OnInit {
     this.dynamicFormGroupGenerator();
   }
 
-
   
   // This functions result is used to evaluate what Input tag gets shown
   evaluateKey(key:string):string {
