@@ -87,6 +87,7 @@ export class SideNavComponent implements OnInit {
   }
   
 
+  
 
   toggleList(){
     this.opened = !this.opened;
