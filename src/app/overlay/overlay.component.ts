@@ -165,7 +165,8 @@ export class OverlayComponent implements OnInit {
           this.documentType,
           "post",
            0,
-          JSON.stringify(this.createForm.getRawValue()))
+          JSON.stringify(this.createForm.getRawValue()),
+          localStorage.getItem('managerType'))
         .subscribe(
           (response) => {
             
