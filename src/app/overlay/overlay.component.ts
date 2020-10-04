@@ -190,7 +190,8 @@ export class OverlayComponent implements OnInit {
             this.documentType,
             "patch", 
             this.detailsObject.id, 
-            this.editForm.value )
+            this.editForm.value,
+            localStorage.getItem('managerType') )
           .subscribe( resp => {
             
             this.messageService.pushSuccess("Successfully Updated! ");
@@ -211,7 +212,8 @@ export class OverlayComponent implements OnInit {
             this.documentType,
             "delete" ,
             this.detailsObject.id,
-            this.deleteForm.value)
+            this.deleteForm.value,
+            localStorage.getItem('managerType'))
           .subscribe( resp => {
             
             this.messageService.pushSuccess(`Successfully deleted ${this.detailsObject.id}!`);
