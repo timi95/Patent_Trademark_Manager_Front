@@ -16,6 +16,7 @@ import { DetailComponent } from './detail/detail.component';
 import { PureCallPipe } from './pipes/pure-call.pipe';
 import { FilterByWidgetComponent } from './filter-by-widget/filter-by-widget.component';
 import { DateRangeSearchWidgetComponent } from './date-range-search-widget/date-range-search-widget.component';
+import { ReminderListComponent } from './reminder-list/reminder-list.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { DateRangeSearchWidgetComponent } from './date-range-search-widget/date-
     PureCallPipe,
     FilterByWidgetComponent,
     DateRangeSearchWidgetComponent,
+    ReminderListComponent,
   ],
   imports: [
     BrowserModule,
