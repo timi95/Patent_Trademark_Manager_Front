@@ -79,7 +79,6 @@ export class SideNavComponent implements OnInit {
         // get result list from storage and add it to BehaviourSubject
         this.utilityService.updateDocumentList();
         this.utilityService.updateDocumentType();
-
       }, err => {
           console.log(err);
           this.messageService.pushError(err);
@@ -87,7 +86,7 @@ export class SideNavComponent implements OnInit {
   }
   
 
-  
+
 
   toggleList(){
     this.opened = !this.opened;
