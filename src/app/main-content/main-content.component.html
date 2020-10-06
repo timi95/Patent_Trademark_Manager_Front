@@ -7,7 +7,7 @@
     <span style="
     padding:0 20px;
     font-size: 25px;
-    font-weight: 700;">{{documentType}}</span>
+    font-weight: 700;">{{utilityService.managerTypeSubject|async}} - {{utilityService.documentTypeSubject|async}}</span>
   </span>
   <ul class="card-grid" *ngIf="documentList">
     <li class="card-body" *ngFor="let document of documentList" >

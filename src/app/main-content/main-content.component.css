@@ -30,6 +30,9 @@
     height: 86%;
     overflow: auto;
 }
+/* .scrollable-grid::-webkit-scrollbar{
+    display: none;
+} */
 .card-grid {
     display: grid;
     grid-template-columns:repeat(auto-fill, minmax(12rem, 1fr));
