@@ -3,6 +3,8 @@ nav {
     background-color: #36393f;
     height: 100%;
     color: #fff;
+    padding: 15px 1px;
+    width: 100%;
 }
 
 .list-item-divider {
@@ -10,6 +12,11 @@ nav {
     flex-direction: column;
     justify-content: space-evenly;
     height: 100%;
+    overflow-y:scroll;
+    overflow-x:hidden;
+}
+.list-item-divider::-webkit-scrollbar{
+    display: none;
 }
 
 .list-item {
