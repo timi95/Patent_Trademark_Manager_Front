@@ -1,6 +1,13 @@
 <nav>
     <div class="nav-cap">
-        <a class="nav-icon">{{ title }}</a>
+        <div class="toggle-brace">
+            <a (click)="PTToggle()"
+            [ngClass]="{'off': P_T_list_toggle.Patentlist == true}">Patents</a>
+            
+            <a (click)="PTToggle()"
+            [ngClass]="{'off': P_T_list_toggle.Trademarklist == true}">Trademarks</a>
+        </div>
+        <!-- <a class="nav-icon">{{ title }}</a> -->
         <button *ngIf="isMobile" (click)="toggleList()">|||</button>
     </div>
     <div class="list-item-divider" *ngIf="!isMobile || (opened && isMobile)">

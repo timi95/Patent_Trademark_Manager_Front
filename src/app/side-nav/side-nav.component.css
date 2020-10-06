@@ -30,3 +30,22 @@ nav {
     justify-content: space-between;
     border-bottom: 1px solid rgba(168, 159, 159, 0.685)
 }
+
+.toggle-brace{
+    display: flex;
+    width: 100%;
+}
+.toggle-brace>a{
+    width: 100%;
+    cursor: pointer;
+    background-color: grey;
+    /* color: #17191b; */
+    font-weight: 600;
+    text-align: center;
+}
+.toggle-brace>a.off{
+    background-color: #36393f;
+    color: rgba(255, 255, 255, 0.822);
+    box-shadow: inset 2px 2px 1px 0px #17191b;
+    pointer-events: none;
+}

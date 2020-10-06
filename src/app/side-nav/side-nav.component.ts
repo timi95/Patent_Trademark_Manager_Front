@@ -7,12 +7,11 @@ import { UtilityService } from 'src/services/utility.service';
 @Component({
   selector: 'side-nav',
   templateUrl: './side-nav.component.html',
-  styleUrls: ['./side-nav.component.css']
-})
+  styleUrls: ['./side-nav.component.css'] })
 export class SideNavComponent implements OnInit {
   @Input('title') title:string;
-  @Input('itemList') itemList:string[];
-  @Input('managerType') managerType:string;
+  // @Input('itemList') itemList:string[];
+  // @Input('managerType') managerType:string;
 
   opened : boolean;
   isMobile : boolean;
@@ -21,9 +20,17 @@ export class SideNavComponent implements OnInit {
   screenWidth:number;
 
   // Moving responsibility of document fetching to side nav
+
   patentActionUrlDict: any = new Action().patentActionUrlDict;
   trademarkActionUrlDict: any = new Action().trademarkActionUrlDict;
   documentType: any  = 'AmendmentAction';
+
+  P_T_list_toggle:{Patentlist:boolean,Trademarklist:boolean} = {
+    'Patentlist':true,
+    'Trademarklist':false,
+  }
+  managerType:string = 'Patent_manager';
+  itemList:string[] = new Action().patent_ActionTypes;
 
 
   constructor(
@@ -61,8 +68,8 @@ export class SideNavComponent implements OnInit {
 
   fetchDocuments(value:string){
     // setting the managerType to dynamically generate content for the overlays and widgets
-      localStorage.setItem('managerType',this.managerType);
-      this.utilityService.updateManagerType();
+    localStorage.setItem('managerType',this.managerType);
+    this.utilityService.updateManagerType();
 
     this.documentType = value;
     let url_suffix = this.managerType == "Patent_manager"?
@@ -86,7 +93,14 @@ export class SideNavComponent implements OnInit {
   }
   
 
-
+  PTToggle(){
+    this.P_T_list_toggle.Patentlist = !this.P_T_list_toggle.Patentlist;
+    this.P_T_list_toggle.Trademarklist = !this.P_T_list_toggle.Trademarklist;
+    this.managerType = this.P_T_list_toggle.Patentlist?
+    'Patent_manager':'Trademark_manager';
+    this.itemList = this.P_T_list_toggle.Patentlist?
+    new Action().patent_ActionTypes: new Action().trademark_ActionTypes;
+  }
 
   toggleList(){
     this.opened = !this.opened;
