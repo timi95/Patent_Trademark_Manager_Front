@@ -44,12 +44,12 @@ export class SideNavComponent implements OnInit {
   
 
   ngOnInit(): void {
-    localStorage.setItem('managerType','Patent_manager');
+    localStorage.setItem('managerType',this.managerType);
     this.utilityService.updateManagerType();
 
     this.apiService.patentDocumentRequest(
       this.patentActionUrlDict['AmendmentAction'],
-      "get").subscribe((response:any) => {
+      "get",null,null,this.managerType).subscribe((response:any) => {
         this.messageService.pushSuccess(`Successfully fetched ${this.documentType}s!`);
         // assign results to our list in storage
         localStorage.setItem('documentList',JSON.stringify(response.results));
@@ -96,8 +96,11 @@ export class SideNavComponent implements OnInit {
   PTToggle(){
     this.P_T_list_toggle.Patentlist = !this.P_T_list_toggle.Patentlist;
     this.P_T_list_toggle.Trademarklist = !this.P_T_list_toggle.Trademarklist;
-    this.managerType = this.P_T_list_toggle.Patentlist?
-    'Patent_manager':'Trademark_manager';
+    
+    this.managerType = this.P_T_list_toggle.Patentlist? 'Patent_manager':'Trademark_manager';
+    localStorage.setItem('managerType',this.managerType);
+    this.utilityService.updateManagerType();
+
     this.itemList = this.P_T_list_toggle.Patentlist?
     new Action().patent_ActionTypes: new Action().trademark_ActionTypes;
   }
