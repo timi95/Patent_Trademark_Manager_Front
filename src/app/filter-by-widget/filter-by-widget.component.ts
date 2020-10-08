@@ -23,19 +23,19 @@ export class FilterByWidgetComponent implements OnInit {
 
   ngOnInit(): void {
     this.utilityService.updateDocumentList();
-    this.utilityService.documentListSubject.subscribe(resp=>{this.orderTypeList=Object.keys(resp[0])});
+    this.utilityService.documentListSubject.subscribe(resp=>{this.orderTypeList=resp[0]?Object.keys(resp[0]):[];});
 
     this.utilityService.updateDocumentType();
     this.utilityService.documentTypeSubject.subscribe(resp=>{this.documentTypeUrl=this.patentActionUrlDict[resp]});
   }
 
   sort($event){
-    console.log("sort by component call");
+    // console.log("sort by component call");
     this.apiService.orderPatentDocumentsByField(
       this.documentTypeUrl, 
       $event.target.value)
     .subscribe(resp =>{
-      console.log('orderPatentDocumentsByField() called! response ==>', resp['results']);
+      // console.log('orderPatentDocumentsByField() called! response ==>', resp['results']);
       localStorage.setItem('documentList', JSON.stringify(resp['results']) );
       this.utilityService.updateDocumentList();
     });
