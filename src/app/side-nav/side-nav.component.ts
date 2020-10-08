@@ -96,7 +96,7 @@ export class SideNavComponent implements OnInit {
   PTToggle(){
     this.P_T_list_toggle.Patentlist = !this.P_T_list_toggle.Patentlist;
     this.P_T_list_toggle.Trademarklist = !this.P_T_list_toggle.Trademarklist;
-    
+
     this.managerType = this.P_T_list_toggle.Patentlist? 'Patent_manager':'Trademark_manager';
     localStorage.setItem('managerType',this.managerType);
     this.utilityService.updateManagerType();
