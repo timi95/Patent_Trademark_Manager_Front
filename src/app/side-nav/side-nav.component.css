@@ -29,6 +29,14 @@ nav {
 
     margin-top: 16px;
     border-bottom: 1px solid rgba(168, 159, 159, 0.685);
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+.list-item:hover{
+    color: #667bd8;
+    font-weight: 500;
+    /* font-size: 16px; */
 }
 
 .nav-cap {
