@@ -148,7 +148,12 @@ export class OverlayComponent implements OnInit {
   refreshObject(){
     //  refresh the detailsObject once overlay is closed
     this.apiService
-    .patentDocumentRequest(this.documentType,'get',this.detailsObject.id)
+    .patentDocumentRequest(
+    this.documentType,
+    'get',
+    this.detailsObject.id,
+    null,
+    localStorage.getItem('managerType'))
     .subscribe(resp => { 
     localStorage.setItem('detailsObject',JSON.stringify(resp)); 
     // reload page once work is done
