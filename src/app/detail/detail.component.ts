@@ -31,13 +31,12 @@ export class DetailComponent implements OnInit, OnDestroy {
     }
 
 
-  ngOnInit(): void {   
-
+    ngOnInit(): void {     
     this.utilityService.setDetailEditFormInactive();
     this.utilityService.detailEditFormActive.subscribe( bool => {
       this.detailEditIsActive = bool;
     });
-
+    
     this.utilityService.setDetailDeleteFormInactive();
     this.utilityService.detailDeleteFormActive.subscribe( bool => {
       this.detailEditIsActive = bool;
@@ -70,7 +69,7 @@ export class DetailComponent implements OnInit, OnDestroy {
       this.detailEditIsActive = bool;
     });
 
-    console.log(`detailEditIsActive state: ${this.detailEditIsActive}`);
+    // console.log(`detailEditIsActive state: ${this.detailEditIsActive}`);
   }
 
   deleteDocument(){
