@@ -98,7 +98,9 @@ export class OverlayComponent implements OnInit {
   dynamicFormGroupGenerator() {   
     this.createForm = this.formBuilder.group(this.documentTypeFormDictionary[this.documentType]);
     this.editForm = this.formBuilder.group(this.documentTypeFormDictionary[this.documentType]);
-    this.deleteForm = this.formBuilder.group(this.documentTypeFormDictionary[this.documentType]);   
+    this.deleteForm = this.formBuilder.group(this.documentTypeFormDictionary[this.documentType]);
+    console.debug(this.editForm);
+    
  }
   updateEditForm(attributeName, inputValue): void{
     this.editForm.value[attributeName] = inputValue;
@@ -126,7 +128,7 @@ export class OverlayComponent implements OnInit {
         break;
       
       case this.formTypes[1]:
-        this.refreshObject();
+        // this.refreshObject();
         this.utilityService.setDetailEditFormInactive();
         this.utilityService.detailEditFormActive.subscribe( bool => {
           this.active = bool;          
@@ -152,7 +154,7 @@ export class OverlayComponent implements OnInit {
     this.documentType,
     'get',
     this.detailsObject.id,
-    null,
+    this.editForm.value,
     localStorage.getItem('managerType'))
     .subscribe(resp => { 
     localStorage.setItem('detailsObject',JSON.stringify(resp)); 

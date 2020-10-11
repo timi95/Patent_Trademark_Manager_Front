@@ -33,7 +33,7 @@
   (ngSubmit)="onSubmit('update')">
 
   <header>
-    <h3>Edit a(n) {{ documentType|uppercase }} </h3>
+    <h3>Edit a(n) {{ utilityService.documentTypeSubject|async }} </h3>
     <a class="cancel" (click)="setInactive()">Close</a>
   </header>
 
