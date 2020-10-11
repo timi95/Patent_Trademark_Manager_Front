@@ -20,19 +20,24 @@ export class DetailComponent implements OnInit, OnDestroy {
   detailDeleteIsActive:boolean;
 
   overlayFormType: string;
-  patentActionUrlDict: any = new Action().patentActionUrlDict;
+  documentTypeUrlDict: any = new Action().patentActionUrlDict;
 
 
   constructor(
     private router:Router,
     private activedRoute:ActivatedRoute,
-    private apiService: ApiService,
     public utilityService:UtilityService) {      
     }
 
 
     ngOnInit(): void {     
     console.log(`detailEditIsActive state: ${this.detailEditIsActive}`);
+
+    this.utilityService.managerTypeSubject.subscribe(resp=>{
+      this.documentTypeUrlDict = resp =='Patent_manager'?
+      new Action().patentActionUrlDict:
+      new Action().trademarkActionUrlDict;
+    });
 
     this.utilityService.setDetailEditFormInactive();
     this.utilityService.detailEditFormActive.subscribe( bool => {
@@ -60,7 +65,7 @@ export class DetailComponent implements OnInit, OnDestroy {
   }
 
 
-  navigateHome(){
+  navigateHome(){   
     this.router.navigate(['']);
   }
 

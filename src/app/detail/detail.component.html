@@ -10,11 +10,11 @@
 <div class="widget-container">
     <a class="square_btn" (click)="editDocument()">Edit</a>
 </div>
-<div >
+<div>
     {{detailEditIsActive}}
     <overlay *ngIf="detailEditIsActive"
     [active]="detailEditIsActive"
-    [documentType]="patentActionUrlDict[documentType]"
+    [documentType]="documentTypeUrlDict[documentType]"
     [formType]="overlayFormType"></overlay>
 </div>
 
