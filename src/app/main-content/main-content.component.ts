@@ -18,6 +18,7 @@ export class MainContentComponent implements OnInit {
 
   documentList:Document[];
   modalIsActive:boolean;
+  formType:string = 'create';
 
   documentTypeUrlDict: any ;
   // strategy for fetching resources from end-point
@@ -63,6 +64,7 @@ export class MainContentComponent implements OnInit {
 
   viewDetails(item:Document){
     console.log(`Navigating to Amendment Details id ${item.id}`);
+    this.formType = 'update';
     this.utilityService.loadDetails(item);
     localStorage.setItem('documentType', this.documentType);
     this.router.navigate([`detail/${item.id}`]);
