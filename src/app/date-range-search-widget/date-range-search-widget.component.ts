@@ -15,19 +15,27 @@ export class DateRangeSearchWidgetComponent implements OnInit {
   
   documentTypeUrl: any;
   patentActionUrlDict: any = new Action().patentActionUrlDict;
+  trademarkActionUrlDict: any = new Action().trademarkActionUrlDict;
+  managerType:string = 'Patent_manager';
 
   constructor(private utilityService: UtilityService, private apiService: ApiService) { }
 
   ngOnInit(): void {
+    this.utilityService.updateManagerType();
+    this.utilityService.managerTypeSubject.subscribe(resp=>{this.managerType = resp;});
+
     this.utilityService.updateDocumentList();
     this.utilityService.documentListSubject.subscribe(resp=>{});
 
     this.utilityService.updateDocumentType();
-    this.utilityService.documentTypeSubject.subscribe(resp=>{this.documentTypeUrl=this.patentActionUrlDict[resp]});
+    this.utilityService.documentTypeSubject.subscribe(resp=>{
+      this.documentTypeUrl = (this.managerType == 'Patent_manager')?
+      this.patentActionUrlDict[resp]: this.trademarkActionUrlDict[resp];});
   }
 
   searchDateRange(){
-    this.apiService.searchPatentDocumentsByDate(this.documentTypeUrl, this.from, this.till)
+    this.apiService
+    .searchPatentDocumentsByDate(this.documentTypeUrl, this.from, this.till, this.managerType)
     .subscribe(resp =>{
       localStorage.setItem('documentList', JSON.stringify(resp['results']) );
       this.utilityService.updateDocumentList();
