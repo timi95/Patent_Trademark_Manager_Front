@@ -74,7 +74,7 @@ export class SideNavComponent implements OnInit {
     this.documentType = value;
     let url_suffix = this.managerType == "Patent_manager"?
                       this.patentActionUrlDict[value]:
-                      this.trademarkActionUrlDict[value];                      
+                      this.trademarkActionUrlDict[value];                  
     this.apiService
     .patentDocumentRequest(url_suffix,"get",null,null,this.managerType)
     .subscribe((response:any) => {        
