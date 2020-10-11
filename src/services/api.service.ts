@@ -98,16 +98,18 @@ public errors: any = [];
   }
 
   orderPatentDocumentsByField(documentType:string,
-                      orderByField:string){
+                      orderByField:string,
+                      managerType:string){
     return this.httpServer
-    .get(`${this.API_URL}/Patent_manager/${documentType}?ordering=${orderByField}`);
+    .get(`${this.API_URL}/${managerType}/${documentType}?ordering=${orderByField}`);
   }
   
   searchPatentDocumentsByDate(documentType:string,
                      date_from:string,
-                     date_to:string){
+                     date_to:string,
+                     managerType:string){
     return this.httpServer
-    .get(`${this.API_URL}/Patent_manager/${documentType}?date_from=${date_from}&date_to=${date_to}`);
+    .get(`${this.API_URL}/${managerType}/${documentType}?date_from=${date_from}&date_to=${date_to}`);
   }
 
 
