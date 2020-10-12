@@ -1,4 +1,5 @@
 <a class="font-weight" href="#" (click)="navigateHome()" >Back</a>
+
 <ul class="font-colour info-view" *ngIf="details">
     <li *ngFor="let item of utilityService.toList|pureCall:details"> 
         <span class="detail-subtitle">{{item[0]}}:</span> {{item[1]}}
@@ -10,11 +11,8 @@
 <div class="widget-container">
     <a class="square_btn" (click)="editDocument()">Edit</a>
 </div>
-<div>
-    {{detailEditIsActive}}
-    <overlay *ngIf="detailEditIsActive"
-    [active]="detailEditIsActive"
-    [documentType]="documentTypeUrlDict[documentType]"
-    [formType]="overlayFormType"></overlay>
-</div>
+<overlay
+[active]="(utilityService.detailEditFormActive|async) !== (utilityService.detailDeleteFormActive|async)"
+[documentType]="documentTypeUrlDict[documentType]"
+[formType]="overlayFormType"></overlay>
 

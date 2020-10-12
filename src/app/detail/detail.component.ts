@@ -32,6 +32,10 @@ export class DetailComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {     
     console.log(`detailEditIsActive state: ${this.detailEditIsActive}`);
+    // get the details from localStorage
+    this.details = JSON.parse(localStorage.getItem('detailsObject'));
+    this.detailsAsList = this.utilityService.toList(this.details);
+    this.documentType = localStorage.getItem('documentType');
 
     this.utilityService.managerTypeSubject.subscribe(resp=>{
       this.documentTypeUrlDict = resp =='Patent_manager'?
@@ -39,7 +43,7 @@ export class DetailComponent implements OnInit, OnDestroy {
       new Action().trademarkActionUrlDict;
     });
 
-    this.utilityService.setDetailEditFormInactive();
+    // this.utilityService.setDetailEditFormInactive();
     this.utilityService.detailEditFormActive.subscribe( bool => {
       this.detailEditIsActive = bool;
     });
@@ -54,9 +58,7 @@ export class DetailComponent implements OnInit, OnDestroy {
       this.ID = param.get('id');
     });
 
-    // get the details from localStorage
-    this.details = JSON.parse(localStorage.getItem('detailsObject'));
-    this.documentType = localStorage.getItem('documentType');
+
   }
 
   ngOnDestroy(){
