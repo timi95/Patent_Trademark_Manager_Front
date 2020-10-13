@@ -3,6 +3,7 @@ import { Action } from '../classes/Action';
 import { ApiService } from 'src/services/api.service';
 import { MessageService } from 'src/services/message.service';
 import { UtilityService } from 'src/services/utility.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'side-nav',
@@ -34,6 +35,7 @@ export class SideNavComponent implements OnInit {
 
 
   constructor(
+    private router: Router,
     private apiService: ApiService,
     private utilityService: UtilityService,
     private messageService: MessageService) {
@@ -47,49 +49,52 @@ export class SideNavComponent implements OnInit {
     localStorage.setItem('managerType',this.managerType);
     this.utilityService.updateManagerType();
 
-    this.apiService.patentDocumentRequest(
-      this.patentActionUrlDict['AmendmentAction'],
-      "get",null,null,this.managerType).subscribe((response:any) => {
-        this.messageService.pushSuccess(`Successfully fetched ${this.documentType}s!`);
-        // assign results to our list in storage
-        localStorage.setItem('documentList',JSON.stringify(response.results));
-        localStorage.setItem('documentType',this.documentType);
+    // this.apiService
+    // .patentDocumentRequest(
+    //   this.patentActionUrlDict['AmendmentAction'],
+    //   "get",null,null,this.managerType)
+    //   .subscribe((response:any) => {
+    //     this.messageService.pushSuccess(`Successfully fetched ${this.documentType}s!`);
+    //     // assign results to our list in storage
+    //     localStorage.setItem('documentList',JSON.stringify(response.results));
+    //     localStorage.setItem('documentType',this.documentType);
 
-        // get result list from storage and add it to BehaviourSubject
-        this.utilityService.updateDocumentList();
-        this.utilityService.updateDocumentType();
-      }, err => {
-          console.log(err);
-          this.messageService.pushError(err);
-          // this.messages.add(err);
-      });
+    //     // get result list from storage and add it to BehaviourSubject
+    //     this.utilityService.updateDocumentList();
+    //     this.utilityService.updateDocumentType();
+    //   }, err => {
+    //       console.log(err);
+    //       this.messageService.pushError(err);
+    //       // this.messages.add(err);
+    //   });
 
   }
 
   fetchDocuments(value:string){
+    localStorage.setItem('documentType',value);
+    this.utilityService.updateDocumentType();
     // setting the managerType to dynamically generate content for the overlays and widgets
-    localStorage.setItem('managerType',this.managerType);
-    this.utilityService.updateManagerType();
+    // localStorage.setItem('managerType',this.managerType);
+    // this.utilityService.updateManagerType();
+    // this.documentType = value;
+    // let url_suffix = this.managerType == "Patent_manager"?
+    //                   this.patentActionUrlDict[value]:
+    //                   this.trademarkActionUrlDict[value];                  
+    // this.apiService
+    // .documentRequest(url_suffix,"get",null,null,this.managerType)
+    // .subscribe((response:any) => {        
+    //     this.messageService.pushSuccess(`Successfully fetched ${this.documentType}s!`);
+    //     // assign results to our list in storage
+    //     localStorage.setItem('documentList',JSON.stringify(response.results));
+    //     localStorage.setItem('documentType',this.documentType);
 
-    this.documentType = value;
-    let url_suffix = this.managerType == "Patent_manager"?
-                      this.patentActionUrlDict[value]:
-                      this.trademarkActionUrlDict[value];                  
-    this.apiService
-    .patentDocumentRequest(url_suffix,"get",null,null,this.managerType)
-    .subscribe((response:any) => {        
-        this.messageService.pushSuccess(`Successfully fetched ${this.documentType}s!`);
-        // assign results to our list in storage
-        localStorage.setItem('documentList',JSON.stringify(response.results));
-        localStorage.setItem('documentType',this.documentType);
-
-        // get result list from storage and add it to BehaviourSubject
-        this.utilityService.updateDocumentList();
-        this.utilityService.updateDocumentType();
-      }, err => {
-          console.log(err);
-          this.messageService.pushError(err);
-      });
+    //     // get result list from storage and add it to BehaviourSubject
+    //     this.utilityService.updateDocumentList();
+    //     this.utilityService.updateDocumentType();
+    //   }, err => {
+    //       console.log(err);
+    //       this.messageService.pushError(err);
+    //   });
   }
   
 
