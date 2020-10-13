@@ -155,7 +155,7 @@ export class OverlayComponent implements OnInit {
   refreshObject(){
     //  refresh the detailsObject once overlay is closed
     this.apiService
-    .patentDocumentRequest(
+    .documentRequest(
     this.documentType,
     'get',
     this.detailsObject.id,
@@ -173,7 +173,7 @@ export class OverlayComponent implements OnInit {
     switch (actionType) {
       case this.formTypes[0]:
         this.apiService
-        .patentDocumentRequest(
+        .documentRequest(
           this.documentType,
           "post",
            0,
@@ -198,7 +198,7 @@ export class OverlayComponent implements OnInit {
 
       case this.formTypes[1]:
            this.apiService
-          .patentDocumentRequest(
+          .documentRequest(
             this.documentType,
             "patch", 
             this.detailsObject.id, 
@@ -220,7 +220,7 @@ export class OverlayComponent implements OnInit {
 
       case this.formTypes[2]:
           this.apiService
-          .patentDocumentRequest(
+          .documentRequest(
             this.documentType,
             "delete" ,
             this.detailsObject.id,
