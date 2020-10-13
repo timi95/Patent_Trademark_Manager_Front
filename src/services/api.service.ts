@@ -41,7 +41,7 @@ public errors: any = [];
 // ******************** // C R U D // ******************** //
 
   // Generally applicable CRUD request function for all patent resources
-  patentDocumentRequest(documentType:string, 
+  documentRequest(documentType:string, 
                         requestType:string,
                         id?:number,
                         requestBody?:any,
