@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,OnChanges } from '@angular/core';
 import { ApiService } from 'src/services/api.service';
 import { MessageService } from 'src/services/message.service';
 import { OverlayComponent } from "../overlay/overlay.component";
@@ -6,7 +6,8 @@ import { UtilityService } from 'src/services/utility.service';
 import { Action } from 'src/app/classes/Action'
 import { AmendmentAction } from 'src/interfaces/AmendmentAction';
 import { Router } from '@angular/router';
-import { from } from 'rxjs';
+import { from, Observable } from 'rxjs';
+import { map, switchMap, tap } from 'rxjs/operators';
 
 
 @Component({
@@ -31,9 +32,8 @@ export class MainContentComponent implements OnInit {
     private apiService:ApiService, 
     private messageService: MessageService) { 
       this.utilityService.setModalFormInactive();
-      this.utilityService.modalFormActive.subscribe( bool => {
-        this.modalIsActive = bool;
-      });
+      this.utilityService.modalFormActive.subscribe( bool => { this.modalIsActive = bool; });
+    // this.utilityService.managerTypeSubject.pipe(tap(resp => { this.managerType = resp; }));
       
   }
 
@@ -45,7 +45,16 @@ export class MainContentComponent implements OnInit {
     });
 
     this.utilityService.documentListSubject.subscribe(resp=>{this.documentList=resp});
-    this.utilityService.documentTypeSubject.subscribe(resp=>{this.documentType=resp});
+    // this.utilityService.documentTypeSubject.subscribe(resp=>{this.documentType=resp});
+    // this.utilityService.updateDocumentType(); 
+    this.utilityService.documentTypeSubject
+    .pipe(
+      switchMap(documentTypeResp=>{ 
+        this.documentType = documentTypeResp;
+        return this.apiService
+            .documentRequest(this.documentTypeUrlDict[documentTypeResp],'get',null,null,this.managerType)}))
+        .subscribe((resp:{results:Document[]}) => { this.documentList = resp.results; });
+    
   }
 
   ngOnDestroy(){
@@ -55,10 +64,6 @@ export class MainContentComponent implements OnInit {
 
   createDocument() {
     this.utilityService.setModalFormActive();
-    this.utilityService.modalFormActive.subscribe( bool => {
-      this.modalIsActive = bool;
-    });
-
   }
 
 
@@ -79,3 +84,4 @@ interface Document {
   attachment?:any;
   footer?:string;
 }
+interface DocumentList{results:Document[];} 
