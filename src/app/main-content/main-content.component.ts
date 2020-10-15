@@ -39,14 +39,15 @@ export class MainContentComponent implements OnInit {
 
   ngOnInit(): void {
     this.utilityService.managerTypeSubject.subscribe(resp=>{
+      // update managerType for this component
+      this.managerType = resp;
+      // assignment for correct url dictionary
       this.documentTypeUrlDict = resp =='Patent_manager'?
       new Action().patentActionUrlDict:
       new Action().trademarkActionUrlDict;
     });
 
     this.utilityService.documentListSubject.subscribe(resp=>{this.documentList=resp});
-    // this.utilityService.documentTypeSubject.subscribe(resp=>{this.documentType=resp});
-    // this.utilityService.updateDocumentType(); 
     this.utilityService.documentTypeSubject
     .pipe(
       switchMap(documentTypeResp=>{ 
