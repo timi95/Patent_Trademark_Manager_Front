@@ -35,6 +35,7 @@ export class SideNavComponent implements OnInit {
 
 
   constructor(
+    private router:Router,
     private utilityService: UtilityService,
     private messageService: MessageService) {
     this.opened = window.innerWidth < 769? true : false;
@@ -51,8 +52,6 @@ export class SideNavComponent implements OnInit {
   fetchDocuments(value:string){
     localStorage.setItem('documentType',value);
     this.utilityService.updateDocumentType();
-    // Next, try to emit a message to detail-component
-    // when main-content receives this message let it call navigateHome()
   }
   
 
@@ -63,6 +62,7 @@ export class SideNavComponent implements OnInit {
     this.managerType = this.P_T_list_toggle.Patentlist? 'Patent_manager':'Trademark_manager';
     localStorage.setItem('managerType',this.managerType);
     this.utilityService.updateManagerType();
+
 
     this.itemList = this.P_T_list_toggle.Patentlist?
     new Action().patent_ActionTypes: new Action().trademark_ActionTypes;
