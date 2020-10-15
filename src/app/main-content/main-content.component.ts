@@ -50,11 +50,13 @@ export class MainContentComponent implements OnInit {
     this.utilityService.documentListSubject.subscribe(resp=>{this.documentList=resp});
     this.utilityService.documentTypeSubject
     .pipe(
+      // when the documentType changes, make an api call with the new documentType
       switchMap(documentTypeResp=>{ 
         this.documentType = documentTypeResp;
         return this.apiService
-            .documentRequest(this.documentTypeUrlDict[documentTypeResp],'get',null,null,this.managerType)}))
-        .subscribe((resp:{results:Document[]}) => { this.documentList = resp.results; });
+            .documentRequest(this.documentTypeUrlDict[documentTypeResp],'get',null,null,this.managerType)}),
+            tap((resp:{results:Document[]}) => { this.documentList = resp.results; }))
+        .subscribe({ error(err: any): void { console.error('Where#Are#We', err);} });
     
   }
 
