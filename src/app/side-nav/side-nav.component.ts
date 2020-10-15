@@ -35,8 +35,6 @@ export class SideNavComponent implements OnInit {
 
 
   constructor(
-    private router: Router,
-    private apiService: ApiService,
     private utilityService: UtilityService,
     private messageService: MessageService) {
     this.opened = window.innerWidth < 769? true : false;
@@ -53,6 +51,8 @@ export class SideNavComponent implements OnInit {
   fetchDocuments(value:string){
     localStorage.setItem('documentType',value);
     this.utilityService.updateDocumentType();
+    // Next, try to emit a message to detail-component
+    // when main-content receives this message let it call navigateHome()
   }
   
 
