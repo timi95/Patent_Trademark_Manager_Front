@@ -60,11 +60,6 @@ export class MainContentComponent implements OnInit {
     
   }
 
-  ngOnDestroy(){
-    this.utilityService.modalFormActive.unsubscribe();
-    this.utilityService.documentListSubject.unsubscribe();
-  }
-
   createDocument() {
     this.utilityService.setModalFormActive();
   }
