@@ -8,7 +8,8 @@ import { Component, HostListener, OnInit } from '@angular/core';
 export class ReminderListComponent implements OnInit {
   reminders:any[] = [
     {title:'Reminder 1', details:' Detailed instructions'},
-    {title:'Reminder 2', details:' Detailed instructions'}
+    {title:'Reminder 2', details:' Detailed instructions'},
+    {title:'Reminder 3', details:' Detailed instructions'},
   ]
 
   opened : boolean;
