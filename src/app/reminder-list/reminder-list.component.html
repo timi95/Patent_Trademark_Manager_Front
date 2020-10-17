@@ -3,8 +3,9 @@
         <button *ngIf="isMobile" (click)="toggleList()">|||</button>
     </div>
     <div class="list-item-divider" *ngIf="!isMobile || (opened && isMobile)">
-        <li class="list-item" *ngFor="let item of reminders" >
-            {{item.title}} : {{item.details}}
+        <li class="list-item reminder-item" *ngFor="let item of reminders" >
+            <!-- {{item.title}} : {{item.reminder_detail}} -->
+            {{item|json}}
         </li>
     </div>
 </nav>
