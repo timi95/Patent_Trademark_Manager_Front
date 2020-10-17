@@ -2,7 +2,7 @@ nav {
     /* border: 1px solid black; */
     background-color: #36393f;
     height: 100%;
-    color: #fff;
+    /* color: #fff; */
     padding: 15px 1px;
     width: 100%;
 }
@@ -17,12 +17,13 @@ nav {
     display: flex;
     flex-direction: column;
     justify-content: baseline;
-    height: 100%;
+    height: 70vh;
     overflow-y:scroll;
     overflow-x:hidden;
 }
 .list-item-divider::-webkit-scrollbar { 
-    display: none;  /* Chrome Safari */
+    display: none; 
+     /* Chrome Safari */
 }
 .list-item {
     display: flex;
@@ -30,11 +31,23 @@ nav {
     margin-top: 16px;
     border-bottom: 1px solid rgba(168, 159, 159, 0.685);
     cursor: pointer;
-
     transition: 0.3s;
 }
 .list-item:hover{
     color: #667bd8;
     font-weight: 500;
     /* font-size: 16px; */
+}
+
+.reminder-item{
+    background-color: #FFF;
+    border: 1px solid rgb(218, 211, 211);
+    box-shadow: -3px 6px 2px 0 rgba(0, 18, 46, 0.49);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 15px;
+    padding: 5px;
+    text-overflow: ellipsis;
 }
