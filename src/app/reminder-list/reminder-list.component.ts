@@ -40,6 +40,7 @@ export class ReminderListComponent implements OnInit {
       document_id:'2'
     }
   ]
+  
 
   opened : boolean;
   isMobile : boolean;
