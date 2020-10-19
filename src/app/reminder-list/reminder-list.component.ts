@@ -1,4 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { timer } from 'rxjs';
+import { debounce, tap } from 'rxjs/operators';
+import { ApiService } from 'src/services/api.service';
 
 @Component({
   selector: 'reminders',
@@ -40,7 +43,7 @@ export class ReminderListComponent implements OnInit {
       document_id:'2'
     }
   ]
-  
+
 
   opened : boolean;
   isMobile : boolean;
@@ -48,9 +51,13 @@ export class ReminderListComponent implements OnInit {
   screenHeight:number;
   screenWidth:number;
   
-  constructor() { }
+  constructor(private apiService:ApiService) { }
 
   ngOnInit(): void {
+    // This is working but Reminders is empty atm
+    this.apiService.documentRequest('reminder','get',null,null,'Reminders')
+    .pipe(debounce(()=>timer(100)))
+    .subscribe((resp:{result:any[]}) =>{this.reminders=resp.result});
   }
 
   toggleList(){
