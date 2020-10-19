@@ -22,8 +22,8 @@ nav {
     overflow-x:hidden;
 }
 .list-item-divider::-webkit-scrollbar { 
+    /* Chrome Safari */
     display: none; 
-     /* Chrome Safari */
 }
 .list-item {
     display: flex;
