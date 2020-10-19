@@ -301,7 +301,16 @@ export class Form {
         search_status: new FormControl('', [Validators.required]),
         search_type: new FormControl('', [Validators.required])
     };
-;
+
+    R_reminderForm = {
+        title: new FormControl('', [Validators.required]),
+        reminder_detail: new FormControl('', [Validators.required]),
+        reminder_date: "",
+        manager_type: new FormControl('', [Validators.required]),
+        document_type: new FormControl('', [Validators.required]),
+        document_id: new FormControl('', [Validators.required]),
+    }
+
     constructor() {
     }
     

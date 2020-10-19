@@ -1,6 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { timer } from 'rxjs';
-import { debounce, tap } from 'rxjs/operators';
+import { debounce, debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
 import { ApiService } from 'src/services/api.service';
 
 @Component({
@@ -50,19 +51,34 @@ export class ReminderListComponent implements OnInit {
 
   screenHeight:number;
   screenWidth:number;
+
+  reminderForm = {
+    title: new FormControl('', [Validators.required]),
+    reminder_detail: new FormControl('', [Validators.required]),
+    reminder_date: "",
+    manager_type: new FormControl('', [Validators.required]),
+    document_type: new FormControl('', [Validators.required]),
+    document_id: new FormControl('', [Validators.required]),
+  }
   
   constructor(private apiService:ApiService) { }
 
   ngOnInit(): void {
     // This is working but Reminders is empty atm
-    this.apiService.documentRequest('reminder','get',null,null,'Reminders')
-    .pipe(debounce(()=>timer(100)))
-    .subscribe((resp:{result:any[]}) =>{this.reminders=resp.result});
+    this.apiService
+    .documentRequest('reminder','get',null,null,'Reminders')
+    .pipe(debounceTime(2000),distinctUntilChanged())
+    .subscribe((resp:{result:any[]})=>{this.reminders=resp.result});
   }
 
   toggleList(){
     this.opened = !this.opened;
     // console.log(`toggle state: ${this.opened}`); 
+  }
+
+  createReminder(){
+    this.apiService
+    .documentRequest('reminder','post',null,this.reminderForm,'Reminders')
   }
   @HostListener("window:resize", [])
   private onResize() {
