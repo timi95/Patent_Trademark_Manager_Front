@@ -75,7 +75,9 @@ export class ReminderListComponent implements OnInit {
     this.opened = !this.opened;
     // console.log(`toggle state: ${this.opened}`); 
   }
-
+  createReminderForm(){
+    // do work to summon a special overlay for creating and updating reminders
+  }
   createReminder(){
     this.apiService
     .documentRequest('reminder','post',null,this.reminderForm,'Reminders')

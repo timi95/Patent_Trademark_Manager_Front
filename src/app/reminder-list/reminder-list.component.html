@@ -1,5 +1,6 @@
 <nav>
     <div class="nav-cap">
+        <button (click)="createReminderForm()">Create a Reminder</button>
         <button *ngIf="isMobile" (click)="toggleList()">|||</button>
     </div>
     <div class="list-item-divider" *ngIf="!isMobile || (opened && isMobile)">
