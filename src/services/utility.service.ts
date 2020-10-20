@@ -21,7 +21,10 @@ export class UtilityService {
   documentTypeSubject: BehaviorSubject<string> = new BehaviorSubject<string>('');
   // managerType Subject
   managerTypeSubject: BehaviorSubject<string> = new BehaviorSubject<string>('');
-    
+
+  // for the reminder create form
+  reminderCreateSubject:BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+
   setDetailEditFormActive(){
     return this.detailEditFormActive.next(true);
   }
@@ -43,6 +46,13 @@ export class UtilityService {
     return this.modalFormActive.next(false);
   }
 
+  
+  setReminderCreateFormActive(){
+    return this.reminderCreateSubject.next(true);
+  }
+  setReminderCreateFormInActive(){
+    return this.reminderCreateSubject.next(false);
+  }
 
   loadDetails(item?:Document) {
     localStorage.setItem('detailsObject', JSON.stringify(item));
