@@ -24,7 +24,7 @@ export class OverlayComponent implements OnInit {
   // @ViewChild('create', { static: true }) createInput: ElementRef;
 
   detailsObject: any = JSON.parse(localStorage.getItem('detailsObject'));
-  formTypes:string[] = ['create','update','delete'];
+  formTypes:string[] = ['create','update','delete','reminder-create'];
 
   
   documentTypeFormDictionary:any = {};
@@ -32,6 +32,7 @@ export class OverlayComponent implements OnInit {
   createForm: FormGroup;
   editForm: FormGroup;
   deleteForm: FormGroup;
+  reminderForm: FormGroup;
   Forms = new Form();
 
   constructor(
@@ -73,6 +74,11 @@ export class OverlayComponent implements OnInit {
           'renewal-action':this.Forms.T_renewal_action,
           'search-action':this.Forms.T_search_action,
         };
+      }
+      if(resp == 'Reminders'){
+        this.documentTypeFormDictionary = {
+          "reminder": this.Forms.R_reminderForm
+        }
       }
 
       this.dynamicFormGroupGenerator();
@@ -146,6 +152,13 @@ export class OverlayComponent implements OnInit {
           this.active = bool;          
         });
         break;
+
+        case this.formTypes[3]:
+          this.utilityService.setReminderCreateFormInActive();
+          this.utilityService.reminderCreateSubject.subscribe( bool => {
+            this.active = bool;          
+          });
+          break;        
 
       default:
         break;
