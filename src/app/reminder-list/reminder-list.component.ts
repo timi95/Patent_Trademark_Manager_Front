@@ -1,8 +1,10 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { timer } from 'rxjs';
-import { debounce, debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
+import { interval, pipe, timer } from 'rxjs';
+import { debounce, debounceTime, distinctUntilChanged, repeat, retry, switchMap, tap } from 'rxjs/operators';
 import { ApiService } from 'src/services/api.service';
+import { UtilityService } from 'src/services/utility.service';
+import { Action } from '../classes/Action';
 
 @Component({
   selector: 'reminders',
@@ -52,6 +54,7 @@ export class ReminderListComponent implements OnInit {
   screenHeight:number;
   screenWidth:number;
 
+  formType = 'reminder-create'
   reminderForm = {
     title: new FormControl('', [Validators.required]),
     reminder_detail: new FormControl('', [Validators.required]),
@@ -60,15 +63,23 @@ export class ReminderListComponent implements OnInit {
     document_type: new FormControl('', [Validators.required]),
     document_id: new FormControl('', [Validators.required]),
   }
+  managerType: string;
+  documentTypeUrlDict: any;
   
-  constructor(private apiService:ApiService) { }
+  constructor(
+    private apiService: ApiService,
+    public utilityService: UtilityService) { }
 
   ngOnInit(): void {
+
+    this.utilityService.managerTypeSubject.subscribe(resp=>{ this.managerType = resp });
+
     // This is working but Reminders is empty atm
     this.apiService
     .documentRequest('reminder','get',null,null,'Reminders')
-    .pipe(debounceTime(2000),distinctUntilChanged())
-    .subscribe((resp:{result:any[]})=>{this.reminders=resp.result});
+    .pipe( distinctUntilChanged(),retry(), )
+    // .subscribe((resp:{result:any[]})=> this.reminders=resp.result );
+      
   }
 
   toggleList(){
@@ -77,6 +88,7 @@ export class ReminderListComponent implements OnInit {
   }
   createReminderForm(){
     // do work to summon a special overlay for creating and updating reminders
+    this.utilityService.setReminderCreateFormActive();
   }
   createReminder(){
     this.apiService
