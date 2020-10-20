@@ -13,7 +13,7 @@ import { Component } from '@angular/core';
         .header-nav {
           display:flex;
           justify-content: center ;
-          border: 1px solid black;
+          // border: 1px solid black;
           background-color: #26262b;
           color: #fff;
         }
