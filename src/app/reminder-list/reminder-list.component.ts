@@ -1,7 +1,8 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { deepEqual } from 'assert';
 import { interval, pipe, timer } from 'rxjs';
-import { debounce, debounceTime, distinctUntilChanged, repeat, retry, switchMap, tap } from 'rxjs/operators';
+import { debounce, debounceTime, delay, distinctUntilChanged, repeat, retry, switchMap, tap } from 'rxjs/operators';
 import { ApiService } from 'src/services/api.service';
 import { UtilityService } from 'src/services/utility.service';
 import { Action } from '../classes/Action';
@@ -71,15 +72,27 @@ export class ReminderListComponent implements OnInit {
     public utilityService: UtilityService) { }
 
   ngOnInit(): void {
-
-    this.utilityService.managerTypeSubject.subscribe(resp=>{ this.managerType = resp });
+    
+    // this.utilityService.managerTypeSubject.subscribe(resp=>{ this.managerType = resp });
 
     // This is working but Reminders is empty atm
     this.apiService
     .documentRequest('reminder','get',null,null,'Reminders')
-    .pipe( distinctUntilChanged(),retry(), )
-    // .subscribe((resp:{result:any[]})=> this.reminders=resp.result );
-      
+    .pipe( 
+      distinctUntilChanged((prvs:Object,crnt:Object):boolean=>{ 
+        if(Object.values(prvs).length != Object.values(prvs).length)
+          {return false;}
+        if(JSON.stringify(prvs) != JSON.stringify(crnt))
+          {return false;}
+        Object.values(crnt).forEach((val,index)=>{
+          if(val != Object.values(prvs)[index])
+          {return false;}
+        })
+        return true;
+      })
+    ,delay(2500),repeat() )
+    // .subscribe((resp:{result:any[]})=> this.reminders=resp.result);
+    // .subscribe((resp:{result:any[]})=> console.log("call made",resp));
   }
 
   toggleList(){
@@ -88,6 +101,8 @@ export class ReminderListComponent implements OnInit {
   }
   createReminderForm(){
     // do work to summon a special overlay for creating and updating reminders
+    localStorage.setItem('managerType','Reminders');
+    this.utilityService.updateManagerType();
     this.utilityService.setReminderCreateFormActive();
   }
   createReminder(){
