@@ -55,7 +55,12 @@ export class MainContentComponent implements OnInit {
         this.documentType = documentTypeResp;
         return this.apiService
             .documentRequest(this.documentTypeUrlDict[documentTypeResp],'get',null,null,this.managerType)}),
-            tap((resp:{results:Document[]}) => { this.documentList = resp.results; }))
+            tap((resp:{results:Document[]}) => { 
+              // update everywhere else via the service
+              localStorage.setItem('documentList',JSON.stringify(resp.results));
+              this.utilityService.updateDocumentList();
+              // update the list in this component
+              this.documentList = resp.results;}))
         .subscribe({ error(err: any): void { console.error('Where#Are#We', err);} });
     
   }
