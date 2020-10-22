@@ -50,6 +50,7 @@ export class SideNavComponent implements OnInit {
   }
 
   fetchDocuments(value:string){
+    // this.documentType = value;
     localStorage.setItem('documentType',value);
     this.utilityService.updateDocumentType();
     this.router.navigate(['']);
