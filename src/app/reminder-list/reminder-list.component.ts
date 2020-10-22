@@ -7,11 +7,14 @@ import { ApiService } from 'src/services/api.service';
 import { UtilityService } from 'src/services/utility.service';
 import { Action } from '../classes/Action';
 
+
+
 @Component({
   selector: 'reminders',
   templateUrl: './reminder-list.component.html',
   styleUrls: ['./reminder-list.component.css']
 })
+
 export class ReminderListComponent implements OnInit {
   reminders:any[] = [
     {
@@ -72,43 +75,49 @@ export class ReminderListComponent implements OnInit {
     public utilityService: UtilityService) { }
 
   ngOnInit(): void {
-    
+    // this.utilityService.reminderListSubject.subscribe(resp => this.reminders = resp);
+    this.apiService
+    .documentRequest('reminder','get',null,null,'Reminders')
+    .subscribe((resp:{results:Reminder[]})=>
+    {this.utilityService.updateReminderList(resp.results)});
+      
+      
     // this.utilityService.managerTypeSubject.subscribe(resp=>{ this.managerType = resp });
 
     // This is working but Reminders is empty atm
-    this.apiService
-    .documentRequest('reminder','get',null,null,'Reminders')
-    .pipe( 
-      distinctUntilChanged((prvs:Object,crnt:Object):boolean=>{ 
-        if(Object.values(prvs).length != Object.values(prvs).length)
-          {return false;}
-        if(JSON.stringify(prvs) != JSON.stringify(crnt))
-          {return false;}
-        Object.values(crnt).forEach((val,index)=>{
-          if(val != Object.values(prvs)[index])
-          {return false;}
-        })
-        return true;
-      })
-    ,delay(2500),repeat() )
+    // this.apiService
+    // .documentRequest('reminder','get',null,null,'Reminders')
+    // .pipe( 
+    //   distinctUntilChanged((prvs:Object,crnt:Object):boolean=>{ 
+    //     if(Object.values(prvs).length != Object.values(prvs).length)
+    //       {return false;}
+    //     if(JSON.stringify(prvs) != JSON.stringify(crnt))
+    //       {return false;}
+    //     Object.values(crnt).forEach((val,index)=>{
+    //       if(val != Object.values(prvs)[index])
+    //       {return false;}
+    //     })
+    //     return true;
+    //   })
+    // ,delay(2500),repeat() )
     // .subscribe((resp:{result:any[]})=> this.reminders=resp.result);
     // .subscribe((resp:{result:any[]})=> console.log("call made",resp));
   }
 
+  refreshList(){
+    this.apiService
+    .documentRequest('reminder','get',null,null,'Reminders')
+    .subscribe((resp:{results:Reminder[]})=>
+    {this.utilityService.updateReminderList(resp.results)});
+  }
   toggleList(){
     this.opened = !this.opened;
     // console.log(`toggle state: ${this.opened}`); 
   }
   createReminderForm(){
-    // do work to summon a special overlay for creating and updating reminders
-    localStorage.setItem('managerType','Reminders');
-    this.utilityService.updateManagerType();
     this.utilityService.setReminderCreateFormActive();
   }
-  createReminder(){
-    this.apiService
-    .documentRequest('reminder','post',null,this.reminderForm,'Reminders')
-  }
+
   @HostListener("window:resize", [])
   private onResize() {
       // console.log("This window has been resized")
@@ -124,4 +133,14 @@ export class ReminderListComponent implements OnInit {
       }
       // console.log(`screen height: ${this.screenHeight} screen width: ${this.screenWidth}`);
   }
+  
+}
+export interface Reminder {
+  id:any;
+  title :string;
+  reminder_detail:string;
+  reminder_date :any;
+  manager_type :string;
+  document_type:string;
+  document_id:string;
 }

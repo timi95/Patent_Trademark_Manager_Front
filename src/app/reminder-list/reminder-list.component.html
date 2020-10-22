@@ -1,12 +1,14 @@
-<nav>
+<nav (mouseenter)="refreshList()">
     <div class="nav-cap">
         <button (click)="createReminderForm()">Set a Reminder</button>
         <button *ngIf="isMobile" (click)="toggleList()">|||</button>
     </div>
     <div class="list-item-divider" *ngIf="!isMobile || (opened && isMobile)">
-        <li class="list-item reminder-item" *ngFor="let item of reminders" >
-            <!-- {{item.title}} : {{item.reminder_detail}} -->
-            {{item|json}}
+        <li class="list-item reminder-item" 
+        *ngFor="let item of (utilityService.reminderListSubject|async)" >
+            <strong>{{item.title}}</strong>
+            {{item.reminder_detail}}
+            <!-- {{item|json}} -->
         </li>
     </div>
 </nav>
