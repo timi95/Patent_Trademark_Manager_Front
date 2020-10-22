@@ -27,7 +27,8 @@ export class FilterByWidgetComponent implements OnInit {
     this.utilityService.updateManagerType();
     this.utilityService.managerTypeSubject.subscribe(resp=>{this.managerType = resp});
     this.utilityService.updateDocumentList();
-    this.utilityService.documentListSubject.subscribe(resp=>{this.orderTypeList=resp[0]?Object.keys(resp[0]):[];});
+    this.utilityService.documentListSubject.subscribe(resp=>{ 
+      this.orderTypeList=resp[0]?Object.keys(resp[0]):[];});
 
     this.utilityService.updateDocumentType();
     this.utilityService.documentTypeSubject.subscribe(resp=>{
