@@ -22,8 +22,10 @@ export class UtilityService {
   // managerType Subject
   managerTypeSubject: BehaviorSubject<string> = new BehaviorSubject<string>('');
 
-  // for the reminder create form
+  // for the reminder create form Subject
   reminderCreateSubject:BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  // reminderList subject
+  reminderListSubject: BehaviorSubject<Reminder[]> = new BehaviorSubject<Reminder[]>([]);
 
   setDetailEditFormActive(){
     return this.detailEditFormActive.next(true);
@@ -78,6 +80,14 @@ export class UtilityService {
   updateManagerType(){
     this.managerTypeSubject.next(localStorage.getItem('managerType'));
   }
+
+  updateReminderList(list?:Reminder[]){
+    if (list) {
+      this.reminderListSubject.next(list);
+    } else {
+      this.reminderListSubject.next(JSON.parse(localStorage.getItem('reminderList')));
+    }
+  }
 }
 
 interface Document {
@@ -86,4 +96,13 @@ interface Document {
   body:string;
   attachment?:any;
   footer?:string;
+}
+interface Reminder {
+  id:any;
+  title :string;
+  reminder_detail:string;
+  reminder_date :any;
+  manager_type :string;
+  document_type:string;
+  document_id:string;
 }
