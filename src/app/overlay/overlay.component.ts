@@ -44,36 +44,12 @@ export class OverlayComponent implements OnInit {
     
 
   ngOnInit(): void {
+    // this.dynamicFormDictionaryGenerator(this.managerType);
+    // this.dynamicFormGroupGenerator();
+
     // Initialised createForm
     this.utilityService.managerTypeSubject.subscribe(resp=>{
-
-      if(resp =="Patent_manager"){
-        this.documentTypeFormDictionary = {
-          'search-action':this.Forms.P_search_action,
-          'renewal-action':this.Forms.P_renewal_action,
-          'registration':this.Forms.P_registration,
-          'patent-particulars':this.Forms.P_patent_particulars,
-          'procurement':this.Forms.P_procurement,
-          'ctc':this.Forms.P_ctc,
-          'change-name':this.Forms.P_change_name,
-          'change-address': this.Forms.P_change_address,
-          'assignment-merger-action':this.Forms.P_assignment_merger_action,
-          "amendment-action": this.Forms.P_amendment_action,
-        }
-      }
-      if(resp == "Trademark_manager"){
-        this.documentTypeFormDictionary = {
-          "amendment-action": this.Forms.T_amendment_action,
-          'assignment-merger-action':this.Forms.T_assignment_merger_action,
-          'certificate-procurement-action':this.Forms.T_certificate_procurement_action,
-          'change-name-address-action':this.Forms.T_change_name_address_action,
-          'profile':this.Forms.T_profile,
-          'reclassification-action':this.Forms.T_reclassification_action,
-          'registration-action':this.Forms.T_registration_action,
-          'renewal-action':this.Forms.T_renewal_action,
-          'search-action':this.Forms.T_search_action,
-        };
-      }
+      this.dynamicFormDictionaryGenerator(resp);
       this.dynamicFormGroupGenerator();
     });
   }
@@ -94,7 +70,38 @@ export class OverlayComponent implements OnInit {
     }
   }
 
+  dynamicFormDictionaryGenerator(resp:string){
+    if(resp =="Patent_manager"){
+      this.documentTypeFormDictionary = {
+        'search-action':this.Forms.P_search_action,
+        'renewal-action':this.Forms.P_renewal_action,
+        'registration':this.Forms.P_registration,
+        'patent-particulars':this.Forms.P_patent_particulars,
+        'procurement':this.Forms.P_procurement,
+        'ctc':this.Forms.P_ctc,
+        'change-name':this.Forms.P_change_name,
+        'change-address': this.Forms.P_change_address,
+        'assignment-merger-action':this.Forms.P_assignment_merger_action,
+        "amendment-action": this.Forms.P_amendment_action,
+      }
+    }
+    if(resp == "Trademark_manager"){
+      this.documentTypeFormDictionary = {
+        "amendment-action": this.Forms.T_amendment_action,
+        'assignment-merger-action':this.Forms.T_assignment_merger_action,
+        'certificate-procurement-action':this.Forms.T_certificate_procurement_action,
+        'change-name-address-action':this.Forms.T_change_name_address_action,
+        'profile':this.Forms.T_profile,
+        'reclassification-action':this.Forms.T_reclassification_action,
+        'registration-action':this.Forms.T_registration_action,
+        'renewal-action':this.Forms.T_renewal_action,
+        'search-action':this.Forms.T_search_action,
+      };
+    }
+  }
+
   dynamicFormGroupGenerator() {   
+    
     if( this.formTypes[0].includes(this.formType) )
     this.createForm = this.formBuilder.group(this.documentTypeFormDictionary[this.documentType]);
 
