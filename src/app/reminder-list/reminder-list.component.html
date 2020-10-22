@@ -10,8 +10,8 @@
         </li>
     </div>
 </nav>
-<overlay
-[active]="(utilityService.reminderCreateSubject | async)"
-[managerType]="managerType"
+<r-overlay
+[active]="(utilityService.reminderCreateSubject|async)"
+[managerType]="'Reminders'"
 [documentType]="'reminder'"
-[formType]="formType"></overlay>
+[formType]="'create'"></r-overlay>

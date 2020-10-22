@@ -55,7 +55,7 @@ export class ReminderListComponent implements OnInit {
   screenHeight:number;
   screenWidth:number;
 
-  formType = 'reminder-create'
+  formType = 'create'
   reminderForm = {
     title: new FormControl('', [Validators.required]),
     reminder_detail: new FormControl('', [Validators.required]),

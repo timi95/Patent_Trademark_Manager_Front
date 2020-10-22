@@ -32,7 +32,6 @@ export class OverlayComponent implements OnInit {
   createForm: FormGroup;
   editForm: FormGroup;
   deleteForm: FormGroup;
-  reminderForm: FormGroup;
   Forms = new Form();
 
   constructor(
@@ -75,12 +74,6 @@ export class OverlayComponent implements OnInit {
           'search-action':this.Forms.T_search_action,
         };
       }
-      if(resp == 'Reminders'){
-        this.documentTypeFormDictionary = {
-          "reminder": this.Forms.R_reminderForm
-        }
-      }
-
       this.dynamicFormGroupGenerator();
     });
   }
@@ -110,7 +103,6 @@ export class OverlayComponent implements OnInit {
 
     if( this.formTypes[2].includes(this.formType) )
     this.deleteForm = this.formBuilder.group(this.documentTypeFormDictionary[this.documentType]);
-    console.debug(this.editForm);
     
  }
   updateEditForm(attributeName, inputValue): void{
@@ -158,7 +150,7 @@ export class OverlayComponent implements OnInit {
           this.utilityService.reminderCreateSubject.subscribe( bool => {
             this.active = bool;          
           });
-          break;        
+        break;        
 
       default:
         break;

@@ -18,7 +18,7 @@ import { map, switchMap, tap } from 'rxjs/operators';
 export class MainContentComponent implements OnInit {
 
   documentList:Document[];
-  modalIsActive:boolean;
+  // modalIsActive:boolean;
   formType:string = 'create';
 
   documentTypeUrlDict: any ;
@@ -32,7 +32,7 @@ export class MainContentComponent implements OnInit {
     private apiService:ApiService, 
     private messageService: MessageService) { 
       this.utilityService.setModalFormInactive();
-      this.utilityService.modalFormActive.subscribe( bool => { this.modalIsActive = bool; });
+      // this.utilityService.modalFormActive.subscribe( bool => { this.modalIsActive = bool; });
     // this.utilityService.managerTypeSubject.pipe(tap(resp => { this.managerType = resp; }));
       
   }

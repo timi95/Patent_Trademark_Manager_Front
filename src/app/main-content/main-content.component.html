@@ -34,7 +34,7 @@
   <a href="#" class="square_btn" (click)="createDocument()">&#43;</a>
 </div>
 <overlay
-[active]="modalIsActive"
+[active]="(this.utilityService.modalFormActive|async)"
 [managerType]="managerType"
 [documentType]="documentTypeUrlDict[documentType]"
 [formType]="formType"></overlay>

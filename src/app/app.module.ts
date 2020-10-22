@@ -17,6 +17,7 @@ import { PureCallPipe } from './pipes/pure-call.pipe';
 import { FilterByWidgetComponent } from './filter-by-widget/filter-by-widget.component';
 import { DateRangeSearchWidgetComponent } from './date-range-search-widget/date-range-search-widget.component';
 import { ReminderListComponent } from './reminder-list/reminder-list.component';
+import { RemindersOverlayComponent } from './reminders-overlay/reminders-overlay.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { ReminderListComponent } from './reminder-list/reminder-list.component';
     FilterByWidgetComponent,
     DateRangeSearchWidgetComponent,
     ReminderListComponent,
+    RemindersOverlayComponent,
   ],
   imports: [
     BrowserModule,

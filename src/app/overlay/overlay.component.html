@@ -47,7 +47,7 @@
       [type]="evaluateKey|pureCall:attribute" [name]="attribute[0]" id=""> 
     </li>
   </ul>
-  {{ editForm.value |json}}
+  <!-- {{ editForm.value |json}} -->
     <button type="submit">Submit</button>
   </form>
   <!-- edit form: END -->
@@ -80,21 +80,5 @@
     </div>
   </form>
   <!-- deletion form: END -->
-
-
-  <!-- Create Reminder Form: START   -->
-  <form class="modal-content"
-  *ngIf="formType == formTypes[3]"
-  [formGroup]="reminderForm"
-  (ngSubmit)="onSubmit('reminder-create')">
-    <header>
-      <h3> Set a Reminder </h3>
-      <a class="cancel" (click)="setInactive()">Close</a>
-    </header>
-    <div>THIS IS THE REMINDER CREATION FORM</div>
-  </form>
-  <!-- Create Reminder Form: END   -->
-
-
 
 </div>
