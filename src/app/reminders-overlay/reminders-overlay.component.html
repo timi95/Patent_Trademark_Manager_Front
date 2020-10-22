@@ -5,14 +5,14 @@
     *ngIf="formType == formTypes[0]"
     [formGroup]="createForm"
     (ngSubmit)="onSubmit('create')">
+    
       <header>
         <h3> Set a Reminder </h3>
         <a class="cancel" (click)="setInactive()">Close</a>
       </header>
-  
+
       <div *ngIf="createForm">
         <ul class="form-list">
-          {{this.Forms.R_reminderForm|json}}
           <li 
           *ngFor="
           let item of utilityService

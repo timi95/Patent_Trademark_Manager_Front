@@ -42,23 +42,19 @@ export class RemindersOverlayComponent implements OnInit {
 
     ngOnInit(): void {
       // Initialised createForm
-      this.utilityService.managerTypeSubject.subscribe(resp=>{
-  
-        if(resp === "Reminders"){
-          this.documentTypeFormDictionary = {
-            'reminder': this.Forms.R_reminderForm
-          }
+      if(this.managerType === "Reminders"){
+        this.documentTypeFormDictionary = {
+          'reminder': this.Forms.R_reminderForm
         }
-
         this.dynamicFormGroupGenerator();
-      });
+      }
     }
     ngOnChanges(): void {
       this.dynamicFormGroupGenerator();
     }
 
 
-  dynamicFormGroupGenerator() {   
+  dynamicFormGroupGenerator() {      
     if( this.formTypes[0].includes(this.formType) )
     this.createForm = this.formBuilder.group(this.documentTypeFormDictionary[this.documentType]);
 
@@ -89,7 +85,7 @@ export class RemindersOverlayComponent implements OnInit {
   evaluateKey(key:string):string {
     // return the date string, if the key includes the word 'date' in it
     if( new RegExp('date').test(key) ) {
-      return 'date';
+      return 'datetime-local';
     } else if( key == 'id') {
       return 'id';
     } else {
@@ -112,11 +108,11 @@ onSubmit(actionType:string): void {
       .documentRequest(
         this.documentType,
         "post",
-         0,
+        null,
         JSON.stringify(this.createForm.getRawValue()),
-        localStorage.getItem('managerType'))
+        this.managerType)
       .subscribe(
-        (response) => {
+        () => {
           this.messageService.pushSuccess("Successfully submitted!");
           this.setInactive();
         },
