@@ -51,3 +51,29 @@ nav {
     padding: 5px;
     text-overflow: ellipsis;
 }
+
+.matured{
+    transition: 1s;
+    /* border: 1px solid rgb(224, 52, 87); */
+
+    box-shadow: 0 0 0 0  rgb(224, 52, 87);
+    transform: scale(1);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0  rgba(224, 52, 86, 0.3);
+    }
+    
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 5px  rgba(247, 6, 54, 0.7);
+    }
+    
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(224, 52, 86, 0.2);
+    }
+}
