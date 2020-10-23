@@ -50,9 +50,12 @@ export class SideNavComponent implements OnInit {
   }
 
   fetchDocuments(value:string){
-    // this.documentType = value;
+    localStorage.setItem('managerType',this.managerType);
+    this.utilityService.updateManagerType();
+
     localStorage.setItem('documentType',value);
     this.utilityService.updateDocumentType();
+    
     this.router.navigate(['']);
   }
   
@@ -62,9 +65,6 @@ export class SideNavComponent implements OnInit {
     this.P_T_list_toggle.Trademarklist = !this.P_T_list_toggle.Trademarklist;
 
     this.managerType = this.P_T_list_toggle.Patentlist? 'Patent_manager':'Trademark_manager';
-    localStorage.setItem('managerType',this.managerType);
-    this.utilityService.updateManagerType();
-
 
     this.itemList = this.P_T_list_toggle.Patentlist?
     new Action().patent_ActionTypes: new Action().trademark_ActionTypes;
