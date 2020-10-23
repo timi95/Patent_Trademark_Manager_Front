@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   `
 
     <nav class="header-nav">
-        <h1> {{title}}</h1>
+        <h1> </h1>
     </nav>
   `,
   styles: [
