@@ -7,7 +7,7 @@ import { Action } from 'src/app/classes/Action'
 import { AmendmentAction } from 'src/interfaces/AmendmentAction';
 import { Router } from '@angular/router';
 import { from, Observable } from 'rxjs';
-import { map, switchMap, tap } from 'rxjs/operators';
+import { map, retry, switchMap, tap } from 'rxjs/operators';
 
 
 @Component({
@@ -55,6 +55,7 @@ export class MainContentComponent implements OnInit {
         this.documentType = documentTypeResp;
         return this.apiService
             .documentRequest(this.documentTypeUrlDict[documentTypeResp],'get',null,null,this.managerType)}),
+            retry(5),
             tap((resp:{results:Document[]}) => { 
               // update everywhere else via the service
               localStorage.setItem('documentList',JSON.stringify(resp.results));
