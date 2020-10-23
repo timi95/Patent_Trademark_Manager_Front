@@ -5,7 +5,8 @@
     </div>
     <div class="list-item-divider" *ngIf="!isMobile || (opened && isMobile)">
         <li class="list-item reminder-item" 
-        *ngFor="let item of (utilityService.reminderListSubject|async)" >
+        *ngFor="let item of (utilityService.reminderListSubject|async)" 
+        [ngClass]="{'matured': item.matured }">
             <strong>{{item.title}}</strong>
             {{item.reminder_detail}}
             <!-- {{item|json}} -->
