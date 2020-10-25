@@ -24,8 +24,13 @@ export class UtilityService {
 
   // for the reminder create form Subject
   reminderCreateSubject:BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  // for the reminder delete form
+  reminderDeleteSubject:BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  // reminder subject
+  reminderSubject:Subject<Reminder> = new Subject<Reminder>();
   // reminderList subject
   reminderListSubject: BehaviorSubject<Reminder[]> = new BehaviorSubject<Reminder[]>([]);
+
 
   setDetailEditFormActive(){
     return this.detailEditFormActive.next(true);
@@ -54,6 +59,19 @@ export class UtilityService {
   }
   setReminderCreateFormInActive(){
     return this.reminderCreateSubject.next(false);
+  }
+
+  setReminderDeleteFormActive(){
+    return this.reminderDeleteSubject.next(true);
+  }
+  setReminderDeleteFormInactive() {
+    return this.reminderDeleteSubject.next(true);
+  }
+
+  loadReminder(reminder:Reminder){
+    localStorage.setItem('reminderObject', JSON.stringify(reminder));
+    let storeItem = JSON.parse(localStorage.getItem('reminderObject'));
+    return this.reminderSubject.next(reminder);
   }
 
   loadDetails(item?:Document) {
