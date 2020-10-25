@@ -1,20 +1,23 @@
-<nav (mouseenter)="refreshList()">
+<nav >
     <div class="nav-cap">
         <button (click)="createReminderForm()">Set a Reminder</button>
         <button *ngIf="isMobile" (click)="toggleList()">|||</button>
     </div>
     <div class="list-item-divider" *ngIf="!isMobile || (opened && isMobile)">
         <li class="list-item reminder-item" 
-        *ngFor="let item of (utilityService.reminderListSubject|async)" 
-        [ngClass]="{'matured': item.matured }">
-            <strong>{{item.title}}</strong>
-            {{item.reminder_detail}}
+        *ngFor="let reminder of (utilityService.reminderListSubject|async)" 
+        [ngClass]="{'matured': reminder.matured }">
+        <header class="list-item-title-brace">
+            <strong>{{reminder.title}}</strong>
+            <span class="close" (click)="deleteReminderDialogue(reminder)"> &times;</span>
+        </header>
+        {{reminder.reminder_detail}}
             <!-- {{item|json}} -->
         </li>
     </div>
 </nav>
 <r-overlay
-[active]="(utilityService.reminderCreateSubject|async)"
+[active]="(utilityService.reminderCreateSubject|async) !== (utilityService.reminderDeleteSubject|async)"
 [managerType]="'Reminders'"
 [documentType]="'reminder'"
-[formType]="'create'"></r-overlay>
+[formType]="formType"></r-overlay>

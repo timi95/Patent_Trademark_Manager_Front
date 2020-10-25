@@ -80,28 +80,6 @@ export class ReminderListComponent implements OnInit {
     .documentRequest('reminder','get',null,null,'Reminders')
     .subscribe((resp:{results:Reminder[]})=>
     {this.utilityService.updateReminderList(resp.results)});
-      
-      
-    // this.utilityService.managerTypeSubject.subscribe(resp=>{ this.managerType = resp });
-
-    // This is working but Reminders is empty atm
-    // this.apiService
-    // .documentRequest('reminder','get',null,null,'Reminders')
-    // .pipe( 
-    //   distinctUntilChanged((prvs:Object,crnt:Object):boolean=>{ 
-    //     if(Object.values(prvs).length != Object.values(prvs).length)
-    //       {return false;}
-    //     if(JSON.stringify(prvs) != JSON.stringify(crnt))
-    //       {return false;}
-    //     Object.values(crnt).forEach((val,index)=>{
-    //       if(val != Object.values(prvs)[index])
-    //       {return false;}
-    //     })
-    //     return true;
-    //   })
-    // ,delay(2500),repeat() )
-    // .subscribe((resp:{result:any[]})=> this.reminders=resp.result);
-    // .subscribe((resp:{result:any[]})=> console.log("call made",resp));
   }
 
   refreshList(){
@@ -116,6 +94,15 @@ export class ReminderListComponent implements OnInit {
   }
   createReminderForm(){
     this.utilityService.setReminderCreateFormActive();
+  }
+
+  deleteReminderDialogue(reminder:Reminder){
+    this.formType = 'delete';
+    this.utilityService.loadReminder(reminder);
+    this.utilityService.setReminderDeleteFormActive();
+  }
+
+  updateReminder(){
   }
 
   @HostListener("window:resize", [])

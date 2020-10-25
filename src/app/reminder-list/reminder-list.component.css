@@ -13,6 +13,19 @@ nav {
     border-bottom: 1px solid rgba(168, 159, 159, 0.685)
 }
 
+.btn{
+    cursor: pointer;
+    background-color: grey;
+    border: 1px solid #36393f;
+    padding: 5px;
+}
+.btn:hover,:active{
+    background-color: #36393f93;
+}
+.teal{
+    color: teal !important;
+}
+
 .list-item-divider {
     display: flex;
     flex-direction: column;
@@ -38,6 +51,15 @@ nav {
     font-weight: 500;
     /* font-size: 16px; */
 }
+.close{
+    font-size: 15px;
+    transition: 0.4s;
+}
+.close:hover{
+    font-size: 20px;
+    color: crimson;
+    font-weight: 600;
+}
 
 .reminder-item{
     background-color: #FFF;
@@ -50,6 +72,11 @@ nav {
     border-radius: 15px;
     padding: 5px;
     text-overflow: ellipsis;
+}
+.list-item-title-brace{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .matured{
