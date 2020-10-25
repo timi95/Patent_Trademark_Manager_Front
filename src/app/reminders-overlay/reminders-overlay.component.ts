@@ -5,6 +5,7 @@ import { ApiService } from 'src/services/api.service';
 import { MessageService } from 'src/services/message.service';
 import { UtilityService } from 'src/services/utility.service';
 import { Form } from '../classes/Form';
+import { Reminder } from '../reminder-list/reminder-list.component';
 
 @Component({
   selector: 'r-overlay',
@@ -21,7 +22,7 @@ export class RemindersOverlayComponent implements OnInit {
   @ViewChild('edit', { static: true }) input: ElementRef;
   // @ViewChild('create', { static: true }) createInput: ElementRef;
 
-  detailsObject: any = JSON.parse(localStorage.getItem('detailsObject'));
+  reminderObject: Reminder = JSON.parse(localStorage.getItem('reminderObject'));
   formTypes:string[] = ['create','update','delete'];
 
   
@@ -74,7 +75,13 @@ export class RemindersOverlayComponent implements OnInit {
         this.utilityService.reminderCreateSubject.subscribe( bool => {
           this.active = bool;          
         });
-      break;        
+      break;
+      case this.formTypes[2]:
+        this.utilityService.setReminderDeleteFormInactive();
+        this.utilityService.reminderDeleteSubject.subscribe( bool => {
+          this.active = bool;          
+        });
+      break;   
 
     default:
       break;
@@ -99,9 +106,13 @@ export class RemindersOverlayComponent implements OnInit {
     }
   }
 
+  deleteReminder(id){
+    this.apiService
+    .documentRequest('reminder','delete',id,null,'Reminders')
+    .subscribe(error =>{console.error(error) });
+  }
 
 onSubmit(actionType:string): void {
-    
   switch (actionType) {
     case this.formTypes[0]:
       this.apiService
@@ -119,10 +130,23 @@ onSubmit(actionType:string): void {
         (err) => {
           console.log(err);
           this.messageService.pushError(err);}
-      );
+      );  
+    break;
+    case this.formTypes[2]:
+      console.log('second case submit ran!');
       
-      break;
-
+      this.apiService
+      .documentRequest('reminder','delete',this.reminderObject.id,null,'Reminders')
+      .subscribe(
+        () => {
+          this.messageService.pushSuccess("Successfully submitted!");
+          this.setInactive();
+        },
+        (err) => {
+          console.log(err);
+          this.messageService.pushError(err);}
+      );  
+    break;
   }
 }
 
