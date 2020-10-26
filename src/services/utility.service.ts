@@ -65,7 +65,7 @@ export class UtilityService {
     return this.reminderDeleteSubject.next(true);
   }
   setReminderDeleteFormInactive() {
-    return this.reminderDeleteSubject.next(true);
+    return this.reminderDeleteSubject.next(false);
   }
 
   loadReminder(reminder:Reminder){
