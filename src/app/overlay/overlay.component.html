@@ -6,7 +6,7 @@
 
     <header>
       <h3>Create a(n) {{ documentType|uppercase }}</h3>
-      <a class="cancel" (click)="setInactive()">Close</a>
+      <a class="cancel" (click)="setInactive()">&#x274C;</a>
     </header>
 
     <div *ngIf="createForm">
@@ -34,7 +34,7 @@
 
   <header>
     <h3>Edit a(n) {{ utilityService.documentTypeSubject|async }} </h3>
-    <a class="cancel" (click)="setInactive()">Close</a>
+    <a class="cancel" (click)="setInactive()">&#x274C;</a>
   </header>
 
   <ul class="form-list" *ngIf="editForm" id="editFormId">
@@ -60,7 +60,7 @@
 
     <header>
       <h3>Delete this Document </h3>
-      <a class="cancel" (click)="setInactive()">Close</a>
+      <a class="cancel" (click)="setInactive()">&#x274C;</a>
     </header>
 
 
