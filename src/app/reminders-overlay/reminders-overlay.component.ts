@@ -1,6 +1,7 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { delay, distinctUntilChanged, repeat } from 'rxjs/operators';
 import { ApiService } from 'src/services/api.service';
 import { MessageService } from 'src/services/message.service';
 import { UtilityService } from 'src/services/utility.service';
@@ -19,8 +20,6 @@ export class RemindersOverlayComponent implements OnInit {
   @Input("updateValue") editeableObject?: any;
   @Input("managerType") managerType:string;
 
-  @ViewChild('edit', { static: true }) input: ElementRef;
-  // @ViewChild('create', { static: true }) createInput: ElementRef;
 
   reminderObject: Reminder;
   formTypes:string[] = ['create','update','delete'];
@@ -46,6 +45,8 @@ export class RemindersOverlayComponent implements OnInit {
       this.dynamicFormGroupGenerator();
     });
     this.utilityService.reminderSubject.subscribe(resp=>{this.reminderObject=resp;});
+
+
     }
 
     ngOnChanges(): void {
@@ -124,7 +125,12 @@ export class RemindersOverlayComponent implements OnInit {
     .documentRequest('reminder','delete',id,null,'Reminders')
     .subscribe(error =>{console.error(error) });
   }
-
+  refreshList(){
+    this.apiService
+    .documentRequest('reminder','get',null,null,'Reminders')
+    .subscribe((resp:{results:Reminder[]})=>
+    { this.utilityService.updateReminderList(resp.results)});
+  }
 onSubmit(actionType:string): void {
   switch (actionType) {
     case this.formTypes[0]:
@@ -139,6 +145,7 @@ onSubmit(actionType:string): void {
         () => {
           this.messageService.pushSuccess("Successfully submitted!");
           this.setInactive();
+          this.refreshList()
         },
         (err) => {
           console.log(err);
@@ -149,11 +156,12 @@ onSubmit(actionType:string): void {
       console.log('second case submit ran!',actionType);
       
       this.apiService
-      .documentRequest('reminder',actionType,this.reminderObject.id,null,'Reminders')
+      .documentRequest(this.documentType,'delete',this.reminderObject.id,this.deleteForm.value,'Reminders')
       .subscribe(
         () => {
           this.messageService.pushSuccess("Successfully submitted!");
           this.setInactive();
+          this.refreshList();
         },
         (err) => {
           console.log(err);
