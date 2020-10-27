@@ -118,8 +118,8 @@ export class OverlayComponent implements OnInit {
       if(this.editForm.value[key] === ""||this.editForm.value[key] == "mm/dd/yyyy")
       this.editForm.value[key] = this.detailsObject[key];
     }
-
   }
+  
   shunOverlay($event){
     if($event.target.classList.contains("overlay")){
       this.setInactive();
