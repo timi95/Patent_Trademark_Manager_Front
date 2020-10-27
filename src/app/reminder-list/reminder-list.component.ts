@@ -59,14 +59,6 @@ export class ReminderListComponent implements OnInit {
   screenWidth:number;
 
   formType = 'create'
-  reminderForm = {
-    title: new FormControl('', [Validators.required]),
-    reminder_detail: new FormControl('', [Validators.required]),
-    reminder_date: "",
-    manager_type: new FormControl('', [Validators.required]),
-    document_type: new FormControl('', [Validators.required]),
-    document_id: new FormControl('', [Validators.required]),
-  }
   managerType: string;
   documentTypeUrlDict: any;
   
@@ -92,11 +84,16 @@ export class ReminderListComponent implements OnInit {
     this.opened = !this.opened;
     // console.log(`toggle state: ${this.opened}`); 
   }
-  createReminderForm(){
+  reminderCreateForm(){
+    this.formType = 'create';
+    localStorage.setItem('managerType','Reminders')
+    this.utilityService.updateManagerType();
     this.utilityService.setReminderCreateFormActive();
   }
 
-  deleteReminderDialogue(reminder:Reminder){
+  reminderDeleteDialogue(reminder:Reminder){
+    localStorage.setItem('managerType','Reminders')
+    this.utilityService.updateManagerType();
     this.formType = 'delete';
     this.utilityService.loadReminder(reminder);
     this.utilityService.setReminderDeleteFormActive();
