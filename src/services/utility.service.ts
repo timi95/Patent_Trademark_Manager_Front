@@ -95,8 +95,12 @@ export class UtilityService {
   updateDocumentType(){
     this.documentTypeSubject.next(localStorage.getItem('documentType'));
   }
-  updateManagerType(){
-    this.managerTypeSubject.next(localStorage.getItem('managerType'));
+  updateManagerType(managerType?:string){
+    if(managerType){
+      this.managerTypeSubject.next(managerType);
+    } else {
+      this.managerTypeSubject.next(localStorage.getItem('managerType'));
+    }
   }
 
   updateReminderList(list?:Reminder[]){
