@@ -55,6 +55,7 @@ public errors: any = [];
         } else if( (id <= 0) && requestBody ){ 
           return this.httpServer.post(`${this.API_URL}/${managerType}/${documentType}/`, requestBody,this.httpOptions);
         }
+      break;
 
       //PUT request case
       case "put":
@@ -63,6 +64,7 @@ public errors: any = [];
         } else if( (id <= 0) && requestBody ){ 
           return this.httpServer.put(`${this.API_URL}/${managerType}/${documentType}/`, requestBody,this.httpOptions);
         }
+        break;
     
       //PATCH request case
       case "patch":
@@ -71,15 +73,8 @@ public errors: any = [];
         } else if( (id <= 0) && requestBody ){ 
           return this.httpServer.patch(`${this.API_URL}/${managerType}/${documentType}/`, requestBody,this.httpOptions);
         }
-      
-      //GET request case
-      case "get":
-        if (id) {
-          return this.httpServer.get(`${this.API_URL}/${managerType}/${documentType}/${id}`); 
-        } else { 
-          return this.httpServer.get(`${this.API_URL}/${managerType}/${documentType}/`);
-        }
-
+        break;
+        
       //DELETE request case
       case "delete":
         if ((id > 0) && requestBody) {
@@ -87,6 +82,18 @@ public errors: any = [];
         } else if( (id <= 0) && requestBody ){  
           return this.httpServer.delete(`${this.API_URL}/${managerType}/${documentType}/`,requestBody);
         }
+      break;
+
+      //GET request case
+      case "get":
+        if (requestType.includes('get') && id) {
+          return this.httpServer.get(`${this.API_URL}/${managerType}/${documentType}/${id}`); 
+        } else if(requestType.includes('get')) { 
+          return this.httpServer.get(`${this.API_URL}/${managerType}/${documentType}/`);
+        }
+      break;
+
+
       // default case
       default:
         if (id) {
