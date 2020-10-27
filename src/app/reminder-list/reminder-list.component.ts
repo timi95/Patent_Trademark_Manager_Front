@@ -16,40 +16,9 @@ import { Action } from '../classes/Action';
 })
 
 export class ReminderListComponent implements OnInit {
-  reminders:any[] = [
-    {
-      title :'Reminder 1',
-      reminder_detail:'Detailed instructions',
-      reminder_date :'10-10-2020',
-      manager_type :'Patent_manager',
-      document_type:'AmmendmentAction',
-      document_id:'2'
-    },
-    {
-      title :'Reminder 2',
-      reminder_detail:'Detailed instructions',
-      reminder_date :'10-10-2020',
-      manager_type :'Patent_manager',
-      document_type:'AmmendmentAction',
-      document_id:'2'
-    },
-    {
-      title :'Reminder 3',
-      reminder_detail:'Detailed instructions',
-      reminder_date :'10-10-2020',
-      manager_type :'Patent_manager',
-      document_type:'AmmendmentAction',
-      document_id:'2'
-    },
-    {
-      title :'Reminder 4',
-      reminder_detail:'Detailed instructions',
-      reminder_date :'10-10-2020',
-      manager_type :'Patent_manager',
-      document_type:'AmmendmentAction',
-      document_id:'2'
-    }
-  ]
+    
+  DELAY_TIME:number = 1000;
+  reminders:any[] = []
 
 
   opened : boolean;
@@ -70,6 +39,25 @@ export class ReminderListComponent implements OnInit {
     // this.utilityService.reminderListSubject.subscribe(resp => this.reminders = resp);
     this.apiService
     .documentRequest('reminder','get',null,null,'Reminders')
+    .subscribe((resp:{results:Reminder[]})=>
+    {this.utilityService.updateReminderList(resp.results)});
+
+
+    this.apiService
+    .documentRequest('reminder','get',null,null,'Reminders')
+    .pipe( 
+      distinctUntilChanged((prvs:Object,crnt:Object):boolean=>{ 
+        if(Object.values(prvs).length != Object.values(prvs).length)
+          {return false;}
+        if(JSON.stringify(prvs) != JSON.stringify(crnt))
+          {return false;}
+        Object.values(crnt).forEach((val,index)=>{
+          if(val != Object.values(prvs)[index])
+          {return false;}
+        })
+        return true;
+      })
+    ,delay(this.DELAY_TIME*60),repeat() )
     .subscribe((resp:{results:Reminder[]})=>
     {this.utilityService.updateReminderList(resp.results)});
   }
