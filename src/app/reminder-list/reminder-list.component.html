@@ -1,6 +1,6 @@
 <nav >
     <div class="nav-cap">
-        <button (click)="createReminderForm()">Set a Reminder</button>
+        <button (click)="reminderCreateForm()">Set a Reminder</button>
         <button *ngIf="isMobile" (click)="toggleList()">|||</button>
     </div>
     <div class="list-item-divider" *ngIf="!isMobile || (opened && isMobile)">
@@ -9,7 +9,7 @@
         [ngClass]="{'matured': reminder.matured }">
         <header class="list-item-title-brace">
             <strong>{{reminder.title}}</strong>
-            <span class="close" (click)="deleteReminderDialogue(reminder)"> &times;</span>
+            <span class="close" (click)="reminderDeleteDialogue(reminder)"> &times;</span>
         </header>
         {{reminder.reminder_detail}}
             <!-- {{item|json}} -->
