@@ -30,7 +30,31 @@
     </form>
     <!-- Create Reminder Form: END   -->
 
-    
+  <!-- edit form: START -->
+  <form class="modal-content" 
+  *ngIf="formType == formTypes[1]"
+  [formGroup]="editForm"
+  (ngSubmit)="onSubmit('update')">
+
+  <header>
+    <h3>Edit the Reminder titled: {{ reminderObject.title}} </h3>
+    <a class="cancel" (click)="setInactive()">&#x274C;</a>
+  </header>
+
+  <ul class="form-list" *ngIf="editForm" id="editFormId">
+    <li
+    *ngFor="let attribute of utilityService
+    .toList|pureCall:documentTypeFormDictionary[documentType]" >
+      {{ attribute[0] }} : <input #edit
+      (input)="updateEditForm(attribute[0],edit.value)"
+      [formControlName]="attribute[0]"
+      [type]="evaluateKey|pureCall:attribute" [name]="attribute[0]" id=""> 
+    </li>
+  </ul>
+  <!-- {{ editForm.value |json}} -->
+    <button type="submit">Submit</button>
+  </form>
+  <!-- edit form: END -->
 
     <!-- Delete Reminder Form: START   -->
     <form class="modal-content" 

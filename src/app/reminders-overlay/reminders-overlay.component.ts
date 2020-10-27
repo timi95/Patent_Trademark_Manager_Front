@@ -20,6 +20,8 @@ export class RemindersOverlayComponent implements OnInit {
   @Input("updateValue") editeableObject?: any;
   @Input("managerType") managerType:string;
 
+  @ViewChild('edit', { static: true }) input: ElementRef;
+
 
   reminderObject: Reminder;
   formTypes:string[] = ['create','update','delete'];
@@ -82,19 +84,20 @@ export class RemindersOverlayComponent implements OnInit {
 
       case this.formTypes[0]:
         this.utilityService.setReminderCreateFormInActive();
-        this.utilityService.reminderCreateSubject.subscribe( bool => {
-          this.active = bool;          
-        });
+        this.utilityService.reminderCreateSubject
+        .subscribe( bool => {this.active = bool;});
       break;
 
       case this.formTypes[1]:
+        this.utilityService.setReminderEditFormInActive();
+        this.utilityService.reminderEditSubject
+        .subscribe(bool=>{this.active = bool;});
       break;
 
       case this.formTypes[2]:
         this.utilityService.setReminderDeleteFormInactive();
-        this.utilityService.reminderDeleteSubject.subscribe( bool => {
-          this.active = bool;          
-        });
+        this.utilityService.reminderDeleteSubject
+        .subscribe( bool => {this.active = bool;});
       break;   
 
     default:
@@ -117,6 +120,15 @@ export class RemindersOverlayComponent implements OnInit {
   shunOverlay($event){
     if($event.target.classList.contains("overlay")){
       this.setInactive();
+    }
+  }
+
+  updateEditForm(attributeName, inputValue): void{
+    let re:RegExp = /mm\/dd\/yyyy\,/
+    this.editForm.value[attributeName] = inputValue;
+    for(const key in this.reminderObject){
+      if(this.editForm.value[key] === ""|| re.test(this.editForm.value[key]) )
+      this.editForm.value[key] = this.reminderObject[key];
     }
   }
 
@@ -152,9 +164,24 @@ onSubmit(actionType:string): void {
           this.messageService.pushError(err);}
       );  
     break;
-    case this.formTypes[2]:
-      console.log('second case submit ran!',actionType);
-      
+
+    case this.formTypes[1]:
+      this.apiService
+      .documentRequest(
+        this.documentType,"patch",this.reminderObject.id,this.editForm.value,'Reminders')
+      .subscribe(
+        () => {
+          this.messageService.pushSuccess("Successfully submitted!");
+          this.setInactive();
+          this.refreshList()
+        },
+        (err) => {
+          console.log(err);
+          this.messageService.pushError(err);}
+      );  
+    break;
+
+    case this.formTypes[2]:      
       this.apiService
       .documentRequest(this.documentType,'delete',this.reminderObject.id,this.deleteForm.value,'Reminders')
       .subscribe(
