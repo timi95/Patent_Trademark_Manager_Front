@@ -9,7 +9,10 @@
         [ngClass]="{'matured': reminder.matured }">
         <header class="list-item-title-brace">
             <strong>{{reminder.title}}</strong>
-            <span class="close" (click)="reminderDeleteDialogue(reminder)"> &times;</span>
+            <div>
+                <span class="edit" (click)="reminderEditForm(reminder)">+</span>
+                <span class="delete" (click)="reminderDeleteDialogue(reminder)"> &times;</span>
+            </div>
         </header>
         {{reminder.reminder_detail}}
             <!-- {{item|json}} -->
@@ -17,7 +20,10 @@
     </div>
 </nav>
 <r-overlay
-[active]="(utilityService.reminderCreateSubject|async) !== (utilityService.reminderDeleteSubject|async)"
+[active]="
+(utilityService.reminderCreateSubject|async) !== 
+(utilityService.reminderEditSubject|async) !==
+(utilityService.reminderDeleteSubject|async)"
 [managerType]="'Reminders'"
 [documentType]="'reminder'"
 [formType]="formType"></r-overlay>

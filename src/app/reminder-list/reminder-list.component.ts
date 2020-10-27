@@ -79,6 +79,14 @@ export class ReminderListComponent implements OnInit {
     this.utilityService.setReminderCreateFormActive();
   }
 
+  reminderEditForm(reminder:Reminder){
+    this.formType = 'update';
+    localStorage.setItem('managerType','Reminders')
+    this.utilityService.updateManagerType();
+    this.utilityService.setReminderEditFormActive();
+    this.utilityService.loadReminder(reminder);
+  }
+
   reminderDeleteDialogue(reminder:Reminder){
     localStorage.setItem('managerType','Reminders')
     this.utilityService.updateManagerType();
