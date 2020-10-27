@@ -24,6 +24,8 @@ export class UtilityService {
 
   // for the reminder create form Subject
   reminderCreateSubject:BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  // for the reminder edit form
+  reminderEditSubject:BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   // for the reminder delete form
   reminderDeleteSubject:BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   // reminder subject
@@ -59,6 +61,13 @@ export class UtilityService {
   }
   setReminderCreateFormInActive(){
     return this.reminderCreateSubject.next(false);
+  }
+
+  setReminderEditFormActive(){
+    return this.reminderEditSubject.next(true);
+  }
+  setReminderEditFormInActive(){
+    return this.reminderEditSubject.next(false);
   }
 
   setReminderDeleteFormActive(){
