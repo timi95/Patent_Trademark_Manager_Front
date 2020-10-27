@@ -22,10 +22,8 @@ export class RemindersOverlayComponent implements OnInit {
   @ViewChild('edit', { static: true }) input: ElementRef;
   // @ViewChild('create', { static: true }) createInput: ElementRef;
 
-  reminderObject: Reminder = JSON.parse(localStorage.getItem('reminderObject'));
+  reminderObject: Reminder;
   formTypes:string[] = ['create','update','delete'];
-
-  
   documentTypeFormDictionary:any = {};
 
   createForm: FormGroup;
@@ -42,32 +40,43 @@ export class RemindersOverlayComponent implements OnInit {
     }
 
     ngOnInit(): void {
-      // Initialised createForm
-      if(this.managerType === "Reminders"){
-        this.documentTypeFormDictionary = {
-          'reminder': this.Forms.R_reminderForm
-        }
-        this.dynamicFormGroupGenerator();
-      }
+    // Initialised createForm
+    this.utilityService.managerTypeSubject.subscribe(resp=>{
+      this.dynamicFormDictionaryGenerator(resp);
+      this.dynamicFormGroupGenerator();
+    });
+    this.utilityService.reminderSubject.subscribe(resp=>{this.reminderObject=resp;});
     }
+
     ngOnChanges(): void {
       this.dynamicFormGroupGenerator();
     }
 
+    dynamicFormDictionaryGenerator(resp:string){
+      if(this.managerType === "Reminders" ){
+        this.documentTypeFormDictionary = {
+          'reminder': this.Forms.R_reminderForm
+        }
+      } 
 
-  dynamicFormGroupGenerator() {      
+    }
+
+  dynamicFormGroupGenerator() {
+  
     if( this.formTypes[0].includes(this.formType) )
-    this.createForm = this.formBuilder.group(this.documentTypeFormDictionary[this.documentType]);
+    return this.createForm = this.formBuilder.group(this.documentTypeFormDictionary[this.documentType]);
 
     if( this.formTypes[1].includes(this.formType) )
-    this.editForm = this.formBuilder.group(this.documentTypeFormDictionary[this.documentType]);
+    return this.editForm = this.formBuilder.group(this.documentTypeFormDictionary[this.documentType]);
 
     if( this.formTypes[2].includes(this.formType) )
-    this.deleteForm = this.formBuilder.group(this.documentTypeFormDictionary[this.documentType]);  
+    return this.deleteForm = this.formBuilder.group(this.documentTypeFormDictionary[this.documentType]);  
+    
  }
 
 
  setInactive(): void {
+   
   switch (this.formType) {
 
       case this.formTypes[0]:
@@ -76,6 +85,10 @@ export class RemindersOverlayComponent implements OnInit {
           this.active = bool;          
         });
       break;
+
+      case this.formTypes[1]:
+      break;
+
       case this.formTypes[2]:
         this.utilityService.setReminderDeleteFormInactive();
         this.utilityService.reminderDeleteSubject.subscribe( bool => {
@@ -133,10 +146,10 @@ onSubmit(actionType:string): void {
       );  
     break;
     case this.formTypes[2]:
-      console.log('second case submit ran!');
+      console.log('second case submit ran!',actionType);
       
       this.apiService
-      .documentRequest('reminder','delete',this.reminderObject.id,null,'Reminders')
+      .documentRequest('reminder',actionType,this.reminderObject.id,null,'Reminders')
       .subscribe(
         () => {
           this.messageService.pushSuccess("Successfully submitted!");
@@ -144,8 +157,8 @@ onSubmit(actionType:string): void {
         },
         (err) => {
           console.log(err);
-          this.messageService.pushError(err);}
-      );  
+          this.messageService.pushError(err);
+        });  
     break;
   }
 }
