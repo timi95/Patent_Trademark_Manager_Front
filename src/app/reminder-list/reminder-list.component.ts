@@ -1,6 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { deepEqual } from 'assert';
+import { time } from 'console';
 import { interval, pipe, timer } from 'rxjs';
 import { debounce, debounceTime, delay, distinctUntilChanged, repeat, retry, switchMap, tap } from 'rxjs/operators';
 import { ApiService } from 'src/services/api.service';
@@ -57,9 +58,19 @@ export class ReminderListComponent implements OnInit {
         })
         return true;
       })
-    ,delay(this.DELAY_TIME*60),repeat() )
+    ,delay(this.DELAY_TIME*2),repeat() )
     .subscribe((resp:{results:Reminder[]})=>
-    {this.utilityService.updateReminderList(resp.results)});
+    { this.utilityService.updateReminderList( this.dateMod(resp.results) )});
+  }
+
+  dateMod(reminder:Reminder[]):Reminder[] {
+    let todays_date = new Date();    
+    let result:Reminder[] = reminder;
+
+    result.forEach(item =>{ 
+      if(todays_date <= new Date(item.reminder_date) )
+       {item.matured = true;}else{item.matured=false;} });
+    return result;
   }
 
   refreshList(){
@@ -123,4 +134,5 @@ export interface Reminder {
   manager_type :string;
   document_type:string;
   document_id:string;
+  matured?:boolean;
 }
