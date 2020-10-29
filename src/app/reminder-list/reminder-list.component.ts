@@ -41,7 +41,7 @@ export class ReminderListComponent implements OnInit {
     this.apiService
     .documentRequest('reminder','get',null,null,'Reminders')
     .subscribe((resp:{results:Reminder[]})=>
-    {this.utilityService.updateReminderList(resp.results)});
+    {this.utilityService.updateReminderList(this.dateMod(resp.results))});
 
 
     this.apiService
@@ -58,7 +58,7 @@ export class ReminderListComponent implements OnInit {
         })
         return true;
       })
-    ,delay(this.DELAY_TIME*2),repeat() )
+    ,delay(this.DELAY_TIME*60),repeat() )
     .subscribe((resp:{results:Reminder[]})=>
     { this.utilityService.updateReminderList( this.dateMod(resp.results) )});
   }

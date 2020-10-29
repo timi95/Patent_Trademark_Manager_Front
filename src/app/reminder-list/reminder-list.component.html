@@ -14,8 +14,15 @@
                 <span class="delete" (click)="reminderDeleteDialogue(reminder)"> &times;</span>
             </div>
         </header>
-        {{reminder.reminder_detail}}
-            <!-- {{item|json}} -->
+        <div>
+            {{reminder.reminder_detail}}
+        </div><br>
+        <div>
+            <strong>Manager Type:</strong>{{reminder.manager_type}}
+        </div>
+        <div>
+            <strong>Document Type:</strong>{{reminder.document_type}} <strong>id</strong>:{{reminder.document_id}}
+        </div>
         </li>
     </div>
 </nav>
