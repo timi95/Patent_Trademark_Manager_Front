@@ -34,7 +34,11 @@
                 {
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.prod.ts"
-                }
+                },
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.staging.ts"
+                }                
               ],
               "optimization": true,
               "outputHashing": "all",
@@ -67,7 +71,10 @@
           "configurations": {
             "production": {
               "browserTarget": "Patent-Trademark-Manager-Front:build:production"
-            }
+            },
+            "staging": {
+              "browserTarget": "Patent-Trademark-Manager-Front:build:staging"
+            }            
           }
         },
         "extract-i18n": {

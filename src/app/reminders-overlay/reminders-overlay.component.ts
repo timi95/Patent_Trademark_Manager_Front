@@ -47,8 +47,6 @@ export class RemindersOverlayComponent implements OnInit {
       this.dynamicFormGroupGenerator();
     });
     this.utilityService.reminderSubject.subscribe(resp=>{this.reminderObject=resp;});
-
-
     }
 
     ngOnChanges(): void {
