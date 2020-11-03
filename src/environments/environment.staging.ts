@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://185.85.242.37:8000'
+  apiUrl: 'https://patent-trademark-manager-demo.herokuapp.com'
 };
 
 /*
