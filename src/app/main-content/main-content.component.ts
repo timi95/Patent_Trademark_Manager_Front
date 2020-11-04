@@ -80,6 +80,13 @@ export class MainContentComponent implements OnInit {
   }
 
 
+  deleteDocument(){
+    this.formType = 'delete';
+    this.utilityService.setDetailDeleteFormActive();
+        
+  }
+
+
 }
 interface Document {
   id:any;

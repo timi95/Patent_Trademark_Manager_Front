@@ -13,7 +13,9 @@
     <li class="card-body" *ngFor="let document of documentList" >
       <header class="card-header" >
         <span> ID: {{ document.id }}</span>
-        <a class="manage-button">Actions</a>
+        <div>
+          <span class="delete" (click)="deleteDocument()"> &times;</span>
+        </div>
       </header>
       <div class="attributes-container" 
       *ngFor="let attribute of utilityService.toList(document); let i = index">
@@ -34,7 +36,8 @@
   <a href="#" class="square_btn" (click)="createDocument()">&#43;</a>
 </div>
 <overlay
-[active]="(this.utilityService.modalFormActive|async)"
+[active]="(this.utilityService.modalFormActive|async) !==
+          (this.utilityService.detailDeleteFormActive|async)"
 [managerType]="managerType"
 [documentType]="documentTypeUrlDict[documentType]"
 [formType]="formType"></overlay>

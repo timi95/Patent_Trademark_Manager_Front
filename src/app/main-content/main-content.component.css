@@ -100,3 +100,14 @@
     overflow-x: hidden;
 
 }
+
+
+.delete{
+    font-size: 25px;
+    transition: 0.4s;
+}
+.delete:hover{
+    font-size: 30px;
+    color: crimson;
+    font-weight: 600;
+}
