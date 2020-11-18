@@ -29,7 +29,6 @@
     margin: 0;
     width: 100%;
     overflow: auto;
-    resize: vertical;
 }
 /* .scrollable-grid::-webkit-scrollbar{
     display: none;
@@ -52,8 +51,8 @@
     justify-content: space-evenly;
     /* align-items: center; */
 
+    height: 70vh;
     border-radius: 15px;
-    /* padding: 0 5%; */
     text-overflow: ellipsis;
     margin: 1% 3%;
 }
