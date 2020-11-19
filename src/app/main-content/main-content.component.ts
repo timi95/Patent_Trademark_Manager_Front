@@ -8,6 +8,7 @@ import { AmendmentAction } from 'src/interfaces/AmendmentAction';
 import { Router } from '@angular/router';
 import { from, Observable } from 'rxjs';
 import { map, retry, switchMap, tap } from 'rxjs/operators';
+import { Form } from '../classes/Form';
 
 
 @Component({
@@ -16,12 +17,12 @@ import { map, retry, switchMap, tap } from 'rxjs/operators';
   styleUrls: ['./main-content.component.css']
 })
 export class MainContentComponent implements OnInit {
-
-  constructor() {   
+  patent_particulars:any[];
+  constructor(public utilityService:UtilityService) {   
   }
 
   ngOnInit(): void {
-   
+   this.patent_particulars = this.utilityService.toList(new Form().P_patent_particulars);
   }
 
   createDocument() {

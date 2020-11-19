@@ -18,6 +18,7 @@ import { FilterByWidgetComponent } from './filter-by-widget/filter-by-widget.com
 import { DateRangeSearchWidgetComponent } from './date-range-search-widget/date-range-search-widget.component';
 import { ReminderListComponent } from './reminder-list/reminder-list.component';
 import { RemindersOverlayComponent } from './reminders-overlay/reminders-overlay.component';
+import { Form } from './classes/Form';
 
 @NgModule({
   declarations: [
