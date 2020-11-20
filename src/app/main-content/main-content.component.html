@@ -10,15 +10,30 @@
           <li *ngFor="let item of patent_particulars">
             {{item[0]}}: <input >
           </li>
-          <!-- <li>item 1: <input type="text"> </li>
-          <li>item 2: <input type="text"> </li>
-          <li>item 3: <input type="text"> </li>
-          <li>item 4: <input type="text"> </li>
-          <li>item 5: <input type="text"> </li> -->
+
         </ul>
       </section>
+
       <section>
-        <h2 class="card-header">Cleint Particulars</h2>
+        <h2 class="card-header">Document Instruction</h2>
+        <hr width="90%">
+        <ul>
+          <select (change)="changeInstructionForm($event)">
+            <option disabled>Select Instruction list</option>
+            <option *ngFor="let instruction of instructionList" [ngValue]="instruction">{{instruction}}</option>
+          </select>
+          <ul >
+            <li 
+            *ngFor="let item of patent_instructionForm">
+              {{item[0]}}: <input >
+            </li>
+  
+          </ul>
+        </ul>
+      </section>
+      
+      <section>
+        <h2 class="card-header">Client Particulars</h2>
         <hr width="90%">
         <ul>
           <li>item 1: <input type="text"> </li>
@@ -28,17 +43,7 @@
           <li>item 5: <input type="text"> </li>
         </ul>
       </section>
-      <section>
-        <h2 class="card-header">Associated Lawyer</h2>
-        <hr width="90%">
-        <ul>
-          <li>item 1: <input type="text"> </li>
-          <li>item 2: <input type="text"> </li>
-          <li>item 3: <input type="text"> </li>
-          <li>item 4: <input type="text"> </li>
-          <li>item 5: <input type="text"> </li>
-        </ul>
-      </section>
+
     </div>
     
   </div>
