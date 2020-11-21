@@ -20,6 +20,7 @@ export class MainContentComponent implements OnInit {
   Forms:Form = new Form();
   patent_particulars:any[];
   patent_instructionForm:any[];
+  is_new_action:boolean = false;
   instructionList =
   [
     'search-action',
@@ -56,7 +57,6 @@ export class MainContentComponent implements OnInit {
     console.log( this.utilityService
       .toList(this.instructionFormDictionary[event.target.value]) );
     
-    
     this.patent_instructionForm = this.utilityService
     .toList(this.instructionFormDictionary[event.target.value]);
   }
@@ -72,6 +72,9 @@ export class MainContentComponent implements OnInit {
   deleteDocument(){
   }
 
+  addActionToggle(){
+    this.is_new_action = !this.is_new_action
+  }
 
 }
 interface Document {

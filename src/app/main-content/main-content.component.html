@@ -10,19 +10,21 @@
           <li *ngFor="let item of patent_particulars">
             {{item[0]}}: <input >
           </li>
-
+          <!-- NOTE: The "current" Instruction fields should auto-update, they are not editable -->
         </ul>
       </section>
 
       <section>
-        <h2 class="card-header">Patent Action </h2>
+        <h2 class="card-header">Patent Action 
+        <button (click)="addActionToggle()">Add new Action to this Patent?</button>
+        </h2>
         <hr width="90%">
-        <ul>
+        <ul *ngIf="is_new_action">
           <select (change)="changeInstructionForm($event)">
-            <option disabled>Select Instruction list</option>
+            <option default>Select Instruction list</option>
             <option *ngFor="let instruction of instructionList" [ngValue]="instruction">{{instruction}}</option>
           </select>
-          <ul >
+          <ul>
             <li 
             *ngFor="let item of patent_instructionForm">
               {{item[0]}}: <input >
@@ -31,18 +33,7 @@
           </ul>
         </ul>
       </section>
-      
-      <section>
-        <h2 class="card-header">Client Particulars</h2>
-        <hr width="90%">
-        <ul>
-          <li>item 1: <input type="text"> </li>
-          <li>item 2: <input type="text"> </li>
-          <li>item 3: <input type="text"> </li>
-          <li>item 4: <input type="text"> </li>
-          <li>item 5: <input type="text"> </li>
-        </ul>
-      </section>
+
 
     </div>
     
