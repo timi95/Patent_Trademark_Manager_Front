@@ -5,6 +5,7 @@
 - Current action field should be automatically filled based on the latest created Action on the instruction.
 
 ## Planned Structure of Entities
+```json
 Trademark:{
   trademark_detail_one
   trademark_detail_two
@@ -28,3 +29,4 @@ Action:{
   ...
   patent_or_trademark_I_belong_to
 }
+```
