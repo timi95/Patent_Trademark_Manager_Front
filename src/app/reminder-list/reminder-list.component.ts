@@ -37,30 +37,30 @@ export class ReminderListComponent implements OnInit {
     public utilityService: UtilityService) { }
 
   ngOnInit(): void {
-    // this.utilityService.reminderListSubject.subscribe(resp => this.reminders = resp);
-    this.apiService
-    .documentRequest('reminder','get',null,null,'Reminders')
-    .subscribe((resp:{results:Reminder[]})=>
-    {this.utilityService.updateReminderList(this.dateMod(resp.results))});
+    
+    // this.apiService
+    // .documentRequest('reminder','get',null,null,'Reminders')
+    // .subscribe((resp:{results:Reminder[]})=>
+    // {this.utilityService.updateReminderList(this.dateMod(resp.results))});
 
 
-    this.apiService
-    .documentRequest('reminder','get',null,null,'Reminders')
-    .pipe( 
-      distinctUntilChanged((prvs:Object,crnt:Object):boolean=>{ 
-        if(Object.values(prvs).length != Object.values(prvs).length)
-          {return false;}
-        if(JSON.stringify(prvs) != JSON.stringify(crnt))
-          {return false;}
-        Object.values(crnt).forEach((val,index)=>{
-          if(val != Object.values(prvs)[index])
-          {return false;}
-        })
-        return true;
-      })
-    ,delay(this.DELAY_TIME*60),repeat() )
-    .subscribe((resp:{results:Reminder[]})=>
-    { this.utilityService.updateReminderList( this.dateMod(resp.results) )});
+    // this.apiService
+    // .documentRequest('reminder','get',null,null,'Reminders')
+    // .pipe( 
+    //   distinctUntilChanged((prvs:Object,crnt:Object):boolean=>{ 
+    //     if(Object.values(prvs).length != Object.values(prvs).length)
+    //       {return false;}
+    //     if(JSON.stringify(prvs) != JSON.stringify(crnt))
+    //       {return false;}
+    //     Object.values(crnt).forEach((val,index)=>{
+    //       if(val != Object.values(prvs)[index])
+    //       {return false;}
+    //     })
+    //     return true;
+    //   })
+    // ,delay(this.DELAY_TIME*60),repeat() )
+    // .subscribe((resp:{results:Reminder[]})=>
+    // { this.utilityService.updateReminderList( this.dateMod(resp.results) )});
   }
 
   dateMod(reminder:Reminder[]):Reminder[] {

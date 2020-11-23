@@ -42,15 +42,15 @@ export class RemindersOverlayComponent implements OnInit {
 
     ngOnInit(): void {
     // Initialised createForm 
-    this.utilityService.managerTypeSubject.subscribe(resp=>{
-      this.dynamicFormDictionaryGenerator(resp);
-      this.dynamicFormGroupGenerator();
-    });
-    this.utilityService.reminderSubject.subscribe(resp=>{this.reminderObject=resp;});
+    // this.utilityService.managerTypeSubject.subscribe(resp=>{
+    //   this.dynamicFormDictionaryGenerator(resp);
+    //   this.dynamicFormGroupGenerator();
+    // });
+    // this.utilityService.reminderSubject.subscribe(resp=>{this.reminderObject=resp;});
     }
 
     ngOnChanges(): void {
-      this.dynamicFormGroupGenerator();
+      // this.dynamicFormGroupGenerator();
     }
 
     dynamicFormDictionaryGenerator(resp:string){
