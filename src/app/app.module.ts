@@ -19,6 +19,10 @@ import { DateRangeSearchWidgetComponent } from './date-range-search-widget/date-
 import { ReminderListComponent } from './reminder-list/reminder-list.component';
 import { RemindersOverlayComponent } from './reminders-overlay/reminders-overlay.component';
 import { Form } from './classes/Form';
+import { PatentInstructionRegistrationComponent } from './patent-instruction-registration/patent-instruction-registration.component';
+import { TrademarkInstructionRegistrationComponent } from './trademark-instruction-registration/trademark-instruction-registration.component';
+import { ViewTrademarksComponent } from './view-trademarks/view-trademarks.component';
+import { ViewPatentsComponent } from './view-patents/view-patents.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +40,10 @@ import { Form } from './classes/Form';
     DateRangeSearchWidgetComponent,
     ReminderListComponent,
     RemindersOverlayComponent,
+    PatentInstructionRegistrationComponent,
+    TrademarkInstructionRegistrationComponent,
+    ViewTrademarksComponent,
+    ViewPatentsComponent,
   ],
   imports: [
     BrowserModule,
