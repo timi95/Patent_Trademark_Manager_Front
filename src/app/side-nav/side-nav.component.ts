@@ -94,5 +94,11 @@ export class SideNavComponent implements OnInit {
       // console.log(`screen height: ${this.screenHeight} screen width: ${this.screenWidth}`);
   }
 
+  navigate(route?:string){
+    if (!route || route == '')
+    this.router.navigate(['']);
+
+    this.router.navigate([route])
+  }
 
 }
