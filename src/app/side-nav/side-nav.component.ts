@@ -31,7 +31,13 @@ export class SideNavComponent implements OnInit {
     'Trademarklist':false,
   }
   managerType:string = 'Patent_manager';
-  itemList:string[] = new Action().patent_ActionTypes;
+  pathList:any[] = [
+    { path:'', name:"Home"},
+    { path:'register/trademark', name: 'Register a Trademark'},
+    { path:'view/trademark',name:'View Trademarks'},
+    { path:'register/patent', name:'Register a Patent'},
+    { path:'view/patent', name:'View Patents'},
+  ];
 
 
   constructor(
@@ -66,8 +72,6 @@ export class SideNavComponent implements OnInit {
 
     this.managerType = this.P_T_list_toggle.Patentlist? 'Patent_manager':'Trademark_manager';
 
-    this.itemList = this.P_T_list_toggle.Patentlist?
-    new Action().patent_ActionTypes: new Action().trademark_ActionTypes;
   }
 
   toggleList(){

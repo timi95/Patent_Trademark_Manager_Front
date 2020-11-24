@@ -19,6 +19,11 @@ nav {
     display: none;
 }
 
+.list-item > a {
+    color: inherit;
+    list-style-type: none;
+    text-decoration: none;
+}
 .list-item {
     display: flex;
     align-items: center;
