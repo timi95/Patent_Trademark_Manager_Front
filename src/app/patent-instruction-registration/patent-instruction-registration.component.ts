@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { UtilityService } from 'src/services/utility.service';
 import { Form } from '../classes/Form';
 
@@ -37,7 +38,8 @@ export class PatentInstructionRegistrationComponent implements OnInit {
     'assignment-merger-action':this.Forms.P_assignment_merger_action,
     "amendment-action": this.Forms.P_amendment_action,
   }
-  constructor(public utilityService:UtilityService) { }
+  constructor(public router: Router,
+    public utilityService:UtilityService) { }
 
   ngOnInit(): void {
     this.patent_particulars = this.utilityService.toList(this.Forms.P_patent_particulars);
@@ -64,6 +66,9 @@ export class PatentInstructionRegistrationComponent implements OnInit {
 
   addActionToggle(){
     this.is_new_action = !this.is_new_action
+  }
+  viewPatents(){
+    this.router.navigate(['view/patent'])
   }
 
 }
