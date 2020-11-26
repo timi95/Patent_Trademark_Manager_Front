@@ -39,10 +39,9 @@
     margin: 0;
     width: 100%;
     overflow: auto;
+    /* border-radius: 15px; */
 }
-/* .scrollable-grid::-webkit-scrollbar{
-    display: none;
-} */
+
 .card-grid {
     display: grid;
     grid-template-columns:repeat(auto-fill, minmax(12rem, 1fr));
