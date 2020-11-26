@@ -16,10 +16,12 @@
     border-radius: 15px;
     text-overflow: ellipsis;
 
-    width: 100px;
     padding: 5px;
     margin: 5px;
 }
+.actions-list>li>div{
+    width: 90px ;
+  }
 .scrollable-grid {
     margin: 0;
     width: 100%;
