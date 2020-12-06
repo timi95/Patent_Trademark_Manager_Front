@@ -132,12 +132,12 @@ export class RemindersOverlayComponent implements OnInit {
 
   deleteReminder(id){
     this.apiService
-    .documentRequest('reminder','delete',id,null,'Reminders')
+    .documentRequest('reminder','delete',id,null)
     .subscribe(error =>{console.error(error) });
   }
   refreshList(){
     this.apiService
-    .documentRequest('reminder','get',null,null,'Reminders')
+    .documentRequest('reminder','get',null,null)
     .subscribe((resp:{results:Reminder[]})=>
     { this.utilityService.updateReminderList(resp.results)});
   }
@@ -149,8 +149,7 @@ onSubmit(actionType:string): void {
         this.documentType,
         "post",
         null,
-        JSON.stringify(this.createForm.getRawValue()),
-        this.managerType)
+        JSON.stringify(this.createForm.getRawValue()))
       .subscribe(
         () => {
           this.messageService.pushSuccess("Successfully submitted!");
@@ -166,7 +165,7 @@ onSubmit(actionType:string): void {
     case this.formTypes[1]:
       this.apiService
       .documentRequest(
-        this.documentType,"patch",this.reminderObject.id,this.editForm.value,'Reminders')
+        this.documentType,"patch",this.reminderObject.id,this.editForm.value)
       .subscribe(
         () => {
           this.messageService.pushSuccess("Successfully submitted!");
@@ -181,7 +180,7 @@ onSubmit(actionType:string): void {
 
     case this.formTypes[2]:      
       this.apiService
-      .documentRequest(this.documentType,'delete',this.reminderObject.id,this.deleteForm.value,'Reminders')
+      .documentRequest(this.documentType,'delete',this.reminderObject.id,this.deleteForm.value)
       .subscribe(
         () => {
           this.messageService.pushSuccess("Successfully submitted!");

@@ -75,7 +75,7 @@ export class ReminderListComponent implements OnInit {
 
   refreshList(){
     this.apiService
-    .documentRequest('reminder','get',null,null,'Reminders')
+    .documentRequest('reminder','get',null,null)
     .subscribe((resp:{results:Reminder[]})=>
     {this.utilityService.updateReminderList(resp.results)});
   }
