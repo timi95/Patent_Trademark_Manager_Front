@@ -41,55 +41,50 @@ public errors: any = [];
 // ******************** // C R U D // ******************** //
 
   // Generally applicable CRUD request function for all patent resources
-  documentRequest(documentType:string, 
-                        requestType:string,
-                        id?:number,
-                        requestBody?:any,
-                        managerType?:string) {
-    managerType = managerType? managerType:'Patent_manager';
+  documentRequest(documentType:string, requestType:string, id?:number,requestBody?:any) {
     switch (requestType.toLowerCase()) {
     //POST request case
       case "post":
         if ((id > 0) && requestBody) {
-          return this.httpServer.post(`${this.API_URL}/${managerType}/${documentType}/${id}`, requestBody,this.httpOptions); 
+          return this.httpServer.post(`${this.API_URL}/Instruction/${documentType}/${id}`, requestBody,this.httpOptions); 
         } else if( (id <= 0) && requestBody ){ 
-          return this.httpServer.post(`${this.API_URL}/${managerType}/${documentType}/`, requestBody,this.httpOptions);
+          return this.httpServer.post(`${this.API_URL}/Instruction/${documentType}/`, requestBody,this.httpOptions);
         }
       break;
 
       //PUT request case
       case "put":
         if ((id > 0) && requestBody) {
-          return this.httpServer.put(`${this.API_URL}/${managerType}/${documentType}/${id}`, requestBody,this.httpOptions); 
+          return this.httpServer.put(`${this.API_URL}/Instruction/${documentType}/${id}`, requestBody,this.httpOptions); 
         } else if( (id <= 0) && requestBody ){ 
-          return this.httpServer.put(`${this.API_URL}/${managerType}/${documentType}/`, requestBody,this.httpOptions);
+          return this.httpServer.put(`${this.API_URL}/Instruction/${documentType}/`, requestBody,this.httpOptions);
         }
         break;
     
       //PATCH request case
       case "patch":
         if ((id > 0) && requestBody) {
-          return this.httpServer.patch(`${this.API_URL}/${managerType}/${documentType}/${id}`, requestBody,this.httpOptions); 
+          return this.httpServer.patch(`${this.API_URL}/Instruction/${documentType}/${id}`, requestBody,this.httpOptions); 
         } else if( (id <= 0) && requestBody ){ 
-          return this.httpServer.patch(`${this.API_URL}/${managerType}/${documentType}/`, requestBody,this.httpOptions);
+          return this.httpServer.patch(`${this.API_URL}/Instruction/${documentType}/`, requestBody,this.httpOptions);
         }
         break;
         
       //DELETE request case
       case "delete":
         if ((id > 0) && requestBody) {
-          return this.httpServer.delete(`${this.API_URL}/${managerType}/${documentType}/${id}`); 
+          return this.httpServer.delete(`${this.API_URL}/Instruction/${documentType}/${id}`); 
         } else if( (id <= 0) && requestBody ){  
-          return this.httpServer.delete(`${this.API_URL}/${managerType}/${documentType}/`,requestBody);
+          return this.httpServer.delete(`${this.API_URL}/Instruction/${documentType}/`,requestBody);
         }
       break;
 
       //GET request case
       case "get":
         if (requestType.includes('get') && id) {
-          return this.httpServer.get(`${this.API_URL}/${managerType}/${documentType}/${id}`); 
+          return this.httpServer.get(`${this.API_URL}/Instruction/${documentType}/${id}`); 
         } else if(requestType.includes('get')) { 
-          return this.httpServer.get(`${this.API_URL}/${managerType}/${documentType}/`);
+          return this.httpServer.get(`${this.API_URL}/Instruction/${documentType}/`);
         }
       break;
 
@@ -97,9 +92,9 @@ public errors: any = [];
       // default case
       default:
         if (id) {
-          return this.httpServer.get(`${this.API_URL}/${managerType}/${documentType}/${id}`); 
+          return this.httpServer.get(`${this.API_URL}/Instruction/${documentType}/${id}`); 
         } else { 
-          return this.httpServer.get(`${this.API_URL}/${managerType}/${documentType}/`);
+          return this.httpServer.get(`${this.API_URL}/Instruction/${documentType}/`);
         }
     }
   }
