@@ -1,3 +1,13 @@
+.view-patent{
+    color: #FFF;
+    margin-top: 20px;
+    padding: 0 5%;
+    transition: 0.5s;
+    text-decoration: underline;
+}
+.view-patent:hover{
+    color: #667bd8;
+}
 .square-positioning {
     left: 65%;
     position: relative;
@@ -29,10 +39,9 @@
     margin: 0;
     width: 100%;
     overflow: auto;
+    /* border-radius: 15px; */
 }
-/* .scrollable-grid::-webkit-scrollbar{
-    display: none;
-} */
+
 .card-grid {
     display: grid;
     grid-template-columns:repeat(auto-fill, minmax(12rem, 1fr));

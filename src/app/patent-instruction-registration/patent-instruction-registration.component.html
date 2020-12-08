@@ -1,0 +1,41 @@
+<main>
+    <strong class="view-patent" (click)="viewPatents()">View Patents</strong>
+    <div class="card-body">
+    <h1 class="card-header">Patent Document</h1>
+    <div class="scrollable-grid">
+      <section>
+        <h2 class="card-header">Instruction Particulars</h2>
+        <hr width="90%">
+        <ul>
+          <li *ngFor="let item of patent_particulars">
+            {{item[0]}}: <input >
+          </li>
+          <!-- NOTE: The "current" Instruction fields should auto-update, they are not editable -->
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="card-header">Patent Action 
+        <button (click)="addActionToggle()">Add new Action to this Patent?</button>
+        </h2>
+        <hr width="90%">
+        <ul *ngIf="is_new_action">
+          <select (change)="changeInstructionForm($event)">
+            <option default>Select Instruction list</option>
+            <option *ngFor="let instruction of instructionList" [ngValue]="instruction">{{instruction}}</option>
+          </select>
+          <ul>
+            <li 
+            *ngFor="let item of patent_instructionForm">
+              {{item[0]}}: <input >
+            </li>
+  
+          </ul>
+        </ul>
+      </section>
+
+
+    </div>
+    
+  </div>
+</main>

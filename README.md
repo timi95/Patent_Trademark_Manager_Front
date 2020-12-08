@@ -1,28 +1,32 @@
 # PatentTrademarkManagerFront
+## Revised use-case plan
+- A Patent/Trademark document is a combination of Instruction(Patent/Trademark) Particulars,and Actions
+- When viewing created Patents/Trademarks, Along with the Particulars of the Instruction, there will be a list of all Actions taken on the document.
+- Current action field should be automatically filled based on the latest created Action on the instruction.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.7.
-
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Planned Structure of Entities
+```
+Trademark:{
+  trademark_detail_one
+  trademark_detail_two
+  ...
+  action_list<Action>: [current_action,
+  ...
+  first_action
+  ]  
+}
+Patent:{
+  patent_detail_one
+  patent_detail_two
+  ...
+  action_list<Action>: [current_action,
+  ...
+  first_action
+  ]  
+}
+Action:{
+  action_details
+  ...
+  patent_or_trademark_I_belong_to
+}
+```
