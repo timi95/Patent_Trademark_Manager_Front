@@ -11,7 +11,9 @@
         <!-- template binding to form goes here later -->
         <ul>
           <li *ngFor="let item of patent_particulars">
-            {{item[0]}}: <input [type]="patentCreateForm[item[0]].type">
+            <div *ngIf="patentCreateForm[item[0]].type != 'list'" > 
+              {{item[0]}}: <input [type]="patentCreateForm[item[0]].type">
+            </div>
           </li>
         </ul>
         <!-- NOTE: The "current" Instruction fields should auto-update, they are not editable -->

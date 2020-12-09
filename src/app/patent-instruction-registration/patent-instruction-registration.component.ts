@@ -39,7 +39,7 @@ export class PatentInstructionRegistrationComponent implements OnInit {
     "amendment-action": this.Forms.P_amendment_action,
   }
   patentCreateForm = {
-    action_list: [],
+    action_list: {value:[], type:"list"},
     applicable_service_charge: {value:"default value", type:"text"},
     certificate_procurement_due_date: { value: new Date(), type: "datetime-local"},
     clerk_responsible: {value:"default value", type:"text"},
