@@ -6,12 +6,13 @@
       <section>
         <h2 class="card-header">Instruction Particulars</h2>
         <hr width="90%">
-        <ul>
+        <!-- template binding to form goes here later -->
+        <!-- <ul>
           <li *ngFor="let item of patent_particulars">
-            {{item[0]}}: <input >
+            {{item[0]}}: <input [type]="utilityService.inputType(item[1])">
           </li>
-          <!-- NOTE: The "current" Instruction fields should auto-update, they are not editable -->
-        </ul>
+        </ul> -->
+        <!-- NOTE: The "current" Instruction fields should auto-update, they are not editable -->
       </section>
 
       <section>
