@@ -1,16 +1,16 @@
 <main class="card-grid" 
-*ngFor="let patent$ of (apiService.documentRequest('patent','get')| async)?.contents">
+*ngFor="let patent of patent$?.content">
     <div class="card-body">
-        <h3>Reference Number: </h3>
-        <strong>{{ patent$.our_reference_number}}</strong>
+        <h3>ID: {{patent.id}} </h3>
+        <strong></strong>
         <div>
-            <h4>Current Status</h4>
-            <p>{{patent$.current_status}}
-            </p>
+            <h4>Reference Number:</h4>
+            <p>{{ patent.our_reference_number}}</p>
         </div>
         <ul class="actions-list">
-            <li class="" *ngFor="let action of patent$?.action_list">
-              <div> {{action?.id}}</div>
+            <li class="" *ngFor="let action of patent?.action_list">
+              <div> <strong>Id:</strong>{{action?.id}}</div>
+              <div> <strong>type:</strong> {{action?.type_id}}</div>
             </li> 
         </ul>
         <button>Edit this Document</button>
@@ -35,4 +35,3 @@
         <button>Edit this Document</button>
     </div> -->
 </main>
-  
