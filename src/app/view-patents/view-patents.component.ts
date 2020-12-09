@@ -11,14 +11,16 @@ import { Instruction } from '../interfaces/Instruction';
   styleUrls: ['./view-patents.component.css']
 })
 export class ViewPatentsComponent implements OnInit {
-  // patent$:Observable;
+  patent$:any;
   constructor(public apiService: ApiService) { }
 
   ngOnInit(): void {
-    // this.patent$ = this.apiService.documentRequest('patent','get')
+    this.apiService.documentRequest('patent','get')
     // .pipe(repeat(3))
-    // .subscribe( (resp:Patent) =>{console.log(resp);
-    // })
+    .subscribe( (resp:Patent) =>{
+      this.patent$ = resp
+      console.log(resp);
+    })
   }
 
 }
