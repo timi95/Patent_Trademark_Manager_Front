@@ -41,7 +41,7 @@ export class PatentInstructionRegistrationComponent implements OnInit {
   patentCreateForm = {
     action_list: [],
     applicable_service_charge: {value:"default value", type:"text"},
-    certificate_procurement_due_date: { value: new Date(), type: "date"},
+    certificate_procurement_due_date: { value: new Date(), type: "datetime-local"},
     clerk_responsible: {value:"default value", type:"text"},
     client_id: {value:"default value", type:"text"},
     clients_address: {value:"default value", type:"text"},
@@ -50,11 +50,11 @@ export class PatentInstructionRegistrationComponent implements OnInit {
     convention_country: {value:"default value", type:"text"},
     current_instruction: {value:"default value", type:"text"},
     current_status: {value:"default value", type:"text"},
-    date_completed_job_received: { value: new Date(), type: "date"},
-    date_incoming_abuja_schedule: { value: new Date(), type: "date"},
-    date_instruction_received: { value: new Date(), type: "date"},
-    date_of_instruction: { value: new Date(), type: "date"},
-    date_outgoing_abuja_schedule: { value: new Date(), type: "date"},
+    date_completed_job_received: { value: new Date(), type: "datetime-local"},
+    date_incoming_abuja_schedule: { value: new Date(), type: "datetime-local"},
+    date_instruction_received: { value: new Date(), type: "datetime-local"},
+    date_of_instruction: { value: new Date(), type: "datetime-local"},
+    date_outgoing_abuja_schedule: { value: new Date(), type: "datetime-local"},
     facilitation: {value:"default value", type:"text"},
     filing_receipt_status: {value:"default value", type:"text"},
     incentive_due_clerk: {value:"default value", type:"text"},
@@ -76,7 +76,7 @@ export class PatentInstructionRegistrationComponent implements OnInit {
     public utilityService:UtilityService) { }
 
   ngOnInit(): void {
-    // this.patent_particulars = this.utilityService.toList(this.Forms.patentCreateForm);
+    this.patent_particulars = this.utilityService.toList(this.patentCreateForm);
    }
  
    changeInstructionForm(event:any){

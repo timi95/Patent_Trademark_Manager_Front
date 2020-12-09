@@ -6,12 +6,14 @@
       <section>
         <h2 class="card-header">Instruction Particulars</h2>
         <hr width="90%">
+
+          <!-- <input [type]="patentCreateForm.certificate_procurement_due_date.type"> -->
         <!-- template binding to form goes here later -->
-        <!-- <ul>
+        <ul>
           <li *ngFor="let item of patent_particulars">
-            {{item[0]}}: <input [type]="utilityService.inputType(item[1])">
+            {{item[0]}}: <input [type]="patentCreateForm[item[0]].type">
           </li>
-        </ul> -->
+        </ul>
         <!-- NOTE: The "current" Instruction fields should auto-update, they are not editable -->
       </section>
 
