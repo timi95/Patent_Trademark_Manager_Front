@@ -311,6 +311,42 @@ export class Form {
         document_id: new FormControl('', [Validators.required]),
     }
 
+    patentCreateForm = {
+        action_list: [],
+        applicable_service_charge: "default value",
+        certificate_procurement_due_date: new Date().getDate(),
+        clerk_responsible: "default value",
+        client_id: "default value",
+        clients_address: "default value",
+        clients_contact_person: "default value",
+        clients_reference_number: "default value",
+        convention_country: "default value",
+        current_instruction: "default value",
+        current_status: "default value",
+        date_completed_job_received: new Date().getDate(),
+        date_incoming_abuja_schedule: new Date().getDate(),
+        date_instruction_received: new Date().getDate(),
+        date_of_instruction: new Date().getDate(),
+        date_outgoing_abuja_schedule: new Date().getDate(),
+        facilitation: "default value",
+        filing_receipt_status: "default value",
+        id: "default value",
+        incentive_due_clerk: "default value",
+        invention_description: "default value",
+        lawyer_responsible: "default value",
+        month_certificate_procurement_due: "default value",
+        month_incoming_abuja_schedule: "default value",
+        month_outgoing_abuja_schedule: "default value",
+        name_of_client: "default value",
+        name_of_patentee: "default value",
+        official_fee: "default value",
+        our_reference_number: "default value",
+        patent_registration_number: "default value",
+        patentee_address: "default value",
+        quickteller_fee: "default value",
+        type_id: "default value"
+      }
+
     constructor() {
     }
     
