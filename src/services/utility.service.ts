@@ -120,13 +120,6 @@ export class UtilityService {
     }
   }
 
-  inputType(field){
-    console.log(typeof field, field);
-    // if((typeof new Date()) == field){
-    //   return "datetime-local"
-    // }
-  }
-
 }
 
 interface Document {
