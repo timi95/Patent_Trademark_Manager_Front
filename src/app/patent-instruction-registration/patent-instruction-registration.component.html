@@ -14,13 +14,14 @@
             <li *ngIf="(patentCreateForm[item[0]].type != 'list') &&
                        (patentCreateForm[item[0]].type != 'type_id')" > 
               <div>
-                {{item[0]}}: <input 
+                {{item[0]}}: <input (input)="patentFormMap()"
                 [type]="patentCreateForm[item[0]].type" 
                 [(ngModel)]="patentCreateForm[item[0]].value">
               </div>
             </li>
           </div>
         </ul>
+        <!-- {{patentFormMap() | json}} -->
         <!-- NOTE: The "current" Instruction fields should auto-update, they are not editable -->
       </section>
 
@@ -32,11 +33,11 @@
         <ul *ngIf="is_new_action">
           <select (change)="changeInstructionForm($event)">
             <option default>Select Instruction list</option>
-            <option *ngFor="let instruction of instructionList" [ngValue]="instruction">{{instruction}}</option>
+            <option *ngFor="let action of actionList" [ngValue]="action">{{action}}</option>
           </select>
           <ul>
             <li 
-            *ngFor="let item of patent_instructionForm">
+            *ngFor="let item of listOfPatentActionForm">
               {{item[0]}}: <input >
             </li>
   
