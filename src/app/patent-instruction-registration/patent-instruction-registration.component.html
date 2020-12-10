@@ -38,7 +38,7 @@
           <ul>
             <li 
             *ngFor="let item of listOfPatentActionForm">
-              {{item[0]}}: <input >
+              {{item[0]}}: <input [type]="item[1].type">
             </li>
   
           </ul>
