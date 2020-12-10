@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { UtilityService } from 'src/services/utility.service';
 import { Form } from '../classes/Form';
@@ -106,13 +106,12 @@ export class PatentInstructionRegistrationComponent implements OnInit {
   }
 
   formMap(){
-    let product = this.patentCreateForm;
+    let product = {...this.patentCreateForm};
     for( const[key, value] of Object.entries(this.patentCreateForm) ){
       let actualValue = value.value;
-      product[key] = actualValue
+      product[key] = actualValue;
     }
-    console.log(product);
-    
+    // console.log("product:",product,"original:",this.patentCreateForm);
     return product;
   }
 
