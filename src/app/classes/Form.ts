@@ -344,7 +344,27 @@ export class Form {
         patentee_address: {value:"default value", type:"text"},
         quickteller_fee: {value:"default value", type:"text"},
         type_id: {value:"patent", type:"type_id"},
-      }
+    }
+
+    P_assignmentMergerActionCreateForm = {
+        assignee: {value:"default value", type:"text"},
+        assignee_address: {value:"default value", type:"text"},
+        assignment_instruction_date: {value: new Date(), type:"datetime-local"},
+        assignment_instruction_month: {value:"default value", type:"text"},
+        assignor: {value:"default value", type:"text"},
+        assignor_address: {value:"default value", type:"text"},
+        clerk_assigning: {value:"default value", type:"text"},
+        clerk_assignment: {value:"default value", type:"text"},
+        date_abuja_instructed_assignment: {value: new Date(), type:"datetime-local"},
+        date_assignment_certificate_received: {value: new Date(), type:"datetime-local"},
+        date_facilitation_assignment_cert_sent: {value: new Date(), type:"datetime-local"},
+        date_facilitation_assignment_cert_sent_sent: {value: new Date(), type:"datetime-local"},
+        id: {value:"default value", type:"text"},
+        instruction_ref: {value:"default value", type:"text"},
+        official_fee_assignment: {value:"default value", type:"text"},
+        status_assignment_registrations: {value:"default value", type:"text"},
+        type_id: {value:"default value", type:"text"},
+    }
 
     constructor() {
     }
