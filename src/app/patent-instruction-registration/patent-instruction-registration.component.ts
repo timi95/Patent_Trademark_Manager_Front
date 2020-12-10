@@ -11,14 +11,13 @@ import { Form } from '../classes/Form';
 export class PatentInstructionRegistrationComponent implements OnInit {
   Forms:Form = new Form();
   patent_particulars:any[];
-  patent_instructionForm:any[];
+  patentActionForm:any;
+  listOfPatentActionForm:any[];
   is_new_action:boolean = false;
-  instructionList =
-  [
+  actionList = [
     'search-action',
     'renewal-action',
     'registration',
-    // 'patent-particulars',
     'procurement',
     'ctc',
     'change-name',
@@ -26,7 +25,7 @@ export class PatentInstructionRegistrationComponent implements OnInit {
     'assignment-merger-action',
     "amendment-action",
   ];
-  instructionFormDictionary =  {
+  patentActionFormDictionary =  {
     'search-action':this.Forms.P_search_action,
     'renewal-action':this.Forms.P_renewal_action,
     'registration':this.Forms.P_registration,
@@ -72,6 +71,9 @@ export class PatentInstructionRegistrationComponent implements OnInit {
     quickteller_fee: {value:"default value", type:"text"},
     type_id: {value:"patent", type:"type_id"},
   }
+  currentAction = {
+    
+  }
   constructor(public router: Router,
     public utilityService:UtilityService) { }
 
@@ -81,10 +83,10 @@ export class PatentInstructionRegistrationComponent implements OnInit {
  
    changeInstructionForm(event:any){
     console.log( this.utilityService
-      .toList(this.instructionFormDictionary[event.target.value]) );
+      .toList(this.patentActionFormDictionary[event.target.value]) );
     
-    this.patent_instructionForm = this.utilityService
-    .toList(this.instructionFormDictionary[event.target.value]);
+    this.patentActionForm = this.patentActionFormDictionary[event.target.value]
+    this.listOfPatentActionForm = this.utilityService.toList(this.patentActionForm);
   }
 
   createDocument() {
@@ -105,7 +107,7 @@ export class PatentInstructionRegistrationComponent implements OnInit {
     this.router.navigate(['view/patent'])
   }
 
-  formMap(){
+  patentFormMap(){
     let product = {...this.patentCreateForm};
     for( const[key, value] of Object.entries(this.patentCreateForm) ){
       let actualValue = value.value;
@@ -113,6 +115,9 @@ export class PatentInstructionRegistrationComponent implements OnInit {
     }
     // console.log("product:",product,"original:",this.patentCreateForm);
     return product;
+  }
+  actionFormMap(){
+    let product = {...this.patentActionForm}
   }
 
 }
