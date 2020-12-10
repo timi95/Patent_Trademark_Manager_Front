@@ -70,7 +70,7 @@ export class PatentInstructionRegistrationComponent implements OnInit {
     patent_registration_number: {value:"default value", type:"text"},
     patentee_address: {value:"default value", type:"text"},
     quickteller_fee: {value:"default value", type:"text"},
-    type_id: "patent"
+    type_id: {value:"patent", type:"type_id"},
   }
   constructor(public router: Router,
     public utilityService:UtilityService) { }
@@ -103,6 +103,17 @@ export class PatentInstructionRegistrationComponent implements OnInit {
   }
   viewPatents(){
     this.router.navigate(['view/patent'])
+  }
+
+  formMap(){
+    let product = this.patentCreateForm;
+    for( const[key, value] of Object.entries(this.patentCreateForm) ){
+      let actualValue = value.value;
+      product[key] = actualValue
+    }
+    console.log(product);
+    
+    return product;
   }
 
 }
