@@ -10,11 +10,16 @@
           <!-- <input [type]="patentCreateForm.certificate_procurement_due_date.type"> -->
         <!-- template binding to form goes here later -->
         <ul>
-          <li *ngFor="let item of patent_particulars">
-            <div *ngIf="patentCreateForm[item[0]].type != 'list'" > 
-              {{item[0]}}: <input [type]="patentCreateForm[item[0]].type">
-            </div>
-          </li>
+          <div *ngFor="let item of patent_particulars">
+            <li *ngIf="(patentCreateForm[item[0]].type != 'list') &&
+                       (patentCreateForm[item[0]].type != 'type_id')" > 
+              <div>
+                {{item[0]}}: <input 
+                [type]="patentCreateForm[item[0]].type" 
+                [(ngModel)]="patentCreateForm[item[0]].value">
+              </div>
+            </li>
+          </div>
         </ul>
         <!-- NOTE: The "current" Instruction fields should auto-update, they are not editable -->
       </section>
