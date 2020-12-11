@@ -37,14 +37,17 @@
             <option *ngFor="let action of actionList" [ngValue]="action">{{action}}</option>
           </select>
           <ul>
-            <li 
-            *ngFor="let item of listOfPatentActionForm">
-              {{item[0]}}: <input
-              (input)="formMap(patentActionForm)"
-              [type]="item[1].type"
-              [(ngModel)]="item[1].value">
-            </li>
-  
+            <div *ngFor="let item of listOfPatentActionForm">
+              <li *ngIf="(item[1].type != 'list') &&
+                        (item[1].type != 'type_id')">
+                <div>
+                  {{item[0]}}: <input
+                  (input)="formMap(patentActionForm)"
+                  [type]="item[1].type"
+                  [(ngModel)]="item[1].value">
+                </div>
+              </li>
+            </div> 
           </ul>
         </ul>
       </section>
