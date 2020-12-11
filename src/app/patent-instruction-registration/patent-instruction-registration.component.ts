@@ -73,8 +73,8 @@ export class PatentInstructionRegistrationComponent implements OnInit {
     this.router.navigate(['view/patent'])
   }
 
-  patentFormMap(){
-    let product = {...this.patentCreateForm};
+  formMap(form){
+    let product = {...form};
     for( const[key, value] of Object.entries(this.patentCreateForm) ){
       let actualValue = value.value;
       product[key] = actualValue;

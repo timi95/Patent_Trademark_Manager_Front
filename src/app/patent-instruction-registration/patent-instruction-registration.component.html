@@ -14,7 +14,8 @@
             <li *ngIf="(patentCreateForm[item[0]].type != 'list') &&
                        (patentCreateForm[item[0]].type != 'type_id')" > 
               <div>
-                {{item[0]}}: <input (input)="patentFormMap()"
+                {{item[0]}}: <input 
+                (input)="formMap(patentCreateForm)"
                 [type]="patentCreateForm[item[0]].type" 
                 [(ngModel)]="patentCreateForm[item[0]].value">
               </div>
@@ -38,7 +39,10 @@
           <ul>
             <li 
             *ngFor="let item of listOfPatentActionForm">
-              {{item[0]}}: <input [type]="item[1].type">
+              {{item[0]}}: <input
+              (input)="formMap(patentActionForm)"
+              [type]="item[1].type"
+              [(ngModel)]="item[1].value">
             </li>
   
           </ul>
