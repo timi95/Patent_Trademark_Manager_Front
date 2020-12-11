@@ -364,7 +364,7 @@ export class Form {
         instruction_ref: {value:"default value", type:"text"},
         official_fee_assignment: {value:"default value", type:"text"},
         status_assignment_registrations: {value:"default value", type:"text"},
-        type_id: {value:"default value", type:"text"},
+        type_id: {value:"action", type:"text"}
     }
 
     P_renewalActionCreateForm = {
@@ -396,7 +396,7 @@ export class Form {
         patent_registration_no: {value: "default value", type:"text"},
         registration_filling_month: {value: "default value", type:"text"},
         registration_status: {value: "default value", type:"text"},
-        type_id: "action"
+        type_id: {value:"action", type:"text"}
     }
 
     P_searchActionCreateForm = {
@@ -406,7 +406,7 @@ export class Form {
         date_reported_to_client: {value: new Date(), type:"datetime-local"},
         reported_to_client: {value: "default value", type:"text"},
         search_status: {value: "default value", type:"text"},
-        type_id: "action"
+        type_id: {value:"action", type:"text"}
     }
 
     P_registrationActionCreateForm = {
@@ -438,7 +438,7 @@ export class Form {
         patent_registration_no: {value: "default value", type:"text"},
         registration_filling_month: {value: "default value", type:"text"},
         registration_status: {value: "default value", type:"text"},
-        type_id: "action"
+        type_id: {value:"action", type:"text"}
     }
 
     P_procurementOfCertificateActionCreateForm = {
@@ -454,7 +454,7 @@ export class Form {
         month_clerk_instructed: {value: "default value", type:"text"},
         patent_registration_no: {value: "default value", type:"text"},
         procurement_status: {value: "default value", type:"text"},
-        type_id: "action"
+        type_id: {value:"action", type:"text"}
     }
 
     P_CTCActionCreateForm = {
@@ -466,7 +466,7 @@ export class Form {
         id: {value: "default value", type:"text"},
         instruction_ref: {value: "default value", type:"text"},
         patent_registration_no: {value: "default value", type:"text"},
-        type_id: "action"
+        type_id: {value:"action", type:"text"}
     }
 
     P_changeOfNameActionCreateForm = {
@@ -478,7 +478,7 @@ export class Form {
         instruction_ref: {value: "default value", type:"text"},
         new_name_of_patentee: {value: "default value", type:"text"},
         status_of_change_of_name: {value: "default value", type:"text"},
-        type_id: "action"
+        type_id: {value:"action", type:"text"}
     }
 
     P_changeOfAddressActionCreateForm = {
@@ -490,7 +490,7 @@ export class Form {
         instruction_ref: {value: "default value", type:"text"},
         new_address_of_patentee: {value: "default value", type:"text"},
         status_change_of_address: {value: "default value", type:"text"},
-        type_id: "action"
+        type_id: {value:"action", type:"text"}
     }
 
     constructor() {
