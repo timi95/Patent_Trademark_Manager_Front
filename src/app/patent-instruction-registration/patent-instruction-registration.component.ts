@@ -26,16 +26,16 @@ export class PatentInstructionRegistrationComponent implements OnInit {
     "amendment-action",
   ];
   patentActionFormDictionary =  {
-    'search-action':this.Forms.P_search_action,
-    'renewal-action':this.Forms.P_renewal_action,
-    'registration':this.Forms.P_registration,
+    'search-action':this.Forms.P_searchActionCreateForm,
+    'renewal-action':this.Forms.P_renewalActionCreateForm,
+    'registration':this.Forms.P_registrationActionCreateForm,
     // 'patent-particulars':this.Forms.P_patent_particulars,
-    'procurement':this.Forms.P_procurement,
-    'ctc':this.Forms.P_ctc,
-    'change-name':this.Forms.P_change_name,
-    'change-address': this.Forms.P_change_address,
+    'procurement':this.Forms.P_procurementOfCertificateActionCreateForm,
+    'ctc':this.Forms.P_CTCActionCreateForm,
+    'change-name':this.Forms.P_changeOfNameActionCreateForm,
+    'change-address': this.Forms.P_changeOfAddressActionCreateForm,
     'assignment-merger-action':this.Forms.P_assignmentMergerActionCreateForm,
-    "amendment-action": this.Forms.P_amendment_action,
+    "amendment-action": this.Forms.P_assignmentMergerActionCreateForm,
   }
   patentCreateForm = this.Forms.patentCreateForm
   currentAction = {
@@ -49,7 +49,7 @@ export class PatentInstructionRegistrationComponent implements OnInit {
    }
  
    changeInstructionForm(event:any){
-    console.log( this.utilityService.toList(this.patentActionFormDictionary[event.target.value]));
+    // console.log( this.utilityService.toList(this.patentActionFormDictionary[event.target.value]));
     
     this.patentActionForm = this.patentActionFormDictionary[event.target.value]
     this.listOfPatentActionForm = this.utilityService.toList(this.patentActionForm);
