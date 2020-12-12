@@ -1,5 +1,7 @@
 import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
+import { ApiService } from 'src/services/api.service';
+import { MessageService } from 'src/services/message.service';
 import { UtilityService } from 'src/services/utility.service';
 import { Form } from '../classes/Form';
 
@@ -42,15 +44,15 @@ export class PatentInstructionRegistrationComponent implements OnInit {
     
   }
   constructor(public router: Router,
+    private apiService: ApiService,
+    private messageService: MessageService,
     public utilityService:UtilityService) { }
 
   ngOnInit(): void {
     this.patent_particulars = this.utilityService.toList(this.patentCreateForm);
    }
  
-   changeInstructionForm(event:any){
-    // console.log( this.utilityService.toList(this.patentActionFormDictionary[event.target.value]));
-    
+   changeInstructionForm(event:any){    
     this.patentActionForm = this.patentActionFormDictionary[event.target.value]
     this.listOfPatentActionForm = this.utilityService.toList(this.patentActionForm);
   }
@@ -82,10 +84,15 @@ export class PatentInstructionRegistrationComponent implements OnInit {
     // console.log("product:",product,"original:",this.patentCreateForm);
     return product;
   }
-  actionFormMap(){
-    let product = {...this.patentActionForm}
-  }
 
+
+  registerPatent(){
+    this.apiService
+    .documentRequest('Patent','post',null,this.formMap(this.patentCreateForm))
+    .subscribe(resp =>{
+      this.messageService.pushSuccess("Successfully created Patent")
+    }, err =>{ this.messageService.pushError('Error occured ')});
+  }
 }
 interface Document {
   id:any;
