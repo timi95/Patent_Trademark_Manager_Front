@@ -88,7 +88,7 @@ export class PatentInstructionRegistrationComponent implements OnInit {
 
   registerPatent(){
     this.apiService
-    .documentRequest('Patent','post',null,this.formMap(this.patentCreateForm))
+    .documentRequest('patent','post',null,this.formMap(this.patentCreateForm))
     .subscribe(resp =>{
       this.messageService.pushSuccess("Successfully created Patent")
     }, err =>{ this.messageService.pushError('Error occured ')});
