@@ -1,9 +1,11 @@
 import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
 import { ApiService } from 'src/services/api.service';
 import { MessageService } from 'src/services/message.service';
 import { UtilityService } from 'src/services/utility.service';
 import { Form } from '../classes/Form';
+import { Patent } from '../classes/Instructions/Patent';
 
 @Component({
   selector: 'app-patent-instruction-registration',
@@ -17,32 +19,30 @@ export class PatentInstructionRegistrationComponent implements OnInit {
   listOfPatentActionForm:any[];
   is_new_action:boolean = false;
   actionList = [
-    'search-action',
-    'renewal-action',
+    'search',
+    'renewal',
     'registration',
     'procurement',
     'ctc',
     'change-name',
     'change-address',
-    'assignment-merger-action',
-    "amendment-action",
+    'assignment-merger',
+    "amendment",
   ];
   patentActionFormDictionary =  {
-    'search-action':this.Forms.P_searchActionCreateForm,
-    'renewal-action':this.Forms.P_renewalActionCreateForm,
+    'search':this.Forms.P_searchActionCreateForm,
+    'renewal':this.Forms.P_renewalActionCreateForm,
     'registration':this.Forms.P_registrationActionCreateForm,
     // 'patent-particulars':this.Forms.P_patent_particulars,
     'procurement':this.Forms.P_procurementOfCertificateActionCreateForm,
     'ctc':this.Forms.P_CTCActionCreateForm,
     'change-name':this.Forms.P_changeOfNameActionCreateForm,
     'change-address': this.Forms.P_changeOfAddressActionCreateForm,
-    'assignment-merger-action':this.Forms.P_assignmentMergerActionCreateForm,
-    "amendment-action": this.Forms.P_assignmentMergerActionCreateForm,
+    'assignment-merger':this.Forms.P_assignmentMergerActionCreateForm,
+    "amendment": this.Forms.P_assignmentMergerActionCreateForm,
   }
   patentCreateForm = this.Forms.patentCreateForm
-  currentAction = {
-    
-  }
+  current_action: any;
   constructor(public router: Router,
     private apiService: ApiService,
     private messageService: MessageService,
@@ -52,9 +52,12 @@ export class PatentInstructionRegistrationComponent implements OnInit {
     this.patent_particulars = this.utilityService.toList(this.patentCreateForm);
    }
  
-   changeInstructionForm(event:any){    
+   changeActionForm(event:any){
+    this.current_action = event.target.value
     this.patentActionForm = this.patentActionFormDictionary[event.target.value]
     this.listOfPatentActionForm = this.utilityService.toList(this.patentActionForm);
+    console.log('current_action:', this.current_action,'\npatentActionForm:',this.formMap(this.patentActionForm));
+    
   }
 
   createDocument() {
@@ -77,22 +80,56 @@ export class PatentInstructionRegistrationComponent implements OnInit {
 
   formMap(form){
     let product = {...form};
-    for( const[key, value] of Object.entries(this.patentCreateForm) ){
+    let Entries: [string, ActionCreateFormValue][] = Object.entries(form);
+    for( const[key, value] of Entries){
       let actualValue = value.value;
       product[key] = actualValue;
     }
+
     // console.log("product:",product,"original:",this.patentCreateForm);
     return product;
   }
 
 
+  /*
+      this.utilityService.documentTypeSubject
+    .pipe(
+      // when the documentType changes, make an api call with the new documentType
+      switchMap(documentTypeResp=>{ 
+        this.documentType = documentTypeResp;
+        return this.apiService
+            .documentRequest(this.documentTypeUrlDict[documentTypeResp],'get',null,null,this.managerType)}),
+            retry(5),
+            tap((resp:{results:Document[]}) => { 
+              // update everywhere else via the service
+              localStorage.setItem('documentList',JSON.stringify(resp.results));
+              this.utilityService.updateDocumentList();
+              // update the list in this component
+              this.documentList = resp.results;}))
+        .subscribe({ error(err: any): void { console.error('Where#Are#We', err);} });
+    */
+
+
   registerPatent(){
+    console.log("patent-form:",this.formMap(this.patentCreateForm),"action form:",this.formMap(this.patentActionForm));
+    
     this.apiService
     .documentRequest('patent','post',null,this.formMap(this.patentCreateForm))
+    .pipe(
+      switchMap( 
+        (newPatent:Patent) => { 
+          return this.apiService
+          .documentRequest(`patent/${newPatent.id}/${this.current_action}-action`,'post',null, this.formMap(this.patentActionForm))}) )
     .subscribe(resp =>{
       this.messageService.pushSuccess("Successfully created Patent")
-    }, err =>{ this.messageService.pushError('Error occured ')});
+    }, err =>{ this.messageService.pushError('Error occured '); console.error(err);
+    });
   }
+}
+
+export interface ActionCreateFormValue {
+  value: any;
+  type: string;
 }
 interface Document {
   id:any;
