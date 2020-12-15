@@ -32,14 +32,14 @@
         </h2>
         <hr width="90%">
         <ul *ngIf="is_new_action">
-          <select (change)="changeInstructionForm($event)">
-            <option default>Select Instruction list</option>
+          <select (change)="changeActionForm($event)">
+            <option default>Select Action list</option>
             <option *ngFor="let action of actionList" [ngValue]="action">{{action}}</option>
           </select>
           <ul>
             <div *ngFor="let item of listOfPatentActionForm">
-              <li *ngIf="(item[1].type != 'list') &&
-                        (item[1].type != 'type_id')">
+              <li *ngIf="(item[0] != 'instruction_ref') &&
+                        (item[0] != 'id')">
                 <div>
                   {{item[0]}}: <input
                   (input)="formMap(patentActionForm)"
