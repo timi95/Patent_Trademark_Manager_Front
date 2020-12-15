@@ -388,7 +388,6 @@ export class Form {
         date_of_instruction: {value: new Date(), type:"datetime-local"},
         date_registration_instruction_received: {value: new Date(), type:"datetime-local"},
         filling_deadline: {value: "default value", type:"text"},
-        id: {value: "default value", type:"text"},
         instruction_ref: {value: "default value", type:"text"},
         month_registration_instruction_received: {value: "default value", type:"text"},
         official_fee_registration: {value: "default value", type:"text"},
@@ -400,7 +399,7 @@ export class Form {
     }
 
     P_searchActionCreateForm = {
-        id: {value: "default value", type:"text"},
+        
         instruction_ref: {value: "default value", type:"text"},
         clerk_searching: {value: "default value", type:"text"},
         date_reported_to_client: {value: new Date(), type:"datetime-local"},
@@ -430,7 +429,6 @@ export class Form {
         date_of_instruction: {value: new Date(), type:"datetime-local"},
         date_registration_instruction_received: {value: new Date(), type:"datetime-local"},
         filling_deadline: {value: "default value", type:"text"},
-        id: {value: "default value", type:"text"},
         instruction_ref: {value: "default value", type:"text"},
         month_registration_instruction_received: {value: "default value", type:"text"},
         official_fee_registration: {value: "default value", type:"text"},
@@ -447,7 +445,6 @@ export class Form {
         date_cert_procured: {value: new Date(), type:"datetime-local"},
         date_cert_procurement_due: {value: new Date(), type:"datetime-local"},
         date_procurement_instructed: {value: new Date(), type:"datetime-local"},
-        id: {value: "default value", type:"text"},
         instruction_ref: {value: "default value", type:"text"},
         invention_description: {value: "default value", type:"text"},
         month_cert_procurement_due: {value: "default value", type:"text"},
@@ -463,7 +460,6 @@ export class Form {
         ctc_procurement_status: {value: "default value", type:"text"},
         ctc_required: {value: "default value", type:"text"},
         date_applied_for_ctc: {value: new Date(), type:"datetime-local"},
-        id: {value: "default value", type:"text"},
         instruction_ref: {value: "default value", type:"text"},
         patent_registration_no: {value: "default value", type:"text"},
         type_id: {value:"action", type:"text"}
@@ -474,7 +470,6 @@ export class Form {
         change_of_name_instruction_month: {value: "default value", type:"text"},
         clerk_for_change_of_name: {value: "default value", type:"text"},
         date_received_change_of_name_certificate: {value: new Date(), type:"datetime-local"},
-        id: {value: "default value", type:"text"},
         instruction_ref: {value: "default value", type:"text"},
         new_name_of_patentee: {value: "default value", type:"text"},
         status_of_change_of_name: {value: "default value", type:"text"},
@@ -486,7 +481,6 @@ export class Form {
         change_of_address_instruction_month: {value: "default value", type:"text"},
         clerk_of_change_of_address: {value: "default value", type:"text"},
         date_received_change_of_address_certificate: {value: new Date(), type:"datetime-local"},
-        id: {value: "default value", type:"text"},
         instruction_ref: {value: "default value", type:"text"},
         new_address_of_patentee: {value: "default value", type:"text"},
         status_change_of_address: {value: "default value", type:"text"},
