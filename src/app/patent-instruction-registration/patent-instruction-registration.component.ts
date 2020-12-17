@@ -111,7 +111,10 @@ export class PatentInstructionRegistrationComponent implements OnInit {
 
 
   registerPatent(id?:string){
-    console.log("patent-form:",this.formMap(this.patentCreateForm),"action form:",this.formMap(this.patentActionForm));
+    console.log("patent-form:",
+    this.formMap(this.patentCreateForm),
+    "action form:",
+    this.formMap(this.patentActionForm));
 
     this.apiService
     .documentRequest('patent','post',null,this.formMap(this.patentCreateForm))
@@ -119,7 +122,9 @@ export class PatentInstructionRegistrationComponent implements OnInit {
       switchMap( 
         (newPatent:Patent) => { 
           return this.apiService
-          .documentRequest(`patent/${newPatent.id}/${this.current_action}-action`,'put',null, this.formMap(this.patentActionForm))}) )
+          .documentRequest(
+            `patent/${newPatent.id}/${this.current_action}-action`,
+            'put', null, this.formMap(this.patentActionForm))}) )
     .subscribe(resp =>{
       this.messageService.pushSuccess("Successfully created Patent")
     }, err =>{ this.messageService.pushError('Error occured '); console.error(err);
