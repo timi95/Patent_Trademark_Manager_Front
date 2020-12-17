@@ -1,11 +1,14 @@
-<a class="font-weight" href="#" (click)="navigateHome()" >Back</a>
+<strong class="view-patent" (click)="viewPatents()">View Patents</strong>
 
-<ul class="font-colour info-view">
-
+<ul class="font-colour info-view" >
+    <li *ngFor="let patentField of listOfPatent"> 
+        <div>{{ patentField[0] }}</div>
+        <div>: <strong>{{ patentField[1]}}</strong></div>
+    </li>
 </ul>
 
 
 <div class="widget-container">
-    {{ patent$ |json}}
+
 </div>
 
