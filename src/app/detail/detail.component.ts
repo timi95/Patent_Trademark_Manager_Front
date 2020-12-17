@@ -14,6 +14,7 @@ import { Patent } from '../classes/Instructions/Patent';
 export class DetailComponent implements OnInit, OnDestroy {
   patentID: string;
   patent$: Patent;
+  listOfPatent: any[];
   constructor(
     private router:Router,
     private activatedRoute: ActivatedRoute,
@@ -27,10 +28,11 @@ export class DetailComponent implements OnInit, OnDestroy {
         console.log(params['id']);
         this.patentID = params['id'];
       }
-    );
-    this.apiService.documentRequest("patent","get", this.patentID)
-    .subscribe( (patent: Patent) => {
-      this.patent$ = patent;
+      );
+      this.apiService.documentRequest("patent","get", this.patentID)
+      .subscribe( (patent: Patent) => {
+        this.patent$ = patent;
+        this.listOfPatent = Object.entries(patent);
     });
   }
 
@@ -39,6 +41,9 @@ export class DetailComponent implements OnInit, OnDestroy {
   }
 
 
+  viewPatents(){
+    this.router.navigate(['view/patent'])
+  }
   navigateHome(){   
     this.router.navigate(['']);
   }
