@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { repeat } from 'rxjs/operators';
 import { ApiService } from 'src/services/api.service';
@@ -12,7 +13,9 @@ import { Instruction } from '../interfaces/Instruction';
 })
 export class ViewPatentsComponent implements OnInit {
   patent$:any;
-  constructor(public apiService: ApiService) { }
+  constructor(
+    public router: Router,
+    public apiService: ApiService) { }
 
   ngOnInit(): void {
     this.apiService.documentRequest('patent','get')
@@ -21,6 +24,10 @@ export class ViewPatentsComponent implements OnInit {
       this.patent$ = resp
       console.log(resp);
     })
+  }
+
+  navigateDetails(id){
+    this.router.navigate([`detail/${id}`])
   }
 
 }
