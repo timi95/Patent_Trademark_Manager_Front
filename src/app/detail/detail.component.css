@@ -17,8 +17,10 @@ li {
     padding: 5%;
     margin: 5px;
     width: auto;
+    height: 66vh;
     line-height: 2em;
     list-style: none;
+    overflow-y: scroll;
 }
 .widget-container{
     display: flex;
@@ -49,4 +51,15 @@ li {
     font-weight: 900;
     font-size: 19px;
     text-shadow: 2px 1px #252424;
+}
+
+.view-patent{
+    color: #FFF;
+    margin-top: 20px;
+    padding: 0 5%;
+    transition: 0.5s;
+    text-decoration: underline;
+}
+.view-patent:hover{
+    color: #667bd8;
 }
