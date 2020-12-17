@@ -6,9 +6,6 @@
       <section>
         <h2 class="card-header">Instruction Particulars</h2>
         <hr width="90%">
-
-          <!-- <input [type]="patentCreateForm.certificate_procurement_due_date.type"> -->
-        <!-- template binding to form goes here later -->
         <ul>
           <div *ngFor="let item of patent_particulars">
             <li *ngIf="(patentCreateForm[item[0]].type != 'list') &&
@@ -52,7 +49,9 @@
         </ul>
       </section>
 
-        <button (click)="registerPatent()">Register Patent</button>
+        <div>
+          <button (click)="registerPatent()">Register Patent</button>
+        </div>
     </div>
     
   </div>

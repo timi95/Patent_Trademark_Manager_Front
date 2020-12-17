@@ -19,7 +19,6 @@ export class ViewPatentsComponent implements OnInit {
 
   ngOnInit(): void {
     this.apiService.documentRequest('patent','get')
-    // .pipe(repeat(3))
     .subscribe( (resp:Patent) =>{
       this.patent$ = resp
       console.log(resp);

@@ -8,8 +8,7 @@ export class Patent implements Instruction {
     id: string;
     type_id: string;
     action_list: Action[];
-
-
+    
     our_reference_number: string;
     client_id: string;
     clients_reference_number: string;
