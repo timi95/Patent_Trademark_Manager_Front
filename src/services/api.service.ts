@@ -41,40 +41,40 @@ public errors: any = [];
 // ******************** // C R U D // ******************** //
 
   // Generally applicable CRUD request function for all patent resources
-  documentRequest(documentType:string, requestType:string, id?:number,requestBody?:any) {
+  documentRequest(documentType:string, requestType:string, id?:any,requestBody?:any) {
     switch (requestType.toLowerCase()) {
     //POST request case
       case "post":
-        if ((id > 0) && requestBody) {
+        if (id && requestBody) {
           return this.httpServer.post(`${this.API_URL}/Instruction/${documentType}/${id}`, requestBody,this.httpOptions); 
-        } else if( (id <= 0) && requestBody ){ 
+        } else if( (id == null) && requestBody ){ 
           return this.httpServer.post(`${this.API_URL}/Instruction/${documentType}/`, requestBody,this.httpOptions);
         }
       break;
 
       //PUT request case
       case "put":
-        if ((id > 0) && requestBody) {
+        if (id && requestBody) {
           return this.httpServer.put(`${this.API_URL}/Instruction/${documentType}/${id}`, requestBody,this.httpOptions); 
-        } else if( (id <= 0) && requestBody ){ 
+        } else if( (id == null) && requestBody ){ 
           return this.httpServer.put(`${this.API_URL}/Instruction/${documentType}/`, requestBody,this.httpOptions);
         }
         break;
     
       //PATCH request case
       case "patch":
-        if ((id > 0) && requestBody) {
+        if (id && requestBody) {
           return this.httpServer.patch(`${this.API_URL}/Instruction/${documentType}/${id}`, requestBody,this.httpOptions); 
-        } else if( (id <= 0) && requestBody ){ 
+        } else if( (id == null) && requestBody ){ 
           return this.httpServer.patch(`${this.API_URL}/Instruction/${documentType}/`, requestBody,this.httpOptions);
         }
         break;
         
       //DELETE request case
       case "delete":
-        if ((id > 0) && requestBody) {
+        if (id && requestBody) {
           return this.httpServer.delete(`${this.API_URL}/Instruction/${documentType}/${id}`); 
-        } else if( (id <= 0) && requestBody ){  
+        } else if( (id == null) && requestBody ){  
           return this.httpServer.delete(`${this.API_URL}/Instruction/${documentType}/`,requestBody);
         }
       break;
