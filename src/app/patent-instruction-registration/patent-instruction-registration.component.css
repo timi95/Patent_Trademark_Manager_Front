@@ -119,3 +119,15 @@
     color: crimson;
     font-weight: 600;
 }
+
+.center-button{
+    display: flex;
+    justify-content: center;
+}
+.center-button>button{
+    width: 30%;
+    padding: 2px;
+    margin: 3px;
+
+    font-size: medium;
+}
