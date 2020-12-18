@@ -63,3 +63,12 @@ li {
 .view-patent:hover{
     color: #667bd8;
 }
+
+.detail-controls{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.detail-controls>button{
+    margin: 0 5%;
+}
