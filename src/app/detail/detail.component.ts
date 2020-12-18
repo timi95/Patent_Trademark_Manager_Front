@@ -15,6 +15,7 @@ export class DetailComponent implements OnInit, OnDestroy {
   patentID: string;
   patent$: Patent;
   listOfPatent: any[];
+  is_editing: string = '';
   constructor(
     private router:Router,
     private activatedRoute: ActivatedRoute,
@@ -40,6 +41,13 @@ export class DetailComponent implements OnInit, OnDestroy {
 
   }
 
+  toggleEdit(prop){
+    console.log('toggling edit for property:',prop);
+    this.is_editing = prop
+  }
+  cancelEdit(){
+    this.is_editing = ''
+  }
 
   viewPatents(){
     this.router.navigate(['view/patent'])

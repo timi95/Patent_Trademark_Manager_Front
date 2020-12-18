@@ -1,12 +1,18 @@
 <div class="detail-controls">
     <strong class="view-patent" (click)="viewPatents()">View Patents</strong>
-    <button>Edit This Patent</button>
 </div>
 
 <ul class="font-colour info-view" >
     <li *ngFor="let patentField of listOfPatent"> 
-        <div>{{ patentField[0] }}</div>
-        <div>:<strong>{{ patentField[1]}}</strong></div>
+        <div style="display: flex;">
+            <div>{{ patentField[0] }}</div>
+            <div>:<strong>{{ patentField[1]}}</strong></div>
+            <button (click)="toggleEdit(patentField[0])">Edit</button>
+        </div>
+        <div *ngIf="is_editing == patentField[0]">
+            <input type="text" [(ngModel)]="patentField[1]">
+            <input type="button" value="cancel-edit" (click)="cancelEdit()">
+        </div>
     </li>
 </ul>
 
