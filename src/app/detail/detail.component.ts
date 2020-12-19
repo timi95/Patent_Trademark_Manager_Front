@@ -5,6 +5,8 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ApiService } from 'src/services/api.service';
 import { Action } from '../classes/Action';
 import { Patent } from '../classes/Instructions/Patent';
+import { delay, distinctUntilChanged, repeat, switchMap } from 'rxjs/operators';
+import { MessageService } from 'src/services/message.service';
 
 @Component({
   selector: 'app-detail',
@@ -19,6 +21,7 @@ export class DetailComponent implements OnInit, OnDestroy {
   constructor(
     private router:Router,
     private activatedRoute: ActivatedRoute,
+    private messageService: MessageService,
     public apiService: ApiService) {
   }
 
@@ -60,6 +63,25 @@ export class DetailComponent implements OnInit, OnDestroy {
     console.log("Current conversion: ",Object.fromEntries(this.listOfPatent));
     this.apiService
     .documentRequest("patent","put",this.patentID,Object.fromEntries(this.listOfPatent))
+    .pipe(
+      switchMap( (resp:Patent)=>{
+        return this.apiService.documentRequest("patent","get", resp.id)
+
+      }) )
+      .subscribe( (patent: Patent) => {
+        this.patent$ = patent;
+        this.listOfPatent = Object.entries(patent);
+        this.cancelEdit();
+        this.messageService.pushSuccess(`Successfully Edited patent with ID:${patent.id}`);
+    }, error =>{
+      this.messageService.pushError(`Error occured ${error}`)
+    });
+    
+  //   this.apiService.documentRequest("patent","get", this.patentID)
+  //   .subscribe( (patent: Patent) => {
+  //     this.patent$ = patent;
+  //     this.listOfPatent = Object.entries(patent);
+  // });
   }
 
 
