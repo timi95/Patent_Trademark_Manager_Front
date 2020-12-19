@@ -56,5 +56,11 @@ export class DetailComponent implements OnInit, OnDestroy {
     this.router.navigate(['']);
   }
 
+  saveChanges(){
+    console.log("Current conversion: ",Object.fromEntries(this.listOfPatent));
+    this.apiService
+    .documentRequest("patent","put",this.patentID,Object.fromEntries(this.listOfPatent))
+  }
+
 
 }
