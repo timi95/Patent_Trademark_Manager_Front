@@ -1,4 +1,4 @@
-<main class="card-grid " >
+<main class="card-grid " *ngIf="patent$; else noData" >
     <div class="card-body" *ngFor="let patent of patent$?.content">
         <h3>ID: {{patent.id}} </h3>
         <strong></strong>
@@ -15,3 +15,7 @@
         <button (click)="navigateDetails(patent.id)">Details</button>
     </div>
 </main>
+
+<ng-template #noData>
+    No data available
+</ng-template>
