@@ -66,7 +66,6 @@ export class DetailComponent implements OnInit, OnDestroy {
     .pipe(
       switchMap( (resp:Patent)=>{
         return this.apiService.documentRequest("patent","get", resp.id)
-
       }) )
       .subscribe( (patent: Patent) => {
         this.patent$ = patent;
