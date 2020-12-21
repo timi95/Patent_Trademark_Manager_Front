@@ -18,15 +18,22 @@ export class DetailComponent implements OnInit, OnDestroy {
   patent$: Patent;
   listOfPatent: any[];
   is_editing: string = '';
+  delete_is_active:boolean;
   constructor(
     private router:Router,
     private activatedRoute: ActivatedRoute,
     private messageService: MessageService,
+    public utilityService: UtilityService,
     public apiService: ApiService) {
   }
 
 
   ngOnInit(): void {
+    this.utilityService.setDeleteOverlayInactive();
+    this.utilityService.deleteOverlaySubject
+    .subscribe(resp =>{
+      this.delete_is_active = resp;
+    });
     this.activatedRoute.params.subscribe(
       (params: Params) => {
         console.log(params['id']);
@@ -83,5 +90,13 @@ export class DetailComponent implements OnInit, OnDestroy {
   // });
   }
 
+  summonDeleteOverlay(){
+    console.log('summoning delete overlay');
+    this.utilityService.setDeleteOverlayActive();
+    this.utilityService.deleteOverlaySubject
+    .subscribe(resp=>{
+      this.delete_is_active = resp;
+    });
+  }
 
 }

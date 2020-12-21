@@ -16,9 +16,13 @@
     </li>
 </ul>
 
-
-
 <div class="widget-container">
     <input (click)="saveChanges()" type="button" value="Save">
+    <input (click)="summonDeleteOverlay()" type="button" value="Delete">
 </div>
+
+<delete [active]="delete_is_active"
+        [targetId]="patentID"
+        [documentType]="'patent'"
+></delete>
 
