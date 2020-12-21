@@ -72,7 +72,7 @@ public errors: any = [];
         
       //DELETE request case
       case "delete":
-        if (id && requestBody) {
+        if (id && (!requestBody)) {
           return this.httpServer.delete(`${this.API_URL}/Instruction/${documentType}/${id}`); 
         } else if( (id == null) && requestBody ){  
           return this.httpServer.delete(`${this.API_URL}/Instruction/${documentType}/`,requestBody);
