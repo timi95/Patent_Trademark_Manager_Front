@@ -55,7 +55,13 @@ export class DeleteOverlayComponent implements OnInit {
   }
   
   onSubmit(){
-    console.log('Preparing Deletion');
-    
+    console.log('Preparing Deletion',this.documentType,"delete",this.targetID);
+    this.apiService.documentRequest(this.documentType,"delete",this.targetID)
+    .subscribe(
+      ()=>{
+        this.messageService.pushSuccess('Successful Deletion!');
+        this.router.navigate(['/view/patent'])
+      },
+      error =>{this.messageService.pushError('Unsucessful Deletion, Error'+error)} );
   }
 }
