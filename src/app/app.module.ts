@@ -23,6 +23,7 @@ import { PatentInstructionRegistrationComponent } from './patent-instruction-reg
 import { TrademarkInstructionRegistrationComponent } from './trademark-instruction-registration/trademark-instruction-registration.component';
 import { ViewTrademarksComponent } from './view-trademarks/view-trademarks.component';
 import { ViewPatentsComponent } from './view-patents/view-patents.component';
+import { DeleteOverlayComponent } from './delete-overlay/delete-overlay.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { ViewPatentsComponent } from './view-patents/view-patents.component';
     TrademarkInstructionRegistrationComponent,
     ViewTrademarksComponent,
     ViewPatentsComponent,
+    DeleteOverlayComponent,
   ],
   imports: [
     BrowserModule,
