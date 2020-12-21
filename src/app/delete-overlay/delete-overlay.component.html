@@ -1,0 +1,27 @@
+<div  *ngIf="active" class="overlay"  (click)="shunOverlay($event)">
+    <!-- Delete Overlay Form: START   -->
+    <form class="modal-content" (ngSubmit)="onSubmit()">
+
+        <header>
+        <h3>Delete this {{documentType}} </h3>
+        <a class="cancel" (click)="setInactive()">&#x274C;</a>
+        </header>
+    
+        <div>
+        <h4> Are you sure you want to delete this {{documentType}} ?</h4>
+        <p> Deleting this {{documentType}} is irreversible</p>
+        <ul class="form-list">
+            <li *ngFor="let attribute of utilityService
+            .toList|pureCall:deleteTarget">
+            <span> {{ attribute[0]}}: </span> {{ attribute[1]}}
+            </li>
+        </ul>
+        <span style="display: flex; justify-content: space-evenly;"> 
+            <button style="color: crimson;" type="submit">Go ahead and Delete this !!</button>
+            <button class="color: teal; cursor:pointer;" (click)="setInactive()">Do not delete this {{documentType}}</button>
+        </span>
+        </div>
+        
+    </form>
+    <!-- Delete Overlay Form: END   -->    
+</div>
