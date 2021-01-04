@@ -31,6 +31,7 @@ export class ReminderListComponent implements OnInit {
   formType = 'create'
   managerType: string;
   documentTypeUrlDict: any;
+  // source: EventSource('');
   
   constructor(
     private apiService: ApiService,
