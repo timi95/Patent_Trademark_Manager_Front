@@ -31,13 +31,17 @@ export class ReminderListComponent implements OnInit {
   formType = 'create'
   managerType: string;
   documentTypeUrlDict: any;
-  // source: EventSource('');
+  source = new EventSource('http://localhost:8080/Reminder/reminder-sse')
+
   
   constructor(
     private apiService: ApiService,
     public utilityService: UtilityService) { }
 
   ngOnInit(): void {
+    this.source.addEventListener("periodic-event", e =>{
+      console.log('Listening from the front: ',e);
+    })
     
     // this.apiService
     // .documentRequest('reminder','get',null,null,'Reminders')
