@@ -40,7 +40,7 @@ export class ReminderListComponent implements OnInit {
 
   ngOnInit(): void {
     this.source.addEventListener("periodic-event", e =>{
-      console.log('Listening from the front: ',e);
+      console.log('Listening from the front:',e);
     })
     
     // this.apiService
