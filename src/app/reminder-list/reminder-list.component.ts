@@ -31,7 +31,7 @@ export class ReminderListComponent implements OnInit {
   formType = 'create'
   managerType: string;
   documentTypeUrlDict: any;
-  source = new EventSource('http://localhost:8080/Reminder/reminder-sse')
+  source = new EventSource('http://localhost:8080/Reminder/subscribe')
 
   
   constructor(
@@ -39,9 +39,9 @@ export class ReminderListComponent implements OnInit {
     public utilityService: UtilityService) { }
 
   ngOnInit(): void {
-    this.source.addEventListener("periodic-event", e =>{
-      console.log('Listening from the front:',e);
-    })
+    this.source.onmessage = e => {
+      console.log("reminder event:",e.data);
+    }
     
     // this.apiService
     // .documentRequest('reminder','get',null,null,'Reminders')
