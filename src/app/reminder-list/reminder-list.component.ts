@@ -42,7 +42,6 @@ export class ReminderListComponent implements OnInit {
     this.source.onmessage = e => {
       console.log("reminder event:",e.data);
     }
-    
     // this.apiService
     // .documentRequest('reminder','get',null,null,'Reminders')
     // .subscribe((resp:{results:Reminder[]})=>
