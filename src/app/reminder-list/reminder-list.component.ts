@@ -44,9 +44,9 @@ export class ReminderListComponent implements OnInit {
       console.log("reminder event:",e.data);
     }
     this.apiService
-    .documentRequest('reminder','get')
-    .subscribe((resp:{results:Reminder[]})=>
-    {this.utilityService.updateReminderList(this.dateMod(resp.results))});
+    .documentRequest('reminder','get',null,null,"Reminder")
+    .subscribe((resp:{content:Reminder[]})=>
+    {this.utilityService.updateReminderList(this.dateMod(resp.content))});
 
 
     // this.apiService
