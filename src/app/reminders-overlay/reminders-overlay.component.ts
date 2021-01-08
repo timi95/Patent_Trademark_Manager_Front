@@ -6,7 +6,8 @@ import { ApiService } from 'src/services/api.service';
 import { MessageService } from 'src/services/message.service';
 import { UtilityService } from 'src/services/utility.service';
 import { Form } from '../classes/Form';
-import { Reminder } from '../reminder-list/reminder-list.component';
+import { Reminder } from '../classes/Reminder';
+
 
 @Component({
   selector: 'r-overlay',

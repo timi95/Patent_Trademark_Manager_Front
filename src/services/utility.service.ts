@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject, BehaviorSubject } from 'rxjs';
+import { Reminder } from 'src/app/classes/Reminder';
 import { AmendmentAction } from 'src/interfaces/AmendmentAction';
 
 @Injectable({
@@ -139,12 +140,12 @@ interface Document {
   attachment?:any;
   footer?:string;
 }
-interface Reminder {
-  id:any;
-  title :string;
-  reminder_detail:string;
-  reminder_date :any;
-  manager_type :string;
-  document_type:string;
-  document_id:string;
-}
+// interface Reminder {
+//   id:any;
+//   title :string;
+//   reminder_detail:string;
+//   reminder_date :any;
+//   manager_type :string;
+//   document_type:string;
+//   document_id:string;
+// }

@@ -7,6 +7,7 @@ import { debounce, debounceTime, delay, distinctUntilChanged, repeat, retry, swi
 import { ApiService } from 'src/services/api.service';
 import { UtilityService } from 'src/services/utility.service';
 import { Action } from '../classes/Action';
+import { Reminder } from '../classes/Reminder';
 
 
 
@@ -42,10 +43,10 @@ export class ReminderListComponent implements OnInit {
     this.source.onmessage = e => {
       console.log("reminder event:",e.data);
     }
-    // this.apiService
-    // .documentRequest('reminder','get',null,null,'Reminders')
-    // .subscribe((resp:{results:Reminder[]})=>
-    // {this.utilityService.updateReminderList(this.dateMod(resp.results))});
+    this.apiService
+    .documentRequest('reminder','get')
+    .subscribe((resp:{results:Reminder[]})=>
+    {this.utilityService.updateReminderList(this.dateMod(resp.results))});
 
 
     // this.apiService
@@ -57,7 +58,7 @@ export class ReminderListComponent implements OnInit {
     //     if(JSON.stringify(prvs) != JSON.stringify(crnt))
     //       {return false;}
     //     Object.values(crnt).forEach((val,index)=>{
-    //       if(val != Object.values(prvs)[index])
+    //       if(!= Object.values(prvs)[index])
     //       {return false;}
     //     })
     //     return true;
@@ -72,8 +73,8 @@ export class ReminderListComponent implements OnInit {
     let result:Reminder[] = reminder;
 
     result.forEach(item =>{ 
-      if(todays_date <= new Date(item.reminder_date) )
-       {item.matured = true;}else{item.matured=false;} });
+      if(todays_date <= new Date(item.reminder_date_time) )
+       {item.is_matured = true;}else{item.is_matured=false;} });
     return result;
   }
 
@@ -129,14 +130,4 @@ export class ReminderListComponent implements OnInit {
       // console.log(`screen height: ${this.screenHeight} screen width: ${this.screenWidth}`);
   }
   
-}
-export interface Reminder {
-  id:any;
-  title :string;
-  reminder_detail:string;
-  reminder_date :any;
-  manager_type :string;
-  document_type:string;
-  document_id:string;
-  matured?:boolean;
 }
