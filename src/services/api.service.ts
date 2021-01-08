@@ -41,50 +41,51 @@ public errors: any = [];
 // ******************** // C R U D // ******************** //
 
   // Generally applicable CRUD request function for all patent resources
-  documentRequest(documentType:string, requestType:string, id?:any,requestBody?:any) {
+  documentRequest(documentType:string, requestType:string, id?:any,requestBody?:any,resourceType?:string) {
+    let RT = requestType? resourceType: "Instruction";
     switch (requestType.toLowerCase()) {
     //POST request case
       case "post":
         if (id && requestBody) {
-          return this.httpServer.post(`${this.API_URL}/Instruction/${documentType}/${id}`, requestBody,this.httpOptions); 
+          return this.httpServer.post(`${this.API_URL}/${RT}/${documentType}/${id}`, requestBody,this.httpOptions); 
         } else if( (id == null) && requestBody ){ 
-          return this.httpServer.post(`${this.API_URL}/Instruction/${documentType}/`, requestBody,this.httpOptions);
+          return this.httpServer.post(`${this.API_URL}/${RT}/${documentType}/`, requestBody,this.httpOptions);
         }
       break;
 
       //PUT request case
       case "put":
         if (id && requestBody) {
-          return this.httpServer.put(`${this.API_URL}/Instruction/${documentType}/${id}`, requestBody,this.httpOptions); 
+          return this.httpServer.put(`${this.API_URL}/${RT}/${documentType}/${id}`, requestBody,this.httpOptions); 
         } else if( (id == null) && requestBody ){ 
-          return this.httpServer.put(`${this.API_URL}/Instruction/${documentType}/`, requestBody,this.httpOptions);
+          return this.httpServer.put(`${this.API_URL}/${RT}/${documentType}/`, requestBody,this.httpOptions);
         }
         break;
     
       //PATCH request case
       case "patch":
         if (id && requestBody) {
-          return this.httpServer.patch(`${this.API_URL}/Instruction/${documentType}/${id}`, requestBody,this.httpOptions); 
+          return this.httpServer.patch(`${this.API_URL}/${RT}/${documentType}/${id}`, requestBody,this.httpOptions); 
         } else if( (id == null) && requestBody ){ 
-          return this.httpServer.patch(`${this.API_URL}/Instruction/${documentType}/`, requestBody,this.httpOptions);
+          return this.httpServer.patch(`${this.API_URL}/${RT}/${documentType}/`, requestBody,this.httpOptions);
         }
         break;
         
       //DELETE request case
       case "delete":
         if (id && (!requestBody)) {
-          return this.httpServer.delete(`${this.API_URL}/Instruction/${documentType}/${id}`); 
+          return this.httpServer.delete(`${this.API_URL}/${RT}/${documentType}/${id}`); 
         } else if( (id == null) && requestBody ){  
-          return this.httpServer.delete(`${this.API_URL}/Instruction/${documentType}/`,requestBody);
+          return this.httpServer.delete(`${this.API_URL}/${RT}/${documentType}/`,requestBody);
         }
       break;
 
       //GET request case
       case "get":
         if (requestType.includes('get') && id) {
-          return this.httpServer.get(`${this.API_URL}/Instruction/${documentType}/${id}`); 
+          return this.httpServer.get(`${this.API_URL}/${RT}/${documentType}/${id}`); 
         } else if(requestType.includes('get')) { 
-          return this.httpServer.get(`${this.API_URL}/Instruction/${documentType}/`);
+          return this.httpServer.get(`${this.API_URL}/${RT}/${documentType}/`);
         }
       break;
 
@@ -92,9 +93,9 @@ public errors: any = [];
       // default case
       default:
         if (id) {
-          return this.httpServer.get(`${this.API_URL}/Instruction/${documentType}/${id}`); 
+          return this.httpServer.get(`${this.API_URL}/${RT}/${documentType}/${id}`); 
         } else { 
-          return this.httpServer.get(`${this.API_URL}/Instruction/${documentType}/`);
+          return this.httpServer.get(`${this.API_URL}/${RT}/${documentType}/`);
         }
     }
   }
