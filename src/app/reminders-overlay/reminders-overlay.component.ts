@@ -55,7 +55,7 @@ export class RemindersOverlayComponent implements OnInit {
     }
 
     dynamicFormDictionaryGenerator(resp:string){
-      if(this.managerType === "Reminders" ){
+      if(this.managerType === "Reminder" ){
         this.documentTypeFormDictionary = {
           'reminder': this.Forms.R_reminderForm
         }
