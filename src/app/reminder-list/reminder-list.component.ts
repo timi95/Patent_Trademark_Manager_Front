@@ -48,24 +48,6 @@ export class ReminderListComponent implements OnInit {
     .subscribe((resp:{content:Reminder[]})=>
     {this.utilityService.updateReminderList(this.dateMod(resp.content))});
 
-
-    // this.apiService
-    // .documentRequest('reminder','get',null,null,'Reminders')
-    // .pipe( 
-    //   distinctUntilChanged((prvs:Object,crnt:Object):boolean=>{ 
-    //     if(Object.values(prvs).length != Object.values(prvs).length)
-    //       {return false;}
-    //     if(JSON.stringify(prvs) != JSON.stringify(crnt))
-    //       {return false;}
-    //     Object.values(crnt).forEach((val,index)=>{
-    //       if(!= Object.values(prvs)[index])
-    //       {return false;}
-    //     })
-    //     return true;
-    //   })
-    // ,delay(this.DELAY_TIME*60),repeat() )
-    // .subscribe((resp:{results:Reminder[]})=>
-    // { this.utilityService.updateReminderList( this.dateMod(resp.results) )});
   }
 
   dateMod(reminder:Reminder[]):Reminder[] {
@@ -80,7 +62,7 @@ export class ReminderListComponent implements OnInit {
 
   refreshList(){
     this.apiService
-    .documentRequest('reminder','get',null,null)
+    .documentRequest('reminder','get',null,null,"Reminder")
     .subscribe((resp:{results:Reminder[]})=>
     {this.utilityService.updateReminderList(resp.results)});
   }
