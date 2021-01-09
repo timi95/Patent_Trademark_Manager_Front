@@ -8,14 +8,14 @@
         *ngFor="let reminder of (utilityService.reminderListSubject|async)" 
         [ngClass]="{'matured': reminder.is_matured }">
         <header class="list-item-title-brace">
-            <strong>{{reminder.title}}</strong>
+            <strong>{{reminder.reminder_message_title}}</strong>
             <div>
                 <span class="edit" (click)="reminderEditForm(reminder)">+</span>
                 <span class="delete" (click)="reminderDeleteDialogue(reminder)"> &times;</span>
             </div>
         </header>
         <div>
-            {{reminder.reminder_detail}}
+            {{reminder.reminder_message_body}}
         </div><br>
         <div>
             <strong>Manager Type:</strong>{{reminder.manager_type}}
