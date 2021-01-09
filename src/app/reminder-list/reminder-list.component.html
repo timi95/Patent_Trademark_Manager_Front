@@ -6,7 +6,7 @@
     <div class="list-item-divider" *ngIf="!isMobile || (opened && isMobile)">
         <li class="list-item reminder-item" 
         *ngFor="let reminder of (utilityService.reminderListSubject|async)" 
-        [ngClass]="{'matured': reminder.matured }">
+        [ngClass]="{'matured': reminder.is_matured }">
         <header class="list-item-title-brace">
             <strong>{{reminder.title}}</strong>
             <div>
@@ -31,6 +31,6 @@
 (utilityService.reminderCreateSubject|async) !== 
 (utilityService.reminderEditSubject|async) !==
 (utilityService.reminderDeleteSubject|async)"
-[managerType]="'Reminders'"
+[managerType]="'Reminder'"
 [documentType]="'reminder'"
 [formType]="formType"></r-overlay>
