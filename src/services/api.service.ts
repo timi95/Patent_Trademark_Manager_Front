@@ -42,7 +42,7 @@ public errors: any = [];
 
   // Generally applicable CRUD request function for all patent resources
   documentRequest(documentType:string, requestType:string, id?:any,requestBody?:any,resourceType?:string) {
-    let RT = requestType? resourceType: "Instruction";
+    let RT = resourceType? resourceType: "Instruction";
     switch (requestType.toLowerCase()) {
     //POST request case
       case "post":
