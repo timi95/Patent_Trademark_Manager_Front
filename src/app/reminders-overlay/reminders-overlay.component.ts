@@ -42,19 +42,22 @@ export class RemindersOverlayComponent implements OnInit {
     }
 
     ngOnInit(): void {
+      this.documentTypeFormDictionary = {
+        'reminder': this.Forms.R_reminderForm
+      }
     // Initialised createForm 
-    // this.utilityService.managerTypeSubject.subscribe(resp=>{
-    //   this.dynamicFormDictionaryGenerator(resp);
-    //   this.dynamicFormGroupGenerator();
-    // });
-    // this.utilityService.reminderSubject.subscribe(resp=>{this.reminderObject=resp;});
+    this.utilityService.managerTypeSubject.subscribe((resp)=>{
+      this.dynamicFormDictionaryGenerator();
+      this.dynamicFormGroupGenerator();
+    });
+    this.utilityService.reminderSubject.subscribe(resp=>{this.reminderObject=resp;});
     }
 
     ngOnChanges(): void {
       // this.dynamicFormGroupGenerator();
     }
 
-    dynamicFormDictionaryGenerator(resp:string){
+    dynamicFormDictionaryGenerator(){
       if(this.managerType === "Reminder" ){
         this.documentTypeFormDictionary = {
           'reminder': this.Forms.R_reminderForm
@@ -64,15 +67,20 @@ export class RemindersOverlayComponent implements OnInit {
     }
 
   dynamicFormGroupGenerator() {
-  
-    if( this.formTypes[0].includes(this.formType) )
-    return this.createForm = this.formBuilder.group(this.documentTypeFormDictionary[this.documentType]);
+    console.log("Generating dynamic forms\n", 
+    "Create form:",
+    this.createForm,
+    "\nEdit form",
+    this.editForm);
+    
+     this.createForm = this.formBuilder.group(this.documentTypeFormDictionary[this.documentType]);
+     this.editForm = this.formBuilder.group(this.documentTypeFormDictionary[this.documentType]);
+     this.deleteForm = this.formBuilder.group(this.documentTypeFormDictionary[this.documentType]);  
+    // if( this.formTypes[0].includes(this.formType) )
 
-    if( this.formTypes[1].includes(this.formType) )
-    return this.editForm = this.formBuilder.group(this.documentTypeFormDictionary[this.documentType]);
+    // if( this.formTypes[1].includes(this.formType) )
 
-    if( this.formTypes[2].includes(this.formType) )
-    return this.deleteForm = this.formBuilder.group(this.documentTypeFormDictionary[this.documentType]);  
+    // if( this.formTypes[2].includes(this.formType) )
     
  }
 
