@@ -75,13 +75,7 @@ export class RemindersOverlayComponent implements OnInit {
     
      this.createForm = this.formBuilder.group(this.documentTypeFormDictionary[this.documentType]);
      this.editForm = this.formBuilder.group(this.documentTypeFormDictionary[this.documentType]);
-     this.deleteForm = this.formBuilder.group(this.documentTypeFormDictionary[this.documentType]);  
-    // if( this.formTypes[0].includes(this.formType) )
-
-    // if( this.formTypes[1].includes(this.formType) )
-
-    // if( this.formTypes[2].includes(this.formType) )
-    
+     this.deleteForm = this.formBuilder.group(this.documentTypeFormDictionary[this.documentType]);     
  }
 
 
