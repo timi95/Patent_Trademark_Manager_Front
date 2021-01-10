@@ -46,10 +46,7 @@ export class ReminderListComponent implements OnInit {
     this.apiService
     .documentRequest('reminder','get',null,null,"Reminder")
     .subscribe((resp:{content:Reminder[]})=>
-    {
-      console.log('Reminders:',resp.content);
-      
-      this.utilityService.updateReminderList(resp.content)});
+    { this.utilityService.updateReminderList(resp.content)} );
 
   }
 
@@ -75,21 +72,21 @@ export class ReminderListComponent implements OnInit {
   }
   reminderCreateForm(){
     this.formType = 'create';
-    localStorage.setItem('managerType','Reminders')
+    localStorage.setItem('managerType','Reminder')
     this.utilityService.updateManagerType();
     this.utilityService.setReminderCreateFormActive();
   }
 
   reminderEditForm(reminder:Reminder){
     this.formType = 'update';
-    localStorage.setItem('managerType','Reminders')
+    localStorage.setItem('managerType','Reminder')
     this.utilityService.updateManagerType();
     this.utilityService.setReminderEditFormActive();
     this.utilityService.loadReminder(reminder);
   }
 
   reminderDeleteDialogue(reminder:Reminder){
-    localStorage.setItem('managerType','Reminders')
+    localStorage.setItem('managerType','Reminder')
     this.utilityService.updateManagerType();
     this.formType = 'delete';
     this.utilityService.loadReminder(reminder);
