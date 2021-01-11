@@ -152,7 +152,7 @@ onSubmit(actionType:string): void {
         this.documentType,
         "post",
         null,
-        JSON.stringify(this.createForm.getRawValue()))
+        JSON.stringify(this.createForm.getRawValue()),'Reminder')
       .subscribe(
         () => {
           this.messageService.pushSuccess("Successfully submitted!");
@@ -168,7 +168,7 @@ onSubmit(actionType:string): void {
     case this.formTypes[1]:
       this.apiService
       .documentRequest(
-        this.documentType,"patch",this.reminderObject.id,this.editForm.value)
+        this.documentType,"patch",this.reminderObject.id,this.editForm.value,'Reminder')
       .subscribe(
         () => {
           this.messageService.pushSuccess("Successfully submitted!");
@@ -183,7 +183,7 @@ onSubmit(actionType:string): void {
 
     case this.formTypes[2]:      
       this.apiService
-      .documentRequest(this.documentType,'delete',this.reminderObject.id,this.deleteForm.value)
+      .documentRequest(this.documentType,'delete',this.reminderObject.id,this.deleteForm.value,'Reminder')
       .subscribe(
         () => {
           this.messageService.pushSuccess("Successfully submitted!");
