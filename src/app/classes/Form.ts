@@ -303,12 +303,13 @@ export class Form {
     };
 
     R_reminderForm = {
-        title: new FormControl('', [Validators.required]),
-        reminder_detail: new FormControl('', [Validators.required]),
-        reminder_date: "",
-        manager_type: new FormControl('', [Validators.required]),
-        document_type: new FormControl('', [Validators.required]),
-        document_id: new FormControl('', [Validators.required]),
+        id:new FormControl('', [Validators.required]),
+        instruction_ref:new FormControl('', [Validators.required]),
+        reminder_creation_time: Date(),
+        reminder_date_time: Date(),
+        is_matured: new FormControl(false, [Validators.required]),
+        reminder_message_title: new FormControl('', [Validators.required]),
+        reminder_message_body: new FormControl('', [Validators.required]),
     }
 
     // create form types for Kotlin backend
