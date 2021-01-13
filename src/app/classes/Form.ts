@@ -303,9 +303,9 @@ export class Form {
     };
 
     R_reminderForm = {
-        id:new FormControl('', [Validators.required]),
-        instruction_ref:new FormControl('', [Validators.required]),
-        reminder_creation_time: Date(),
+        // id:new FormControl('', [Validators.required]),
+        // instruction_ref:new FormControl('', [Validators.required]),
+        // reminder_creation_time: Date(),
         reminder_date_time: Date(),
         is_matured: new FormControl(false, [Validators.required]),
         reminder_message_title: new FormControl('', [Validators.required]),
