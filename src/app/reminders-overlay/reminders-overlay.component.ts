@@ -183,7 +183,7 @@ onSubmit(actionType:string): void {
 
     case this.formTypes[2]:      
       this.apiService
-      .documentRequest(this.documentType,'delete',this.reminderObject.id,this.deleteForm.value,'Reminder')
+      .documentRequest(this.documentType,'delete',this.reminderObject.id, null,'Reminder')
       .subscribe(
         () => {
           this.messageService.pushSuccess("Successfully submitted!");
