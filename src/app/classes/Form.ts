@@ -306,7 +306,7 @@ export class Form {
         // id:new FormControl('', [Validators.required]),
         // instruction_ref:new FormControl('', [Validators.required]),
         // reminder_creation_time: Date(),
-        reminder_date_time: Date(),
+        reminder_date_time: new Date(),
         is_matured: new FormControl(false, [Validators.required]),
         reminder_message_title: new FormControl('', [Validators.required]),
         reminder_message_body: new FormControl('', [Validators.required]),
