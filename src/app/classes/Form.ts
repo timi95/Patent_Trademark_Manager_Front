@@ -312,7 +312,7 @@ export class Form {
         reminder_message_body: new FormControl('', [Validators.required]),
     }
 
-    // create form types for Kotlin backend
+    // create form types for Kotlin backend 
     patentCreateForm = {
         action_list: {value:[], type:"list"},
         applicable_service_charge: {value:"default value", type:"text"},
