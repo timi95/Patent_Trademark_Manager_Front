@@ -131,6 +131,12 @@ export class UtilityService {
     }
   }
 
+  appendReminderToList(item:Reminder){
+    let appendedList = this.reminderListSubject.value
+    appendedList.push(item)
+    this.reminderListSubject.next(appendedList)
+  }
+
 }
 
 interface Document {
