@@ -32,6 +32,8 @@ export class ReminderListComponent implements OnInit {
   formType = 'create'
   managerType: string;
   documentTypeUrlDict: any;
+
+  // something is wrong with the connection, check the backend tomorrow
   source = new EventSource('http://localhost:8080/Reminder/subscribe')
 
   
@@ -42,6 +44,7 @@ export class ReminderListComponent implements OnInit {
   ngOnInit(): void {
     this.source.onmessage = e => {
       console.log("reminder event:",e.data);
+      this.utilityService.appendReminderToList(e.data)
     }
     this.apiService
     .documentRequest('reminder','get',null,null,"Reminder")
