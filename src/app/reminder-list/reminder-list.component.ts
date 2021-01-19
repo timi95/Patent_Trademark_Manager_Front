@@ -33,8 +33,9 @@ export class ReminderListComponent implements OnInit {
   managerType: string;
   documentTypeUrlDict: any;
 
-  // something is wrong with the connection, check the backend tomorrow
-  source = new EventSource('http://localhost:8080/Reminder/subscribe')
+  // Rob's suggestion check tomorrow
+  // https://discord.com/channels/646890711869816842/646891297453506560/801206277438570507
+  // source = new EventSource('http://localhost:8080/Reminder/subscribe')
 
   
   constructor(
@@ -42,7 +43,7 @@ export class ReminderListComponent implements OnInit {
     public utilityService: UtilityService) { }
 
   ngOnInit(): void {
-    this.source.onmessage = e => {
+    new EventSource('http://localhost:8080/Reminder/subscribe').onmessage = e => {
       console.log("reminder event:",e.data);
       this.utilityService.appendReminderToList(e.data)
     }
