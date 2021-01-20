@@ -2,7 +2,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { deepEqual } from 'assert';
 import { time } from 'console';
-import { interval, pipe, timer } from 'rxjs';
+import { interval, Observable, pipe, Subscriber, timer } from 'rxjs';
 import { debounce, debounceTime, delay, distinctUntilChanged, repeat, retry, switchMap, tap } from 'rxjs/operators';
 import { ApiService } from 'src/services/api.service';
 import { UtilityService } from 'src/services/utility.service';
@@ -33,6 +33,9 @@ export class ReminderListComponent implements OnInit {
   managerType: string;
   documentTypeUrlDict: any;
 
+
+
+
   // Rob's suggestion check tomorrow
   // https://discord.com/channels/646890711869816842/646891297453506560/801206277438570507
   // source = new EventSource('http://localhost:8080/Reminder/subscribe')
@@ -43,10 +46,17 @@ export class ReminderListComponent implements OnInit {
     public utilityService: UtilityService) { }
 
   ngOnInit(): void {
-    new EventSource('http://localhost:8080/Reminder/subscribe').onmessage = e => {
+    // new EventSource('http://localhost:8080/Reminder/subscribe').onmessage = e => {
+    //   console.log("reminder event:",e.data);
+    //   this.utilityService.appendReminderToList(e.data)
+    // }
+    this.getSource('http://localhost:8080/Reminder/subscribe')
+    .pipe(retry(5))
+    .subscribe(e => {
       console.log("reminder event:",e.data);
       this.utilityService.appendReminderToList(e.data)
-    }
+    })
+
     this.apiService
     .documentRequest('reminder','get',null,null,"Reminder")
     .subscribe((resp:{content:Reminder[]})=>
@@ -100,6 +110,25 @@ export class ReminderListComponent implements OnInit {
   updateReminder(){
   }
 
+
+      // Rob's method
+    public getSource(url: string): Observable<MessageEvent> {
+      return new Observable<MessageEvent>(
+      (subscriber: Subscriber<MessageEvent>) => {
+        const sse = new EventSource(url);
+      
+        sse.onmessage = e => subscriber.next(e);
+        sse.onerror = e => subscriber.error(e);
+
+        return () => {
+          if (sse.readyState === 1) {
+              sse.close();
+          }
+        }
+
+      });
+    }
+
   @HostListener("window:resize", [])
   private onResize() {
       // console.log("This window has been resized")
@@ -115,5 +144,7 @@ export class ReminderListComponent implements OnInit {
       }
       // console.log(`screen height: ${this.screenHeight} screen width: ${this.screenWidth}`);
   }
+
+ 
   
 }
