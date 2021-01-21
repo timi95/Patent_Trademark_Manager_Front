@@ -54,7 +54,7 @@ export class ReminderListComponent implements OnInit {
     .pipe(retry(5))
     .subscribe(e => {
       console.log("reminder event:",e.data);
-      this.utilityService.appendReminderToList(e.data)
+      this.utilityService.appendReminderToList(JSON.parse(e.data))
     })
 
     this.apiService
