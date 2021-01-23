@@ -33,23 +33,12 @@ export class ReminderListComponent implements OnInit {
   managerType: string;
   documentTypeUrlDict: any;
 
-
-
-
-  // Rob's suggestion check tomorrow
-  // https://discord.com/channels/646890711869816842/646891297453506560/801206277438570507
-  // source = new EventSource('http://localhost:8080/Reminder/subscribe')
-
   
   constructor(
     private apiService: ApiService,
     public utilityService: UtilityService) { }
 
   ngOnInit(): void {
-    // new EventSource('http://localhost:8080/Reminder/subscribe').onmessage = e => {
-    //   console.log("reminder event:",e.data);
-    //   this.utilityService.appendReminderToList(e.data)
-    // }
     this.getSource('http://localhost:8080/Reminder/subscribe')
     .pipe(retry(5))
     .subscribe(e => {
