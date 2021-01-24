@@ -100,23 +100,23 @@ export class ReminderListComponent implements OnInit {
   }
 
 
-      // Rob's method
-    public getSource(url: string): Observable<MessageEvent> {
-      return new Observable<MessageEvent>(
-      (subscriber: Subscriber<MessageEvent>) => {
-        const sse = new EventSource(url);
-      
-        sse.onmessage = e => subscriber.next(e);
-        sse.onerror = e => subscriber.error(e);
+  // Rob's method
+  public getSource(url: string): Observable<MessageEvent> {
+    return new Observable<MessageEvent>(
+    (subscriber: Subscriber<MessageEvent>) => {
+      const sse = new EventSource(url);
+    
+      sse.onmessage = e => subscriber.next(e);
+      sse.onerror = e => subscriber.error(e);
 
-        return () => {
-          if (sse.readyState === 1) {
-              sse.close();
-          }
+      return () => {
+        if (sse.readyState === 1) {
+            sse.close();
         }
+      }
 
-      });
-    }
+    });
+  }
 
   @HostListener("window:resize", [])
   private onResize() {
