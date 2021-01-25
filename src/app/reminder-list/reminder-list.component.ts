@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { deepEqual } from 'assert';
 import { time } from 'console';
@@ -14,13 +14,14 @@ import { Reminder } from '../classes/Reminder';
 @Component({
   selector: 'reminders',
   templateUrl: './reminder-list.component.html',
-  styleUrls: ['./reminder-list.component.css']
+  styleUrls: ['./reminder-list.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
 export class ReminderListComponent implements OnInit {
     
   DELAY_TIME:number = 1000;
-  reminders:any[] = []
+  reminders:Reminder[];
 
 
   opened : boolean;
@@ -35,10 +36,16 @@ export class ReminderListComponent implements OnInit {
 
   
   constructor(
+    private ref: ChangeDetectorRef,
     private apiService: ApiService,
     public utilityService: UtilityService) { }
 
   ngOnInit(): void {
+
+    this.utilityService.reminderListSubject
+    .subscribe((resp:Reminder[])=>{ this.reminders = resp; 
+    this.ref.markForCheck()});
+
     this.getSource('http://localhost:8080/Reminder/subscribe')
     .pipe(retry(5))
     .subscribe(e => {
@@ -50,7 +57,7 @@ export class ReminderListComponent implements OnInit {
     .documentRequest('reminder','get',null,null,"Reminder")
     .subscribe((resp:{content:Reminder[]})=>
     { this.utilityService.updateReminderList(resp.content)} );
-
+    
   }
 
   dateMod(reminder:Reminder[]):Reminder[] {
