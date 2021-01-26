@@ -78,7 +78,6 @@ export class ReminderListComponent implements OnInit {
   }
   toggleList(){
     this.opened = !this.opened;
-    // console.log(`toggle state: ${this.opened}`); 
   }
   reminderCreateForm(){
     this.formType = 'create';
