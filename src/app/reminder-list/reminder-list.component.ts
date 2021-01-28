@@ -126,7 +126,6 @@ export class ReminderListComponent implements OnInit {
 
   @HostListener("window:resize", [])
   private onResize() {
-      // console.log("This window has been resized")
       this.screenHeight = window.innerHeight;
       this.screenWidth = window.innerWidth;
       
