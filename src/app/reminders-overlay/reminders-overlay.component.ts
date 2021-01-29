@@ -187,8 +187,8 @@ onSubmit(actionType:string): void {
       .subscribe(
         () => {
           this.messageService.pushSuccess("Successfully submitted!");
-          this.setInactive();
           this.refreshList();
+          this.setInactive();
         },
         (err) => {
           console.log(err);
