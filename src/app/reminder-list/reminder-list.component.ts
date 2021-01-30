@@ -44,7 +44,7 @@ export class ReminderListComponent implements OnInit {
 
     this.utilityService.reminderListSubject
     .subscribe((resp:Reminder[])=>{ this.reminders = resp; 
-    this.ref.markForCheck()});
+    this.ref.detectChanges()});
 
     this.getSource('http://localhost:8080/Reminder/subscribe')
     .pipe(retry(5))
@@ -58,6 +58,8 @@ export class ReminderListComponent implements OnInit {
     .subscribe((resp:{content:Reminder[]})=>
     { this.utilityService.updateReminderList(resp.content)} );
     
+    this.utilityService.reminderDeleteSubject
+    .subscribe(()=>this.ref.detectChanges())
   }
 
   dateMod(reminder:Reminder[]):Reminder[] {
