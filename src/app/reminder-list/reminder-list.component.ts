@@ -51,26 +51,17 @@ export class ReminderListComponent implements OnInit {
     .subscribe(e => {
       console.log("reminder event:",e.data);
       this.utilityService.appendReminderToList(JSON.parse(e.data))
-    })
+    });
 
     this.apiService
     .documentRequest('reminder','get',null,null,"Reminder")
     .subscribe((resp:{content:Reminder[]})=>
-    { this.utilityService.updateReminderList(resp.content)} );
+    { this.utilityService.updateReminderList(resp.content) });
     
     this.utilityService.reminderDeleteSubject
-    .subscribe(()=>this.ref.detectChanges())
+    .subscribe(()=>this.utilityService.updateReminderList(this.reminders))
   }
 
-  dateMod(reminder:Reminder[]):Reminder[] {
-    let todays_date = new Date();    
-    let result:Reminder[] = reminder;
-
-    result.forEach(item =>{ 
-      if(todays_date <= new Date(item.reminder_date_time) )
-       {item.is_matured = true;}else{item.is_matured=false;} });
-    return result;
-  }
 
   refreshList(){
     this.apiService
