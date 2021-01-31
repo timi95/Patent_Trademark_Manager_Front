@@ -157,10 +157,10 @@ onSubmit(actionType:string): void {
         () => {
           this.messageService.pushSuccess("Successfully submitted!");
           this.setInactive();
-          this.refreshList()
+          // this.refreshList();
         },
         (err) => {
-          console.log(err);
+          console.error(err);
           this.messageService.pushError(err);}
       );  
     break;
@@ -172,30 +172,32 @@ onSubmit(actionType:string): void {
       .subscribe(
         () => {
           this.messageService.pushSuccess("Successfully submitted!");
-          this.setInactive();
+          // this.setInactive();
           this.refreshList()
         },
         (err) => {
-          console.log(err);
+          console.error(err);
           this.messageService.pushError(err);}
       );  
     break;
 
-    case this.formTypes[2]:      
+    case this.formTypes[2]:            
       this.apiService
       .documentRequest(this.documentType,'delete',this.reminderObject.id, null,'Reminder')
       .subscribe(
         () => {
           this.messageService.pushSuccess("Successfully submitted!");
-          this.refreshList();
           this.setInactive();
         },
-        (err) => {
-          console.log(err);
+        err => {
+          console.error(err);
           this.messageService.pushError(err);
-        });  
+        },
+        ()=> this.refreshList());  
     break;
   }
+  this.refreshList();
+
 }
 
 }
