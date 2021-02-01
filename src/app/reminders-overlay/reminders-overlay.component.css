@@ -91,6 +91,7 @@ header {
   
   /* Cancel button */
   a.cancel {
+    width: 3em;
     font-family: Arial;
     color: crimson;
     border: none;
