@@ -182,11 +182,17 @@ onSubmit(actionType:string): void {
     break;
 
     case this.formTypes[2]:            
+
+      
       this.apiService
       .documentRequest(this.documentType,'delete',this.reminderObject.id, null,'Reminder')
       .subscribe(
         () => {
           this.messageService.pushSuccess("Successfully submitted!");
+          this.utilityService.updateReminderList(
+            this.utilityService
+            .reminderListSubject.value
+            .filter((reminder:Reminder)=> reminder.id != this.reminderObject.id))
           this.setInactive();
         },
         err => {
