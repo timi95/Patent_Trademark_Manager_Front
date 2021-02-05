@@ -3,8 +3,16 @@
         <h3>ID: {{patent.id}} </h3>
         <strong></strong>
         <div>
-            <h4>Reference Number:</h4>
+            <strong>Invention Description</strong>
+            <p>{{patent.invention_description}}</p>
+            <strong>Reference Number:</strong>
             <p>{{ patent.our_reference_number}}</p>
+            <strong>Client Reference Number:</strong>
+            <p>{{ patent.clients_reference_number }}</p>
+            <!-- patent title, invention title, 
+                application number, patentee name, 
+                registration date -->
+
         </div>
         <ul class="actions-list">
             <li class="" *ngFor="let action of patent?.action_list">
