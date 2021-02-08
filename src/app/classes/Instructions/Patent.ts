@@ -9,6 +9,14 @@ export class Patent implements Instruction {
     type_id: string;
     action_list: Action[];
     
+
+    patent_title:string;
+    registration_date:Date;
+    invention_title:string;
+    application_number:string;
+    patentee_name:string;
+    patentee_address:string;
+
     our_reference_number: string;
     client_id: string;
     clients_reference_number: string;
@@ -17,8 +25,6 @@ export class Patent implements Instruction {
     name_of_client: string;
     clients_address: string;
     clients_contact_person:string;
-    name_of_patentee: string;
-    patentee_address: string;
     date_instruction_received: Date;
     lawyer_responsible: string;
     invention_description: string;
