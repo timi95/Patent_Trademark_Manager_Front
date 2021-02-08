@@ -27,6 +27,9 @@
     width: 100%;
     overflow: auto;
 }
+.hide-overflow-y{
+    overflow-y: hidden;
+}
 /* .scrollable-grid::-webkit-scrollbar{
     display: none;
 } */
@@ -77,4 +80,9 @@
     padding: .5em;
     border: 1px grey solid;
     border-radius: 50%;
+}
+
+.detail-list{
+    height: 50%;
+    overflow-y: scroll;
 }
