@@ -43,9 +43,7 @@ export class DetailComponent implements OnInit, OnDestroy {
       this.apiService.documentRequest("patent","get", this.patentID)
       .subscribe( (patent: Patent) => {
         this.patent$ = patent;
-        this.listOfPatent = Object.entries(patent);
-        this.listOfPatent = this.stripListOfPatent(this.listOfPatent);
-        
+        this.listOfPatent = Object.entries(patent);        
     });
   }
 
@@ -69,7 +67,9 @@ export class DetailComponent implements OnInit, OnDestroy {
   }
 
   saveChanges(){
+    this.setTypeId(this.listOfPatent)
     console.log("Current conversion: ",Object.fromEntries(this.listOfPatent));
+    
     this.apiService
     .documentRequest("patent","put",this.patentID,Object.fromEntries(this.listOfPatent))
     .pipe(
@@ -94,6 +94,14 @@ export class DetailComponent implements OnInit, OnDestroy {
               &&patent[0] != 'id'
               &&patent[0] != 'image_list'
               &&patent[0] != 'action_list' );
+  }
+
+  setTypeId(listOfPatent: any[]){
+    return listOfPatent.forEach(patent=>{
+      if(patent[0] == "type_id"){
+        patent[1] = "patent"
+      }
+    });
   }
 
   summonDeleteOverlay(){
