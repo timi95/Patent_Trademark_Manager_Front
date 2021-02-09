@@ -3,7 +3,7 @@
 </div>
 
 <ul class="font-colour info-view" >
-    <li *ngFor="let patentField of listOfPatent"> 
+    <li *ngFor="let patentField of stripListOfPatent(listOfPatent)"> 
         <div style="display: flex;" >
             <div>{{ patentField[0] }}</div>
             <div>:<strong>{{ patentField[1]}}</strong></div>
