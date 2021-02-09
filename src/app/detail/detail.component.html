@@ -4,7 +4,7 @@
 
 <ul class="font-colour info-view" >
     <li *ngFor="let patentField of listOfPatent"> 
-        <div style="display: flex;">
+        <div style="display: flex;" >
             <div>{{ patentField[0] }}</div>
             <div>:<strong>{{ patentField[1]}}</strong></div>
             <button (click)="toggleEdit(patentField[0])">Edit</button>

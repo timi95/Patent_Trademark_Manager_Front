@@ -44,6 +44,8 @@ export class DetailComponent implements OnInit, OnDestroy {
       .subscribe( (patent: Patent) => {
         this.patent$ = patent;
         this.listOfPatent = Object.entries(patent);
+        this.listOfPatent = this.stripListOfPatent(this.listOfPatent);
+        
     });
   }
 
@@ -83,6 +85,15 @@ export class DetailComponent implements OnInit, OnDestroy {
       this.messageService.pushError(`Error occured ${error}`)
     });
     
+  }
+
+  stripListOfPatent(listOfPatent: any[]){
+    return this.listOfPatent.filter(
+      patent => 
+              patent[0] != 'type_id'
+              &&patent[0] != 'id'
+              &&patent[0] != 'image_list'
+              &&patent[0] != 'action_list' );
   }
 
   summonDeleteOverlay(){
