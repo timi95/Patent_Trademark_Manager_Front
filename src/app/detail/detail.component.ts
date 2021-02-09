@@ -83,11 +83,6 @@ export class DetailComponent implements OnInit, OnDestroy {
       this.messageService.pushError(`Error occured ${error}`)
     });
     
-  //   this.apiService.documentRequest("patent","get", this.patentID)
-  //   .subscribe( (patent: Patent) => {
-  //     this.patent$ = patent;
-  //     this.listOfPatent = Object.entries(patent);
-  // });
   }
 
   summonDeleteOverlay(){
