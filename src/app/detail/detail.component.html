@@ -1,17 +1,11 @@
 <div class="detail-controls">
     <strong class="view-patent" (click)="viewPatents()">View Patents</strong>
+    <div class="widget-container">
+        <input (click)="saveChanges()" type="button" value="Save">
+        <input (click)="summonDeleteOverlay()" type="button" value="Delete">
+    </div>
 </div>
-<div class="detail-controls">
-    <strong class="view-patent" >View Actions</strong>
-    <button> Apply New Action</button>
-    <button> Edit Action</button>
-</div>
-<div class="detail-controls">
-    <strong class="view-patent" >View Images</strong>
-    <button> Apply New Image</button>
-    <button> Delete Image</button>
-</div>
-
+<hr>
 <ul class="font-colour info-view" >
     <li *ngFor="let patentField of stripListOfPatent(listOfPatent)"> 
         <div style="display: flex;" >
@@ -24,12 +18,20 @@
             <input type="button" value="cancel-edit" (click)="cancelEdit()">
         </div>
     </li>
+
+    <hr>
+    <div class="detail-controls">
+        <strong class="view-patent" >View Actions</strong>
+        <button> Apply New Action</button>
+        <button> Edit Action</button>
+    </div>
+    <div class="detail-controls">
+        <strong class="view-patent" >View Images</strong>
+        <button> Apply New Image</button>
+        <button> Delete Image</button>
+    </div>
 </ul>
 
-<div class="widget-container">
-    <input (click)="saveChanges()" type="button" value="Save">
-    <input (click)="summonDeleteOverlay()" type="button" value="Delete">
-</div>
 
 <delete [active]="delete_is_active"
         [targetId]="patentID"
