@@ -20,11 +20,17 @@
     </li>
 
     <hr>
-    <div class="detail-controls">
+    <ul class="actions-list">
+        <li class="" *ngFor="let action of patent$?.action_list">
+          <div> <strong>Id:</strong>{{action?.id}}</div>
+          <div> <strong>type:</strong> {{action?.type_id}}</div>
+        </li> 
+    </ul>
+    <!-- <div class="detail-controls">
         <strong class="view-patent" >View Actions</strong>
         <button> Apply New Action</button>
         <button> Edit Action</button>
-    </div>
+    </div> -->
     <div class="detail-controls">
         <strong class="view-patent" >View Images</strong>
         <button> Apply New Image</button>
