@@ -78,14 +78,17 @@ li {
 
 
 /* Action list */
+.actions{
+    display: flex;
+}
 .actions-list{
-    /* width: 95%; */
-    height: 130px;
+    width: 80%;
+    /* height: 130px; */
     margin: 0;
     padding-left: 0;
     color: black;
     display: flex;
-    overflow-x: scroll;
+    overflow-x: auto;
     list-style: none;
 }
 .actions-list>li{
@@ -101,4 +104,10 @@ li {
 }
 .actions-list>li>div{
     width: 90px ;
+  }
+  /* Actions controls */
+  .actions-controls{
+      width: auto;
+      display: flex;
+      flex-flow: column wrap;
   }
