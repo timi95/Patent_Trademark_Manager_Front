@@ -19,6 +19,8 @@ export class DetailComponent implements OnInit, OnDestroy {
   listOfPatent: any[];
   is_editing: string = '';
   delete_is_active:boolean;
+  actionFormList: any[];
+
   constructor(
     private router:Router,
     private activatedRoute: ActivatedRoute,
