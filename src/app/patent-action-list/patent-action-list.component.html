@@ -1,0 +1,4 @@
+<select (change)="changeActionForm($event)">
+    <option default>Select Action list</option>
+    <option *ngFor="let action of actionList" [ngValue]="action">{{action}}</option>
+  </select>
