@@ -33,7 +33,6 @@ export class PatentInstructionRegistrationComponent implements OnInit {
     'search':this.Forms.P_searchActionCreateForm,
     'renewal':this.Forms.P_renewalActionCreateForm,
     'registration':this.Forms.P_registrationActionCreateForm,
-    // 'patent-particulars':this.Forms.P_patent_particulars,
     'procurement':this.Forms.P_procurementOfCertificateActionCreateForm,
     'ctc':this.Forms.P_CTCActionCreateForm,
     'change-name':this.Forms.P_changeOfNameActionCreateForm,
@@ -56,7 +55,7 @@ export class PatentInstructionRegistrationComponent implements OnInit {
     this.current_action = event.target.value
     this.patentActionForm = this.patentActionFormDictionary[event.target.value]
     this.listOfPatentActionForm = this.utilityService.toList(this.patentActionForm);
-    console.log('current_action:', this.current_action,'\npatentActionForm:',this.formMap(this.patentActionForm));
+    // console.log('current_action:', this.current_action,'\npatentActionForm:',this.formMap(this.patentActionForm));
     
   }
 
