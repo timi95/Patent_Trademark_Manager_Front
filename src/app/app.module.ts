@@ -24,6 +24,7 @@ import { TrademarkInstructionRegistrationComponent } from './trademark-instructi
 import { ViewTrademarksComponent } from './view-trademarks/view-trademarks.component';
 import { ViewPatentsComponent } from './view-patents/view-patents.component';
 import { DeleteOverlayComponent } from './delete-overlay/delete-overlay.component';
+import { PatentActionListComponent } from './patent-action-list/patent-action-list.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { DeleteOverlayComponent } from './delete-overlay/delete-overlay.componen
     ViewTrademarksComponent,
     ViewPatentsComponent,
     DeleteOverlayComponent,
+    PatentActionListComponent,
   ],
   imports: [
     BrowserModule,
