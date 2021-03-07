@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Subject } from 'rxjs';
 import { UtilityService } from 'src/services/utility.service';
 import { Form } from '../classes/Form';
 
@@ -35,12 +36,12 @@ export class PatentActionListComponent implements OnInit {
     "amendment": this.Forms.P_assignmentMergerActionCreateForm,
   }
   patentCreateForm = this.Forms.patentCreateForm
-  current_action: any;
+  current_action = new Subject();
 
   constructor( public utilityService:UtilityService ) { }
 
   changeActionForm(event:any){
-    this.current_action = event.target.value
+    this.current_action.next(event.target.value);
     this.patentActionForm = this.patentActionFormDictionary[event.target.value]
     this.listOfPatentActionForm = this.utilityService.toList(this.patentActionForm);
     // console.log('current_action:', this.current_action,'\npatentActionForm:',this.formMap(this.patentActionForm));
