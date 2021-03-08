@@ -7,6 +7,7 @@ import { Action } from '../classes/Action';
 import { Patent } from '../classes/Instructions/Patent';
 import { delay, distinctUntilChanged, repeat, switchMap } from 'rxjs/operators';
 import { MessageService } from 'src/services/message.service';
+import { PatentActionListComponent } from '../patent-action-list/patent-action-list.component';
 
 @Component({
   selector: 'app-detail',
@@ -19,10 +20,11 @@ export class DetailComponent implements OnInit, OnDestroy {
   listOfPatent: any[];
   is_editing: string = '';
   delete_is_active:boolean;
-  actionFormList: any[];
+  current_action: any;
 
   constructor(
     private router:Router,
+    private patent_action_list: PatentActionListComponent,
     private activatedRoute: ActivatedRoute,
     private messageService: MessageService,
     public utilityService: UtilityService,
@@ -47,6 +49,13 @@ export class DetailComponent implements OnInit, OnDestroy {
         this.patent$ = patent;
         this.listOfPatent = Object.entries(patent);        
     });
+
+    //current action set
+    this.patent_action_list
+        .current_action
+        .subscribe(resp=>{
+          this.current_action = resp});
+    
   }
 
   ngOnDestroy(){
