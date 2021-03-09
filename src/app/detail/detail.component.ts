@@ -50,7 +50,7 @@ export class DetailComponent implements OnInit, OnDestroy {
         this.listOfPatent = Object.entries(patent);        
     });
 
-    //current action set
+    //current action set 
     this.patent_action_list
         .current_action
         .subscribe(resp=>{
