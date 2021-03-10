@@ -71,7 +71,7 @@ export class DetailComponent implements OnInit, OnDestroy {
   }
 
   viewPatents(){
-    this.router.navigate(['view/patent'])
+    this.router.navigate(['view/patent']);
   }
   navigateHome(){   
     this.router.navigate(['']);
@@ -122,6 +122,10 @@ export class DetailComponent implements OnInit, OnDestroy {
     .subscribe(resp=>{
       this.delete_is_active = resp;
     });
+  }
+
+  applyCurrentAction(){
+    // apply current action to, patent
   }
 
 }
