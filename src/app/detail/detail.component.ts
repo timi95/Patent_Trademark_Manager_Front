@@ -21,6 +21,7 @@ export class DetailComponent implements OnInit, OnDestroy {
   is_editing: string = '';
   delete_is_active:boolean;
   current_action: any;
+  current_action_form: any;
 
   constructor(
     private router:Router,
@@ -56,6 +57,10 @@ export class DetailComponent implements OnInit, OnDestroy {
         .subscribe(resp=>{
           this.current_action = resp});
     
+    this.patent_action_list
+        .current_action_form
+        .subscribe(resp=>{
+            this.current_action_form = resp});
   }
 
   ngOnDestroy(){
@@ -125,7 +130,12 @@ export class DetailComponent implements OnInit, OnDestroy {
   }
 
   applyCurrentAction(){
-    // apply current action to, patent
+    // apply current action to, paent
+    this.apiService.documentRequest(
+      'patent',
+      'put',
+      `${this.patentID}/${this.current_action}`,//current_action doesn't match up with the url pattern in API
+      this.current_action_form);
   }
 
 }
