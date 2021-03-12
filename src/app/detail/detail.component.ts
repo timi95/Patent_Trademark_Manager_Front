@@ -22,6 +22,9 @@ export class DetailComponent implements OnInit, OnDestroy {
   delete_is_active:boolean;
   current_action: any;
   current_action_form: any;
+  action_dictionary = {
+    '':''
+  }
 
   constructor(
     private router:Router,
