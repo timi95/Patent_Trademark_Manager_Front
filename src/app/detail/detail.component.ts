@@ -23,12 +23,6 @@ export class DetailComponent implements OnInit, OnDestroy {
   current_action: any;
   current_action_form: any;
   action_dictionary = {
-    '':'',
-    '':'',
-    '':'',
-    '':'',
-    '':'',
-    '':'',
   
   }
 
