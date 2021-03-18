@@ -22,9 +22,6 @@ export class DetailComponent implements OnInit, OnDestroy {
   delete_is_active:boolean;
   current_action: any;
   current_action_form: any;
-  action_dictionary = {
-  
-  }
 
   constructor(
     private router:Router,
@@ -137,7 +134,7 @@ export class DetailComponent implements OnInit, OnDestroy {
     this.apiService.documentRequest(
       'patent',
       'put',
-      `${this.patentID}/${this.action_dictionary[this.current_action]}`,//current_action doesn't match up with the url pattern in API
+      `${this.patentID}/${this.current_action}`,//current_action doesn't match up with the url pattern in API
       this.current_action_form);
   }
 
