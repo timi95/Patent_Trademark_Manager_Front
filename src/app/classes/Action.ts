@@ -29,6 +29,20 @@ export class Action {
     'RenewalAction',
     'SearchAction',
   ];
+
+  public patent_actionList =[
+    'amendment-action',
+    'assignment-merger-action',
+    'change-address',
+    'change-name',
+    'ctc',
+    'procurement',
+    'patent-particulars',
+    'registration',
+    'renewal-action',
+    'search-action',
+  ]
+
   public trademark_profile:string[] = ['TrademarkProfile'];
   // dictionaries
   public patentActionUrlDict = {
