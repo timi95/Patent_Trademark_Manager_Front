@@ -56,7 +56,7 @@ import { PatentActionListComponent } from './patent-action-list/patent-action-li
     FormsModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [PatentActionListComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
