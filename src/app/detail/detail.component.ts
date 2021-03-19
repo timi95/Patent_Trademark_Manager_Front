@@ -134,7 +134,7 @@ export class DetailComponent implements OnInit, OnDestroy {
     this.apiService.documentRequest(
       'patent',
       'put',
-      `${this.patentID}/${this.current_action}`,//current_action doesn't match up with the url pattern in API
+      `${this.patentID}/${this.current_action}`,
       this.current_action_form);
   }
 
