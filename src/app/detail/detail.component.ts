@@ -104,7 +104,7 @@ export class DetailComponent implements OnInit, OnDestroy {
   }
 
   stripListOfPatent(listOfPatent: any[]){
-    return this.listOfPatent.filter(
+    return listOfPatent.filter(
       patent => 
               patent[0] != 'type_id'
               &&patent[0] != 'id'
@@ -130,6 +130,8 @@ export class DetailComponent implements OnInit, OnDestroy {
   }
 
   applyCurrentAction(){
+    console.log('applying action');
+    
     // apply current action to, paent
     this.apiService.documentRequest(
       'patent',
