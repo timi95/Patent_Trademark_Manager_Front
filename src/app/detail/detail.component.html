@@ -1,12 +1,13 @@
 <div class="detail-controls">
-    <strong class="view-patent" (click)="viewPatents()">View Patents</strong>
+    <strong class="view-patent" (click)="viewPatents()"> &#x21d0; Back to Patents</strong>
     <div class="widget-container">
         <input (click)="saveChanges()" type="button" value="Save">
         <input (click)="summonDeleteOverlay()" type="button" value="Delete">
     </div>
 </div>
 <hr>
-<ul class="font-colour info-view" >
+<ul class="font-colour info-view" *ngIf="listOfPatent">
+    <h2>Patent ID: {{patentID}}</h2>
     <li *ngFor="let patentField of stripListOfPatent(listOfPatent)"> 
         <div style="display: flex;" >
             <div>{{ patentField[0] }}</div>
@@ -20,6 +21,7 @@
     </li>
 
     <hr>
+    <strong class="view-patent" >View Actions</strong>
     <div class="actions">
         <ul class="actions-list">
             <li class="" *ngFor="let action of patent$?.action_list">
@@ -29,7 +31,6 @@
         </ul>
 
         <div class="actions-controls">
-            <strong class="view-patent" >View Actions</strong>
             <action-list></action-list>
             <button (click)="applyCurrentAction()"> Apply New Action</button>
             <input type="text" placeholder="Action Id: xxx-xxx-xxx-xxx">
