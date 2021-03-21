@@ -32,13 +32,11 @@ export class PatentActionListComponent implements OnInit {
 
   constructor( public utilityService:UtilityService ) { }
 
-  changeActionForm(event:any){
+  changeActionForm(event:any){    
     this.current_action.next(event.target.value);
     this.patentActionForm = this.patentActionFormDictionary[event.target.value]
     this.current_action_form.next(this.patentActionForm);
-    this.listOfPatentActionForm = this.utilityService.toList(this.patentActionForm);
-    // console.log('current_action:', this.current_action,'\npatentActionForm:',this.formMap(this.patentActionForm));
-    
+    this.listOfPatentActionForm = this.utilityService.toList(this.patentActionForm);    
   }
   ngOnInit(): void {
   }
