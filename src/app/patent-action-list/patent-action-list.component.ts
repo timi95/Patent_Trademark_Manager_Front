@@ -3,6 +3,7 @@ import { Subject } from 'rxjs';
 import { UtilityService } from 'src/services/utility.service';
 import { Action } from '../classes/Action';
 import { Form } from '../classes/Form';
+import { Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'action-list',
@@ -30,14 +31,25 @@ export class PatentActionListComponent implements OnInit {
   current_action = new Subject();
   current_action_form = new Subject();
 
+  @Output() patentActionListData = new EventEmitter<any>();
+
   constructor( public utilityService:UtilityService ) { }
 
   changeActionForm(event:any){    
     this.current_action.next(event.target.value);
     this.patentActionForm = this.patentActionFormDictionary[event.target.value]
     this.current_action_form.next(this.patentActionForm);
-    this.listOfPatentActionForm = this.utilityService.toList(this.patentActionForm);    
+    this.listOfPatentActionForm = this.utilityService.toList(this.patentActionForm);
+    
+    this.patentActionListData.emit(
+      {
+        current_action:event.target.value,
+        patentActionForm:this.patentActionFormDictionary[event.target.value],
+        listOfPatentActionForm: this.utilityService.toList(this.patentActionForm) });
+    
   }
+
+
   ngOnInit(): void {
   }
 
