@@ -55,11 +55,15 @@ export class DetailComponent implements OnInit, OnDestroy {
     this.patent_action_list
         .current_action
         .subscribe(resp=>{
+          console.log('current action subject value = ',resp);
+          
           this.current_action = resp});
     
     this.patent_action_list
         .current_action_form
         .subscribe(resp=>{
+          console.log('current action form subject value = ',resp);
+
             this.current_action_form = resp});
   }
 
@@ -129,8 +133,13 @@ export class DetailComponent implements OnInit, OnDestroy {
     });
   }
 
+  applyData($event){
+    console.log('event data',$event);
+    
+  }
+
   applyCurrentAction(){
-    console.log('applying action');
+    console.log('current action', this.current_action);
     
     // apply current action to, paent
     this.apiService.documentRequest(

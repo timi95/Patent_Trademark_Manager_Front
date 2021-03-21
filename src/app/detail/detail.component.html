@@ -31,7 +31,7 @@
         </ul>
 
         <div class="actions-controls">
-            <action-list></action-list>
+            <action-list (patentActionListData)="applyData($event)"></action-list>
             <button (click)="applyCurrentAction()"> Apply New Action</button>
             <input type="text" placeholder="Action Id: xxx-xxx-xxx-xxx">
             <button> Edit Action</button>
