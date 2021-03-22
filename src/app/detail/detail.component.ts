@@ -7,7 +7,8 @@ import { Action } from '../classes/Action';
 import { Patent } from '../classes/Instructions/Patent';
 import { delay, distinctUntilChanged, repeat, switchMap } from 'rxjs/operators';
 import { MessageService } from 'src/services/message.service';
-import { PatentActionListComponent } from '../patent-action-list/patent-action-list.component';
+import { PatentActionListComponent,PatentActionListComponentData } from '../patent-action-list/patent-action-list.component';
+import { Form } from '../classes/Form';
 
 @Component({
   selector: 'app-detail',
@@ -20,8 +21,7 @@ export class DetailComponent implements OnInit, OnDestroy {
   listOfPatent: any[];
   is_editing: string = '';
   delete_is_active:boolean;
-  current_action: any;
-  current_action_form: any;
+  PatentActionListData: any;
 
   constructor(
     private router:Router,
@@ -50,21 +50,6 @@ export class DetailComponent implements OnInit, OnDestroy {
         this.patent$ = patent;
         this.listOfPatent = Object.entries(patent);        
     });
-
-    //current action set 
-    this.patent_action_list
-        .current_action
-        .subscribe(resp=>{
-          console.log('current action subject value = ',resp);
-          
-          this.current_action = resp});
-    
-    this.patent_action_list
-        .current_action_form
-        .subscribe(resp=>{
-          console.log('current action form subject value = ',resp);
-
-            this.current_action_form = resp});
   }
 
   ngOnDestroy(){
@@ -133,20 +118,25 @@ export class DetailComponent implements OnInit, OnDestroy {
     });
   }
 
-  applyData($event){
-    console.log('event data',$event);
+  setCurrentAction($event?:PatentActionListComponentData){
+    this.PatentActionListData = $event;
+    console.log('data', this.PatentActionListData);
     
   }
 
   applyCurrentAction(){
-    console.log('current action', this.current_action);
+    console.log('application of Data \n',
+      'patent',
+      'put',
+      `${this.patentID}/${this.PatentActionListData.current_action}`,
+      Form.formMap(this.PatentActionListData.patentActionForm));
     
-    // apply current action to, paent
     this.apiService.documentRequest(
       'patent',
       'put',
-      `${this.patentID}/${this.current_action}`,
-      this.current_action_form);
+      `${this.patentID}/${this.PatentActionListData.current_action}`,
+      //convert to regular object
+      Form.formMap(this.PatentActionListData.patentActionForm));
   }
 
 }
