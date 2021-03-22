@@ -134,7 +134,6 @@ export class UtilityService {
   appendReminderToList(item:Reminder){
     this.reminderListSubject.next([...this.reminderListSubject.value,item])
   }
-
 }
 
 interface Document {
