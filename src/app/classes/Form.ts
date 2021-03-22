@@ -481,5 +481,18 @@ export class Form {
 
     constructor() {
     }
-    
+    static formMap(form){
+        let product = {...form};
+        let Entries: [string, ActionCreateFormValue][] = Object.entries(form);
+        for( const[key, value] of Entries){
+          let actualValue = value.value;
+          product[key] = actualValue;
+        }
+        return product;
+      }
 }
+
+export interface ActionCreateFormValue {
+    value: any;
+    type: string;
+  }
