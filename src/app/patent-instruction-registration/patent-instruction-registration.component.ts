@@ -84,8 +84,6 @@ export class PatentInstructionRegistrationComponent implements OnInit {
       let actualValue = value.value;
       product[key] = actualValue;
     }
-
-    // console.log("product:",product,"original:",this.patentCreateForm);
     return product;
   }
 
