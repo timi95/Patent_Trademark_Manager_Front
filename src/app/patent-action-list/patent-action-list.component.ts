@@ -27,25 +27,18 @@ export class PatentActionListComponent implements OnInit {
     'assignment-merger-action':this.Forms.P_assignmentMergerActionCreateForm,
     'amendment-action': this.Forms.P_assignmentMergerActionCreateForm,
   }
-  patentCreateForm = this.Forms.patentCreateForm
-  current_action = new Subject();
-  current_action_form = new Subject();
 
-  @Output() patentActionListData = new EventEmitter<any>();
+  @Output() patentActionListData = new EventEmitter<PatentActionListComponentData>();
+
+
 
   constructor( public utilityService:UtilityService ) { }
 
   changeActionForm(event:any){    
-    this.current_action.next(event.target.value);
-    this.patentActionForm = this.patentActionFormDictionary[event.target.value]
-    this.current_action_form.next(this.patentActionForm);
-    this.listOfPatentActionForm = this.utilityService.toList(this.patentActionForm);
-    
     this.patentActionListData.emit(
       {
         current_action:event.target.value,
-        patentActionForm:this.patentActionFormDictionary[event.target.value],
-        listOfPatentActionForm: this.utilityService.toList(this.patentActionForm) });
+        patentActionForm:this.patentActionFormDictionary[event.target.value] });
     
   }
 
@@ -53,4 +46,10 @@ export class PatentActionListComponent implements OnInit {
   ngOnInit(): void {
   }
 
+}
+
+export interface PatentActionListComponentData{
+    current_action:string;
+    patentActionForm:any;
+    // listOfPatentActionForm:any[];
 }
