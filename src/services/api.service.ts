@@ -43,7 +43,7 @@ public errors: any = [];
   // Generally applicable CRUD request function for all patent resources
   documentRequest(documentType:string, requestType:string, id?:any,requestBody?:any,resourceType?:string) {
     let RT = (resourceType != null)? resourceType: "Instruction";
-    switch (requestType.toLowerCase()) {
+    switch (requestType.toLowerCase()) {      
     //POST request case
       case "post":
         if (id && requestBody) {
@@ -56,11 +56,12 @@ public errors: any = [];
       //PUT request case
       case "put":
         if (id && requestBody) {
+          console.log(`inside of the condition: /${RT}/ ${documentType}/ ${id}`);
           return this.httpServer.put(`${this.API_URL}/${RT}/${documentType}/${id}`, requestBody,this.httpOptions); 
         } else if( (id == null) && requestBody ){ 
           return this.httpServer.put(`${this.API_URL}/${RT}/${documentType}/`, requestBody,this.httpOptions);
         }
-        break;
+      break;
     
       //PATCH request case
       case "patch":
