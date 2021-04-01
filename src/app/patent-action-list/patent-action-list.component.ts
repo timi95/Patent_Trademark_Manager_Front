@@ -28,6 +28,20 @@ export class PatentActionListComponent implements OnInit {
     'amendment-action': this.Forms.P_assignmentMergerActionCreateForm,
   }
 
+  patentActionStringDictionary = {
+    'amendment-action': 'amendment-action',
+    'assignment-merger-action':'assignment-merger-action',
+    'ctc':'ctc-action',
+    'change-name':'change-of-name-action',
+    'change-address':'change-of-address-action',
+    'procurement':'procurement-of-certificate-action',
+    'renewal-action':'renewal-action',
+    'registration':'registration-action',
+    'search-action':'search-action',
+
+
+  }
+
   @Output() patentActionListData = new EventEmitter<PatentActionListComponentData>();
 
 
@@ -35,10 +49,9 @@ export class PatentActionListComponent implements OnInit {
   constructor( public utilityService:UtilityService ) { }
 
   changeActionForm(event:any){    
-    this.patentActionListData.emit(
-      {
-        current_action:event.target.value,
-        patentActionForm:this.patentActionFormDictionary[event.target.value] });
+    this.patentActionListData.emit({
+    current_action:this.patentActionStringDictionary[event.target.value],
+    patentActionForm:this.patentActionFormDictionary[event.target.value] });
     
   }
 
