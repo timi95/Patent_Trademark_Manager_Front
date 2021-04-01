@@ -24,9 +24,14 @@ li {
 }
 .widget-container{
     display: flex;
-    width: 15%;
+    /* width: 15%; */
     justify-content: space-evenly;
     margin: 0 10px;
+}
+.widget-container>div{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
 }
 .square_btn{
     /* position: relative;
