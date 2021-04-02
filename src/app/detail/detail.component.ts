@@ -120,23 +120,25 @@ export class DetailComponent implements OnInit, OnDestroy {
 
   setCurrentAction($event?:PatentActionListComponentData){
     this.PatentActionListData = $event;
-    console.log('data', this.PatentActionListData);
+    // console.log('data', this.PatentActionListData);
     
   }
 
   applyCurrentAction(){
-    console.log('application of Data \n',
-      'patent',
-      'put',
-      `${this.patentID}/${this.PatentActionListData.current_action}`,
-      Form.formMap(this.PatentActionListData.patentActionForm));
+    // console.log('application of Data \n',
+    //   'patent',
+    //   'put',
+    //   `${this.patentID}/${this.PatentActionListData.current_action}`,
+    //   Form.formMap(this.PatentActionListData.patentActionForm));
     
     this.apiService.documentRequest(
       'patent',
       'put',
       `${this.patentID}/${this.PatentActionListData.current_action}`,
       //convert to regular object
-      Form.formMap(this.PatentActionListData.patentActionForm));
+      Form.formMap(this.PatentActionListData.patentActionForm))
+      .subscribe(resp=>{console.log('apply action response:',resp)})
+      
   }
 
 }
