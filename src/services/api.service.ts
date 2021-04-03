@@ -56,7 +56,6 @@ public errors: any = [];
       //PUT request case
       case "put":
         if (id && requestBody) {
-          console.log(`inside of the condition: /${RT}/ ${documentType}/ ${id}`);
           return this.httpServer.put(`${this.API_URL}/${RT}/${documentType}/${id}`, requestBody,this.httpOptions); 
         } else if( (id == null) && requestBody ){ 
           return this.httpServer.put(`${this.API_URL}/${RT}/${documentType}/`, requestBody,this.httpOptions);
