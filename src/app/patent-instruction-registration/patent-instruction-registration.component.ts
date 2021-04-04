@@ -122,10 +122,12 @@ export class PatentInstructionRegistrationComponent implements OnInit {
           .documentRequest(
             `patent/${newPatent.id}/${this.current_action}-action`,
             'put', null, this.formMap(this.patentActionForm))}) )
-    .subscribe(resp =>{
-      this.messageService.pushSuccess("Successfully created Patent")
-    }, err =>{ this.messageService.pushError('Error occured '); console.error(err);
-    });
+    // Subscription
+    .subscribe(() =>{
+      this.messageService.pushSuccess("Successfully created Patent")},
+    err =>{ 
+      this.messageService.pushError('Error occured '); 
+      console.error(err); });
   }
 }
 
