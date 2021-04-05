@@ -101,9 +101,14 @@ export class DetailComponent implements OnInit, OnDestroy {
               &&patent[0] != 'action_list' );
   }
 
-  setTypeId(listOfPatent: any[]){
-    return listOfPatent.forEach(patent=>{
+  // This needs to be applicable to the type_id for actions in the ActionList
+  setTypeId(list: any[]){
+    return list.forEach(patent=>{
       if(patent[0] == "type_id"){
+        patent[1] = "patent"
+      }
+      // this aint it chief
+      if(patent[0] == "type_id" && patent[1] == "action"){
         patent[1] = "patent"
       }
     });
