@@ -17,29 +17,15 @@ export class PatentActionListComponent implements OnInit {
   listOfPatentActionForm:any[];
   actionList = new Action().patent_actionList
   patentActionFormDictionary =  {
-    'search-action':this.Forms.P_searchActionCreateForm,
-    'renewal-action':this.Forms.P_renewalActionCreateForm,
+    'search':this.Forms.P_searchActionCreateForm,
+    'renewal':this.Forms.P_renewalActionCreateForm,
     'registration':this.Forms.P_registrationActionCreateForm,
     'procurement':this.Forms.P_procurementOfCertificateActionCreateForm,
     'ctc':this.Forms.P_CTCActionCreateForm,
     'change-name':this.Forms.P_changeOfNameActionCreateForm,
     'change-address': this.Forms.P_changeOfAddressActionCreateForm,
-    'assignment-merger-action':this.Forms.P_assignmentMergerActionCreateForm,
-    'amendment-action': this.Forms.P_assignmentMergerActionCreateForm,
-  }
-
-  patentActionStringDictionary = {
-    'amendment-action': 'amendment-action',
-    'assignment-merger-action':'assignment-merger-action',
-    'ctc':'ctc-action',
-    'change-name':'change-of-name-action',
-    'change-address':'change-of-address-action',
-    'procurement':'procurement-of-certificate-action',
-    'renewal-action':'renewal-action',
-    'registration':'registration-action',
-    'search-action':'search-action',
-
-
+    'assignment-merger':this.Forms.P_assignmentMergerActionCreateForm,
+    'amendment': this.Forms.P_assignmentMergerActionCreateForm,
   }
 
   @Output() patentActionListData = new EventEmitter<PatentActionListComponentData>();
@@ -50,7 +36,7 @@ export class PatentActionListComponent implements OnInit {
 
   changeActionForm(event:any){    
     this.patentActionListData.emit({
-    current_action:this.patentActionStringDictionary[event.target.value],
+    current_action:event.target.value,
     patentActionForm:this.patentActionFormDictionary[event.target.value] });
     
   }
