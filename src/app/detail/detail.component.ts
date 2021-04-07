@@ -5,7 +5,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ApiService } from 'src/services/api.service';
 import { Action } from '../classes/Action';
 import { Patent } from '../classes/Instructions/Patent';
-import { delay, distinctUntilChanged, repeat, switchMap } from 'rxjs/operators';
+import { delay, distinctUntilChanged, repeat, switchMap, tap } from 'rxjs/operators';
 import { MessageService } from 'src/services/message.service';
 import { PatentActionListComponent,PatentActionListComponentData } from '../patent-action-list/patent-action-list.component';
 import { Form } from '../classes/Form';
@@ -48,7 +48,7 @@ export class DetailComponent implements OnInit, OnDestroy {
       this.apiService.documentRequest("patent","get", this.patentID)
       .subscribe( (patent: Patent) => {
         this.patent$ = patent;
-        this.listOfPatent = Object.entries(patent);        
+        this.listOfPatent = Object.entries(patent);
     });
   }
 
@@ -72,7 +72,7 @@ export class DetailComponent implements OnInit, OnDestroy {
   }
 
   saveChanges(){
-    this.setTypeId(this.listOfPatent)
+    this.setPatentTypeId(this.listOfPatent)
     console.log("Current conversion: ",Object.fromEntries(this.listOfPatent));
     
     this.apiService
@@ -101,18 +101,20 @@ export class DetailComponent implements OnInit, OnDestroy {
               &&patent[0] != 'action_list' );
   }
 
-  // This needs to be applicable to the type_id for actions in the ActionList
-  setTypeId(list: any[]){
-    return list.forEach(patent=>{
-      if(patent[0] == "type_id"){
-        patent[1] = "patent"
-      }
-      // this aint it chief
-      if(patent[0] == "type_id" && patent[1] == "action"){
-        patent[1] = "patent"
+  setTypeId(object: any, new_type_id) {
+    // console.log('object:',object,'id:',new_type_id);
+    return object["type_id"] = new_type_id;
+  }
+
+  setPatentTypeId(list: any[]){
+    return list.forEach((item,index)=>{
+      if(item[0] == "type_id"){
+        item[1] = "patent"
       }
     });
   }
+
+
 
   summonDeleteOverlay(){
     console.log('summoning delete overlay');
@@ -125,23 +127,18 @@ export class DetailComponent implements OnInit, OnDestroy {
 
   setCurrentAction($event?:PatentActionListComponentData){
     this.PatentActionListData = $event;
-    // console.log('data', this.PatentActionListData);
+    console.log('data', this.PatentActionListData);
     
   }
 
   applyCurrentAction(){
-    // console.log('application of Data \n',
-    //   'patent',
-    //   'put',
-    //   `${this.patentID}/${this.PatentActionListData.current_action}`,
-    //   Form.formMap(this.PatentActionListData.patentActionForm));
-    
+    let action_payload = Form.formMap(this.PatentActionListData.patentActionForm);
+    action_payload['type_id'] = this.PatentActionListData.current_action;
     this.apiService.documentRequest(
       'patent',
       'put',
       `${this.patentID}/${this.PatentActionListData.current_action}`,
-      //convert to regular object
-      Form.formMap(this.PatentActionListData.patentActionForm))
+      JSON.stringify(action_payload))
       .subscribe(resp=>{console.log('apply action response:',resp)})
       
   }
