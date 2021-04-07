@@ -30,17 +30,16 @@ export class Action {
     'SearchAction',
   ];
 
-  public patent_actionList =[
-    'amendment-action',
-    'assignment-merger-action',
-    'change-address',
-    'change-name',
-    'ctc',
-    'procurement',
-    'patent-particulars',
+  public patent_actionList = [
+    'search',
+    'renewal',
     'registration',
-    'renewal-action',
-    'search-action',
+    'procurement',
+    'ctc',
+    'change-name',
+    'change-address',
+    'assignment-merger',
+    "amendment",
   ]
 
   public trademark_profile:string[] = ['TrademarkProfile'];
