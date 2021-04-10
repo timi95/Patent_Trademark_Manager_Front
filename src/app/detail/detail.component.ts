@@ -124,7 +124,6 @@ export class DetailComponent implements OnInit, OnDestroy {
       this.delete_is_active = resp;
     });
   }
-  
 
   setCurrentAction($event?:PatentActionListComponentData){
     this.PatentActionListData = $event;
