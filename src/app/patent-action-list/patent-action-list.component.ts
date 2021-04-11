@@ -50,5 +50,4 @@ export class PatentActionListComponent implements OnInit {
 export interface PatentActionListComponentData{
     current_action:string;
     patentActionForm:any;
-    // listOfPatentActionForm:any[];
 }
