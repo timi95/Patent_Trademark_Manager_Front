@@ -125,6 +125,11 @@ export class DetailComponent implements OnInit, OnDestroy {
     });
   }
 
+  summonEditActionOverlay(){
+    console.log('summoning edit action overlay');
+    
+  }
+
   setCurrentAction($event?:PatentActionListComponentData){
     this.PatentActionListData = $event;
     console.log('data', this.PatentActionListData);
@@ -142,5 +147,6 @@ export class DetailComponent implements OnInit, OnDestroy {
       .subscribe(resp=>{console.log('apply action response:',resp)})
       
   }
+
 
 }
