@@ -25,6 +25,7 @@ import { ViewTrademarksComponent } from './view-trademarks/view-trademarks.compo
 import { ViewPatentsComponent } from './view-patents/view-patents.component';
 import { DeleteOverlayComponent } from './delete-overlay/delete-overlay.component';
 import { PatentActionListComponent } from './patent-action-list/patent-action-list.component';
+import { EditPatentActionOverlayComponent } from './edit-patent-action-overlay/edit-patent-action-overlay.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { PatentActionListComponent } from './patent-action-list/patent-action-li
     ViewPatentsComponent,
     DeleteOverlayComponent,
     PatentActionListComponent,
+    EditPatentActionOverlayComponent,
   ],
   imports: [
     BrowserModule,
