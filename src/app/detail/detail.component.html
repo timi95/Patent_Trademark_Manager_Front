@@ -36,8 +36,11 @@
             <action-list (patentActionListData)="setCurrentAction($event)"></action-list>
             <button (click)="applyCurrentAction()"> Apply New Action</button>
                 Or
-            <input type="text" placeholder="Action Id: xxx-xxx-xxx-xxx">
+            <input type="text" placeholder="Action Id: xxx-xxx-xxx-xxx" #actionId>
             <button (click)="summonEditActionOverlay()"> Edit Existing Action</button>
+            <edit-p-action-overlay 
+                [active]="edit_action_is_active"
+                [targetId]="actionId.value"></edit-p-action-overlay>
         </div>
     </div>
     <div class="detail-controls">
@@ -51,3 +54,4 @@
 <delete [active]="delete_is_active"
         [targetId]="patentID"
         [documentType]="'patent'"></delete>
+
