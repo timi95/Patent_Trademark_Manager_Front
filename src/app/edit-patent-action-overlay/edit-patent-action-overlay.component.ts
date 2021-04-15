@@ -10,6 +10,7 @@ export class EditPatentActionOverlayComponent implements OnInit {
   @Input('targetId') targetId: string;
   constructor() { }
 
+
   ngOnInit(): void {
   }
 
