@@ -21,6 +21,7 @@ export class DetailComponent implements OnInit, OnDestroy {
   listOfPatent: any[];
   is_editing: string = '';
   delete_is_active:boolean;
+  edit_action_is_active:boolean;
   PatentActionListData: any;
 
   constructor(
@@ -38,6 +39,10 @@ export class DetailComponent implements OnInit, OnDestroy {
     this.utilityService.deleteOverlaySubject
     .subscribe(resp =>{
       this.delete_is_active = resp;
+    });
+    this.utilityService.editActionOverlaySubject
+    .subscribe(resp =>{
+      this.edit_action_is_active = resp
     });
     this.activatedRoute.params.subscribe(
       (params: Params) => {
@@ -67,14 +72,14 @@ export class DetailComponent implements OnInit, OnDestroy {
   viewPatents(){
     this.router.navigate(['view/patent']);
   }
-  navigateHome(){   
+  navigateHome(){
     this.router.navigate(['']);
   }
 
   saveChanges(){
     this.setPatentTypeId(this.listOfPatent)
     console.log("Current conversion: ",Object.fromEntries(this.listOfPatent));
-    
+
     this.apiService
     .documentRequest("patent","put",this.patentID,Object.fromEntries(this.listOfPatent))
     .pipe(
@@ -89,12 +94,12 @@ export class DetailComponent implements OnInit, OnDestroy {
     }, error =>{
       this.messageService.pushError(`Error occured ${error}`)
     });
-    
+
   }
 
   stripListOfPatent(listOfPatent: any[]){
     return listOfPatent.filter(
-      patent => 
+      patent =>
               patent[0] != 'type_id'
               &&patent[0] != 'id'
               &&patent[0] != 'image_list'
@@ -127,13 +132,18 @@ export class DetailComponent implements OnInit, OnDestroy {
 
   summonEditActionOverlay(){
     console.log('summoning edit action overlay');
-    
+    this.utilityService.setEditActionOverlayActive();
+    this.utilityService.editActionOverlaySubject
+    .subscribe(resp =>{
+      this.edit_action_is_active = resp
+    });
+
   }
 
   setCurrentAction($event?:PatentActionListComponentData){
     this.PatentActionListData = $event;
     console.log('data', this.PatentActionListData);
-    
+
   }
 
   applyCurrentAction(){
@@ -145,7 +155,7 @@ export class DetailComponent implements OnInit, OnDestroy {
       `${this.patentID}/${this.PatentActionListData.current_action}`,
       JSON.stringify(action_payload))
       .subscribe(resp=>{console.log('apply action response:',resp)})
-      
+
   }
 
 
