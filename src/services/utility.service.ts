@@ -35,6 +35,8 @@ export class UtilityService {
   reminderListSubject: BehaviorSubject<Reminder[]> = new BehaviorSubject<Reminder[]>([]);
   // deleteOverlay subject
   deleteOverlaySubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  // editActionOverlay subject
+  editActionOverlaySubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
 
   setDetailEditFormActive(){
@@ -50,7 +52,7 @@ export class UtilityService {
   setDetailDeleteFormInactive(){
     return this.detailDeleteFormActive.next(false);
   }
-  
+
   setModalFormActive(){
     return this.modalFormActive.next(true);
   }
@@ -64,9 +66,16 @@ export class UtilityService {
   setDeleteOverlayActive(){
     return this.deleteOverlaySubject.next(true);
   }
-  
 
-  
+  setEditActionOverlayInactive(){
+    return this.editActionOverlaySubject.next(false);
+  }
+  setEditActionOverlayActive(){
+    return this.editActionOverlaySubject.next(true);
+  }
+
+
+
   setReminderCreateFormActive(){
     return this.reminderCreateSubject.next(true);
   }
