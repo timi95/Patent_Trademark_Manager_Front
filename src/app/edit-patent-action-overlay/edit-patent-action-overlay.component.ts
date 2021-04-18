@@ -25,4 +25,17 @@ export class EditPatentActionOverlayComponent implements OnInit {
     });
   }
 
+
+  shunOverlay($event){
+    if($event.target.classList.contains("overlay")){
+      this.setInactive();
+    }
+  }
+
+  setInactive(): void {
+    this.utilityService.setEditActionOverlayInactive();
+    this.utilityService.editActionOverlaySubject
+    .subscribe( bool => {this.active = bool;});
+  }
+
 }
