@@ -10,7 +10,7 @@
 <hr>
 <ul class="font-colour info-view" *ngIf="listOfPatent">
     <h2>Patent ID: {{patentID}}</h2>
-    <li *ngFor="let patentField of stripListOfPatent(listOfPatent)"> 
+    <li *ngFor="let patentField of stripListOfPatent(listOfPatent)">
         <div style="display: flex;" >
             <div>{{ patentField[0] }}</div>
             <div>:<strong>{{ patentField[1]}}</strong></div>
@@ -26,21 +26,24 @@
     <strong class="view-patent" >View Actions</strong>
     <div class="actions">
         <ul class="actions-list">
-            <li class="" *ngFor="let action of patent$?.action_list">
+            <li class=""
+            *ngFor="let action of patent$?.action_list">
               <div> <strong>Id:</strong>{{action?.id}}</div>
               <div> <strong>type:</strong> {{action?.type_id}}</div>
-            </li> 
+              <button (click)="summonEditActionOverlay()"> Edit Existing Action</button>
+              <edit-p-action-overlay
+              *ngIf="edit_action_is_active"
+              [active]="edit_action_is_active"
+              [targetAction]="action"></edit-p-action-overlay>
+            </li>
         </ul>
 
         <div class="actions-controls">
             <action-list (patentActionListData)="setCurrentAction($event)"></action-list>
             <button (click)="applyCurrentAction()"> Apply New Action</button>
-                Or
-            <input type="text" placeholder="Action Id: xxx-xxx-xxx-xxx" #actionId>
-            <button (click)="summonEditActionOverlay()"> Edit Existing Action</button>
-            <edit-p-action-overlay 
-                [active]="edit_action_is_active"
-                [targetId]="actionId.value"></edit-p-action-overlay>
+                <!-- Or
+            <input type="text" placeholder="Action Id: xxx-xxx-xxx-xxx" #actionId> -->
+
         </div>
     </div>
     <div class="detail-controls">
