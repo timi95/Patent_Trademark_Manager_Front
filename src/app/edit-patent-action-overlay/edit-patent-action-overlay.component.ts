@@ -10,15 +10,13 @@ import { Action } from '../interfaces/Action';
 })
 export class EditPatentActionOverlayComponent implements OnInit {
   @Input('active') active: boolean;
-  @Input('targetId') targetActionId: string;
-
-  targetAction: Action;
+  @Input('targetAction') targetAction: Action;
 
   constructor(private apiService: ApiService,
               private utilityService: UtilityService) { }
 
   ngOnInit(): void {
-    this.apiService.documentRequest('action','get', this.targetActionId)
+    this.apiService.documentRequest(this.targetAction.type_id,'get', this.targetAction.id)
     .subscribe((actionResponse:Action)=>{
       console.log('resp', actionResponse);
       this.targetAction = actionResponse;
