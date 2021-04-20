@@ -38,6 +38,30 @@
   }
 
 
+
+  /* Form List */
+  .form-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    list-style: none;
+    padding: 0;
+    /* align-items: center; */
+  }
+  .form-list > li {
+    padding: 5px 0;
+  }
+
+  /* Cancel button */
+  a.cancel {
+    font-family: Arial;
+    color: crimson;
+    border: none;
+    cursor: pointer;
+  }
+
+
+
   header {
     display: flex;
     width: 100%;
