@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
@@ -50,11 +51,11 @@ export class PatentInstructionRegistrationComponent implements OnInit {
   ngOnInit(): void {
     this.patent_particulars = this.utilityService.toList(this.patentCreateForm);
    }
- 
+
    changeActionForm(event:any){
     this.current_action = event.target.value
     this.patentActionForm = this.patentActionFormDictionary[event.target.value]
-    this.listOfPatentActionForm = this.utilityService.toList(this.patentActionForm);    
+    this.listOfPatentActionForm = this.utilityService.toList(this.patentActionForm);
   }
 
   createDocument() {
@@ -90,12 +91,12 @@ export class PatentInstructionRegistrationComponent implements OnInit {
       this.utilityService.documentTypeSubject
     .pipe(
       // when the documentType changes, make an api call with the new documentType
-      switchMap(documentTypeResp=>{ 
+      switchMap(documentTypeResp=>{
         this.documentType = documentTypeResp;
         return this.apiService
             .documentRequest(this.documentTypeUrlDict[documentTypeResp],'get',null,null,this.managerType)}),
             retry(5),
-            tap((resp:{results:Document[]}) => { 
+            tap((resp:{results:Document[]}) => {
               // update everywhere else via the service
               localStorage.setItem('documentList',JSON.stringify(resp.results));
               this.utilityService.updateDocumentList();
@@ -114,18 +115,18 @@ export class PatentInstructionRegistrationComponent implements OnInit {
     this.apiService
     .documentRequest('patent','post',null,this.formMap(this.patentCreateForm))
     .pipe(
-      switchMap( 
-        (newPatent:Patent) => { 
+      switchMap(
+        (newPatent:Patent) => {
           return this.apiService
           .documentRequest(
             `patent/${newPatent.id}/${this.current_action}-action`,
             'put', null, this.formMap(this.patentActionForm))}) )
     // Subscription
     .subscribe(() =>{
-      this.messageService.pushSuccess("Successfully created Patent")},
-    err =>{ 
-      this.messageService.pushError('Error occured '); 
-      console.error(err); });
+      this.messageService.pushSuccess("Successfully created Patent")
+    }, (errorResponse:HttpErrorResponse) =>{
+        this.messageService.pushError(errorResponse.error)
+    });
   }
 }
 
@@ -140,4 +141,4 @@ interface Document {
   attachment?:any;
   footer?:string;
 }
-interface DocumentList{results:Document[];} 
+interface DocumentList{results:Document[];}
