@@ -26,15 +26,18 @@
     <strong class="view-patent" >View Actions</strong>
     <div class="actions">
         <ul class="actions-list">
-            <li class=""
-            *ngFor="let action of patent$?.action_list">
-              <div> <strong>Id:</strong>{{action?.id}}</div>
-              <div> <strong>type:</strong> {{action?.type_id}}</div>
-              <button (click)="summonEditActionOverlay()"> Edit Existing Action</button>
+            <li *ngFor="let action of patent$?.action_list">
+              <div>
+                <strong>Id:</strong>{{action?.id}}
+              </div>
+              <div>
+                <strong>type:</strong> {{action?.type_id}}
+              </div>
+              <button (click)="[setTargetAction(action),summonEditActionOverlay()]">Edit</button>
               <edit-p-action-overlay
               *ngIf="edit_action_is_active"
               [active]="edit_action_is_active"
-              [targetAction]="action"></edit-p-action-overlay>
+              [targetAction]="targetAction"></edit-p-action-overlay>
             </li>
         </ul>
 
