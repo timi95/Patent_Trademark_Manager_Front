@@ -5,9 +5,9 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ApiService } from 'src/services/api.service';
 import { Action } from '../interfaces/Action';
 import { Patent } from '../classes/Instructions/Patent';
-import { delay, distinctUntilChanged, repeat, switchMap, tap } from 'rxjs/operators';
+import { switchMap } from 'rxjs/operators';
 import { MessageService } from 'src/services/message.service';
-import { PatentActionListComponent,PatentActionListComponentData } from '../patent-action-list/patent-action-list.component';
+import { PatentActionListComponentData } from '../patent-action-list/patent-action-list.component';
 import { Form } from '../classes/Form';
 import { HttpErrorResponse } from '@angular/common/http';
 
@@ -38,19 +38,17 @@ export class DetailComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.utilityService.setDeleteOverlayInactive();
     this.utilityService.deleteOverlaySubject
-    .subscribe(resp =>{
+    .subscribe(resp => {
       this.delete_is_active = resp;
     });
     this.utilityService.editActionOverlaySubject
-    .subscribe(resp =>{
+    .subscribe(resp => {
       this.edit_action_is_active = resp
     });
-    this.activatedRoute.params.subscribe(
-      (params: Params) => {
-        console.log(params['id']);
+    this.activatedRoute.params
+    .subscribe( (params: Params) => {
         this.patentID = params['id'];
-      }
-      );
+    });
       this.apiService.documentRequest("patent","get", this.patentID)
       .subscribe( (patent: Patent) => {
         this.patent$ = patent;
@@ -58,9 +56,7 @@ export class DetailComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy(){
-
-  }
+  ngOnDestroy(){}
 
   toggleEdit(prop){
     console.log('toggling edit for property:',prop);
@@ -77,10 +73,21 @@ export class DetailComponent implements OnInit, OnDestroy {
     this.router.navigate(['']);
   }
 
+
+  applyCurrentAction(){
+    let action_payload = Form.formMap(this.PatentActionListData.patentActionForm);
+    action_payload['type_id'] = this.PatentActionListData.current_action;
+    this.apiService.documentRequest(
+      'patent',
+      'put',
+      `${this.patentID}/${this.PatentActionListData.current_action}`,
+      JSON.stringify(action_payload))
+          .subscribe(resp=>{
+            this.messageService.pushSuccess(`Applied action: ${resp}`)});
+  }
+
   saveChanges(){
     this.setPatentTypeId(this.listOfPatent)
-    console.log("Current conversion: ",Object.fromEntries(this.listOfPatent));
-
     this.apiService
     .documentRequest("patent","put",this.patentID,Object.fromEntries(this.listOfPatent))
     .pipe(
@@ -98,32 +105,29 @@ export class DetailComponent implements OnInit, OnDestroy {
 
   }
 
-  stripListOfPatent(listOfPatent: any[]){
-    return listOfPatent.filter(
-      patent =>
-              patent[0] != 'type_id'
-              &&patent[0] != 'id'
-              &&patent[0] != 'image_list'
-              &&patent[0] != 'action_list' );
-  }
+  // Assigning a static method from the utility service class,
+  // allows it to be used in the template normally
+  stripFieldsFromList = UtilityService.stripFieldsFromList;
 
+  setCurrentAction($event?:PatentActionListComponentData){
+    this.PatentActionListData = $event;
+  }
+  setTargetAction(targetAction: Action) {
+    return this.targetAction = targetAction;
+  }
   setTypeId(object: any, new_type_id) {
-    // console.log('object:',object,'id:',new_type_id);
     return object["type_id"] = new_type_id;
   }
 
   setPatentTypeId(list: any[]){
-    return list.forEach((item,index)=>{
+    return list.forEach((item)=>{
       if(item[0] == "type_id"){
         item[1] = "patent"
       }
     });
   }
 
-
-
   summonDeleteOverlay(){
-    console.log('summoning delete overlay');
     this.utilityService.setDeleteOverlayActive();
     this.utilityService.deleteOverlaySubject
     .subscribe(resp=>{
@@ -132,7 +136,6 @@ export class DetailComponent implements OnInit, OnDestroy {
   }
 
   summonEditActionOverlay(){
-    console.log('summoning edit action overlay');
     this.utilityService.setEditActionOverlayActive();
     this.utilityService.editActionOverlaySubject
     .subscribe(resp =>{
@@ -140,26 +143,5 @@ export class DetailComponent implements OnInit, OnDestroy {
     });
 
   }
-
-  setCurrentAction($event?:PatentActionListComponentData){
-    this.PatentActionListData = $event;
-    console.log('data', this.PatentActionListData);
-  }
-  setTargetAction(targetAction: Action) {
-    return this.targetAction = targetAction;
-  }
-
-  applyCurrentAction(){
-    let action_payload = Form.formMap(this.PatentActionListData.patentActionForm);
-    action_payload['type_id'] = this.PatentActionListData.current_action;
-    this.apiService.documentRequest(
-      'patent',
-      'put',
-      `${this.patentID}/${this.PatentActionListData.current_action}`,
-      JSON.stringify(action_payload))
-      .subscribe(resp=>{console.log('apply action response:',resp)})
-
-  }
-
 
 }
