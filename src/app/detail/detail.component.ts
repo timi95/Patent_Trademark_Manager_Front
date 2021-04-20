@@ -3,12 +3,13 @@ import { UtilityService } from 'src/services/utility.service';
 import { AmendmentAction } from 'src/interfaces/AmendmentAction';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ApiService } from 'src/services/api.service';
-import { Action } from '../classes/Action';
+import { Action } from '../interfaces/Action';
 import { Patent } from '../classes/Instructions/Patent';
 import { delay, distinctUntilChanged, repeat, switchMap, tap } from 'rxjs/operators';
 import { MessageService } from 'src/services/message.service';
 import { PatentActionListComponent,PatentActionListComponentData } from '../patent-action-list/patent-action-list.component';
 import { Form } from '../classes/Form';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-detail',
@@ -18,6 +19,7 @@ import { Form } from '../classes/Form';
 export class DetailComponent implements OnInit, OnDestroy {
   patentID: string;
   patent$: Patent;
+  targetAction: Action;
   listOfPatent: any[];
   is_editing: string = '';
   delete_is_active:boolean;
@@ -26,7 +28,6 @@ export class DetailComponent implements OnInit, OnDestroy {
 
   constructor(
     private router:Router,
-    private patent_action_list: PatentActionListComponent,
     private activatedRoute: ActivatedRoute,
     private messageService: MessageService,
     public utilityService: UtilityService,
@@ -91,8 +92,8 @@ export class DetailComponent implements OnInit, OnDestroy {
         this.listOfPatent = Object.entries(patent);
         this.cancelEdit();
         this.messageService.pushSuccess(`Successfully Edited patent with ID:${patent.id}`);
-    }, error =>{
-      this.messageService.pushError(`Error occured ${error}`)
+    }, (errorResponse:HttpErrorResponse) =>{
+        this.messageService.pushError(errorResponse.error)
     });
 
   }
@@ -143,7 +144,9 @@ export class DetailComponent implements OnInit, OnDestroy {
   setCurrentAction($event?:PatentActionListComponentData){
     this.PatentActionListData = $event;
     console.log('data', this.PatentActionListData);
-
+  }
+  setTargetAction(targetAction: Action) {
+    return this.targetAction = targetAction;
   }
 
   applyCurrentAction(){
