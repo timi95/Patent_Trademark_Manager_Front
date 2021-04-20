@@ -5,7 +5,7 @@ h2,h3 {
 }
 
 .message-body {
-  position: relative;
+  position: absolute;
   top: 84%;
 }
 
