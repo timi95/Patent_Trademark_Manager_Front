@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -53,7 +54,7 @@ export class DeleteOverlayComponent implements OnInit {
     this.utilityService.deleteOverlaySubject
     .subscribe( bool => {this.active = bool;});
   }
-  
+
   onSubmit(){
     console.log('Preparing Deletion',this.documentType,"delete",this.targetID);
     this.apiService.documentRequest(this.documentType,"delete",this.targetID)
@@ -61,7 +62,8 @@ export class DeleteOverlayComponent implements OnInit {
       ()=>{
         this.messageService.pushSuccess('Successful Deletion!');
         this.router.navigate(['/view/patent'])
-      },
-      error =>{this.messageService.pushError('Unsucessful Deletion, Error'+error)} );
+      }, (errorResponse:HttpErrorResponse) =>{
+        this.messageService.pushError(errorResponse.error)
+    });
   }
 }
