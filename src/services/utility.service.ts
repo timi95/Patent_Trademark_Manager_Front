@@ -118,6 +118,17 @@ export class UtilityService {
     return result;
   }
 
+  // A method for use in the template
+  static stripFieldsFromList(entryList: any[], filters?: string[]){
+    let filterStrings = filters? filters: ['type_id','id','image_list','action_list'];
+    let listResult = entryList
+    filterStrings.forEach(
+      filter => {
+        listResult = listResult.filter(entry => entry[0] != filter);
+    });
+    return listResult;
+  }
+
   updateDocumentList(){
     this.documentListSubject.next(JSON.parse(localStorage.getItem('documentList')));
   }
