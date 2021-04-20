@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { UtilityService } from 'src/services/utility.service';
-import { AmendmentAction } from 'src/interfaces/AmendmentAction';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ApiService } from 'src/services/api.service';
 import { Action } from '../interfaces/Action';
@@ -91,9 +90,8 @@ export class DetailComponent implements OnInit, OnDestroy {
     this.apiService
     .documentRequest("patent","put",this.patentID,Object.fromEntries(this.listOfPatent))
     .pipe(
-      switchMap( (resp:Patent)=>{
-        return this.apiService.documentRequest("patent","get", resp.id)
-      }) )
+      switchMap((resp:Patent)=>{
+        return this.apiService.documentRequest("patent","get", resp.id) }))
       .subscribe( (patent: Patent) => {
         this.patent$ = patent;
         this.listOfPatent = Object.entries(patent);
