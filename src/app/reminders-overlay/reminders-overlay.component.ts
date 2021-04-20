@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -45,7 +46,7 @@ export class RemindersOverlayComponent implements OnInit {
       this.documentTypeFormDictionary = {
         'reminder': this.Forms.R_reminderForm
       }
-    // Initialised createForm 
+    // Initialised createForm
     this.utilityService.managerTypeSubject.subscribe((resp)=>{
       this.dynamicFormDictionaryGenerator();
       this.dynamicFormGroupGenerator();
@@ -62,25 +63,25 @@ export class RemindersOverlayComponent implements OnInit {
         this.documentTypeFormDictionary = {
           'reminder': this.Forms.R_reminderForm
         }
-      } 
+      }
 
     }
 
   dynamicFormGroupGenerator() {
-    console.log("Generating dynamic forms\n", 
+    console.log("Generating dynamic forms\n",
     "Create form:",
     this.createForm,
     "\nEdit form",
     this.editForm);
-    
+
      this.createForm = this.formBuilder.group(this.documentTypeFormDictionary[this.documentType]);
      this.editForm = this.formBuilder.group(this.documentTypeFormDictionary[this.documentType]);
-     this.deleteForm = this.formBuilder.group(this.documentTypeFormDictionary[this.documentType]);     
+     this.deleteForm = this.formBuilder.group(this.documentTypeFormDictionary[this.documentType]);
  }
 
 
  setInactive(): void {
-   
+
   switch (this.formType) {
 
       case this.formTypes[0]:
@@ -99,7 +100,7 @@ export class RemindersOverlayComponent implements OnInit {
         this.utilityService.setReminderDeleteFormInactive();
         this.utilityService.reminderDeleteSubject
         .subscribe( bool => {this.active = bool;});
-      break;   
+      break;
 
     default:
       break;
@@ -117,7 +118,7 @@ export class RemindersOverlayComponent implements OnInit {
       return 'text';
     }
   }
-  
+
   shunOverlay($event){
     if($event.target.classList.contains("overlay")){
       this.setInactive();
@@ -158,11 +159,9 @@ onSubmit(actionType:string): void {
           this.messageService.pushSuccess("Successfully submitted!");
           this.setInactive();
           // this.refreshList();
-        },
-        (err) => {
-          console.error(err);
-          this.messageService.pushError(err);}
-      );  
+        }, (errorResponse:HttpErrorResponse) =>{
+          this.messageService.pushError(errorResponse.error)
+      });
     break;
 
     case this.formTypes[1]:
@@ -174,16 +173,14 @@ onSubmit(actionType:string): void {
           this.messageService.pushSuccess("Successfully submitted!");
           // this.setInactive();
           this.refreshList()
-        },
-        (err) => {
-          console.error(err);
-          this.messageService.pushError(err);}
-      );  
+        }, (errorResponse:HttpErrorResponse) =>{
+          this.messageService.pushError(errorResponse.error)
+      });
     break;
 
-    case this.formTypes[2]:            
+    case this.formTypes[2]:
 
-      
+
       this.apiService
       .documentRequest(this.documentType,'delete',this.reminderObject.id, null,'Reminder')
       .subscribe(
@@ -193,13 +190,10 @@ onSubmit(actionType:string): void {
             this.utilityService
             .reminderListSubject.value
             .filter((reminder:Reminder)=> reminder.id != this.reminderObject.id))
-          this.setInactive();
-        },
-        err => {
-          console.error(err);
-          this.messageService.pushError(err);
-        },
-        ()=> this.refreshList());  
+          this.setInactive();},
+        (errorResponse:HttpErrorResponse) => {
+          this.messageService.pushError(errorResponse.error)},
+        ()=> this.refreshList());
     break;
   }
   this.refreshList();
