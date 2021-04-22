@@ -12,17 +12,25 @@ export class EditPatentActionOverlayComponent implements OnInit {
   @Input('active') active: boolean;
   @Input('targetAction') targetAction: Action;
 
+  listOfTargetAction?:any[];
+
   constructor(private apiService: ApiService,
               private utilityService: UtilityService) { }
 
   ngOnInit(): void {
-    this.apiService.documentRequest(this.targetAction.type_id,'get', this.targetAction.id)
+    this.listOfTargetAction = Object.entries(this.targetAction);
+    console.log('From edit action component, list of targetAction',this.listOfTargetAction);
+
+  }
+
+  /*
+    this.apiService
+    .documentRequest(this.targetAction.type_id,'get', this.targetAction.id)
     .subscribe((actionResponse:Action)=>{
       console.log('resp', actionResponse);
       this.targetAction = actionResponse;
     });
-  }
-
+  */
 
   shunOverlay($event){
     if($event.target.classList.contains("overlay")){
@@ -34,6 +42,11 @@ export class EditPatentActionOverlayComponent implements OnInit {
     this.utilityService.setEditActionOverlayInactive();
     this.utilityService.editActionOverlaySubject
     .subscribe( bool => {this.active = bool;});
+  }
+
+  saveChanges(){
+
+
   }
 
 }
