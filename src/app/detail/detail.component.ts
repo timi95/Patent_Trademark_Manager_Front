@@ -58,7 +58,6 @@ export class DetailComponent implements OnInit, OnDestroy {
   ngOnDestroy(){}
 
   toggleEdit(prop){
-    console.log('toggling edit for property:',prop);
     this.is_editing = prop
   }
   cancelEdit(){
