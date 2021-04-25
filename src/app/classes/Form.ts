@@ -154,7 +154,7 @@ export class Form {
 
 
 
-    
+
     T_amendment_action:any = {
         ammendement_instruction_date: "",
         date_ammendement_instruction_received: "",
@@ -312,7 +312,7 @@ export class Form {
         reminder_message_body: new FormControl('', [Validators.required]),
     }
 
-    // create form types for Kotlin backend 
+    // create form types for Kotlin backend
     patentCreateForm = {
         action_list: {value:[], type:"list"},
         applicable_service_charge: {value:"default value", type:"text"},
@@ -489,6 +489,16 @@ export class Form {
           product[key] = actualValue;
         }
         return product;
+      }
+    static evaluateKey(key:string):string {
+        // return the date string, if the key includes the word 'date' in it
+        if( new RegExp('date').test(key) ) {
+          return 'datetime-local';
+        } else if( key == 'id') {
+          return 'id';
+        } else {
+          return 'text';
+        }
       }
 }
 
