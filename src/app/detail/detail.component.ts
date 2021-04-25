@@ -72,18 +72,6 @@ export class DetailComponent implements OnInit, OnDestroy {
   }
 
 
-  applyCurrentAction(){
-    let action_payload = Form.formMap(this.PatentActionListData.patentActionForm);
-    action_payload['type_id'] = this.PatentActionListData.current_action;
-    this.apiService.documentRequest(
-      'patent',
-      'put',
-      `${this.patentID}/${this.PatentActionListData.current_action}`,
-      JSON.stringify(action_payload))
-          .subscribe(resp=>{
-            this.messageService.pushSuccess(`Applied action: ${resp}`)});
-  }
-
   saveChanges(){
     this.setPatentTypeId(this.listOfPatent)
     this.apiService
