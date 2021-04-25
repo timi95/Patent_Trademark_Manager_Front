@@ -129,6 +129,18 @@ export class UtilityService {
     return listResult;
   }
 
+  static evaluateKey(key:string):string {
+    // return the date string, if the key includes the word 'date' in it
+    if( new RegExp('date').test(key) ) {
+      return 'datetime-local';
+    } else if( key == 'id') {
+      return 'id';
+    } else {
+      return 'text';
+    }
+  }
+
+
   updateDocumentList(){
     this.documentListSubject.next(JSON.parse(localStorage.getItem('documentList')));
   }
