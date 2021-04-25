@@ -37,10 +37,7 @@
         </ul>
 
         <div class="actions-controls">
-            <action-list
-            [patentID]="patentID"
-            (patentActionListData)="setCurrentAction($event)"></action-list>
-            <!-- <button (click)="applyCurrentAction()"> Apply New Action</button> -->
+            <action-list [patentID]="patentID"></action-list>
         </div>
     </div>
     <div class="detail-controls">
