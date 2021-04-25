@@ -33,7 +33,6 @@ export class PatentActionListComponent implements OnInit {
   }
 
   @Input('patentID') patentID: any;
-  @Output() patentActionListData = new EventEmitter<PatentActionListComponentData>();
   overlayActive: boolean = false;
   targetAction: IAction.Action;
   listOfTargetAction?: any[];
@@ -53,10 +52,6 @@ export class PatentActionListComponent implements OnInit {
     this.listOfTargetAction = Object.entries(this.targetAction);
     this.overlayActive = true;
     this.targetAction['type_id'] = this.current_action;
-    // this.patentActionListData.emit({
-    // current_action:event.target.value,
-    // patentActionForm: this.targetAction});
-
   }
 
 
@@ -84,9 +79,6 @@ export class PatentActionListComponent implements OnInit {
   }
   applyCurrentAction(){
 
-    // console.log(`/Instruction/patent/${this.patentID}/${this.current_action}`,
-    // "object:",this.targetAction);
-
     this.apiService
     .documentRequest(
       'patent',
@@ -102,7 +94,3 @@ export class PatentActionListComponent implements OnInit {
 
 }
 
-export interface PatentActionListComponentData{
-    current_action:string;
-    patentActionForm:any;
-}
