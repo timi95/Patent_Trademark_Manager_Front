@@ -18,14 +18,12 @@ import { FilterByWidgetComponent } from './filter-by-widget/filter-by-widget.com
 import { DateRangeSearchWidgetComponent } from './date-range-search-widget/date-range-search-widget.component';
 import { ReminderListComponent } from './reminder-list/reminder-list.component';
 import { RemindersOverlayComponent } from './reminders-overlay/reminders-overlay.component';
-import { Form } from './classes/Form';
 import { PatentInstructionRegistrationComponent } from './patent-instruction-registration/patent-instruction-registration.component';
 import { TrademarkInstructionRegistrationComponent } from './trademark-instruction-registration/trademark-instruction-registration.component';
 import { ViewTrademarksComponent } from './view-trademarks/view-trademarks.component';
 import { ViewPatentsComponent } from './view-patents/view-patents.component';
 import { DeleteOverlayComponent } from './delete-overlay/delete-overlay.component';
 import { PatentActionListComponent } from './patent-action-list/patent-action-list.component';
-import { EditPatentActionOverlayComponent } from './edit-patent-action-overlay/edit-patent-action-overlay.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +47,6 @@ import { EditPatentActionOverlayComponent } from './edit-patent-action-overlay/e
     ViewPatentsComponent,
     DeleteOverlayComponent,
     PatentActionListComponent,
-    EditPatentActionOverlayComponent,
   ],
   imports: [
     BrowserModule,
