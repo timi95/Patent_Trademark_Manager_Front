@@ -2,3 +2,39 @@
     <option default>Select Action list</option>
     <option *ngFor="let action of actionList" [ngValue]="action">{{action}}</option>
 </select>
+
+
+
+<div  *ngIf="overlayActive" class="overlay"  (click)="shunOverlay($event)">
+  <!-- Delete Overlay Form: START   -->
+  <form class="modal-content">
+
+      <header class="font-black">
+        <div>Editing Action </div>
+        <a class="cancel" (click)="setInactive()">&#x274C;</a>
+      </header>
+
+      <div *ngIf="listOfTargetAction">
+        <ul class="form-list">
+            <li *ngFor="let attribute of stripFieldsFromList(listOfTargetAction,['instruction_ref','type_id','id'])">
+              <div style="display: flex;" >
+                <div >{{ attribute[0]}}</div>
+                <div>:<strong>{{ attribute[1]}}</strong></div>
+                <button (click)="toggleEdit(attribute[0])">Edit</button>
+              </div>
+              <div *ngIf="is_editing == attribute[0]">
+                  <input [type]="evaluateKey(attribute[0])" [name]="attribute[0]" [(ngModel)]="attribute[1]">
+                  <input type="button" value="cancel-edit" (click)="cancelEdit()">
+              </div>
+            </li>
+        </ul>
+        <div class="widget-container">
+            <div>
+              <input (click)="applyCurrentAction()" type="button" value="Apply">
+            </div>
+        </div>
+
+      </div>
+
+  </form>
+</div>
