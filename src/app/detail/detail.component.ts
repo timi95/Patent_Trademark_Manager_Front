@@ -6,8 +6,6 @@ import { Action } from '../interfaces/Action';
 import { Patent } from '../classes/Instructions/Patent';
 import { switchMap } from 'rxjs/operators';
 import { MessageService } from 'src/services/message.service';
-import { PatentActionListComponentData } from '../patent-action-list/patent-action-list.component';
-import { Form } from '../classes/Form';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
@@ -94,9 +92,6 @@ export class DetailComponent implements OnInit, OnDestroy {
   // allows it to be used in the template normally
   stripFieldsFromList = UtilityService.stripFieldsFromList;
 
-  setCurrentAction($event?:PatentActionListComponentData){
-    this.PatentActionListData = $event;
-  }
   setTargetAction(targetAction: Action) {
     return this.targetAction = targetAction;
   }
