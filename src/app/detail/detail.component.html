@@ -33,17 +33,14 @@
               <div>
                 <strong>type:</strong> {{action?.type_id}}
               </div>
-              <button (click)="[setTargetAction(action),summonEditActionOverlay()]">Edit</button>
-              <edit-p-action-overlay
-              *ngIf="edit_action_is_active"
-              [active]="edit_action_is_active"
-              [targetAction]="targetAction"></edit-p-action-overlay>
             </li>
         </ul>
 
         <div class="actions-controls">
-            <action-list (patentActionListData)="setCurrentAction($event)"></action-list>
-            <button (click)="applyCurrentAction()"> Apply New Action</button>
+            <action-list
+            [patentID]="patentID"
+            (patentActionListData)="setCurrentAction($event)"></action-list>
+            <!-- <button (click)="applyCurrentAction()"> Apply New Action</button> -->
         </div>
     </div>
     <div class="detail-controls">
