@@ -8,6 +8,7 @@ import { Output, EventEmitter } from '@angular/core';
 import { ApiService } from 'src/services/api.service';
 import { MessageService } from 'src/services/message.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Patent } from '../classes/Instructions/Patent';
 
 @Component({
   selector: 'action-list',
@@ -32,6 +33,7 @@ export class PatentActionListComponent implements OnInit {
     'amendment': this.Forms.P_assignmentMergerActionCreateForm,
   }
 
+  @Output() actionRefresh = new EventEmitter<Patent>();
   @Input('patentID') patentID: any;
   overlayActive: boolean = false;
   targetAction: IAction.Action;
@@ -85,8 +87,9 @@ export class PatentActionListComponent implements OnInit {
       'put',
       `${this.patentID}/${this.current_action}`,
       JSON.stringify(this.targetAction))
-          .subscribe(resp=>{
-            this.messageService.pushSuccess(`Applied action: ${resp}`)},
+          .subscribe((resp:Patent)=>{
+            this.actionRefresh.emit(resp);//emit resultant patent with new action
+            this.messageService.pushSuccess(`Applied action: ${resp.type_id}`)},
       (errorResponse:HttpErrorResponse)=>{
         this.messageService.pushError(errorResponse.error)
       });
