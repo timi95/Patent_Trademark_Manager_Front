@@ -37,7 +37,9 @@
         </ul>
 
         <div class="actions-controls">
-            <action-list [patentID]="patentID"></action-list>
+            <action-list
+            [patentID]="patentID"
+            (actionRefresh)="refresh($event)"></action-list>
         </div>
     </div>
     <div class="detail-controls">

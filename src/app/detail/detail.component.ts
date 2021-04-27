@@ -46,7 +46,7 @@ export class DetailComponent implements OnInit, OnDestroy {
     .subscribe( (params: Params) => {
         this.patentID = params['id'];
     });
-      this.apiService.documentRequest("patent","get", this.patentID)
+    this.apiService.documentRequest("patent","get", this.patentID)
       .subscribe( (patent: Patent) => {
         this.patent$ = patent;
         this.listOfPatent = Object.entries(patent);
@@ -70,6 +70,12 @@ export class DetailComponent implements OnInit, OnDestroy {
   }
 
 
+  refresh($event:Patent) {
+    console.log('emmitted value',$event);
+    this.patent$ = $event;
+    this.listOfPatent = Object.entries($event);
+  }
+
   saveChanges(){
     this.setPatentTypeId(this.listOfPatent)
     this.apiService
@@ -85,7 +91,6 @@ export class DetailComponent implements OnInit, OnDestroy {
     }, (errorResponse:HttpErrorResponse) =>{
         this.messageService.pushError(errorResponse.error)
     });
-
   }
 
   // Assigning a static method from the utility service class,
