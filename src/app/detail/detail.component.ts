@@ -22,6 +22,9 @@ export class DetailComponent implements OnInit, OnDestroy {
   delete_is_active:boolean;
   edit_action_is_active:boolean;
   PatentActionListData: any;
+  // Assigning a static method from the utility service class,
+  // allows it to be used in the template normally
+  stripFieldsFromList = UtilityService.stripFieldsFromList;
 
   constructor(
     private router:Router,
@@ -93,9 +96,6 @@ export class DetailComponent implements OnInit, OnDestroy {
     });
   }
 
-  // Assigning a static method from the utility service class,
-  // allows it to be used in the template normally
-  stripFieldsFromList = UtilityService.stripFieldsFromList;
 
   setTargetAction(targetAction: Action) {
     return this.targetAction = targetAction;
