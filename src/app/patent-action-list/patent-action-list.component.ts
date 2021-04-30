@@ -88,10 +88,10 @@ export class PatentActionListComponent implements OnInit {
       `${this.patentID}/${this.current_action}`,
       JSON.stringify(this.targetAction))
       .subscribe((resp:Patent)=>{
+        // console.log(`PUT Instruction/patent/${this.patentID}/${this.current_action}`,
+        // '\n type_id:',resp.type_id, '\n response:',resp);
             this.actionRefresh.emit(resp);//emit resultant patent with new action
-            this.messageService.pushSuccess(`Applied action: ${resp.type_id}`)
-            // console.log(`PUT Instruction/patent/${this.patentID}/${this.current_action}`,
-            // '\n type_id:',resp.type_id, '\n response:',resp);},
+            this.messageService.pushSuccess(`Applied action: ${resp.type_id}`);},
                  (errorResponse:HttpErrorResponse)=>{
             console.error(`PUT Instruction/patent/${this.patentID}/${this.current_action}`);
 
