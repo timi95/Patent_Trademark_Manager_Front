@@ -361,7 +361,6 @@ export class Form {
         date_assignment_certificate_received: {value: new Date(), type:"datetime-local"},
         date_facilitation_assignment_cert_sent: {value: new Date(), type:"datetime-local"},
         date_facilitation_assignment_cert_sent_sent: {value: new Date(), type:"datetime-local"},
-        id: {value:"default value", type:"text"},
         official_fee_assignment: {value:"default value", type:"text"},
         status_assignment_registrations: {value:"default value", type:"text"},
         type_id: {value:"action", type:"text"}
