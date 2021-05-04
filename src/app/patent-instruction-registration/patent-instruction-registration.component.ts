@@ -77,6 +77,8 @@ export class PatentInstructionRegistrationComponent implements OnInit {
   }
 
   formMap(form){
+    console.log("form from formMap():",form);
+
     let product = {...form};
     let Entries: [string, ActionCreateFormValue][] = Object.entries(form);
     for( const[key, value] of Entries){
