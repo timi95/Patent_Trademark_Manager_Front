@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
+import { Action } from 'rxjs/internal/scheduler/Action';
 import { switchMap } from 'rxjs/operators';
 import { ApiService } from 'src/services/api.service';
 import { MessageService } from 'src/services/message.service';
@@ -15,6 +16,7 @@ import { Patent } from '../classes/Instructions/Patent';
 })
 export class PatentInstructionRegistrationComponent implements OnInit {
   Forms:Form = new Form();
+  formMap = Form.formMap;
   patent_particulars:any[];
   patentActionForm:any;
   listOfPatentActionForm:any[];
@@ -76,17 +78,18 @@ export class PatentInstructionRegistrationComponent implements OnInit {
     this.router.navigate(['view/patent'])
   }
 
-  formMap(form){
-    console.log("form from formMap():",form);
 
-    let product = {...form};
-    let Entries: [string, ActionCreateFormValue][] = Object.entries(form);
-    for( const[key, value] of Entries){
-      let actualValue = value.value;
-      product[key] = actualValue;
-    }
-    return product;
-  }
+  // formMap(form){
+  //   console.log("form from formMap():",form);
+
+  //   let product = {...form};
+  //   let Entries: [string, ActionCreateFormValue][] = Object.entries(form);
+  //   for( const[key, value] of Entries){
+  //     let actualValue = value.value;
+  //     product[key] = actualValue;
+  //   }
+  //   return product;
+  // }
 
 
   /*
