@@ -93,7 +93,7 @@ export class PatentInstructionRegistrationComponent implements OnInit {
 
 
   /*
-      this.utilityService.documentTypeSubject
+    this.utilityService.documentTypeSubject
     .pipe(
       // when the documentType changes, make an api call with the new documentType
       switchMap(documentTypeResp=>{
