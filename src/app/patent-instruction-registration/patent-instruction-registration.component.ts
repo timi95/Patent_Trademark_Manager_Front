@@ -18,7 +18,7 @@ export class PatentInstructionRegistrationComponent implements OnInit {
   Forms:Form = new Form();
   formMap = Form.formMap;
   patent_particulars:any[];
-  patentActionForm:any;
+  patentActionForm:any = {};
   listOfPatentActionForm:any[];
   is_new_action:boolean = false;
   actionList = [
@@ -63,9 +63,6 @@ export class PatentInstructionRegistrationComponent implements OnInit {
   createDocument() {
   }
 
-
-  viewDetails(item:Document){
-  }
 
 
   deleteDocument(){
@@ -112,10 +109,11 @@ export class PatentInstructionRegistrationComponent implements OnInit {
 
 
   registerPatent(id?:string){
-    console.log("patent-form:",
-    this.formMap(this.patentCreateForm),
-    "action form:",
-    this.formMap(this.patentActionForm));
+    console.log(
+    this.patentActionForm,
+    // "patent-form:", this.formMap(this.patentCreateForm),
+    // "action form:", this.formMap(this.patentActionForm)
+    );
 
     this.apiService
     .documentRequest('patent','post',null,this.formMap(this.patentCreateForm))
@@ -139,11 +137,4 @@ export interface ActionCreateFormValue {
   value: any;
   type: string;
 }
-interface Document {
-  id:any;
-  title:string;
-  body:string;
-  attachment?:any;
-  footer?:string;
-}
-interface DocumentList{results:Document[];}
+
