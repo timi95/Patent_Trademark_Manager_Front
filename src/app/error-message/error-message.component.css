@@ -6,7 +6,14 @@ h2,h3 {
 
 .message-body {
   position: absolute;
-  top: 84%;
+  left: 10%;
+  top: 75%;
+}
+.text-styles{
+  width: 80vw;
+  height: 100px;
+  word-wrap: break-word;
+  overflow: auto;
 }
 
 .error-bubble {
@@ -20,9 +27,11 @@ h2,h3 {
   justify-content: space-between;
   align-content: center;
   text-align: center;
+  word-wrap: break-word;
 }
 
 .clear{
+  height: 20px;
   margin: 0 5px;
   padding: 0 5px;
   color: black;
@@ -30,4 +39,5 @@ h2,h3 {
   font-weight: 600;
   border-radius: 15px;
   border: 1px solid black;
+  text-align: center;
 }
