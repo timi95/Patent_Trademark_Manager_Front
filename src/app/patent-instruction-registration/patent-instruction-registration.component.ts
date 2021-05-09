@@ -17,6 +17,7 @@ import { Patent } from '../classes/Instructions/Patent';
 export class PatentInstructionRegistrationComponent implements OnInit {
   Forms:Form = new Form();
   formMap = Form.formMap;
+  stripFields = UtilityService.stripFieldsFromList
   patent_particulars:any[];
   patentActionForm:any = {};
   listOfPatentActionForm:any[];
@@ -52,11 +53,12 @@ export class PatentInstructionRegistrationComponent implements OnInit {
 
   ngOnInit(): void {
     this.patent_particulars = this.utilityService.toList(this.patentCreateForm);
-   }
+  }
 
    changeActionForm(event:any){
     this.current_action = event.target.value
     this.patentActionForm = this.patentActionFormDictionary[event.target.value]
+    this.patentActionForm['type_id'] = this.current_action; // set type_id to current_action
     this.listOfPatentActionForm = this.utilityService.toList(this.patentActionForm);
   }
 
@@ -111,8 +113,8 @@ export class PatentInstructionRegistrationComponent implements OnInit {
   registerPatent(id?:string){
     console.log(
     this.patentActionForm,
-    // "patent-form:", this.formMap(this.patentCreateForm),
-    // "action form:", this.formMap(this.patentActionForm)
+    "patent-form:", this.formMap(this.patentCreateForm),
+    "action form:", this.formMap(this.patentActionForm)
     );
 
     this.apiService
@@ -122,7 +124,7 @@ export class PatentInstructionRegistrationComponent implements OnInit {
         (newPatent:Patent) => {
           return this.apiService
           .documentRequest(
-            `patent/${newPatent.id}/${this.current_action}-action`,
+            `patent/${newPatent.id}/${this.current_action}`,
             'put', null, this.formMap(this.patentActionForm))}) )
     // Subscription
     .subscribe(() =>{
