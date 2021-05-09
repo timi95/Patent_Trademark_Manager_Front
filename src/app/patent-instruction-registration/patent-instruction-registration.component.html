@@ -9,11 +9,11 @@
         <ul>
           <div *ngFor="let item of patent_particulars">
             <li *ngIf="(patentCreateForm[item[0]].type != 'list') &&
-                       (patentCreateForm[item[0]].type != 'type_id')" > 
+                       (patentCreateForm[item[0]].type != 'type_id')" >
               <div>
-                {{item[0]}}: <input 
+                {{item[0]}}: <input
                 (input)="formMap(patentCreateForm)"
-                [type]="patentCreateForm[item[0]].type" 
+                [type]="patentCreateForm[item[0]].type"
                 [(ngModel)]="patentCreateForm[item[0]].value">
               </div>
             </li>
@@ -24,7 +24,7 @@
       </section>
 
       <section>
-        <h2 class="card-header">Patent Action 
+        <h2 class="card-header">Patent Action
         <button (click)="addActionToggle()">Add new Action to this Patent?</button>
         </h2>
         <hr width="90%">
@@ -38,13 +38,12 @@
               <li *ngIf="(item[0] != 'instruction_ref') &&
                         (item[0] != 'id')">
                 <div>
-                  {{item[0]}}: <input
-                  (input)="formMap(patentActionForm)"
-                  [type]="item[1].type"
-                  [(ngModel)]="item[1].value">
+                  {{item[0]}}:
+                  <input (input)="formValueSetter(item[0],$event,item[1].type)"
+                         [type]="item[1].type">
                 </div>
               </li>
-            </div> 
+            </div>
           </ul>
         </ul>
       </section>
@@ -53,6 +52,6 @@
           <button (click)="registerPatent()">Register Patent</button>
         </div>
     </div>
-    
+
   </div>
 </main>
