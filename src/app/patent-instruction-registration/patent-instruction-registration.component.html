@@ -36,7 +36,8 @@
           <ul>
             <div *ngFor="let item of listOfPatentActionForm">
               <li *ngIf="(item[0] != 'instruction_ref') &&
-                        (item[0] != 'id')">
+                         (item[0] != 'type_id') &&
+                         (item[0] != 'id')">
                 <div>
                   {{item[0]}}:
                   <input (input)="formValueSetter(item[0],$event,item[1].type)"
@@ -48,9 +49,9 @@
         </ul>
       </section>
 
-        <div class="center-button">
-          <button (click)="registerPatent()">Register Patent</button>
-        </div>
+      <div class="center-button">
+        <button (click)="registerPatent()">Register Patent</button>
+      </div>
     </div>
 
   </div>
