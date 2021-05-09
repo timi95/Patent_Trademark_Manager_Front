@@ -483,8 +483,8 @@ export class Form {
     static formMap(form){
         let product = {...form};
         let Entries: [string, ActionCreateFormValue][] = Object.entries(form);
-        for( const[key, value] of Entries){
-          let actualValue = value.value;
+        for( const[key, _value] of Entries){
+          let actualValue = _value.value? _value.value: _value;
           product[key] = actualValue;
         }
         return product;
