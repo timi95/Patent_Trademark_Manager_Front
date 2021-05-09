@@ -62,14 +62,6 @@ export class PatentInstructionRegistrationComponent implements OnInit {
     this.listOfPatentActionForm = this.utilityService.toList(this.patentActionForm);
   }
 
-  createDocument() {
-  }
-
-
-
-  deleteDocument(){
-  }
-
   addActionToggle(){
     this.is_new_action = !this.is_new_action
   }
@@ -77,61 +69,38 @@ export class PatentInstructionRegistrationComponent implements OnInit {
     this.router.navigate(['view/patent'])
   }
 
-
-  // formMap(form){
-  //   console.log("form from formMap():",form);
-
-  //   let product = {...form};
-  //   let Entries: [string, ActionCreateFormValue][] = Object.entries(form);
-  //   for( const[key, value] of Entries){
-  //     let actualValue = value.value;
-  //     product[key] = actualValue;
-  //   }
-  //   return product;
-  // }
+  formValueSetter(itemName, itemValue, itemType){
+    this.patentActionForm[itemName] = { value:itemValue.target.value, type:itemType };
+  }
 
 
-  /*
-    this.utilityService.documentTypeSubject
-    .pipe(
-      // when the documentType changes, make an api call with the new documentType
-      switchMap(documentTypeResp=>{
-        this.documentType = documentTypeResp;
-        return this.apiService
-            .documentRequest(this.documentTypeUrlDict[documentTypeResp],'get',null,null,this.managerType)}),
-            retry(5),
-            tap((resp:{results:Document[]}) => {
-              // update everywhere else via the service
-              localStorage.setItem('documentList',JSON.stringify(resp.results));
-              this.utilityService.updateDocumentList();
-              // update the list in this component
-              this.documentList = resp.results;}))
-        .subscribe({ error(err: any): void { console.error('Where#Are#We', err);} });
-    */
+  registerPatent(){
+    if(this.is_new_action){
+      this.apiService
+      .documentRequest('patent','post',null,this.formMap(this.patentCreateForm))
+      .pipe(
+        switchMap(
+          (resolvedPatent:Patent) => {
+            this.messageService.pushSuccess("Successfully created Patent!");
+            return this.apiService.documentRequest(
+              `patent/${resolvedPatent.id}/${this.current_action}`,
+              'put', null, this.formMap(this.patentActionForm))}) )
+      // Subscription
+      .subscribe(() =>{
+        this.messageService.pushSuccess("Successfully created Patent with Action!");},
+         (errorResponse:HttpErrorResponse) =>{
+          this.messageService.pushError(errorResponse.error) });
+    } else {
 
+      this.apiService
+      .documentRequest('patent','post',null,this.formMap(this.patentCreateForm))
+      // Subscription
+      .subscribe(() =>{
+        this.messageService.pushSuccess("Successfully created Patent!");},
+         (errorResponse:HttpErrorResponse) =>{
+          this.messageService.pushError(errorResponse.error) });
+    }
 
-  registerPatent(id?:string){
-    console.log(
-    this.patentActionForm,
-    "patent-form:", this.formMap(this.patentCreateForm),
-    "action form:", this.formMap(this.patentActionForm)
-    );
-
-    this.apiService
-    .documentRequest('patent','post',null,this.formMap(this.patentCreateForm))
-    .pipe(
-      switchMap(
-        (newPatent:Patent) => {
-          return this.apiService
-          .documentRequest(
-            `patent/${newPatent.id}/${this.current_action}`,
-            'put', null, this.formMap(this.patentActionForm))}) )
-    // Subscription
-    .subscribe(() =>{
-      this.messageService.pushSuccess("Successfully created Patent")
-    }, (errorResponse:HttpErrorResponse) =>{
-        this.messageService.pushError(errorResponse.error)
-    });
   }
 }
 
