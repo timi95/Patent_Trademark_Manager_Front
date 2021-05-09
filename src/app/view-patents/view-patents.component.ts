@@ -21,8 +21,7 @@ export class ViewPatentsComponent implements OnInit {
     this.apiService.documentRequest('patent','get')
     .subscribe( (resp:Patent) =>{
       this.patent$ = resp
-      console.log(resp);
-    })
+    });
   }
 
   navigateDetails(id){

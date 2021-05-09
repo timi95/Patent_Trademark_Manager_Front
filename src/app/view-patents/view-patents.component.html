@@ -23,12 +23,14 @@
             <li class="" *ngFor="let action of patent?.action_list">
               <div> <strong>Id:</strong>{{action?.id}}</div>
               <div> <strong>type:</strong> {{action?.type_id}}</div>
-            </li> 
+            </li>
         </ul>
         <button (click)="navigateDetails(patent.id)">Details</button>
     </div>
 </main>
 
 <ng-template #noData>
-    No data available
+    <div class="card-grid">
+      <div class="card-body"><h2>There is no available data</h2></div>
+    </div>
 </ng-template>
