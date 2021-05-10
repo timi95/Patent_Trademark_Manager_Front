@@ -1,14 +1,16 @@
+import { Action } from 'src/app/interfaces/Action';
+import { InstructionImage } from 'src/app/interfaces/InstructionImage';
 import { Instruction } from '../../interfaces/Instruction';
-import { Action } from '../Action';
 
 export class Patent implements Instruction {
     constructor(parameters) {
-        
+
     }
     id: string;
     type_id: string;
     action_list: Action[];
-    
+    image_list: InstructionImage[];
+
 
     patent_title:string;
     registration_date:Date;
