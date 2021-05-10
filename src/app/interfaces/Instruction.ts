@@ -1,4 +1,4 @@
-import { Action } from '../classes/Action';
+import { Action } from 'src/app/interfaces/Action';
 
 
 export interface Instruction {
