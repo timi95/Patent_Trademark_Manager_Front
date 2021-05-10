@@ -109,10 +109,10 @@ li {
 }
 .actions-list>li>div{
     width: 90px ;
-  }
-  /* Actions controls */
-  .actions-controls{
-      width: auto;
-      display: flex;
-      flex-flow: column wrap;
-  }
+}
+/* Actions controls */
+.actions-controls{
+    width: auto;
+    display: flex;
+    flex-flow: column wrap;
+}
