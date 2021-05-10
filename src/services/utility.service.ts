@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject, BehaviorSubject } from 'rxjs';
 import { Reminder } from 'src/app/classes/Reminder';
-import { AmendmentAction } from 'src/interfaces/AmendmentAction';
 
 @Injectable({
   providedIn: 'root'

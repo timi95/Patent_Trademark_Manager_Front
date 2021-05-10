@@ -4,7 +4,6 @@ import { MessageService } from 'src/services/message.service';
 import { OverlayComponent } from "../overlay/overlay.component";
 import { UtilityService } from 'src/services/utility.service';
 import { Action } from 'src/app/classes/Action'
-import { AmendmentAction } from 'src/interfaces/AmendmentAction';
 import { Router } from '@angular/router';
 import { from, Observable } from 'rxjs';
 import { map, retry, switchMap, tap } from 'rxjs/operators';
@@ -19,7 +18,7 @@ import { Form } from '../classes/Form';
 export class MainContentComponent implements OnInit {
 
 
-  constructor(public utilityService:UtilityService) {   
+  constructor(public utilityService:UtilityService) {
   }
 
   ngOnInit(): void {

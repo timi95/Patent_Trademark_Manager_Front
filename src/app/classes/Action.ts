@@ -1,8 +1,3 @@
-// import { AmendmentAction, SearchAction } from '../../interfaces';
-import { from } from 'rxjs';
-import { AmendmentAction } from 'src/interfaces/AmendmentAction';
-import { SearchAction } from 'src/interfaces/SearchAction';
-
 export class Action {
 
   // list of Action-types, Particulars, and Profile
@@ -70,5 +65,5 @@ export class Action {
 
     constructor() {
     }
-    // 
+    //
 }
