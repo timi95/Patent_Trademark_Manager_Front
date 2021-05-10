@@ -42,10 +42,22 @@
             (actionRefresh)="refresh($event)"></action-list>
         </div>
     </div>
-    <div class="detail-controls">
-        <strong >Images List</strong>
-        <button> Add Image</button>
+
+    <hr>
+    <strong>Images List</strong>
+    <div class="actions">
+      <ul class="actions-list">
+        <li *ngFor="let image of patent$.image_list">
+          <div class="picture-box">
+
+          </div>
+        </li>
+      </ul>
+      <div class="actions-controls">
+          <!-- <image-list></image-list> -->
+      </div>
     </div>
+
 </ul>
 
 
