@@ -1,1 +1,20 @@
-<p>image-crd-widget works!</p>
+
+<ul class="actions-list">
+  <li *ngFor="let image of image_list">
+    <div>
+      <strong>Id:</strong>{{image?.id}}
+      <div>
+        <input class="delete" type="button" value="" (click)="deleteImage(image?.id)">
+      </div>
+    </div>
+    <div class="picture-box"></div>
+  </li>
+</ul>
+
+
+<div class="actions-controls">
+  <div>
+    <strong>Upload Image</strong>
+    <input type="file" name="" id="" (change)="uploadImage($event)">
+  </div>
+</div>

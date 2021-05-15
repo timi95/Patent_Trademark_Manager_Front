@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { InstructionImage } from '../interfaces/InstructionImage';
 
 @Component({
   selector: 'image-crd-widget',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ImageCRDWidgetComponent implements OnInit {
 
+  @Input('image-list') image_list: InstructionImage[];
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  deleteImage(id){
+
+  }
+
+  uploadImage($event){
+
   }
 
 }
