@@ -101,9 +101,12 @@ public errors: any = [];
   }
 
 
-  // WIP:imageRequestStub gonna handle image CRUD here
-  imageRequest(){
-
+  // WIP:imageRequest gonna handle image CRUD here
+  imageRequest(documentType:string,requestType:string, id:any, imageData:any){
+    if(requestType === "post")
+      {
+        this.httpServer.post(`${this.API_URL}/Instruction/${documentType}/${id}`,imageData,this.httpOptions);
+      }
   }
 
   orderPatentDocumentsByField(documentType:string,
