@@ -103,10 +103,12 @@ public errors: any = [];
 
   // WIP:imageRequest gonna handle image CRUD here
   imageRequest(documentType:string,requestType:string, id:any, imageData:any){
-    if(requestType === "post")
-      {
-        this.httpServer.post(`${this.API_URL}/Instruction/${documentType}/${id}`,imageData,this.httpOptions);
-      }
+    let requestTypeDict = {
+      "post":
+      this.httpServer.post(`${this.API_URL}/Instruction/${documentType}/${id}`,imageData,this.httpOptions),
+
+    }
+    return requestTypeDict[requestType];
   }
 
   orderPatentDocumentsByField(documentType:string,
