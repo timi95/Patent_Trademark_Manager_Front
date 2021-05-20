@@ -104,6 +104,8 @@ public errors: any = [];
   // WIP:imageRequest gonna handle image CRUD here
   imageRequest(documentType:string,requestType:string, id:any, imageData:any){
     let requestTypeDict = {
+      "get":
+      this.httpServer.get(`${this.API_URL}/Instruction/${documentType}/`),
       "post":
       this.httpServer.post(`${this.API_URL}/Instruction/${documentType}/${id}`,imageData,this.httpOptions),
 
