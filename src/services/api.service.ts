@@ -108,7 +108,8 @@ public errors: any = [];
       this.httpServer.get(`${this.API_URL}/Instruction/${documentType}/`),
       "post":
       this.httpServer.post(`${this.API_URL}/Instruction/${documentType}/${id}`,imageData,this.httpOptions),
-
+      "delete":
+      this.httpServer.delete(`${this.API_URL}/Instruction/${documentType}/`),
     }
     return requestTypeDict[requestType];
   }
