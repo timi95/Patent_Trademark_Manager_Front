@@ -105,11 +105,11 @@ public errors: any = [];
   imageRequest(documentType:string,requestType:string, id:any, imageData:any){
     let requestTypeDict = {
       "get":
-      this.httpServer.get(`${this.API_URL}/Instruction/${documentType}/`),
+      this.httpServer.get(`${this.API_URL}/Instruction/image/`),
       "post":
-      this.httpServer.post(`${this.API_URL}/Instruction/${documentType}/${id}`,imageData,this.httpOptions),
+      this.httpServer.post(`${this.API_URL}/Instruction/${documentType}/${id}/image`,imageData,this.httpOptions),
       "delete":
-      this.httpServer.delete(`${this.API_URL}/Instruction/${documentType}/`),
+      this.httpServer.delete(`${this.API_URL}/Instruction/image/${id}`),
     }
     return requestTypeDict[requestType];
   }
