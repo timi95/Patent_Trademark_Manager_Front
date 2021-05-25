@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ApiService } from 'src/services/api.service';
 import { InstructionImage } from '../interfaces/InstructionImage';
 
 @Component({
@@ -10,9 +11,10 @@ export class ImageCRDWidgetComponent implements OnInit {
 
   @Input('image-list') image_list: InstructionImage[];
 
-  constructor() { }
+  constructor(private api: ApiService) { }
 
   ngOnInit(): void {
+    this.getImages();
   }
 
   deleteImage(id){
@@ -21,6 +23,12 @@ export class ImageCRDWidgetComponent implements OnInit {
 
   uploadImage($event){
 
+  }
+
+  getImages(){
+    this.api.imageRequest("get")
+    .subscribe( resp => {console.log(resp);
+    });
   }
 
 }
