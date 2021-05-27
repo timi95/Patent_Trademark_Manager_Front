@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment'
+import { Observable } from 'rxjs/internal/Observable';
 
 
 @Injectable({
@@ -102,7 +103,12 @@ public errors: any = [];
 
 
   // WIP:imageRequest gonna handle image CRUD here
-  imageRequest( requestType:string, imageData?:any, documentType?:string, id?:any,imageName?:string){
+  imageRequest(
+    requestType: string,
+    id?: string,
+    imageData?: any,
+    documentType?: string,
+    imageName?: string) : Observable<any>{
     let requestTypeDict = {
       "get":
       id? this.httpServer.get(`${this.API_URL}/Instruction/image/${id}`):
