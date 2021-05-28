@@ -18,6 +18,7 @@ export class ImageCRDWidgetComponent implements OnInit {
     console.log();
 
     this.getImage("f16abfa0-adde-46c6-9b9f-6884fec69256");
+
   }
 
   deleteImage(id){
