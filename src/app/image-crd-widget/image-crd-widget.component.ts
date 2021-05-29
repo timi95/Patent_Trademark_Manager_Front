@@ -15,9 +15,7 @@ export class ImageCRDWidgetComponent implements OnInit {
 
   ngOnInit(): void {
     this.getImages();
-    console.log();
-
-    this.getImage("f16abfa0-adde-46c6-9b9f-6884fec69256");
+    console.log("IMAGE: ",this.getImage("f16abfa0-adde-46c6-9b9f-6884fec69256"));
 
   }
 
