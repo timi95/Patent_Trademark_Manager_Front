@@ -11,6 +11,7 @@ export class ImageCRDWidgetComponent implements OnInit {
 
   @Input('image-list') image_list: InstructionImage[];
 
+  imageLink;
   constructor(private api: ApiService) { }
 
   ngOnInit(): void {
@@ -30,7 +31,10 @@ export class ImageCRDWidgetComponent implements OnInit {
   getImage(id:string){
     let result;
     this.api.imageRequest("get", id)
-    .subscribe(resp=>{ console.log("Image response",resp);
+    .subscribe((resp:Blob) => {
+      // get a url from the backend
+      // result = URL.createObjectURL(resp);
+      console.log("Image response",result);
     });
     return result;
   }
