@@ -16,7 +16,7 @@ export class ImageCRDWidgetComponent implements OnInit {
 
   ngOnInit(): void {
     this.getImages();
-    console.log("IMAGE: ",this.getImage("007ebaf8-5997-406c-8285-2c437655627c"));
+    console.log("IMAGE: ",this.getImage("af96e49a-2fff-4f03-b11d-487a437067ea"));
 
   }
 
@@ -34,7 +34,7 @@ export class ImageCRDWidgetComponent implements OnInit {
     .subscribe((resp:any) => {
       // get a url from the backend
       // result = URL.createObjectURL(resp);
-      console.log("Image response",result);
+      console.log("Image response",resp);
     });
     return result;
   }

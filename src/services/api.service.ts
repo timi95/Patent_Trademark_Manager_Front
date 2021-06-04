@@ -111,7 +111,7 @@ public errors: any = [];
     imageName?: string) : Observable<any>{
     let requestTypeDict = {
       "get":
-      id? this.httpServer.get(`${this.API_URL}/Instruction/image/${id}`, { responseType: 'blob' }):
+      id? this.httpServer.get(`${this.API_URL}/Instruction/image/${id}`):
       imageName?this.httpServer.get(`${this.API_URL}/Instruction/image-name?name=${imageName}`, { responseType: 'blob' }):
       this.httpServer.get(`${this.API_URL}/Instruction/image/`),
       "post":
