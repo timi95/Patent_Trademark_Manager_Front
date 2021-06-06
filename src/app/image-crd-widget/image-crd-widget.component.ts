@@ -30,9 +30,8 @@ export class ImageCRDWidgetComponent implements OnInit {
 
    getImage(id:string){
     this.api.imageRequest("get", id)
-            .subscribe((resp:InstructionImage) => {
-              console.log("Image response",resp) });
-
+            .subscribe((resp:InstructionImage) =>
+            { console.log("Image response",resp) });
   }
 
   getImages(){
