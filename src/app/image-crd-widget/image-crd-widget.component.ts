@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { ApiService } from 'src/services/api.service';
 import { InstructionImage } from '../interfaces/InstructionImage';
 
@@ -16,8 +17,7 @@ export class ImageCRDWidgetComponent implements OnInit {
 
   ngOnInit(): void {
     this.getImages();
-    console.log("IMAGE: ",this.getImage("af96e49a-2fff-4f03-b11d-487a437067ea"));
-
+    this.getImage("af96e49a-2fff-4f03-b11d-487a437067ea");
   }
 
   deleteImage(id){
@@ -28,10 +28,9 @@ export class ImageCRDWidgetComponent implements OnInit {
 
   }
 
-   getImage(id:string){
-    this.api.imageRequest("get", id)
-            .subscribe((resp:InstructionImage) =>
-            { console.log("Image response",resp) });
+   getImage(id:string): Observable<InstructionImage>{
+    return this.api.imageRequest("get", id);
+
   }
 
   getImages(){
