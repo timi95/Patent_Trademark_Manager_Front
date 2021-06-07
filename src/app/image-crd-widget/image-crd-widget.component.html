@@ -7,7 +7,7 @@
         <input class="delete" type="button" value="X" (click)="deleteImage(image?.id)">
       </div>
     </div>
-    <div class="picture-box"><img [src]="(getImage(image?.id)|async)?.pathString" alt=""></div>
+    <div class="picture-box"><img [src]="image?.pathString" alt=""></div>
   </li>
 </ul>
 
