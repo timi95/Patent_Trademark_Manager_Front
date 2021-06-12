@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
 import { ApiService } from 'src/services/api.service';
 import { InstructionImage } from '../interfaces/InstructionImage';
@@ -13,7 +14,7 @@ export class ImageCRDWidgetComponent implements OnInit {
   @Input('image-list') image_list: InstructionImage[];
 
   imageLink;
-  constructor(private api: ApiService) { }
+  constructor(private api: ApiService, private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
     this.getImages();
@@ -39,4 +40,7 @@ export class ImageCRDWidgetComponent implements OnInit {
     });
   }
 
+  getSantizeUrl(url : string) {
+    return this.sanitizer.bypassSecurityTrustUrl(url);
+}
 }
