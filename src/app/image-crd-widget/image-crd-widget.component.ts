@@ -18,7 +18,6 @@ export class ImageCRDWidgetComponent implements OnInit {
 
   ngOnInit(): void {
     this.getImages();
-    this.getImage("af96e49a-2fff-4f03-b11d-487a437067ea");
   }
 
   deleteImage(id){
@@ -26,12 +25,10 @@ export class ImageCRDWidgetComponent implements OnInit {
   }
 
   uploadImage($event){
-
   }
 
    getImage(id:string): Observable<InstructionImage>{
     return this.api.imageRequest("get", id);
-
   }
 
   getImages(){
@@ -42,5 +39,5 @@ export class ImageCRDWidgetComponent implements OnInit {
 
   getSantizeUrl(url : string) {
     return this.sanitizer.bypassSecurityTrustUrl(url);
-}
+  }
 }
