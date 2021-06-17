@@ -7,7 +7,7 @@
         <input class="delete" type="button" value="X" (click)="deleteImage(image?.id)">
       </div>
     </div>
-    <div class="picture-box"><img [src]="getSantizeUrl(image?.pathString)" alt=""/></div>
+    <div class="picture-box"><img src="http://localhost:8080/Instruction/image/{{image?.id}}" alt=""/></div>
   </li>
 </ul>
 
