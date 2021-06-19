@@ -5,7 +5,7 @@
 
 }
 
-.picture-box{
-  width: 250px;
-  height: 250px;
+.picture-box> img{
+  max-width: 150px;
+  max-height: 100px;
 }
