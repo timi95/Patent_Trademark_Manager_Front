@@ -21,7 +21,7 @@ export class ImageCRDWidgetComponent implements OnInit {
   }
 
   deleteImage(id){
-
+    //summon delete modal
   }
 
   uploadImage($event){
