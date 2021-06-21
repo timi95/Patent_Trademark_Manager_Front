@@ -1,9 +1,14 @@
-.actions-list{
+.images-list{
+  width: 50%;
+  margin: 0;
+  padding-left: 0;
+  color: black;
+  display: flex;
+  overflow-x: auto;
+  list-style: none;
 
 }
-.actions-controls{
 
-}
 
 .picture-box> img{
   max-width: 150px;
