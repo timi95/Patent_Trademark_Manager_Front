@@ -13,8 +13,8 @@ export class ImageCRDWidgetComponent implements OnInit {
 
   @Input('image-list') image_list: InstructionImage[];
 
-  imageLink;
-  constructor(private api: ApiService, private sanitizer: DomSanitizer) { }
+  baseUrl = "http://localhost:8080/Instruction/image/";
+  constructor(private api: ApiService) { }
 
   ngOnInit(): void {
     this.getImages();
@@ -37,7 +37,4 @@ export class ImageCRDWidgetComponent implements OnInit {
     });
   }
 
-  getSantizeUrl(url : string) {
-    return this.sanitizer.bypassSecurityTrustUrl(url);
-  }
 }
