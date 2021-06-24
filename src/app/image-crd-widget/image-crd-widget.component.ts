@@ -12,8 +12,11 @@ import { InstructionImage } from '../interfaces/InstructionImage';
 export class ImageCRDWidgetComponent implements OnInit {
 
   @Input('image-list') image_list: InstructionImage[];
+  @Input('id') instruction_id: string;
 
   baseUrl = "http://localhost:8080/Instruction/image/";
+  active = false;
+  deletingImage:InstructionImage = null;
   constructor(private api: ApiService) { }
 
   ngOnInit(): void {
@@ -22,9 +25,27 @@ export class ImageCRDWidgetComponent implements OnInit {
 
   deleteImage(id){
     //summon delete modal
+    this.api.imageRequest("delete", id)
+    .subscribe( resp => {
+      this.shunOverlay();
+      console.log(resp);
+    });
+  }
+  
+  summonOverlay(image: InstructionImage){
+    this.deletingImage = image;
+    return this.active = true;
+  }
+  shunOverlay(){
+    this.deletingImage = null;
+    return this.active = false;
   }
 
-  uploadImage($event){
+
+  uploadImage(files: File[]){
+    console.log(files);
+    this.api.imageRequest("post",this.instruction_id, files[0],'patent')
+    .subscribe(resp=> console.log(resp));
   }
 
    getImage(id:string): Observable<InstructionImage>{
