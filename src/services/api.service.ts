@@ -106,16 +106,17 @@ public errors: any = [];
   imageRequest(
     requestType: string,
     id?: string,
-    imageData?: any,
+    imageData?: File,
     documentType?: string,
     imageName?: string) : Observable<any>{
+    const formData = new FormData().append(imageData.name,imageData);
     let requestTypeDict = {
       "get":
       id? this.httpServer.get(`${this.API_URL}/Instruction/image/${id}`):
       imageName?this.httpServer.get(`${this.API_URL}/Instruction/image-name?name=${imageName}`, { responseType: 'blob' }):
       this.httpServer.get(`${this.API_URL}/Instruction/image/`),
       "post":
-      this.httpServer.post(`${this.API_URL}/Instruction/${documentType}/${id}/image`,imageData,this.httpOptions),
+      this.httpServer.post(`${this.API_URL}/Instruction/${documentType}/${id}/image`, formData),
       "delete":
       this.httpServer.delete(`${this.API_URL}/Instruction/image/${id}`),
     }
