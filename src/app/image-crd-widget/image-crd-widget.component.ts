@@ -43,7 +43,6 @@ export class ImageCRDWidgetComponent implements OnInit {
 
 
   uploadImage(files: File[]){
-    console.log(files);
     this.api.imageRequest("post",this.instruction_id, files[0],'patent')
     .subscribe(resp=> console.log(resp));
   }
