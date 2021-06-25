@@ -109,7 +109,8 @@ public errors: any = [];
     imageData?: File,
     documentType?: string,
     imageName?: string) : Observable<any>{
-    const formData = new FormData().append(imageData.name,imageData);
+
+    const formData = imageData? new FormData().append(imageData.name,imageData):null;
     let requestTypeDict = {
       "get":
       id? this.httpServer.get(`${this.API_URL}/Instruction/image/${id}`):
