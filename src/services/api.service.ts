@@ -109,8 +109,12 @@ public errors: any = [];
     imageData?: File,
     documentType?: string,
     imageName?: string) : Observable<any>{
-    const multiPart = new HttpHeaders().set('Content-Type', 'multipart/form-data');
+
+    const multipart = { 
+      headers: new HttpHeaders({'Content-Type': 'multipart/form-data; boundary=----border----'})
+    };
     const formData = imageData? new FormData().append(imageData.name,imageData):null;
+
     let requestTypeDict = {
       "get":
       id? this.httpServer.get(`${this.API_URL}/Instruction/image/${id}`):
