@@ -113,7 +113,7 @@ public errors: any = [];
     const multipart = { 
       headers: new HttpHeaders({'Content-Type': 'multipart/form-data; boundary=----border----'})
     };
-    const formData = imageData? new FormData().append(imageData.name,imageData):null;
+    const formData = imageData? new FormData().append('file',imageData,imageData.name):null;
 
     let requestTypeDict = {
       "get":
@@ -122,7 +122,7 @@ public errors: any = [];
       this.httpServer.get(`${this.API_URL}/Instruction/image/`),
 
       "post":
-      this.httpServer.post(`${this.API_URL}/Instruction/${documentType}/${id}/image`, formData),
+      this.httpServer.post(`${this.API_URL}/Instruction/${documentType}/${id}/image`, formData, { observe: 'response' }),
       
       "delete":
       this.httpServer.delete(`${this.API_URL}/Instruction/image/${id}`),
