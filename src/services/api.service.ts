@@ -111,7 +111,7 @@ public errors: any = [];
     imageName?: string) : Observable<any>{
 
     const multipart = { 
-      headers: new HttpHeaders({'Content-Type': 'multipart/form-data; boundary=----border----'})
+      headers: new HttpHeaders({'Content-Type': 'multipart/form-data'})
     };
     const formData = imageData? new FormData().append('file',imageData,imageData.name):null;
 
@@ -122,7 +122,7 @@ public errors: any = [];
       this.httpServer.get(`${this.API_URL}/Instruction/image/`),
 
       "post":
-      this.httpServer.post(`${this.API_URL}/Instruction/${documentType}/${id}/image`, formData, { observe: 'response' }),
+      this.httpServer.post(`${this.API_URL}/Instruction/${documentType}/${id}/image`, formData),
       
       "delete":
       this.httpServer.delete(`${this.API_URL}/Instruction/image/${id}`),
