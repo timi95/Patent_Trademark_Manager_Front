@@ -17,6 +17,7 @@ export class ImageCRDWidgetComponent implements OnInit {
   baseUrl = "http://localhost:8080/Instruction/image/";
   active = false;
   deletingImage:InstructionImage = null;
+  ImageFile:File;
   constructor(private api: ApiService) { }
 
   ngOnInit(): void {
@@ -43,7 +44,15 @@ export class ImageCRDWidgetComponent implements OnInit {
 
 
   uploadImage(files: File[]){
-    this.api.imageRequest("post",this.instruction_id, files[0],'patent')
+    this.ImageFile = files[0];
+
+  }
+
+  submitImage(){
+    var formData: any = new FormData();
+    formData.append("img", this.ImageFile);
+    
+    this.api.imageRequest("post",this.instruction_id, formData,'patent')
     .subscribe(resp=> console.log(resp));
   }
 

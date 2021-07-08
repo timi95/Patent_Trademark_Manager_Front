@@ -106,14 +106,10 @@ public errors: any = [];
   imageRequest(
     requestType: string,
     id?: string,
-    imageData?: File,
+    formData?: FormData,
     documentType?: string,
     imageName?: string) : Observable<any>{
 
-    const multipart = { 
-      headers: new HttpHeaders({'Content-Type': 'multipart/form-data'})
-    };
-    const formData = imageData? new FormData().append('file',imageData,imageData.name):null;
 
     let requestTypeDict = {
       "get":
