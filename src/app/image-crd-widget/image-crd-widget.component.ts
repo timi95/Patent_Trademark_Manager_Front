@@ -45,10 +45,9 @@ export class ImageCRDWidgetComponent implements OnInit {
 
   uploadImage(files: File[]){
     this.ImageFile = files[0];
-
   }
 
-  submitImage(){
+  submitImage(file?:File){
     var formData: any = new FormData();
     formData.append("img", this.ImageFile);
     
