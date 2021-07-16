@@ -5,7 +5,7 @@ import { MessageService } from "src/services/message.service";
 import { UtilityService } from 'src/services/utility.service';
 import { JsonPipe } from '@angular/common';
 import { Router } from '@angular/router';
-import { Form } from '../classes/Form';
+import { Form } from '../../classes/Form';
 
 
 @Component({

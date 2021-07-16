@@ -1,14 +1,9 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
-import { deepEqual } from 'assert';
-import { time } from 'console';
-import { interval, Observable, pipe, Subscriber, timer } from 'rxjs';
-import { debounce, debounceTime, delay, distinctUntilChanged, repeat, retry, switchMap, tap } from 'rxjs/operators';
+import { Observable, Subscriber } from 'rxjs';
+import { retry } from 'rxjs/operators';
 import { ApiService } from 'src/services/api.service';
 import { UtilityService } from 'src/services/utility.service';
-import { Action } from '../classes/Action';
 import { Reminder } from '../classes/Reminder';
-
 
 
 @Component({

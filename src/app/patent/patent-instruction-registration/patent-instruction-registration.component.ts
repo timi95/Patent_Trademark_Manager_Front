@@ -5,8 +5,8 @@ import { switchMap } from 'rxjs/operators';
 import { ApiService } from 'src/services/api.service';
 import { MessageService } from 'src/services/message.service';
 import { UtilityService } from 'src/services/utility.service';
-import { Form } from '../classes/Form';
-import { Patent } from '../classes/Instructions/Patent';
+import { Form } from '../../classes/Form';
+import { Patent } from '../../classes/Instructions/Patent';
 
 @Component({
   selector: 'app-patent-instruction-registration',

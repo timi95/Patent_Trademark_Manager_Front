@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { DetailComponent } from './detail/detail.component';
-import { MainContentComponent } from './main-content/main-content.component';
-import { PatentInstructionRegistrationComponent } from './patent-instruction-registration/patent-instruction-registration.component';
-import { TrademarkInstructionRegistrationComponent } from './trademark-instruction-registration/trademark-instruction-registration.component';
-import { ViewPatentsComponent } from './view-patents/view-patents.component';
-import { ViewTrademarksComponent } from './view-trademarks/view-trademarks.component';
+import { DetailComponent } from './patent/detail/detail.component';
+import { MainContentComponent } from './patent/main-content/main-content.component';
+import { PatentInstructionRegistrationComponent } from './patent/patent-instruction-registration/patent-instruction-registration.component';
+import { TrademarkInstructionRegistrationComponent } from './patent/trademark-instruction-registration/trademark-instruction-registration.component';
+import { ViewPatentsComponent } from './patent/view-patents/view-patents.component';
+import { ViewTrademarksComponent } from './patent/view-trademarks/view-trademarks.component';
+
 
 
 const routes: Routes = [

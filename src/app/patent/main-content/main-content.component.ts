@@ -7,7 +7,7 @@ import { Action } from 'src/app/classes/Action'
 import { Router } from '@angular/router';
 import { from, Observable } from 'rxjs';
 import { map, retry, switchMap, tap } from 'rxjs/operators';
-import { Form } from '../classes/Form';
+import { Form } from '../../classes/Form';
 
 
 @Component({

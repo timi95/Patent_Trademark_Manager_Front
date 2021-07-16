@@ -1,31 +1,34 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TestObject } from 'protractor/built/driverProviders';
 import { ApiService } from 'src/services/api.service';
 import { UtilityService } from 'src/services/utility.service';
-import { Action } from '../classes/Action';
+import { Action } from '../../classes/Action';
 
 @Component({
-  selector: 'date-search',
-  templateUrl: './date-range-search-widget.component.html',
-  styleUrls: ['./date-range-search-widget.component.css']
+  selector: 'filter-by',
+  templateUrl: './filter-by-widget.component.html',
+  styleUrls: ['./filter-by-widget.component.css']
 })
-export class DateRangeSearchWidgetComponent implements OnInit {
-  from:string;
-  till:string;
+export class FilterByWidgetComponent implements OnInit {
   
-  documentTypeUrl: any;
   patentActionUrlDict: any = new Action().patentActionUrlDict;
   trademarkActionUrlDict: any = new Action().trademarkActionUrlDict;
+
+  documents = [];
+  orderTypeList:string[] = [];
+  documentTypeUrl: string;
   managerType:string = 'Patent_manager';
+  // chosenOrderType:string = '';
 
   constructor(private utilityService: UtilityService, private apiService: ApiService) { }
 
   ngOnInit(): void {
     this.utilityService.updateManagerType();
-    this.utilityService.managerTypeSubject.subscribe(resp=>{this.managerType = resp;});
-
+    this.utilityService.managerTypeSubject.subscribe(resp=>{this.managerType = resp});
     this.utilityService.updateDocumentList();
-    this.utilityService.documentListSubject.subscribe(resp=>{});
+    this.utilityService.documentListSubject.subscribe(resp=>{ 
+      this.orderTypeList=resp[0]?Object.keys(resp[0]):[];});
 
     this.utilityService.updateDocumentType();
     this.utilityService.documentTypeSubject.subscribe(resp=>{
@@ -33,13 +36,16 @@ export class DateRangeSearchWidgetComponent implements OnInit {
       this.patentActionUrlDict[resp]: this.trademarkActionUrlDict[resp];});
   }
 
-  searchDateRange(){
-    this.apiService
-    .searchPatentDocumentsByDate(this.documentTypeUrl, this.from, this.till, this.managerType)
+  sort($event){
+    // console.log("sort by component call");
+    this.apiService.orderPatentDocumentsByField(
+      this.documentTypeUrl, 
+      $event.target.value,
+      this.managerType)
     .subscribe(resp =>{
+      // console.log('orderPatentDocumentsByField() called! response ==>', resp['results']);
       localStorage.setItem('documentList', JSON.stringify(resp['results']) );
       this.utilityService.updateDocumentList();
     });
   }
-
 }

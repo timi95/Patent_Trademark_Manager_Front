@@ -1,14 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { UtilityService } from 'src/services/utility.service';
-import { Action } from '../classes/Action';
-import * as IAction from '../interfaces/Action';
-import { Form } from '../classes/Form';
+import { Action } from '../../classes/Action';
+import * as IAction from '../../interfaces/Action';
+import { Form } from '../../classes/Form';
 import { Output, EventEmitter } from '@angular/core';
 import { ApiService } from 'src/services/api.service';
 import { MessageService } from 'src/services/message.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Patent } from '../classes/Instructions/Patent';
+import { Patent } from '../../classes/Instructions/Patent';
 
 @Component({
   selector: 'action-list',

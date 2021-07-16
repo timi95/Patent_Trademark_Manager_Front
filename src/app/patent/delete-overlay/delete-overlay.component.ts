@@ -5,8 +5,8 @@ import { Router } from '@angular/router';
 import { ApiService } from 'src/services/api.service';
 import { MessageService } from 'src/services/message.service';
 import { UtilityService } from 'src/services/utility.service';
-import { Form } from '../classes/Form';
-import { Reminder } from '../classes/Reminder';
+import { Form } from '../../classes/Form';
+import { Reminder } from '../../classes/Reminder';
 
 @Component({
   selector: 'delete',

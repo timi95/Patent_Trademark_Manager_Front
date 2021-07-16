@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { repeat } from 'rxjs/operators';
 import { ApiService } from 'src/services/api.service';
-import { Patent } from '../classes/Instructions/Patent';
-import { Instruction } from '../interfaces/Instruction';
+import { Patent } from '../../classes/Instructions/Patent';
+import { Instruction } from '../../interfaces/Instruction';
 
 @Component({
   selector: 'app-view-patents',

@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
 import { ApiService } from 'src/services/api.service';
-import { InstructionImage } from '../interfaces/InstructionImage';
+import { InstructionImage } from '../../interfaces/InstructionImage';
 
 @Component({
   selector: 'image-crd-widget',
