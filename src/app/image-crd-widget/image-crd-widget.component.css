@@ -17,15 +17,14 @@
   background-color: #fefefe;
   box-shadow: -3px 6px 2px 0 rgba(0, 18, 46, 0.49);
   padding: 5px;
+  margin: 5px;
+  text-align: center;
+  border: 1px solid lightgray;
 }
 .picture-box> img{
   max-width: 150px;
   max-height: 100px;
 }
-
-
-
-
 
 
 
