@@ -74,7 +74,6 @@ export class DetailComponent implements OnInit, OnDestroy {
 
 
   refresh($event:Patent) {
-    console.log('emmitted value',$event);
     this.patent$ = $event;
     this.listOfPatent = Object.entries($event);
   }

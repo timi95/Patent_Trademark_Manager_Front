@@ -25,28 +25,31 @@
     <hr>
     <strong>Actions List</strong>
     <div class="actions">
-        <ul class="actions-list">
-            <li *ngFor="let action of patent$?.action_list">
-              <div>
-                <strong>Id:</strong>{{action?.id}}
-              </div>
-              <div>
-                <strong>type:</strong> {{action?.type_id}}
-              </div>
-            </li>
-        </ul>
+      <ul class="actions-list">
+          <li *ngFor="let action of patent$?.action_list">
+            <div>
+              <strong>Id:</strong>{{action?.id}}
+            </div>
+            <div>
+              <strong>type:</strong> {{action?.type_id}}
+            </div>
+          </li>
+      </ul>
 
-        <div class="actions-controls">
-            <action-list
-            [patentID]="patentID"
-            (actionRefresh)="refresh($event)"></action-list>
-        </div>
+      <div class="actions-controls">
+          <action-list
+          [patentID]="patentID"
+          (actionRefresh)="refresh($event)"></action-list>
+      </div>
     </div>
 
     <hr>
     <strong>Images List</strong>
     <div class="actions">
-      <image-crd-widget [id]="patentID" [image-list]="patent$?.image_list"></image-crd-widget>
+      <image-crd-widget 
+      [id]="patentID" 
+      [image-list]="patent$?.image_list"
+      (imageRefresh)="refresh($event)"></image-crd-widget>
     </div>
 
 </ul>

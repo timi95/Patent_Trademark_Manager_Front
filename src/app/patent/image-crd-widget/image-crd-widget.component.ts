@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Patent } from 'src/app/classes/Instructions/Patent';
 import { ApiService } from 'src/services/api.service';
 import { InstructionImage } from '../../interfaces/InstructionImage';
 
@@ -13,6 +13,8 @@ export class ImageCRDWidgetComponent implements OnInit {
 
   @Input('image-list') image_list: InstructionImage[];
   @Input('id') instruction_id: string;
+  @Output() imageRefresh = new EventEmitter<Patent>();
+
 
   baseUrl = "http://localhost:8080/Instruction/image/";
   active = false;
@@ -29,7 +31,7 @@ export class ImageCRDWidgetComponent implements OnInit {
     this.api.imageRequest("delete", id)
     .subscribe( resp => {
       this.shunOverlay();
-      console.log(resp);
+      this.imageRefresh.emit(resp);
     });
   }
   
@@ -51,7 +53,7 @@ export class ImageCRDWidgetComponent implements OnInit {
     formData.append("img", this.ImageFile);
     
     this.api.imageRequest("post",this.instruction_id, formData,'patent')
-    .subscribe(resp=> console.log(resp));
+    .subscribe(resp=> this.imageRefresh.emit(resp));
   }
 
    getImage(id:string): Observable<InstructionImage>{
