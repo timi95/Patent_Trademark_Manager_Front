@@ -15,16 +15,16 @@
   </div>
 </form>
 
-<div  *ngIf="active" class="overlay"  (click)="shunOverlay()">
+<div class="overlay" *ngIf="active"  (click)="shunOverlay()">
   <!-- Delete Overlay Form: START   -->
   <form class="modal-content" (ngSubmit)="deleteImage(deletingImage?.id)">
 
-      <header>
+    <header>
       <h3>Delete this Image </h3>
       <a class="cancel" (click)="shunOverlay()">&#x274C;</a>
-      </header>
-  
-      <div>
+    </header>
+
+    <div>
       <h4> Are you sure you want to delete this Image ?</h4>
       <p> Deleting this Image is irreversible</p>
       Id: {{deletingImage?.id}}
@@ -35,7 +35,7 @@
           <button style="color: crimson;" (click)="deleteImage(deletingImage?.id)">Go ahead and Delete this !!</button>
           <button class="color: teal; cursor:pointer;" (click)="shunOverlay()">Do not delete this Image</button>
       </span>
-      </div>
+    </div>
       
   </form>
   <!-- Delete Overlay Form: END   -->    

@@ -42,7 +42,6 @@ export class ImageCRDWidgetComponent implements OnInit {
     return this.active = false;
   }
 
-
   uploadImage(files: File[]){
     this.ImageFile = files[0];
   }
