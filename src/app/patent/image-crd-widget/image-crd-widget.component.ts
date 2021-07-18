@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
+import { switchMap } from 'rxjs/internal/operators/switchMap';
 import { Patent } from 'src/app/classes/Instructions/Patent';
 import { ApiService } from 'src/services/api.service';
 import { InstructionImage } from '../../interfaces/InstructionImage';
@@ -28,10 +29,13 @@ export class ImageCRDWidgetComponent implements OnInit {
 
   deleteImage(id){
     //summon delete modal
+    const ref_id = this.deletingImage.instruction_ref;
+    
     this.api.imageRequest("delete", id)
-    .subscribe( resp => {
+    .pipe(switchMap(()=>this.api.documentRequest("patent","get", ref_id)))
+    .subscribe((resp:Patent) => {
       this.shunOverlay();
-      this.imageRefresh.emit(resp);
+      this.imageRefresh.emit(resp)
     });
   }
   
