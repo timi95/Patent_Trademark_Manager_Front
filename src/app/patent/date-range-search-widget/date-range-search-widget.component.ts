@@ -37,7 +37,7 @@ export class DateRangeSearchWidgetComponent implements OnInit {
     this.apiService
     .searchPatentDocumentsByDate(this.documentTypeUrl, this.from, this.till, this.managerType)
     .subscribe(resp =>{
-      localStorage.setItem('documentList', JSON.stringify(resp['results']) );
+      localStorage.setItem('documentList', JSON.stringify(resp['results']));
       this.utilityService.updateDocumentList();
     });
   }
