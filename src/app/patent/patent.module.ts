@@ -15,7 +15,6 @@ import { HeaderContentComponent } from './single-file-components/header-content.
 import { SuccessMessageComponent } from './success-message/success-message.component';
 import { TrademarkInstructionRegistrationComponent } from './trademark-instruction-registration/trademark-instruction-registration.component';
 import { ViewPatentsComponent } from './view-patents/view-patents.component';
-import { ViewTrademarksComponent } from './view-trademarks/view-trademarks.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -38,7 +37,6 @@ import { PureCallPipe } from './pipes/pure-call.pipe';
     DateRangeSearchWidgetComponent,
     PatentInstructionRegistrationComponent,
     TrademarkInstructionRegistrationComponent,
-    ViewTrademarksComponent,
     ViewPatentsComponent,
     DeleteOverlayComponent,
     PatentActionListComponent,
@@ -64,7 +62,6 @@ import { PureCallPipe } from './pipes/pure-call.pipe';
     DateRangeSearchWidgetComponent,
     PatentInstructionRegistrationComponent,
     TrademarkInstructionRegistrationComponent,
-    ViewTrademarksComponent,
     ViewPatentsComponent,
     DeleteOverlayComponent,
     PatentActionListComponent,

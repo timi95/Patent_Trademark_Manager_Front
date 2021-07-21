@@ -5,7 +5,7 @@ import { MainContentComponent } from './patent/main-content/main-content.compone
 import { PatentInstructionRegistrationComponent } from './patent/patent-instruction-registration/patent-instruction-registration.component';
 import { TrademarkInstructionRegistrationComponent } from './patent/trademark-instruction-registration/trademark-instruction-registration.component';
 import { ViewPatentsComponent } from './patent/view-patents/view-patents.component';
-import { ViewTrademarksComponent } from './patent/view-trademarks/view-trademarks.component';
+import { ViewTrademarksComponent } from './trademark/view-trademarks/view-trademarks.component';
 
 
 
