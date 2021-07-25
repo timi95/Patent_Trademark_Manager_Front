@@ -1,1 +1,36 @@
-<p>view-trademarks works!</p>
+<main class="card-grid" *ngIf="trademark$; else noData">
+    <div class="card-body">
+        <!-- <h3>ID: {{trademark.id}} </h3> -->
+        <div class="detail-list">
+            <!-- <strong>trademark Title</strong>
+            <p>{{trademark.trademark_title}}</p>
+            <strong>trademarkee Name</strong>
+            <p>{{trademark.trademarkee_name}}</p>
+            <strong>Invention Title</strong>
+            <p>{{trademark.invention_title}}</p>
+            <strong>Invention Description</strong>
+            <p>{{trademark.invention_description}}</p>
+            <strong>Reference Number:</strong>
+            <p>{{ trademark.our_reference_number}}</p>
+            <strong>Client Reference Number:</strong>
+            <p>{{ trademark.clients_reference_number }}</p>
+            <strong>Registration Date</strong>
+            <p>{{trademark.registration_date}}</p>
+            <strong>Application Number</strong>
+            <p>{{trademark.application_number}}</p> -->
+        </div>
+        <ul class="actions-list">
+            <li class="">
+              <!-- <div> <strong>Id:</strong>{{action?.id}}</div>
+              <div> <strong>type:</strong> {{action?.type_id}}</div> -->
+            </li>
+        </ul>
+        <button>Details</button>
+    </div>
+</main>
+
+<ng-template #noData>
+    <div class="card-grid">
+      <div class="card-body"><h2>There is no available data</h2></div>
+    </div>
+</ng-template>
