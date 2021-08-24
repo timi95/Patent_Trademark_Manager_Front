@@ -12,7 +12,7 @@ import { Instruction } from '../../interfaces/Instruction';
   styleUrls: ['./view-patents.component.css']
 })
 export class ViewPatentsComponent implements OnInit {
-  patent$:any;
+  patent$: Patent;
   constructor(
     public router: Router,
     public apiService: ApiService) { }
