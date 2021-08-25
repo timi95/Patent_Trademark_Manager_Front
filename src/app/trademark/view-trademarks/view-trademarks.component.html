@@ -1,6 +1,6 @@
 <main class="card-grid" *ngIf="trademark$; else noData">
-    <div class="card-body">
-        <!-- <h3>ID: {{trademark.id}} </h3> -->
+    <div class="card-body" *ngFor="let trademark of trademark$?.content">
+        <h3>ID: {{trademark.id}} </h3>
         <div class="detail-list">
             <!-- <strong>trademark Title</strong>
             <p>{{trademark.trademark_title}}</p>
