@@ -20,9 +20,9 @@
             <p>{{trademark.application_number}}</p> -->
         </div>
         <ul class="actions-list">
-            <li class="">
-              <!-- <div> <strong>Id:</strong>{{action?.id}}</div>
-              <div> <strong>type:</strong> {{action?.type_id}}</div> -->
+            <li class="" *ngFor="let action of trademark?.action_list">
+              <div> <strong>Id:</strong>{{action?.id}}</div>
+              <div> <strong>type:</strong> {{action?.type_id}}</div>
             </li>
         </ul>
         <button>Details</button>
