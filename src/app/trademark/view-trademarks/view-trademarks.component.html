@@ -2,7 +2,7 @@
     <div class="card-body" *ngFor="let trademark of trademark$?.content">
         <h3>ID: {{trademark.id}} </h3>
         <div class="detail-list">
-            <!-- <strong>trademark Title</strong>
+            <strong>trademark Title</strong>
             <p>{{trademark.trademark_title}}</p>
             <strong>trademarkee Name</strong>
             <p>{{trademark.trademarkee_name}}</p>
@@ -17,7 +17,7 @@
             <strong>Registration Date</strong>
             <p>{{trademark.registration_date}}</p>
             <strong>Application Number</strong>
-            <p>{{trademark.application_number}}</p> -->
+            <p>{{trademark.application_number}}</p>
         </div>
         <ul class="actions-list">
             <li class="" *ngFor="let action of trademark?.action_list">
