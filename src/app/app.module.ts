@@ -10,6 +10,7 @@ import { PatentModule } from './patent/patent.module';
 import { RemindersOverlayComponent } from './reminders-overlay/reminders-overlay.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { ReminderListComponent } from './reminder-list/reminder-list.component';
+import { TrademarkModule } from './trademark/trademark.module';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { ReminderListComponent } from './reminder-list/reminder-list.component';
     RemindersOverlayComponent,
   ],
   imports: [
+    TrademarkModule,
     PatentModule,
     BrowserModule,
     HttpClientModule,
