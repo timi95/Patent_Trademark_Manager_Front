@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { repeat } from 'rxjs/operators';
 import { ApiService } from 'src/services/api.service';
-import { Patent } from '../../classes/Instructions/Patent';
-import { Instruction } from '../../interfaces/Instruction';
 
 @Component({
   selector: 'app-view-patents',
@@ -12,14 +8,14 @@ import { Instruction } from '../../interfaces/Instruction';
   styleUrls: ['./view-patents.component.css']
 })
 export class ViewPatentsComponent implements OnInit {
-  patent$: Patent;
+  patent$: any;
   constructor(
     public router: Router,
     public apiService: ApiService) { }
 
   ngOnInit(): void {
     this.apiService.documentRequest('patent','get')
-    .subscribe( (resp:Patent) =>{
+    .subscribe( (resp:any) =>{
       this.patent$ = resp
     });
   }
