@@ -21,8 +21,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { PureCallPipe } from './pipes/pure-call.pipe';
 
 
-
-
 @NgModule({
   declarations: [
     MainContentComponent,
