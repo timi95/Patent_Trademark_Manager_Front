@@ -64,20 +64,18 @@ export class SideNavComponent implements OnInit {
     
     this.router.navigate(['']);
   }
-  
 
   PTToggle(){
     this.P_T_list_toggle.Patentlist = !this.P_T_list_toggle.Patentlist;
     this.P_T_list_toggle.Trademarklist = !this.P_T_list_toggle.Trademarklist;
-
     this.managerType = this.P_T_list_toggle.Patentlist? 'Patent_manager':'Trademark_manager';
-
   }
 
   toggleList(){
     this.opened = !this.opened;
     // console.log(`toggle state: ${this.opened}`); 
   }
+  
   @HostListener("window:resize", [])
   private onResize() {
       // console.log("This window has been resized")
