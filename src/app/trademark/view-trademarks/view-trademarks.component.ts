@@ -18,6 +18,7 @@ export class ViewTrademarksComponent implements OnInit {
     this.apiService.documentRequest('trademark','get')
     .subscribe( (resp:any) =>{
       this.trademark$ = resp
+      console.log(this.trademark$);
     });
   }
 
