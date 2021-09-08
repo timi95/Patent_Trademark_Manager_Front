@@ -13,7 +13,7 @@ import { PatentInstructionRegistrationComponent } from './patent-instruction-reg
 import { FooterContentComponent } from './single-file-components/footer-content.component';
 import { HeaderContentComponent } from './single-file-components/header-content.component';
 import { SuccessMessageComponent } from './success-message/success-message.component';
-import { TrademarkInstructionRegistrationComponent } from './trademark-instruction-registration/trademark-instruction-registration.component';
+import { TrademarkInstructionRegistrationComponent } from '../trademark/trademark-instruction-registration/trademark-instruction-registration.component';
 import { ViewPatentsComponent } from './view-patents/view-patents.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
