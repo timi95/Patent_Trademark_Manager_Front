@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Form } from 'src/app/classes/Form';
+import { ApiService } from 'src/services/api.service';
+import { MessageService } from 'src/services/message.service';
+import { UtilityService } from 'src/services/utility.service';
 
 @Component({
   selector: 'app-trademark-instruction-registration',
@@ -7,7 +12,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TrademarkInstructionRegistrationComponent implements OnInit {
 
-  constructor() { }
+  Forms:Form = new Form();
+  formMap = Form.formMap;
+  stripFields = UtilityService.stripFieldsFromList
+  trademark_particulars:any[];
+  trademarkActionForm:any = {};
+  listOfTrademarkActionForm:any[];
+  is_new_action:boolean = false;
+  actionList = [
+
+  ];
+  trademarkActionFormDictionary =  {
+
+  }
+  trademarkCreateForm = this.Forms.trademarkCreateForm // lots of work to be done in the form!
+  current_action: any;
+  constructor(public router: Router,
+    private apiService: ApiService,
+    private messageService: MessageService,
+    public utilityService:UtilityService) { }
 
   ngOnInit(): void {
   }
