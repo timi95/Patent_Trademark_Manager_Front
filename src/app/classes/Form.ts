@@ -313,6 +313,7 @@ export class Form {
     }
 
     // create form types for Kotlin backend
+    trademarkCreateForm = {}
     patentCreateForm = {
         action_list: {value:[], type:"list"},
         applicable_service_charge: {value:"default value", type:"text"},
