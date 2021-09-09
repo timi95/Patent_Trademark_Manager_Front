@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { DetailComponent } from './patent/detail/detail.component';
 import { MainContentComponent } from './patent/main-content/main-content.component';
 import { PatentInstructionRegistrationComponent } from './patent/patent-instruction-registration/patent-instruction-registration.component';
-import { TrademarkInstructionRegistrationComponent } from './trademark/trademark-instruction-registration/trademark-instruction-registration.componentent';
+import { TrademarkInstructionRegistrationComponent } from './trademark/trademark-instruction-registration/trademark-instruction-registration.component';
 import { ViewPatentsComponent } from './patent/view-patents/view-patents.component';
 import { ViewTrademarksComponent } from './trademark/view-trademarks/view-trademarks.component';
 
