@@ -20,7 +20,14 @@ export class TrademarkInstructionRegistrationComponent implements OnInit {
   listOfTrademarkActionForm:any[];
   is_new_action:boolean = false;
   actionList = [
-
+    'amendment',
+    'assignment-merger',
+    'change-address',
+    'procurement',
+    'reclassification',
+    'registration',
+    'renewal',
+    'search'
   ];
   trademarkActionFormDictionary =  {
 
