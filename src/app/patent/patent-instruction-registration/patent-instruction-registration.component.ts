@@ -41,7 +41,7 @@ export class PatentInstructionRegistrationComponent implements OnInit {
     'change-name':this.Forms.P_changeOfNameActionCreateForm,
     'change-address': this.Forms.P_changeOfAddressActionCreateForm,
     'assignment-merger':this.Forms.P_assignmentMergerActionCreateForm,
-    "amendment": this.Forms.P_assignmentMergerActionCreateForm,
+    "amendment": this.Forms.P_amendmentActionCreateForm,
   }
   patentCreateForm = this.Forms.patentCreateForm
   current_action: any;

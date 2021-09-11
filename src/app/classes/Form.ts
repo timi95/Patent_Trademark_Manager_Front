@@ -478,6 +478,15 @@ export class Form {
         status_change_of_address: {value: "default value", type:"text"},
         type_id: {value:"action", type:"text"}
     }
+    P_amendmentActionCreateForm =  {
+        date_amendment_instruction_received: {value: new Date(), type:"datetime-local"},
+        date_amending_clerk_instructed: {value: new Date(), type:"datetime-local"},
+        date_amendment_received: {value: new Date(), type:"datetime-local"},
+        nature_of_amendment: {value: "default value", type:"text"},
+        amending_clerk: {value: "default value", type:"text"},
+        status_of_amendment: {value: "default value", type:"text"},
+        type_id: {value:"action", type:"text"}
+    };
 
     constructor() {
     }
