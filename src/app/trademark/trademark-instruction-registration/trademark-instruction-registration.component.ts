@@ -30,7 +30,7 @@ export class TrademarkInstructionRegistrationComponent implements OnInit {
     'search'
   ];
   trademarkActionFormDictionary =  {
-    'amendment':{},
+    'amendment': this.Forms.T_amendmentActionCreateForm,
     'assignment-merger':{},
     'change-address':{},
     'procurement':{},
