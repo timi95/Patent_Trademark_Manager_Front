@@ -478,6 +478,7 @@ export class Form {
         status_change_of_address: {value: "default value", type:"text"},
         type_id: {value:"action", type:"text"}
     }
+
     P_amendmentActionCreateForm =  {
         date_amendment_instruction_received: {value: new Date(), type:"datetime-local"},
         date_amending_clerk_instructed: {value: new Date(), type:"datetime-local"},
@@ -514,6 +515,16 @@ export class Form {
         date_facilitation_assignment_cert_sent_sent: {value: new Date(), type:"datetime-local"},
         official_fee_assignment: {value:"default value", type:"text"},
         status_assignment_registrations: {value:"default value", type:"text"},
+        type_id: {value:"action", type:"text"}
+    };
+
+    T_changeOfAddressActionCreateForm = {
+        change_of_address_instruction_date: {value: new Date(), type:"datetime-local"},
+        change_of_address_instruction_month: {value: "default value", type:"text"},
+        clerk_of_change_of_address: {value: "default value", type:"text"},
+        date_received_change_of_address_certificate: {value: new Date(), type:"datetime-local"},
+        new_address_of_patentee: {value: "default value", type:"text"},
+        status_change_of_address: {value: "default value", type:"text"},
         type_id: {value:"action", type:"text"}
     };
     
