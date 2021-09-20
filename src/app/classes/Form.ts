@@ -527,7 +527,9 @@ export class Form {
         status_change_of_address: {value: "default value", type:"text"},
         type_id: {value:"action", type:"text"}
     };
-    
+    T_procurementOfCertificateAction = {
+        
+    }
     constructor() {
     }
     static formMap(form){
