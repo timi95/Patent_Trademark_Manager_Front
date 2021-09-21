@@ -33,7 +33,7 @@ export class TrademarkInstructionRegistrationComponent implements OnInit {
     'amendment': this.Forms.T_amendmentActionCreateForm,
     'assignment-merger': this.Forms.T_assignmentMergerActionCreateForm,
     'change-address': this.Forms.T_changeOfAddressActionCreateForm,
-    'procurement':{},
+    'procurement': this.Forms.T_procurementOfCertificateAction,
     'reclassification':{},
     'registration':{},
     'renewal':{},
