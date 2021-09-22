@@ -530,6 +530,14 @@ export class Form {
     T_procurementOfCertificateAction = {
         
     }
+
+    T_reclassificationActionCreateForm:any = {
+        date_reclassification_instruction: {value: new Date(), type:"datetime-local"},
+        date_abj_instructed_reclassify: {value: new Date(), type:"datetime-local"},
+        date_publication_of_reclassification: {value: new Date(), type:"datetime-local"},
+        reclassification_status: {value: "default value", type:"text"},
+        journal_pg_reclassification: {value: "default value", type:"text"},
+    };
     constructor() {
     }
     static formMap(form){
