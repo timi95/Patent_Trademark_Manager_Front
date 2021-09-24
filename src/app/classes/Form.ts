@@ -531,12 +531,42 @@ export class Form {
         
     }
 
-    T_reclassificationActionCreateForm:any = {
+    T_reclassificationActionCreateForm = {
         date_reclassification_instruction: {value: new Date(), type:"datetime-local"},
         date_abj_instructed_reclassify: {value: new Date(), type:"datetime-local"},
         date_publication_of_reclassification: {value: new Date(), type:"datetime-local"},
         reclassification_status: {value: "default value", type:"text"},
         journal_pg_reclassification: {value: "default value", type:"text"},
+    };
+
+    T_registrationActionCreateform = {
+        acceptance_date: {value: new Date(), type:"datetime-local"},
+        acknowledgement_date: {value: new Date(), type:"datetime-local"},
+        date_acceptance_facilitation_sent: {value: new Date(), type:"datetime-local"},
+        date_acknowledgement_facilitation_sent: {value: new Date(), type:"datetime-local"},
+        date_of_registration_instruction: {value: new Date(), type:"datetime-local"},
+        date_of_registration_instruction_received: {value: new Date(), type:"datetime-local"},
+        date_registration_cert_facilitation_sent: {value: new Date(), type:"datetime-local"},
+        date_sent_for_publication: {value: new Date(), type:"datetime-local"},
+        date_abj_instructed_for_registration: {value: new Date(), type:"datetime-local"},
+        journal_date: {value: new Date(), type:"datetime-local"},
+        tm_registration_filing_date: {value: new Date(), type:"datetime-local"},
+        acceptance_facilitation_sent: {value: "default value", type:"text"},
+        acknowledgement_facilitation_sent: {value: "default value", type:"text"},
+        application_no: {value: "default value", type:"text"},
+        trademark_class: 0,
+        clerk_registering: {value: "default value", type:"text"},
+        colour_limitation: {value: "default value", type:"text"},
+        goods: {value: "default value", type:"text"},
+        journal_no: {value: "default value", type:"text"},
+        journal_page: {value: "default value", type:"text"},
+        journal_vol: {value: "default value", type:"text"},
+        official_fee_registration: {value: "default value", type:"text"},
+        publication: {value: "default value", type:"text"},
+        registration_status: {value: "default value", type:"text"},
+        registration_filing_month: {value: "default value", type:"text"},
+        registration_no: {value: "default value", type:"text"},
+        registraion_cert_facilitation_sent: {value: "default value", type:"text"},
     };
     constructor() {
     }
