@@ -598,6 +598,20 @@ export class Form {
         registration_no: {value: "default value", type:"text"},
         registraion_cert_facilitation_sent: {value: "default value", type:"text"},
     };
+    T_renewalActionForm = {
+        date_renewal_cert_facilitation_sent: {value: new Date(), type:"datetime-local"},
+        dt_abj_instructed_renewal: {value: new Date(), type:"datetime-local"},
+        dt_renew_cert_received: {value: new Date(), type:"datetime-local"},
+        next_renewal_due_date: {value: new Date(), type:"datetime-local"},
+        renewal_due_date: {value: new Date(), type:"datetime-local"},
+        next_renewal_due_month: {value: "default value", type:"text"},
+        official_fee_renewal: {value: "default value", type:"text"},
+        renewal_cert_facilitation_sent: {value: "default value", type:"text"},
+        renewal_due_month: {value: "default value", type:"text"},
+        renewal_instruction_date: {value: "default value", type:"text"},
+        renewal_instruction_month: {value: "default value", type:"text"},
+        renewal_status: {value: "default value", type:"text"}
+    };
     constructor() {
     }
     static formMap(form){
