@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/internal/operators/switchMap';
 import { Patent } from 'src/app/classes/Instructions/Patent';
+import { environment } from 'src/environments/environment';
 import { ApiService } from 'src/services/api.service';
 import { InstructionImage } from '../../interfaces/InstructionImage';
 
@@ -11,13 +12,13 @@ import { InstructionImage } from '../../interfaces/InstructionImage';
   styleUrls: ['./image-crd-widget.component.css']
 })
 export class ImageCRDWidgetComponent implements OnInit {
-
+  API_URL = environment.apiUrl
   @Input('image-list') image_list: InstructionImage[];
   @Input('id') instruction_id: string;
   @Output() imageRefresh = new EventEmitter<Patent>();
 
 
-  baseUrl = "http://localhost:8080/Instruction/image/";
+  baseUrl = `http://${this.API_URL}/Instruction/image/`;
   active = false;
   deletingImage:InstructionImage = null;
   ImageFile:File;
