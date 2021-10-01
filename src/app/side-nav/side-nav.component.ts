@@ -32,9 +32,9 @@ export class SideNavComponent implements OnInit {
   }
   managerType:string = 'Patent_manager';
   pathList:any[] = [
-    // { path:'', name:"Home"},
-    { path:'register/trademark', name: 'Register a Trademark'},
-    { path:'view/trademark',name:'View Trademarks'},
+    { path:'', name:"Home"},
+    // { path:'register/trademark', name: 'Register a Trademark'},
+    // { path:'view/trademark',name:'View Trademarks'},
     { path:'register/patent', name:'Register a Patent'},
     { path:'view/patent', name:'View Patents'},
   ];
