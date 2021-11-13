@@ -41,7 +41,7 @@ export class ReminderListComponent implements OnInit {
     .subscribe((resp:Reminder[])=>{ this.reminders = resp; 
     this.ref.detectChanges()});
 
-    this.getSource(`http://${this.apiService.API_URL}/Reminder/subscribe`)
+    this.getSource(`${this.apiService.API_URL}/Reminder/subscribe`)
     .pipe(retry(5))
     .subscribe(e => {
       console.log("reminder event:",e.data);
