@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, OnInit } from '@angular/core';
 import { Observable, Subscriber } from 'rxjs';
-import { retry } from 'rxjs/operators';;
+import { delay, retry } from 'rxjs/operators';;
 import { ApiService } from 'src/services/api.service';
 import { UtilityService } from 'src/services/utility.service';
 import { Reminder } from '../classes/Reminder';
@@ -42,7 +42,7 @@ export class ReminderListComponent implements OnInit {
     this.ref.detectChanges()});
 
     this.getSource(`${this.apiService.API_URL}/Reminder/subscribe`)
-    .pipe(retry(5))
+    .pipe(retry(2), delay(1000))
     .subscribe(e => {
       console.log("reminder event:",e.data);
       this.utilityService.appendReminderToList(JSON.parse(e.data))
